@@ -2,7 +2,7 @@
 #include <SDL2/SDL.h>
 #include <string>
 #include "Types.hpp"
-#include "BA/System/Point2.hpp"
+#include "BA/Systems/Vector2.hpp"
 
 namespace ba {
 	const int DEFAULT_SCREEN_WIDTH = 640;
@@ -49,7 +49,7 @@ public:
 
 	void setTitle(const std::string& title);
 	void setPos(int x, int y);
-	void setPos(const ba::Point2i& pos);
+	void setPos(const ba::Vector2i& pos);
 	void setWidth(int width);
 	void setHeight(int height);
 	void setFlags(uint32 flags);
@@ -58,7 +58,7 @@ public:
 
 private:
 	std::string		m_title;
-	ba::Point2i		m_pos;
+	ba::Vector2i	m_pos;
 	int				m_width;
 	int				m_height;
 	uint32 			m_flags;
