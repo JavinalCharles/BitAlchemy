@@ -1,20 +1,21 @@
 #pragma once
 
-#include "BA/Types.hpp"
-#include "BA/Entities/Entity.hpp"
-
 namespace ba {
 
-class Component {
-public: // Attributes
-	const IDtype ownerID;
+/* Forward Declaration. Every non-virtual subclass of ba::Component should be declared in a file that imports "feather/entities/entity.h"*/
+class Entity;
 
-public: // Methods
-	Component() = delete;
-	Component(IDtype entityID);
+class Component {
+public: // METHODS & CONSTRUCTORS
+	Component(ba::Entity* owner);
+	virtual ~Component();
 
 	virtual void awake();
-	virtual void start();
+
+	virtual ba::Entity* getOwner();
+protected: // ATTRIBUTES
+	ba::Entity* m_owner;
+
 }; // class Component
 
 } // namespace ba
