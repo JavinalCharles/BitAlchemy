@@ -14,17 +14,17 @@ public: // ATTRIBUTES
 	T h{}; // height
 
 public: // METHODS & CONSTRUCTORS
-	Rect();
-	Rect(T left, T top, T width, T height);
-	Rect(const Vector2<T>& topLeft, const Vector2<T>& dimension);
+	constexpr Rect();
+	constexpr Rect(T left, T top, T width, T height);
+	constexpr Rect(const Vector2<T>& topLeft, const Vector2<T>& dimension);
 	
 	template <typename U>
-	Rect(const Rect<U>& otherRect);
+	constexpr Rect(const Rect<U>& otherRect);
 
 	template <typename U>
-	Rect<T>& operator=(const Rect<U>& rhs);
+	constexpr Rect<T>& operator=(const Rect<U>& rhs);
 
-	SDL_Rect toSDL_Rect() const;
+	constexpr SDL_Rect toSDL_Rect() const;
 }; // class Rect
 
 

@@ -1,8 +1,8 @@
 template <typename T>
-Rect<T>::Rect() = default;
+constexpr Rect<T>::Rect() = default;
 
 template <typename T>
-Rect<T>::Rect(const Vector2<T>& topLeft, const Vector2<T>& dimension) :
+constexpr Rect<T>::Rect(const Vector2<T>& topLeft, const Vector2<T>& dimension) :
 	l(topLeft.x),
 	t(topLeft.y),
 	w(dimension.x),
@@ -12,7 +12,7 @@ Rect<T>::Rect(const Vector2<T>& topLeft, const Vector2<T>& dimension) :
 }
 
 template <typename T>
-Rect<T>::Rect(T left, T top, T width, T height)  :
+constexpr Rect<T>::Rect(T left, T top, T width, T height)  :
 	l(left), 
 	t(top), 
 	w(width), 
@@ -23,7 +23,7 @@ Rect<T>::Rect(T left, T top, T width, T height)  :
 
 template <typename T>
 template <typename U>
-Rect<T>::Rect(const Rect<U>& otherRect) :
+constexpr Rect<T>::Rect(const Rect<U>& otherRect) :
 	l(static_cast<T>(otherRect.l)),
 	t(static_cast<T>(otherRect.t)),
 	w(static_cast<T>(otherRect.w)),
@@ -34,7 +34,7 @@ Rect<T>::Rect(const Rect<U>& otherRect) :
 
 template <typename T>
 template <typename U>
-Rect<T>& Rect<T>::operator=(const Rect<U>& rhs) {
+constexpr Rect<T>& Rect<T>::operator=(const Rect<U>& rhs) {
 	l = static_cast<T>(rhs.l);
 	t = static_cast<T>(rhs.t);
 	w = static_cast<T>(rhs.w);
@@ -45,7 +45,7 @@ Rect<T>& Rect<T>::operator=(const Rect<U>& rhs) {
 
 
 template <typename T>
-SDL_Rect Rect<T>::toSDL_Rect() const {
+constexpr SDL_Rect Rect<T>::toSDL_Rect() const {
 	return SDL_Rect{
 		static_cast<int>(l), 
 		static_cast<int>(t), 

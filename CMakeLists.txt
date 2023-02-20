@@ -17,6 +17,7 @@ set(SOURCES
 	src/BA/Systems/EntityManager.cpp
 	src/BA/Utilities/Transform.cpp
 	src/BA/Window/Window.cpp
+	src/BA/Window/View.cpp
 	src/BA/ResourceManager.cpp
 )	
 
@@ -38,4 +39,5 @@ target_include_directories(BA
 	${PROJECT_SOURCE_DIR}/include/
 )
 
-target_link_libraries(BA SDL2 compiler_flags)
+target_link_libraries(BA SDL2 SDL2_image compiler_flags)
+

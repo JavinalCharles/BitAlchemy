@@ -8,11 +8,11 @@ ComponentSystem::ComponentSystem(ba::EntityManager* entityManager)
 	
 }
 
-void ComponentSystem::update(float deltaTime) {
+void ComponentSystem::update(float) {
 
 }
 
-void ComponentSystem::postUpdate(float deltaTime) {
+void ComponentSystem::postUpdate(float) {
 	
 }
 
