@@ -12,7 +12,7 @@ public: // METHODS & CONSTRUCTORS
 
 	virtual void awake();
 
-	virtual ba::Entity* getOwner();
+	virtual ba::Entity* getOwner() const;
 protected: // ATTRIBUTES
 	ba::Entity* m_owner;
 

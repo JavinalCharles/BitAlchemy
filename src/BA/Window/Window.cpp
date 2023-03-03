@@ -1,8 +1,17 @@
 #include "BA/Window/Window.hpp"
+#ifdef DEBUG_MODE_ON
+#include <iostream>
+#endif
 
 namespace ba {
 
-Window::Window(const std::string& title, int x, int y, int w, int h, std::uint32_t baags) {
+Window::Window(const std::string& title, int x, int y, int w, int h, std::uint32_t baags) :
+	m_defaultView({
+		0.f, 0.f, 
+		static_cast<float>(w), 
+		static_cast<float>(h)}),
+	m_view(m_defaultView)
+{
 	m_window = SDL_CreateWindow(title.c_str(), x, y, w, h, baags);
 	if (m_window == NULL) {
 		throw std::runtime_error(SDL_GetError());
@@ -34,15 +43,18 @@ void Window::clear(ba::Color color) {
 	SDL_RenderClear(m_renderer);
 }
 
-void Window::draw(SDL_Texture* texture, const ba::IntRect& srcRect, const ba::IntRect& destRect) {
-	SDL_Rect srcSDLRect = srcRect.toSDL_Rect();
-	SDL_Rect dstSDLRect = destRect.toSDL_Rect();
-	SDL_RenderCopy(m_renderer, texture, &srcSDLRect, &dstSDLRect);
-}
+void Window::draw(SDL_Texture* texture, const ba::IntRect& textureRect, const FloatRect& destRect) {
 
-void Window::draw(SDL_Texture* texture, const ba::IntRect& destRect) {
-	SDL_Rect dstSDLRect = destRect.toSDL_Rect();
-	SDL_RenderCopy(m_renderer, texture, NULL ,&dstSDLRect);
+	SDL_Rect screenCoordsRect = m_view.mapToView(destRect).toSDL_Rect();
+	SDL_Rect textureSDLRect = textureRect.toSDL_Rect();
+
+	#ifdef DEBUG_MODE_ON
+	#ifdef DEBUG_VERBOSE_ENABLED
+	std::cout << "Rendering to screen: " << screenCoordsRect.x << ", " << screenCoordsRect.y << ";" << std::endl;
+	#endif
+	#endif
+
+	SDL_RenderCopy(m_renderer, texture, &textureSDLRect, &screenCoordsRect);
 }
 
 void Window::display() {
@@ -53,8 +65,32 @@ SDL_Window* Window::getWindow() const {
 	return m_window;
 }
 
+Vector2i Window::getSize() const {
+	int w = 0;
+	int h = 0;
+	SDL_GetWindowSize(m_window, &w, &h);
+
+	return Vector2i{w, h};
+}
+
 SDL_Renderer* Window::getRenderer() const {
 	return m_renderer;
+}
+
+const View& Window::getDefaultView() const {
+	return m_defaultView;
+}
+
+const View& Window::getView() const {
+	return m_view;
+}
+
+void Window::setView(const View& view) {
+	m_view = view;
+}
+
+FloatRect Window::getViewSpace() const {
+	return m_view.getViewSpace();
 }
 
 } // namespace ba

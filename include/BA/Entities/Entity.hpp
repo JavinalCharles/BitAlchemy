@@ -5,11 +5,11 @@
 #include "BA/Components/Component.hpp"
 #include "BA/Components/Drawable.hpp"
 #include "BA/Entities/SharedContext.hpp"
-
+#include <BA/Entities/Transformable.hpp>
 
 namespace ba {
 
-class Entity {
+class Entity : public Transformable {
 public: // ATTRIBUTES
 	static unsigned count;
 	const unsigned ID;
@@ -84,6 +84,12 @@ std::shared_ptr<T> Entity::addComponent() {
 
 template <typename T>
 std::shared_ptr<T> Entity::getComponent() {
+	// If the component being queried is a Drawable, then return getDrawable instead.
+	// if (std::is_base_of<Drawable, T>::value) {
+	// 	return getDrawable();
+	// }
+
+	// Otherwise, search the m_components array
 	for (auto& existingComponent : m_components)
 	{
 		if (std::dynamic_pointer_cast<T>(existingComponent))

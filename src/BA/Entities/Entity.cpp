@@ -4,8 +4,9 @@ unsigned ba::Entity::count = 0u;
 
 namespace ba {
 
-Entity::Entity(ba::SharedContext* context)
-	: ID(ba::Entity::count++),
+Entity::Entity(ba::SharedContext* context) : 
+	Transformable(),
+	ID(ba::Entity::count++),
 	CONTEXT(context)
 {
 

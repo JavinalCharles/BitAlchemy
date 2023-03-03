@@ -7,10 +7,9 @@
 
 namespace ba {
 
-class Transformable : public ba::Component {
+class Transformable {
 public:
-	Transformable() = delete;
-	Transformable(ba::Entity* owner);
+	Transformable();
 
 	virtual ~Transformable();
 

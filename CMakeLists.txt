@@ -10,11 +10,12 @@ project(
 set(SOURCES 
 	src/BA/Components/Component.cpp
 	src/BA/Components/Drawable.cpp
-	src/BA/Components/Sprite.cpp	
-	src/BA/Components/Transformable.cpp
-	src/BA/Entity/Entity.cpp
+	src/BA/Components/Sprite.cpp
+	src/BA/Entities/Entity.cpp
+	src/BA/Entities/Transformable.cpp
 	src/BA/Systems/ComponentSystem.cpp
 	src/BA/Systems/EntityManager.cpp
+	src/BA/Systems/RenderSystem.cpp
 	src/BA/Utilities/Transform.cpp
 	src/BA/Window/Window.cpp
 	src/BA/Window/View.cpp
@@ -27,17 +28,35 @@ target_compile_features(compiler_flags INTERFACE cxx_std_20)
 set(gcc_like_cxx "$<COMPILE_LANG_AND_ID:CXX,ARMClang,AppleClang,Clang,GNU,LCC>")
 set(msvc_cxx "$<COMPILE_LANG_AND_ID:CXX,MSVC>")
 
+option(DEBUG "Enables DEBUG_MODE_ON Macro." ON)
+option(DEBUG_VERBOSE "Enables DEBUG_VERBOSE_ENABLED" OFF)
+
+if(DEBUG)
+add_compile_definitions(DEBUG_MODE_ON)
+if(DEBUG_VERBOSE)
+add_compile_definitions(DEBUG_VERBOSE_ENABLED)
+endif()
+endif()
+
 target_compile_options(compiler_flags INTERFACE
   "$<${gcc_like_cxx}:$<BUILD_INTERFACE:-Wall;-Wextra;-Wshadow;-Wformat=2;-Wunused>>"
   "$<${msvc_cxx}:$<BUILD_INTERFACE:-W3>>"
 )
 
 add_library(BA STATIC ${SOURCES})
+add_executable(sample sample.cpp)
+
 
 target_include_directories(BA 
 	PUBLIC 
 	${PROJECT_SOURCE_DIR}/include/
 )
 
-target_link_libraries(BA SDL2 SDL2_image compiler_flags)
+target_include_directories(sample 
+	PUBLIC
+	${PROJECT_SOURCE_DIR}/include/
+	${PROJECT_BINARY_DIR}
+)
 
+target_link_libraries(BA SDL2 SDL2_image SDL2_ttf compiler_flags)
+target_link_libraries(sample BA SDL2 SDL2_image SDL2_ttf compiler_flags)

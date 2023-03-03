@@ -18,6 +18,14 @@ constexpr Vector2<T>::Vector2(const Vector2<U>& other)  :
 
 }
 
+template <typename T>
+constexpr SDL_Point Vector2<T>::toSDL_Point() const {
+	return SDL_Point{
+		static_cast<int>(x),
+		static_cast<int>(y)
+	};
+}
+
 /************************************
  * Vector2 OPERATORS
 ************************************/

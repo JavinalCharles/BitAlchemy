@@ -1,9 +1,10 @@
 #include "BA/Components/Drawable.hpp"
+#include <BA/Entities/Entity.hpp>
 
 namespace ba {
 
 Drawable::Drawable(ba::Entity* owner, unsigned drawLayer, unsigned sortOrder)
-	: ba::Component(owner),
+	: Component(owner),
 	m_drawLayer(drawLayer),
 	m_sortOrder(sortOrder)
 {
@@ -24,6 +25,10 @@ void Drawable::setSortOrder(unsigned sortOrder) {
 
 unsigned Drawable::getSortOrder() const {
 	return m_sortOrder;
+}
+
+FloatRect Drawable::getGlobalBounds() const {
+	return {m_owner->getPosition(), {1.f, 1.f}};
 }
 
 } // namespace

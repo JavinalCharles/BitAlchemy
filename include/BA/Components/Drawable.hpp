@@ -3,12 +3,13 @@
 #include <memory>
 #include "BA/Components/Component.hpp"
 #include "BA/Window/Window.hpp"
+#include "BA/Utilities/Rect.hpp"
 
 namespace ba {
 
-class Drawable : public ba::Component {
+class Drawable : public Component {
 public:
-	Drawable(ba::Entity* owner, unsigned drawLayer = 0, unsigned sortOrder = 0);
+	Drawable(Entity* owner ,unsigned drawLayer = 0, unsigned sortOrder = 0);
 
 	virtual void draw(ba::Window& window) = 0;
 
@@ -17,6 +18,8 @@ public:
 
 	void setSortOrder(unsigned sortOrder);
 	unsigned getSortOrder() const;
+
+	virtual FloatRect getGlobalBounds() const;
 
 protected:
 	// Determines at which layer the drawable will be drawn (i.e. Background, Objects, GUI etc.) 

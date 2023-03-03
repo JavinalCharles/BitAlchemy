@@ -16,7 +16,7 @@ void Component::awake() {
 
 }
 
-ba::Entity* Component::getOwner() {
+ba::Entity* Component::getOwner() const {
 	return m_owner;
 }
 

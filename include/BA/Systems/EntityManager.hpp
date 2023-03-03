@@ -5,14 +5,17 @@
 #include <vector>
 #include <set>
 #include <stdexcept>
-#include "BA/Entities/Entity.hpp"
-#include "BA/Systems/ComponentSystem.hpp"
-#include "BA/Window/Window.hpp"
+#include <BA/Entities/Entity.hpp>
+#include <BA/Systems/ComponentSystem.hpp>
+#include <BA/Systems/RenderSystem.hpp>
+#include <BA/Window/Window.hpp>
 
 namespace ba {
 
 class EntityManager {
 public: // METHODS
+	EntityManager();
+
 	~EntityManager();
 
 	void add(std::vector<std::shared_ptr<ba::Entity>> &otherEntities);
@@ -31,15 +34,14 @@ public: // METHODS
 	void processRemovals();
 
 	std::shared_ptr<ba::Entity>& operator[](unsigned entityID);
+	std::shared_ptr<ba::Entity>& at(unsigned entityID);
 
 private:
 	std::map<unsigned, std::shared_ptr<ba::Entity>> m_entities;
 	std::vector<std::shared_ptr<ba::Entity>> m_newEntities;
 
-	// TEMPORARY until RenderSystem is created.
-	std::set<unsigned> m_drawables;
-
 	std::vector<std::shared_ptr<ba::ComponentSystem>> m_componentSystems;
+	RenderSystem m_drawables;
 }; // class EntityManager
 
 

@@ -14,6 +14,8 @@ public: // Constructors
 	template <typename U>
 	constexpr explicit Vector2(const Vector2<U>& other);
 
+	constexpr SDL_Point toSDL_Point() const;
+
 }; // class Vector2
 
 // OPERATORS
@@ -21,7 +23,7 @@ template <typename T>
 constexpr Vector2<T> operator-(const Vector2<T>& rhs);
 
 template <typename T>
-constexpr Vector2<T> operator+=(Vector2<T>& lhs, const Vector2<T>& rhs);
+constexpr Vector2<T>& operator+=(Vector2<T>& lhs, const Vector2<T>& rhs);
 
 template <typename T>
 constexpr Vector2<T>& operator-=(Vector2<T>& lhs, const Vector2<T>& rhs);

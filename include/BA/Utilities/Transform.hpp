@@ -27,7 +27,7 @@ public:
 	constexpr Transform getInverse() const;
 
 	constexpr Vector2f transformPoint(const Vector2f& point) const;
-	FloatRect transformRect(const FloatRect& rectangle) const;
+	constexpr FloatRect transformRect(const FloatRect& rectangle) const;
 
 	constexpr Transform& combine(const Transform& transform);
 	constexpr Transform& translate(const Vector2f& offset);

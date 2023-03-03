@@ -1,61 +1,27 @@
 #include <BA/Window/View.hpp>
+#include <iostream>
 
 #include <cmath>
 
 namespace ba {
 
-View::View() {
-	reset(FloatRect({0, 0}, {1000, 1000}));
+View::View() : 
+	View({0.f, 0.f, 1000.f, 1000.f})
+{
 }
 
-View::View(const Vector2f& area, const Vector2f& center) 
-	: m_center(center),
+View::View(const Vector2f& area, const Vector2f& center) :
+	m_center(center),
 	m_area(area)
 {
-
+	std::cout << "Created a View with Center: " << center.x << ", " << center.y << " ;Area: " << area.x << ", " << area.y << " ;" << std::endl; 
 }
 
-View::View(const FloatRect& rectangle) {
-	reset(rectangle);
-}
-
-
-
-void View::setCenter(const Vector2f& center) {
-	m_center = center;
-	m_transformUpdated = false;
-	m_inverseTransformUpdated = false;
-}
-
-void View::setArea(const Vector2f& area) {
-	m_area = area;
-
-	m_transformUpdated = false;
-	m_inverseTransformUpdated = false;
-}
-
-void View::setRotation(const Angle& angle) {
-	m_rotation = angle.wrapUnsigned();
-
-	m_transformUpdated = false;
-	m_inverseTransformUpdated = false;
-}
-
-void View::setViewport(const FloatRect& viewport) {
-	m_viewport = viewport;
-}
-
-void View::reset(const FloatRect& rectangle) {
-	m_center.x = rectangle.l + rectangle.w / 2.f;
-	m_center.y = rectangle.t + rectangle.h / 2.f;
-
-	m_area.x = rectangle.w;
-	m_area.y = rectangle.h;
-
-	m_rotation = Angle::Zero;
-
-	m_transformUpdated = false;
-	m_inverseTransformUpdated = false;
+View::View(const FloatRect& rect) :
+	m_center(rect.l + (rect.w * 0.5f), rect.t + (rect.h * 0.5f)),
+	m_area(rect.w, rect.h)
+{
+	std::cout << "Created View: " << static_cast<int>(rect.l) << ", " << static_cast<int>(rect.t) << ", " << rect.w << ", " << rect.h << std::endl;
 }
 
 const Vector2f& View::getCenter() const {
@@ -66,58 +32,44 @@ const Vector2f& View::getArea() const {
 	return m_area;
 }
 
-const Angle& View::getRotation() const {
-	return m_rotation;
-}
-
 const FloatRect& View::getViewport() const {
 	return m_viewport;
 }
 
+FloatRect View::getViewSpace() const {
+	return FloatRect({
+		m_center - (m_area * 0.5f),
+		m_area
+	});
+}
+
+void View::setCenter(const Vector2f& center) {
+	m_center = center;
+}
+
+void View::setArea(const Vector2f& area) {
+	m_area = area;
+}
+
+void View::setViewport(const FloatRect& viewport) {
+	m_viewport = viewport;
+}
+
 void View::move(const Vector2f& offset) {
-	setCenter(m_center + offset);
+	m_center += offset;
 }
 
-void View::rotate(Angle angle) {
-	setRotation(m_rotation + angle);
+FloatRect View::mapToView(const FloatRect& rect) {
+	return FloatRect{
+		mapToView({rect.l, rect.t}),
+		{rect.w, rect.h}
+	};
 }
 
-void View::zoom(float factor) {
-	setArea(m_area * factor);
+Vector2f View::mapToView(const Vector2f& coord) {
+	Vector2f screenTL = m_center - (m_area * 0.5f);
+
+	return Vector2f{coord - screenTL};
 }
-
-const Transform& View::getTransform() const {
-	if (!m_transformUpdated) {
-		float angle = m_rotation.asRadians();
-		float cosine = std::cos(angle);
-		float sine = std::sin(angle);
-		float tx = -m_center.x * cosine - m_center.y * sine + m_center.x;
-		float ty = m_center.x * sine - m_center.y * cosine + m_center.y;
-
-		float a = 2.f / m_area.x;
-		float b = -2.f / m_area.y;
-		float c = -a * m_center.x;
-		float d = -b * m_center.y;
-
-		m_transform = Transform(
-			 a * cosine, a * sine,   a * tx + c,
-			-b * sine,   b * cosine, b * ty + d,
-			 0.f,        0.f,        1.f
-		);
-		m_transformUpdated = true;
-	}
-
-	return m_transform;
-}
-
-const Transform& View::getInverseTransform() const {
-	if (!m_inverseTransformUpdated) {
-		m_inverseTransform = getTransform().getInverse();
-		m_inverseTransformUpdated = true;
-	}
-
-	return m_inverseTransform;
-}
-
 
 } // namespace ba

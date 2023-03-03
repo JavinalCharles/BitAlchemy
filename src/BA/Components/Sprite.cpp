@@ -3,26 +3,25 @@
 
 namespace ba {
 
-Sprite::Sprite(ba::Entity* owner, unsigned drawLayer, unsigned sortOrder)
-	: ba::Drawable(owner, drawLayer, sortOrder),
-	ba::Transformable(owner),
+Sprite::Sprite(ba::Entity* owner, unsigned drawLayer, unsigned sortOrder) : 
+	Drawable(owner, drawLayer, sortOrder),
 	m_textureID(0u) // 0 == no texture
 {
 
 }
 
-void Sprite::awake() {
-	
-}
-
 void Sprite::draw(Window& window) {
-	window.draw(Drawable::getOwner()->CONTEXT->resources->getTexture(m_textureID), this->getGlobalBounds());
+	if (m_textureID == 0)
+		return;
+
+	SDL_Texture* texture = getOwner()->CONTEXT->resources->getTexture(m_textureID);
+	window.draw(texture, m_textureRect, this->getGlobalBounds());
 }
 
 unsigned Sprite::loadTextureFromFile(const std::string& path) {
-	m_textureID = Drawable::getOwner()->CONTEXT->resources->loadTexture(path);
+	m_textureID = getOwner()->CONTEXT->resources->loadTexture(path);
 
-	SDL_Texture* textureObj = Drawable::getOwner()->CONTEXT->resources->getTexture(m_textureID);
+	SDL_Texture* textureObj = getOwner()->CONTEXT->resources->getTexture(m_textureID);
 
 	int width = 0;
 	int height = 0;
@@ -49,7 +48,7 @@ FloatRect Sprite::getLocalBounds() const {
 }
 
 FloatRect Sprite::getGlobalBounds() const {
-	return getTransform().transformRect(getLocalBounds());
+	return getOwner()->getTransform().transformRect(getLocalBounds());
 }
 
 } // namespace ba

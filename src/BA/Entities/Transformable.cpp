@@ -1,10 +1,8 @@
-#include <BA/Components/Transformable.hpp>
-#include <BA/Entities/Entity.hpp>
+#include <BA/Entities/Transformable.hpp>
 
 namespace ba {
 
-Transformable::Transformable(Entity* owner) 
-	: Component(owner)
+Transformable::Transformable()
 {
 	
 }

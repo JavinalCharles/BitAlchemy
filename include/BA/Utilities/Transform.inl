@@ -46,7 +46,7 @@ constexpr Vector2f Transform::transformPoint(const Vector2f& point) const {
 	);
 }
 
-FloatRect Transform::transformRect(const FloatRect& rectangle) const {
+constexpr FloatRect Transform::transformRect(const FloatRect& rectangle) const {
 	const Vector2f points[] =
 		{
 			transformPoint({rectangle.l, rectangle.t}),
