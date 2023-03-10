@@ -1,3 +1,6 @@
+template <typename T>
+constexpr Vector2<T>::Vector2() = default;
+
 template<typename T>
 constexpr Vector2<T>::Vector2(T X, T Y) : 
 	x(X), 
@@ -5,9 +8,6 @@ constexpr Vector2<T>::Vector2(T X, T Y) :
 {
 
 }
-
-template<typename T>
-constexpr Vector2<T>::Vector2() = default;
 
 template <typename T>
 template <typename U>

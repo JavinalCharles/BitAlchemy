@@ -18,7 +18,11 @@ public:
 	bool isOpen() const;
 	void close();
 
-	// TODO: OTHER METHODS
+	/**
+	 * @brief Allows the window to handle window specific events.
+	*/
+	void handleEvents();
+
 	void clear(ba::Color color = ba::Color::Black);
 
 	void draw(SDL_Texture* texture, const IntRect& textureRect, const FloatRect& destRect);
@@ -31,8 +35,6 @@ public:
 	const View& getView() const;
 	const View& getDefaultView() const;
 	FloatRect getViewSpace() const;
-
-	
 
 	void setView(const View& view);
 
