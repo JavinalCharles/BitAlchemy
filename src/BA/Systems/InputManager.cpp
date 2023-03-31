@@ -24,12 +24,12 @@ bool InputManager::isKeyUp(SDL_KeyCode key) {
 
 bool InputManager::isKeyDown(SDL_KeyCode key) {
 	SDL_Scancode code = SDL_GetScancodeFromKey(key);
-	return m_currKeys[code];
+	return !m_prevKeys[code] && m_currKeys[code];
 }
 
-bool InputManager::isKeyHeld(SDL_KeyCode key) {
+bool InputManager::isKeyActive(SDL_KeyCode key) {
 	SDL_Scancode code = SDL_GetScancodeFromKey(key);
-	return m_prevKeys[code] && m_currKeys[code];
+	return m_currKeys[code];
 }
 
 Vector2i InputManager::getMousePos() const {

@@ -30,7 +30,7 @@ void KeyboardControlSystem::update(float) {
 				}
 			}
 		}
-		auto& keyHeldBindings = kcs->getBindingsOnKeyHeld();
+		auto& keyHeldBindings = kcs->getBindingsOnKeyActive();
 		for(auto& [key, actions] : keyHeldBindings) {
 			if(e->CONTEXT->inputs->isKeyHeld(key)) {
 				for(auto& action: actions) {

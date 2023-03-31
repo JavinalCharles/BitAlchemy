@@ -9,12 +9,12 @@ KeyboardControl::KeyboardControl(Entity* owner) :
 
 }
 
-void KeyboardControl::bindOnKeyHeld(SDL_KeyCode key, KeyAction action) {
-	if(m_keyHeldActions.contains(key)) {
-		m_keyHeldActions.at(key).push_back(action);
+void KeyboardControl::bindOnKeyActive(SDL_KeyCode key, KeyAction action) {
+	if(m_keyActiveActions.contains(key)) {
+		m_keyActiveActions.at(key).push_back(action);
 	}
 	else {
-		m_keyHeldActions.insert(std::make_pair(key, std::vector<KeyAction>{action}));
+		m_keyActiveActions.insert(std::make_pair(key, std::vector<KeyAction>{action}));
 	}
 }
 
@@ -44,8 +44,8 @@ const KeyBindings& KeyboardControl::getBindingsOnKeyReleased() const {
 	return m_keyReleasedActions;
 }
 
-const KeyBindings& KeyboardControl::getBindingsOnKeyHeld() const {
-	return m_keyHeldActions;
+const KeyBindings& KeyboardControl::getBindingsOnKeyActive() const {
+	return m_keyActiveActions;
 }
 
 } // namespace ba

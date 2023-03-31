@@ -13,7 +13,7 @@ public:
 
 	bool isKeyUp(SDL_KeyCode key);
 	bool isKeyDown(SDL_KeyCode key);
-	bool isKeyHeld(SDL_KeyCode key);
+	bool isKeyActive(SDL_KeyCode key);
 
 	Vector2i getMousePos() const;
 private:

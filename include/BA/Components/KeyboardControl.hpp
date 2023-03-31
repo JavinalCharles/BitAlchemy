@@ -17,17 +17,17 @@ class KeyboardControl : public Component {
 public:
 	KeyboardControl(Entity* owner);
 
-	void bindOnKeyHeld(SDL_KeyCode key, KeyAction action);
+	void bindOnKeyActive(SDL_KeyCode key, KeyAction action);
 	void bindOnKeyReleased(SDL_KeyCode key, KeyAction action);
 	void bindOnKeyPressed(SDL_KeyCode key, KeyAction action);
 
 	const KeyBindings& getBindingsOnKeyPressed() const;
 	const KeyBindings& getBindingsOnKeyReleased() const;
-	const KeyBindings& getBindingsOnKeyHeld() const;
+	const KeyBindings& getBindingsOnKeyActive() const;
 
 private:
 	KeyBindings 	m_keyPressedActions;
-	KeyBindings 	m_keyHeldActions;
+	KeyBindings 	m_keyActiveActions;
 	KeyBindings 	m_keyReleasedActions;
 
 	// friend class KeyboardControlSystem;

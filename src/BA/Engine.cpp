@@ -54,6 +54,7 @@ void Engine::run() {
 			this->postUpdate(deltaTime);
 			this->draw();
 		}
+		SDL_Delay(std::floor(16.666f - deltaTime));
 
 	} while(m_window.isOpen());
 }
