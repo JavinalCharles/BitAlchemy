@@ -38,6 +38,8 @@ public: // Methods and Constructors
 	*/
 	TTF_Font* getFont(unsigned int id) const;
 
+	void setRenderer(SDL_Renderer* renderer);
+
 private:
 	std::unordered_map<unsigned int, SDL_Texture*> texturesMap;
 	unsigned int textureCount = 0;
@@ -45,8 +47,10 @@ private:
 	unsigned int fontCount = 0;
 	// TODO: Map for audios/musics
 
+	SDL_Renderer* m_renderer;
 
-	SDL_Renderer* renderer;
+
+	
 }; // class ResourceManager
 
 } // namespace ba

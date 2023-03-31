@@ -2,7 +2,7 @@
 
 namespace ba {
 ResourceManager::ResourceManager(SDL_Renderer* rend) 
-	: renderer(rend)
+	: m_renderer(rend)
 {
 
 }
@@ -14,7 +14,7 @@ unsigned int ResourceManager::loadTexture(const std::string& path) {
 		throw std::invalid_argument(IMG_GetError());
 	}
 
-	newTexture = SDL_CreateTextureFromSurface(renderer, loadedSurface);
+	newTexture = SDL_CreateTextureFromSurface(m_renderer, loadedSurface);
 	if (newTexture == NULL) {
 		throw std::runtime_error(SDL_GetError());
 	}
@@ -49,6 +49,10 @@ TTF_Font* ResourceManager::getFont(unsigned int id) const {
 	if (search == fontsMap.end())
 		return NULL;
 	return search->second;
+}
+
+void ResourceManager::setRenderer(SDL_Renderer* renderer) {
+	m_renderer = renderer;
 }
 
 } // namespace ba

@@ -5,18 +5,26 @@
 
 namespace ba {
 
-Window::Window(const std::string& title, int x, int y, int w, int h, std::uint32_t baags) :
+Window::Window() = default;
+
+Window::Window(const std::string& title, int x, int y, int w, int h, std::uint32_t flags) :
+	m_title(title),
+	m_dimension(x, y, w, h),
+	m_flags(flags),
 	m_defaultView({
 		0.f, 0.f, 
 		static_cast<float>(w), 
 		static_cast<float>(h)}),
 	m_view(m_defaultView)
 {
-	m_window = SDL_CreateWindow(title.c_str(), x, y, w, h, baags);
-	if (m_window == NULL) {
+	
+}
+
+void Window::init() {
+	m_window = SDL_CreateWindow(m_title.c_str(), m_dimension.l, m_dimension.t, m_dimension.w, m_dimension.h, m_flags);
+	if (m_window == nullptr) {
 		throw std::runtime_error(SDL_GetError());
 	}
-
 	m_renderer = SDL_CreateRenderer(m_window, -1, SDL_RENDERER_ACCELERATED);
 	if (m_renderer == NULL) {
 		throw std::runtime_error(SDL_GetError());

@@ -10,16 +10,22 @@ project(
 set(SOURCES 
 	src/BA/Components/Component.cpp
 	src/BA/Components/Drawable.cpp
+	src/BA/Components/KeyboardControl.cpp
 	src/BA/Components/Sprite.cpp
+	src/BA/Components/Velocity.cpp
 	src/BA/Entities/Entity.cpp
 	src/BA/Entities/Transformable.cpp
 	src/BA/Systems/ComponentSystem.cpp
 	src/BA/Systems/EntityManager.cpp
+	src/BA/Systems/InputManager.cpp
+	src/BA/Systems/KeyboardControlSystem.cpp
+	src/BA/Systems/MovementSystem.cpp
 	src/BA/Systems/RenderSystem.cpp
 	src/BA/Utilities/Transform.cpp
 	src/BA/Window/Window.cpp
 	src/BA/Window/View.cpp
 	src/BA/ResourceManager.cpp
+	src/BA/Engine.cpp
 )	
 
 add_library(compiler_flags INTERFACE)

@@ -1,0 +1,37 @@
+#pragma once
+
+#include <functional>
+#include <memory>
+#include <unordered_map>
+#include <vector>
+#include <BA/Components/Component.hpp>
+#include <BA/Systems/InputManager.hpp>
+
+namespace ba {
+
+using KeyAction = std::function<void(void)>;
+
+using KeyBindings = std::unordered_map<SDL_KeyCode, std::vector<KeyAction>>;
+
+class KeyboardControl : public Component {
+public:
+	KeyboardControl(Entity* owner);
+
+	void bindOnKeyHeld(SDL_KeyCode key, KeyAction action);
+	void bindOnKeyReleased(SDL_KeyCode key, KeyAction action);
+	void bindOnKeyPressed(SDL_KeyCode key, KeyAction action);
+
+	const KeyBindings& getBindingsOnKeyPressed() const;
+	const KeyBindings& getBindingsOnKeyReleased() const;
+	const KeyBindings& getBindingsOnKeyHeld() const;
+
+private:
+	KeyBindings 	m_keyPressedActions;
+	KeyBindings 	m_keyHeldActions;
+	KeyBindings 	m_keyReleasedActions;
+
+	// friend class KeyboardControlSystem;
+
+}; // class KeyboardControl
+
+} // namespace ba

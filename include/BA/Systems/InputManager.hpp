@@ -22,4 +22,4 @@ private:
 
 }; // class InputManager
 
-} // namespace fl
+} // namespace ba

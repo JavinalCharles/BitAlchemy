@@ -7,14 +7,14 @@ class Entity;
 
 class Component {
 public: // METHODS & CONSTRUCTORS
-	Component(ba::Entity* owner);
+	Component(Entity* owner);
 	virtual ~Component();
 
 	virtual void awake();
 
-	virtual ba::Entity* getOwner() const;
+	virtual Entity* getOwner() const;
 protected: // ATTRIBUTES
-	ba::Entity* m_owner;
+	Entity* m_owner;
 
 }; // class Component
 

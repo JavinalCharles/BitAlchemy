@@ -3,21 +3,37 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
+#include <BA/Entities/SharedContext.hpp>
+#include <BA/Systems/EntityManager.hpp>
+#include <BA/Utilities/Vector2.hpp>
+#include <BA/Utilities/Rect.hpp>
+#include <BA/Window/Window.hpp>
+
 namespace ba {
 
 class Engine {
 public:
     Engine();
+    Engine(const std::string& title, IntRect dimension, std::uint32_t winFlags);
 
     void init();
+
+    void run();
+
     void handleEvents();
-    void update(baoat dt);
-    void postUpdate(baoat dt);
+    void update(float deltaTime);
+    void postUpdate(float deltaTime);
     void draw();
 
     void cleanUp();
-private:
-    
+protected:
+    Window m_window;
+    EntityManager m_entities;
+    ResourceManager m_resources;
+    InputManager m_inputs;
+
+    SharedContext m_context;
+
 }; // class Engine
 
 } // namespace ba

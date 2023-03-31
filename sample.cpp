@@ -7,6 +7,8 @@
 #include <BA/Entities/Entity.hpp>
 #include <BA/Entities/SharedContext.hpp>
 #include <BA/Systems/EntityManager.hpp>
+#include <BA/Systems/KeyboardControlSystem.hpp>
+#include <BA/Systems/MovementSystem.hpp>
 #include <BA/Window/Window.hpp>
 #include <BA/Utilities/Color.hpp>
 #include <BA/Utilities/Rect.hpp>
@@ -32,7 +34,7 @@ namespace {
 	}
 
 	int close() {
-		// TTF_Quit();
+		TTF_Quit();
 		IMG_Quit();
 		SDL_Quit();
 
@@ -52,21 +54,34 @@ int main() {
 	ba::EntityManager entityManager;
 	ba::Window gameWindow("FEATHER GAME ENGINE - TEST RUN");
 	ba::ResourceManager resources(gameWindow.getRenderer());
+	ba::InputManager inputManager;
 
 	ba::SharedContext context{
 		&entityManager,
 		&resources,
-		&gameWindow
+		&gameWindow,
+		&inputManager
 	};
 
-	std::shared_ptr<ba::Entity> entity = std::make_shared<ba::Entity>(&context);
+	entityManager.includeSystem<ba::KeyboardControlSystem>();
+	entityManager.includeSystem<ba::MovementSystem>();
 
+	std::shared_ptr<ba::Entity> entity = std::make_shared<ba::Entity>(&context);
 	
 	auto sprite = entity->addComponent<ba::Sprite>();
 	sprite->loadTextureFromFile("./player.png");
 	entity->setPosition({64, 64});
 	ba::FloatRect bounds = sprite->getLocalBounds();
 	entity->setOrigin({bounds.w / 2.f, bounds.h / 2.f});
+
+	auto velocity = entity->addComponent<ba::Velocity>();
+	velocity->setMaxSpeed(128.f);
+	// ba::KeyAction moveUp = &velocity->moveUp;
+
+	auto keyControl = entity->addComponent<ba::KeyboardControl>();
+	keyControl->bindOnKeyPressed(SDLK_w, std::bind(&ba::Velocity::moveUp, velocity.get()));
+	keyControl->bindOnKeyPressed(SDLK_s, std::bind(&ba::Velocity::moveDown, velocity.get()));
+	keyControl->bindOnKeyPressed(SDLK_a, std::bind(&ba::Velocity::moveLeft, velocity.get()));keyControl->bindOnKeyPressed(SDLK_d, std::bind(&ba::Velocity::moveRight, velocity.get()));
 
 
 	std::shared_ptr<ba::Entity> ball = std::make_shared<ba::Entity>(&context);
@@ -89,35 +104,14 @@ int main() {
 		deltaTime = static_cast<float>((NOW - LAST)*1000 / static_cast<float>(SDL_GetPerformanceFrequency()));
 
 		// Handle Events
-		SDL_Event e;
-		while (SDL_PollEvent(&e) != 0) {
-			if (e.type == SDL_QUIT) {
-				gameWindow.close();
-			}
-			else if (e.type == SDL_KEYDOWN) {
-				ba::View view = gameWindow.getView();
-				switch(e.key.keysym.sym) {
-					case SDLK_a:
-						view.move({-64.f * deltaTime, 0});
-						break;
-					case SDLK_w:
-						view.move({0, -64.f * deltaTime});
-						break;
-					case SDLK_s:
-						view.move({0, 64 * deltaTime});
-						break;
-					case SDLK_d:
-						view.move({64 * deltaTime, 0});
-						break;
-				}
-				gameWindow.setView(view);
-			}
-		}
+		SDL_PumpEvents();
+		gameWindow.handleEvents();
+		inputManager.handleEvents();
 
 		if (gameWindow.isOpen()) {
 			entityManager.update(deltaTime);
 			entityManager.postUpdate(deltaTime);
-			gameWindow.clear(ba::Color::White);
+			gameWindow.clear();
 			entityManager.draw(gameWindow);
 			gameWindow.display();
 		}

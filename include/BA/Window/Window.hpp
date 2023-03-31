@@ -13,7 +13,10 @@ const int DEFAULT_SCREEN_HEIGHT = 480;
 namespace ba {
 class Window {
 public:
-	Window(const std::string& title, int x = SDL_WINDOWPOS_UNDEFINED , int y = SDL_WINDOWPOS_UNDEFINED, int w = DEFAULT_SCREEN_WIDTH, int h = DEFAULT_SCREEN_HEIGHT, std::uint32_t baags = SDL_WINDOW_SHOWN);
+	Window();
+	Window(const std::string& title, int x, int y, int w, int h, std::uint32_t flags);
+
+	void init();
 
 	bool isOpen() const;
 	void close();
@@ -39,11 +42,15 @@ public:
 	void setView(const View& view);
 
 private: // Attributes
-	SDL_Window* 	m_window;
-	SDL_Renderer* 	m_renderer;
+	std::string 	m_title = "BitAlchemy";
+	IntRect 		m_dimension{0.f, 0.f, DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT};
+	std::uint32_t	m_flags = SDL_WINDOW_SHOWN;
 
-	View			m_defaultView;
-	View 			m_view;
+	SDL_Window* 	m_window = nullptr;
+	SDL_Renderer* 	m_renderer = nullptr;
+
+	View			m_defaultView{{0.f, 0.f, DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT}};
+	View 			m_view{{0.f, 0.f, DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT}};
 
 	bool 			m_open{false};
 }; // class Window

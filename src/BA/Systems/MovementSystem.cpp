@@ -14,8 +14,7 @@ void MovementSystem::update(float deltaTime) {
 		auto e = m_entities->at(ID);
 		auto v = e->getComponent<Velocity>();
 
-		float movement = v->getSpeed() * deltaTime;
-		Vector2f displacement = v->getDirection() * movement;
+		Vector2f displacement = v->getDirection() * deltaTime;
 		e->move(displacement);
 	}
 }
