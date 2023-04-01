@@ -43,7 +43,7 @@ public:
 
 private: // Attributes
 	std::string 	m_title = "BitAlchemy";
-	IntRect 		m_dimension{0.f, 0.f, DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT};
+	IntRect 		m_dimension{0, 0, DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT};
 	std::uint32_t	m_flags = SDL_WINDOW_SHOWN;
 
 	SDL_Window* 	m_window = nullptr;

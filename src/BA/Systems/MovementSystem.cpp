@@ -14,7 +14,7 @@ void MovementSystem::update(float deltaTime) {
 		auto e = m_entities->at(ID);
 		auto v = e->getComponent<Velocity>();
 
-		Vector2f displacement = v->getDirection() * deltaTime;
+		Vector2f displacement = v->get() * deltaTime;
 		e->move(displacement);
 	}
 }
@@ -22,7 +22,7 @@ void MovementSystem::update(float deltaTime) {
 void MovementSystem::postUpdate(float deltaTime) {
 	for(const unsigned& ID : m_entityIDs) {
 		auto v = m_entities->at(ID)->getComponent<Velocity>();
-		v->resetDirection();
+		v->resetVelocity();
 	}
 
 }

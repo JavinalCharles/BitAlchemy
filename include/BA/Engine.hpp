@@ -1,6 +1,8 @@
 #pragma once
 
 #include <cmath>
+#include <chrono>
+#include <iostream>
 #include <stdexcept>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
@@ -18,7 +20,7 @@ public:
     Engine();
     Engine(const std::string& title, IntRect dimension, std::uint32_t winFlags);
 
-    void init();
+    virtual void init();
 
     void run();
 

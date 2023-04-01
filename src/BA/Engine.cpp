@@ -1,5 +1,6 @@
 #include <BA/Engine.hpp>
 
+
 namespace ba {
 
 Engine::Engine() :
@@ -39,14 +40,24 @@ void Engine::init() {
 }
 
 void Engine::run() {
-	float NOW = SDL_GetPerformanceCounter();
-	float LAST = 0.f;
+	const float FPS = 1000.f / 60.f;
+
+	std::uint64_t NOW = SDL_GetTicks64();
+	std::uint64_t LAST = 0;
+	std::uint64_t elapsedTime = 0;
 
 	do {
 		LAST = NOW;
-		NOW = SDL_GetPerformanceCounter();
+		NOW = SDL_GetTicks64();
 
-		float deltaTime = static_cast<float>((NOW - LAST)*1000 / static_cast<float>(SDL_GetPerformanceFrequency()));
+		elapsedTime = NOW - LAST;
+		while(elapsedTime < FPS) {
+			NOW = SDL_GetTicks64();
+			elapsedTime = NOW - LAST;
+		}
+
+		float deltaTime = elapsedTime / 1000.f;
+
 		this->handleEvents();
 
 		if (m_window.isOpen()) {
@@ -54,7 +65,6 @@ void Engine::run() {
 			this->postUpdate(deltaTime);
 			this->draw();
 		}
-		SDL_Delay(std::floor(16.666f - deltaTime));
 
 	} while(m_window.isOpen());
 }

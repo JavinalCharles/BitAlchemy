@@ -9,38 +9,85 @@ Velocity::Velocity(Entity* owner) :
 
 }
 
-void Velocity::setMaxSpeed(float pixelsPerSecond) {
-	m_maxSpeed = pixelsPerSecond;
+void Velocity::setMax(const Vector2f& maxVelocity) {
+	m_maxVelocity = maxVelocity;
 }
 
-float Velocity::getMaxSpeed() const {
-	return m_maxSpeed;
+const Vector2f& Velocity::getMax() const {
+	return m_maxVelocity;
 }
 
-Vector2f Velocity::getDirection() const{
-	return m_direction;
+void Velocity::set(const Vector2f& velocity) {
+	m_velocity = velocity;
+	clampVelocity();
+}
+
+void Velocity::set(float x, float y) {
+	m_velocity.x = x;
+	m_velocity.y = y;
+	clampVelocity();
+}
+
+void Velocity::setX(float x) {
+	m_velocity.x = x;
+	clampVelocity();
+}
+
+void Velocity::setY(float y) {
+	m_velocity.y = y;
+	clampVelocity();
+}
+
+const Vector2f& Velocity::get() const {
+	return m_velocity;
+}
+
+void Velocity::resetVelocity() {
+	m_velocity.x = 0.f;
+	m_velocity.y = 0.f;
 }
 
 void Velocity::moveUp() {
-	m_direction.y -= m_maxSpeed;
-}
-
-void Velocity::moveDown() {
-	m_direction.y += m_maxSpeed;
-}
-
-void Velocity::moveLeft() {
-	m_direction.x -= m_maxSpeed;
+	m_velocity.y = -m_maxVelocity.y;
 }
 
 void Velocity::moveRight() {
-	m_direction.x += m_maxSpeed;
+	m_velocity.x = m_maxVelocity.x;
 }
 
-void Velocity::resetDirection() {
-	m_direction.x = 0.f;
-	m_direction.y = 0.f;
+void Velocity::moveDown() {
+	m_velocity.y = m_maxVelocity.y;
 }
 
+void Velocity::moveLeft() {
+	m_velocity.x = -m_maxVelocity.x;
+}
+
+
+void Velocity::clampVelocity() {
+	if (std::fabs(m_velocity.x) > m_maxVelocity.x)
+	{
+		if(m_velocity.x > 0)
+		{
+			m_velocity.x = m_maxVelocity.x;
+		}
+		else
+		{
+			m_velocity.x = -m_maxVelocity.x;
+		}
+	}
+
+	if (std::fabs(m_velocity.y) > m_maxVelocity.y)
+	{
+		if (m_velocity.y > 0.f)
+		{
+			m_velocity.y = m_maxVelocity.y;
+		}
+		else
+		{
+			m_velocity.y = - m_maxVelocity.y;
+		}
+	}
+}
 
 } // namespace ba

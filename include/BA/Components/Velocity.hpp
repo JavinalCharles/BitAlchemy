@@ -9,19 +9,27 @@ class Velocity : public Component {
 public:
 	Velocity(Entity* owner);
 
-	void setMaxSpeed(float pixelsPerSecond);
-	float getMaxSpeed() const;
-	Vector2f getDirection() const;
+	void setMax(const Vector2f& maxVelocity);
+	const Vector2f& getMax() const;
 
+	void set(const Vector2f& vel);
+	void set(float x, float y);
+	void setX(float x);
+	void setY(float y);
+
+	const Vector2f& get() const;
+
+	void resetVelocity();
+	
 	void moveUp();
+	void moveRight();
 	void moveDown();
 	void moveLeft();
-	void moveRight();
-
-	void resetDirection();
 private:
-	float m_maxSpeed{};
-	Vector2f m_direction{0,0};
+	void clampVelocity();
+
+	Vector2f m_velocity{};
+	Vector2f m_maxVelocity{600.f,600.f};
 }; // class Velocity
 
 
