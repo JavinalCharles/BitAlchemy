@@ -26,6 +26,12 @@ constexpr SDL_Point Vector2<T>::toSDL_Point() const {
 	};
 }
 
+template <typename T>
+float Vector2<T>::distance(const Vector2<T>& other) {
+	return static_cast<T>(std::sqrt(std::exp2(other.x - this->x) + std::exp2(other.y - this->y)));
+}
+
+
 /************************************
  * Vector2 OPERATORS
 ************************************/
