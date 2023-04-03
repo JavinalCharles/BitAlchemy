@@ -6,6 +6,7 @@
 #include <set>
 #include <stdexcept>
 #include <BA/Entities/Entity.hpp>
+#include <BA/Systems/CollisionSystem.hpp>
 #include <BA/Systems/ComponentSystem.hpp>
 #include <BA/Systems/RenderSystem.hpp>
 #include <BA/Window/Window.hpp>
@@ -42,6 +43,7 @@ private:
 
 	std::vector<std::shared_ptr<ba::ComponentSystem>> m_componentSystems;
 	RenderSystem m_drawables;
+	CollisionSystem m_colliders;
 }; // class EntityManager
 
 

@@ -29,7 +29,7 @@ public:
 #include <BA/Utilities/Circle.inl>
 
 using IntCircle = Circle<int>;
-using FloatCircle = Circle<float>
+using FloatCircle = Circle<float>;
 
 
 

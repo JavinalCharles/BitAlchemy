@@ -77,13 +77,16 @@ void Window::draw(SDL_Texture* texture, const ba::IntRect& textureRect, const Fl
 	SDL_Rect screenCoordsRect = m_view.mapToView(destRect).toSDL_Rect();
 	SDL_Rect textureSDLRect = textureRect.toSDL_Rect();
 
-	#ifdef DEBUG_MODE_ON
-	#ifdef DEBUG_VERBOSE_ENABLED
-	std::cout << "Rendering to screen: " << screenCoordsRect.x << ", " << screenCoordsRect.y << ";" << std::endl;
-	#endif
-	#endif
-
 	SDL_RenderCopy(m_renderer, texture, &textureSDLRect, &screenCoordsRect);
+}
+
+void Window::drawRect(const IntRect& rect, Color rc) {
+	Color cb; // Color Buffer
+	SDL_Rect r = rect.toSDL_Rect(); 
+	SDL_GetRenderDrawColor(m_renderer, &cb.r, &cb.g, &cb.b, &cb.a);
+	SDL_SetRenderDrawColor(m_renderer, rc.r, rc.g, rc.b, rc.a);
+	SDL_RenderDrawRect(m_renderer, &r);
+	SDL_SetRenderDrawColor(m_renderer, cb.r, cb.g, cb.b, cb.a);
 }
 
 void Window::display() {
