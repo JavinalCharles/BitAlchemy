@@ -30,6 +30,8 @@ public:
 
 	void draw(SDL_Texture* texture, const IntRect& textureRect, const FloatRect& destRect);
 
+	void drawRect(const IntRect& rect, Color rectColor = Color::White);
+
 	void display();
 
 	SDL_Window* getWindow() const;

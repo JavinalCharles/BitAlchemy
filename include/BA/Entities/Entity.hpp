@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <memory>
+#include <BA/Components/Colliders/Collider.hpp>
 #include "BA/Components/Component.hpp"
 #include "BA/Components/Drawable.hpp"
 #include "BA/Entities/SharedContext.hpp"
@@ -45,7 +46,8 @@ public: // METHODS & CONSTRUCTORS
 	template<typename T>
 	std::shared_ptr<T> getComponent();
 
-	std::shared_ptr<ba::Drawable> getDrawable() const;
+	std::shared_ptr<Drawable> getDrawable() const;
+	std::shared_ptr<Collider> getCollider() const;
 
 private: // ATTRIBUTES
 	
@@ -56,7 +58,8 @@ private: // ATTRIBUTES
 
 	std::vector<std::shared_ptr<ba::Component>> m_components;
 
-	std::shared_ptr<ba::Drawable> m_drawable = nullptr;
+	std::shared_ptr<Drawable> m_drawable = nullptr;
+	std::shared_ptr<Collider> m_collider = nullptr;
 
 }; // class Entity
 
@@ -75,8 +78,11 @@ std::shared_ptr<T> Entity::addComponent() {
 	m_components.push_back(newComponent);
 
 	// Checks if the object is also a drawable.
-	if(std::dynamic_pointer_cast<ba::Drawable>(newComponent)) {
+	if(std::dynamic_pointer_cast<Drawable>(newComponent)) {
 		m_drawable = std::dynamic_pointer_cast<ba::Drawable>(newComponent);
+	}
+	else if (std::dynamic_pointer_cast<Collider>(newComponent)) {
+		m_collider = std::dynamic_pointer_cast<Collider>(newComponent);
 	}
 
 	return newComponent;

@@ -19,7 +19,7 @@ void MovementSystem::update(float deltaTime) {
 	}
 }
 
-void MovementSystem::postUpdate(float deltaTime) {
+void MovementSystem::postUpdate(float) {
 	for(const unsigned& ID : m_entityIDs) {
 		auto v = m_entities->at(ID)->getComponent<Velocity>();
 		v->resetVelocity();

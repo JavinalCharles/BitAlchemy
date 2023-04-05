@@ -3,12 +3,13 @@
 #include <stdexcept>
 #include <string>
 #include <SDL2/SDL.h>
+#include <BA/Components/Boundable.hpp>
 #include <BA/Components/Drawable.hpp>
 #include <BA/Utilities/Rect.hpp>
 
 namespace ba {
 
-class Sprite : public ba::Drawable {
+class Sprite : public Drawable, Boundable {
 public:
 	Sprite(ba::Entity* owner, unsigned drawLayer = 0, unsigned sortOrder = 0);
 
@@ -18,8 +19,8 @@ public:
 	void setTextureRect(const IntRect& rect);
 	IntRect getTextureRect() const;
 
-	FloatRect getLocalBounds() const;
-	virtual FloatRect getGlobalBounds() const;
+	virtual FloatRect getLocalBounds() const override;
+	virtual FloatRect getGlobalBounds() const override;
 
 private:
 	unsigned m_textureID;

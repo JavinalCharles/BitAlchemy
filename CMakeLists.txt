@@ -8,6 +8,8 @@ project(
 )
 
 set(SOURCES 
+	src/BA/Components/Colliders/BoxCollider.cpp
+	src/BA/Components/Colliders/Collider.cpp
 	src/BA/Components/Component.cpp
 	src/BA/Components/Drawable.cpp
 	src/BA/Components/KeyboardControl.cpp
@@ -15,6 +17,7 @@ set(SOURCES
 	src/BA/Components/Velocity.cpp
 	src/BA/Entities/Entity.cpp
 	src/BA/Entities/Transformable.cpp
+	src/BA/Systems/CollisionSystem.cpp
 	src/BA/Systems/ComponentSystem.cpp
 	src/BA/Systems/EntityManager.cpp
 	src/BA/Systems/InputManager.cpp

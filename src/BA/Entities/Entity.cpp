@@ -34,8 +34,12 @@ void Entity::queueForRemoval(bool remove) {
 	m_queuedForRemoval = remove;
 }
 
-std::shared_ptr<ba::Drawable> Entity::getDrawable() const {
+std::shared_ptr<Drawable> Entity::getDrawable() const {
 	return m_drawable;
+}
+
+std::shared_ptr<Collider> Entity::getCollider() const {
+	return m_collider;
 }
 
 } // namespace ba
