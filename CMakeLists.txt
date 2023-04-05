@@ -10,6 +10,7 @@ project(
 set(SOURCES 
 	src/BA/Components/Colliders/BoxCollider.cpp
 	src/BA/Components/Colliders/Collider.cpp
+	src/BA/Components/Animation.cpp
 	src/BA/Components/Component.cpp
 	src/BA/Components/Drawable.cpp
 	src/BA/Components/KeyboardControl.cpp
@@ -17,6 +18,7 @@ set(SOURCES
 	src/BA/Components/Velocity.cpp
 	src/BA/Entities/Entity.cpp
 	src/BA/Entities/Transformable.cpp
+	src/BA/Systems/AnimationSystem.cpp
 	src/BA/Systems/CollisionSystem.cpp
 	src/BA/Systems/ComponentSystem.cpp
 	src/BA/Systems/EntityManager.cpp
@@ -29,7 +31,12 @@ set(SOURCES
 	src/BA/Window/View.cpp
 	src/BA/ResourceManager.cpp
 	src/BA/Engine.cpp
-)	
+)
+
+set(SOURCE_ANIMATION_SAMPLE
+	samples/Animation/SkeletonEntity.cpp
+	samples/Animation/main.cpp
+)
 
 add_library(compiler_flags INTERFACE)
 target_compile_features(compiler_flags INTERFACE cxx_std_20)
@@ -53,7 +60,8 @@ target_compile_options(compiler_flags INTERFACE
 )
 
 add_library(BA STATIC ${SOURCES})
-add_executable(sample sample.cpp)
+
+add_executable(sample ${SOURCE_ANIMATION_SAMPLE})
 
 
 target_include_directories(BA 
@@ -65,6 +73,7 @@ target_include_directories(sample
 	PUBLIC
 	${PROJECT_SOURCE_DIR}/include/
 	${PROJECT_BINARY_DIR}
+	${PROJECT_SOURCE_DIR}/samples/Animation/
 )
 
 target_link_libraries(BA SDL2 SDL2_image SDL2_ttf compiler_flags)

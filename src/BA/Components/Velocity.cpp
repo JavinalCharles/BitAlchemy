@@ -1,6 +1,8 @@
 #include <BA/Components/Velocity.hpp>
 #include <BA/Entities/Entity.hpp>
 
+#include <iostream>
+
 namespace ba {
 
 Velocity::Velocity(Entity* owner) :
@@ -53,10 +55,12 @@ void Velocity::moveUp() {
 
 void Velocity::moveRight() {
 	m_velocity.x = m_maxVelocity.x;
+	std::clog << "Moving Right. " << m_velocity.x << "\n";
 }
 
 void Velocity::moveDown() {
 	m_velocity.y = m_maxVelocity.y;
+	
 }
 
 void Velocity::moveLeft() {

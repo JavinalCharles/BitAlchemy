@@ -137,18 +137,20 @@ void CollisionSystem::resolveCollisions() {
 			continue;
 		const bool iStatic = i_collider->getOwner()->isStatic();
 		const bool jStatic = j_collider->getOwner()->isStatic();
-		Vector2f disp;
+
 		if(!iStatic && jStatic) {
 			i_collider->getOwner()->move(measureDisplacement(iBounds, rect.value()));
 		}
 		else if (iStatic && !jStatic) {
 			j_collider->getOwner()->move(measureDisplacement(jBounds, rect.value()));
 		}
-		else {
+		else if (!iStatic && !jStatic) {
 			i_collider->getOwner()->move(measureDisplacement(iBounds, rect.value()) * 0.5f);
 			j_collider->getOwner()->move(measureDisplacement(jBounds, rect.value()) * 0.5f);
 		}
 	}
+
+	m_collisions.clear();
 }
 
 } // namespace ba
