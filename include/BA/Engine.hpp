@@ -29,6 +29,8 @@ public:
     void postUpdate(float deltaTime);
     void draw();
 
+    SharedContext* getContext();
+
     void cleanUp();
 protected:
     Window m_window;

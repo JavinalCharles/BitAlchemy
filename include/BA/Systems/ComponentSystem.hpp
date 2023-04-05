@@ -2,6 +2,7 @@
 
 #include <memory>
 #include <set>
+#include <BA/Types.hpp>
 
 namespace ba {
 
@@ -11,7 +12,7 @@ class Entity;
 
 class ComponentSystem {
 public:
-	ComponentSystem(ba::EntityManager* entityManager);
+	ComponentSystem(EntityManager* entityManager);
 
 	virtual void update(float deltaTime);
 	virtual void postUpdate(float deltaTime);
@@ -20,7 +21,7 @@ public:
 	virtual void remove(unsigned entityID);
 
 protected:
-	std::set<unsigned> m_entityIDs;
+	std::set<IDtype> m_entityIDs;
 
 	// Where the actual entities are stored.
 	ba::EntityManager* m_entities;

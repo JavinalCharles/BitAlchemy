@@ -89,6 +89,10 @@ void Engine::draw() {
 	m_window.display();
 }
 
+SharedContext* Engine::getContext(){
+	return &m_context;
+}
+
 void Engine::cleanUp() {
 	TTF_Quit();
 	IMG_Quit();

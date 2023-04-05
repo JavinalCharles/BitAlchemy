@@ -19,19 +19,43 @@ void Sprite::draw(Window& window) {
 	window.drawRect(this->getGlobalBounds(), Color::Blue);
 }
 
+bool Sprite::hasTexture() const {
+	return m_textureID > 0;
+}
+
 unsigned Sprite::loadTextureFromFile(const std::string& path) {
 	m_textureID = getOwner()->CONTEXT->resources->loadTexture(path);
 
 	SDL_Texture* textureObj = getOwner()->CONTEXT->resources->getTexture(m_textureID);
 
-	int width = 0;
-	int height = 0;
-	SDL_QueryTexture(textureObj, NULL, NULL, &width, &height);
-	// Initial textureRect becomes {0, 0, width, height}; ie. The whole size of the texture.
-	m_textureRect.w = width;
-	m_textureRect.h = height;
+
+	// Initial textureRect is the whole dimension of the texture.
+	m_textureRect.l = 0;
+	m_textureRect.t = 0;
+	SDL_QueryTexture(textureObj, NULL, NULL, &m_textureRect.w, &m_textureRect.h);
 
 	return m_textureID;
+}
+
+void Sprite::setTexture(IDtype textureID) {
+	SDL_Texture* textureObj = getOwner()->CONTEXT->resources->getTexture(textureID);
+	if(textureObj == nullptr)
+		throw std::invalid_argument("Invalid. Non-existent texture ID given,");
+	m_textureID = textureID;
+
+	//
+	m_textureRect.l = 0;
+	m_textureRect.t = 0;
+	SDL_QueryTexture(textureObj, NULL, NULL, &m_textureRect.w, &m_textureRect.h);
+}
+
+void Sprite::setTexture(IDtype textureID, const IntRect& rect) {
+	SDL_Texture* textureObj = getOwner()->CONTEXT->resources->getTexture(textureID);
+	if(textureObj == nullptr)
+		throw std::invalid_argument("Invalid. Non-existent texture ID given,");
+	m_textureID = textureID;
+
+	m_textureRect = rect;
 }
 
 void Sprite::setTextureRect(const IntRect& rect) {
@@ -43,8 +67,12 @@ IntRect Sprite::getTextureRect() const {
 }
 
 FloatRect Sprite::getLocalBounds() const {
-	float width = static_cast<float>(m_textureRect.w);
-	float height = static_cast<float>(m_textureRect.h);
+	auto abs = [](float num) -> float {
+		return (num >= 0.f) ? num : -num;
+	};
+
+	float width = abs(static_cast<float>(m_textureRect.w));
+	float height = abs(static_cast<float>(m_textureRect.h));
 	return FloatRect({0.f, 0.f}, {width, height});
 }
 

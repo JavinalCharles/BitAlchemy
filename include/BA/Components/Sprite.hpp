@@ -5,6 +5,7 @@
 #include <SDL2/SDL.h>
 #include <BA/Components/Boundable.hpp>
 #include <BA/Components/Drawable.hpp>
+#include <BA/Types.hpp>
 #include <BA/Utilities/Rect.hpp>
 
 namespace ba {
@@ -15,7 +16,11 @@ public:
 
 	virtual void draw(ba::Window& window);
 
+	bool hasTexture() const;
+
 	unsigned loadTextureFromFile(const std::string& path);
+	void setTexture(IDtype textureID);
+	void setTexture(IDtype textureID, const IntRect& textureRect);
 	void setTextureRect(const IntRect& rect);
 	IntRect getTextureRect() const;
 
