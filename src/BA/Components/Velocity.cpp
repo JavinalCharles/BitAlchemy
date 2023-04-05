@@ -1,7 +1,7 @@
 #include <BA/Components/Velocity.hpp>
 #include <BA/Entities/Entity.hpp>
 
-#include <iostream>
+// #include <iostream>
 
 namespace ba {
 
@@ -55,7 +55,6 @@ void Velocity::moveUp() {
 
 void Velocity::moveRight() {
 	m_velocity.x = m_maxVelocity.x;
-	std::clog << "Moving Right. " << m_velocity.x << "\n";
 }
 
 void Velocity::moveDown() {

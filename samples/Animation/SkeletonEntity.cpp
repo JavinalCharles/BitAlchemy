@@ -22,7 +22,7 @@ SkeletonEntity::SkeletonEntity(SharedContext* context) :
 	auto kc = this->addComponent<ba::KeyboardControl>();
 	auto vel = this->addComponent<ba::Velocity>();
 
-	vel->setMax({625.f, 625.f});
+	vel->setMax({64.f, 64.f});
 
 	m_anime = anime.get();
 	m_velocity = vel.get();
