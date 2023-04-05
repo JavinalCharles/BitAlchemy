@@ -16,6 +16,7 @@ void Sprite::draw(Window& window) {
 
 	SDL_Texture* texture = getOwner()->CONTEXT->resources->getTexture(m_textureID);
 	window.draw(texture, m_textureRect, this->getGlobalBounds());
+	window.drawRect(this->getGlobalBounds(), Color::Blue);
 }
 
 unsigned Sprite::loadTextureFromFile(const std::string& path) {

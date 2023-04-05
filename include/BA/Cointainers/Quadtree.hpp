@@ -15,10 +15,11 @@ template <typename T>
 class Quadtree {
 public:
 	Quadtree();
-	Quadtree(int maxObjects, int maxLevels, int level = 0, FloatRect bounds = {0, 0, 3200, 3200}, Quadtree* parent = nullptr);
+	Quadtree(std::size_t maxObjects, int maxLevels, int level = 0, FloatRect bounds = {0, 0, 3200, 3200}, Quadtree* parent = nullptr);
 
 	void insert(std::shared_ptr<T> object);
-	bool remove(IDtype ID);
+	void remove(std::shared_ptr<T> object);
+	// bool remove(IDtype ID);
 
 	void clear();
 	
@@ -37,7 +38,7 @@ private:
 	static const int childSW = 2;
 	static const int childSE = 3;
 
-	int m_maxObjects;
+	std::size_t m_maxObjects;
 	int m_maxLevels;
 	int m_level;
 
@@ -59,7 +60,7 @@ Quadtree<T>::Quadtree() :
 }
 
 template <typename T>
-Quadtree<T>::Quadtree(int maxObjects, int maxLevels, int level, FloatRect bounds, Quadtree* parent) :
+Quadtree<T>::Quadtree(std::size_t maxObjects, int maxLevels, int level, FloatRect bounds, Quadtree* parent) :
 	m_maxObjects(maxObjects),
 	m_maxLevels(maxLevels),
 	m_level(level),
@@ -91,7 +92,7 @@ void Quadtree<T>::insert(std::shared_ptr<T> object) {
 		}
 	}
 	else {
-		m_objects.insert_or_assign(object->getOwner(->ID, object));
+		m_objects.insert_or_assign(object->getOwner()->ID, object);
 
 		if(m_objects.size() > m_maxObjects && m_level < m_maxLevels && m_children[0] == nullptr) {
 			this->split();
@@ -114,19 +115,18 @@ void Quadtree<T>::insert(std::shared_ptr<T> object) {
 }
 
 template <typename T>
-bool Quadtree<T>::remove(IDtype objectID) {
-	if (m_objects.contains(objectID)) {
-		m_objects.extract(objectID);
-		return true;
+void Quadtree<T>::remove(std::shared_ptr<T> object) {
+	unsigned ID = object->getOwner()->ID;
+	if(m_objects.contains(ID)) {
+		m_objects.erase(ID);
 	}
-	if (m_children[0] != nullptr) {
-		for (int i = 0; i < 4; ++i) {
-			if (m_children[i]->remove(objectID))
-				return true;
+	else {
+		FloatRect bounds = object->getGlobalBounds();
+		int i = this->getChildIndexForObject(bounds);
+		if(m_children[i] != nullptr) {
+			m_children[i]->remove(object);
 		}
 	}
-
-	return false;
 }
 
 template <typename T>
@@ -152,7 +152,7 @@ std::vector<std::shared_ptr<T>> Quadtree<T>::search(const FloatRect& area) {
 
 template <typename T>
 void Quadtree<T>::search(const FloatRect& area, std::vector<std::shared_ptr<T>>& returnList) {
-	for (auto& object : m_objects) {
+	for (auto& [key, object] : m_objects) {
 		std::optional<FloatRect> intersection(object->getGlobalBounds().intersects(area));
 		if (intersection.has_value()) {
 			returnList.emplace_back(object);
@@ -163,7 +163,7 @@ void Quadtree<T>::search(const FloatRect& area, std::vector<std::shared_ptr<T>>&
 		return;
 	
 	for(int i = 0; i < 4; ++i) {
-		std::optional<FloatRect> intersection(.m_children[i].getBounds().intersects(area));
+		std::optional<FloatRect> intersection = m_children[i]->getBounds().intersects(area);
 		if (intersection.has_value()) {
 			m_children[i]->search(area, returnList);
 		}
@@ -189,7 +189,7 @@ int Quadtree<T>::getChildIndexForObject(const FloatRect& objectBounds) {
 		(objectBounds.l > origin.x) ? 1 : ((objectBounds.l < origin.x && (objectBounds.l + objectBounds.w < origin.x))),
 		// -1 north, 1 south 0 center
 		(objectBounds.t > origin.y) ? 1 : ((objectBounds.t < origin.y && objectBounds.t + objectBounds.h < origin.y) ? -1 : 0)
-	}
+	};
 
 	switch(direction.x) {
 		case -1: // north
@@ -208,7 +208,7 @@ int Quadtree<T>::getChildIndexForObject(const FloatRect& objectBounds) {
 					index = childSW;
 					break;
 				case 1: // east
-					index = childSE:
+					index = childSE;
 			}
 			break;
 	}
@@ -218,15 +218,15 @@ int Quadtree<T>::getChildIndexForObject(const FloatRect& objectBounds) {
 
 template <typename T>
 void Quadtree<T>::split() {
-	const Vector2i size{
+	const Vector2f size{
 		m_bounds.w / 2,
 		m_bounds.h / 2
 	};
 
-	m_children[childNE] = std::make_unique<Quadtree<T>>(m_maxObjects, m_maxLevels, m_level + 1, {{m_bounds.l + size.x, m_bounds.t}, size}, this);
-	m_children[childNW] = std::make_unique<Quadtree<T>>(m_maxObjects, m_maxLevels, m_level + 1, {{m_bounds.l, m_bounds.t}, size}, this);
-	m_children[childSW] = std::make_unique<Quadtree<T>>(m_maxObjects, m_maxLevels, m_level + 1, {{m_bounds.l, m_bounds.t + size.y}, size}, this);
-	m_children[childSE] = std::make_unique<Quadtree<T>>(m_maxObjects, m_maxLevels, m_level + 1, {{m_bounds.l + size.x, m_bounds.t + size.y}, size}, this);
+	m_children[childNE] = std::make_unique<Quadtree<T>>(m_maxObjects, m_maxLevels, m_level + 1, FloatRect({m_bounds.l + size.x, m_bounds.t}, size), this);
+	m_children[childNW] = std::make_unique<Quadtree<T>>(m_maxObjects, m_maxLevels, m_level + 1, FloatRect({m_bounds.l, m_bounds.t}, size), this);
+	m_children[childSW] = std::make_unique<Quadtree<T>>(m_maxObjects, m_maxLevels, m_level + 1, FloatRect({m_bounds.l, m_bounds.t + size.y}, size), this);
+	m_children[childSE] = std::make_unique<Quadtree<T>>(m_maxObjects, m_maxLevels, m_level + 1, FloatRect({m_bounds.l + size.x, m_bounds.t + size.y}, size), this);
 }
 
 } // namespace ba

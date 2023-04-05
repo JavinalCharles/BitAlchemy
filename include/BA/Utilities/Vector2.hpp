@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cmath>
 #include <SDL2/SDL.h>
 
 namespace ba {
@@ -17,6 +18,8 @@ public: // Constructors
 	constexpr explicit Vector2(const Vector2<U>& other);
 
 	constexpr SDL_Point toSDL_Point() const;
+
+	float distance(const Vector2<T>& other) const;
 
 }; // class Vector2
 
