@@ -17,7 +17,7 @@ public: // ATTRIBUTES
 
 	const ba::SharedContext* CONTEXT;
 public: // METHODS & CONSTRUCTORS
-	Entity(ba::SharedContext* context);
+	Entity(SharedContext* context);
 
 	/**
 	 * awake()

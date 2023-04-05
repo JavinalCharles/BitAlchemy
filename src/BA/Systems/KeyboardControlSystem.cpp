@@ -1,6 +1,8 @@
 #include <BA/Systems/EntityManager.hpp>
 #include <BA/Systems/KeyboardControlSystem.hpp>
 
+#include <iostream>
+
 namespace ba {
 
 KeyboardControlSystem::KeyboardControlSystem(EntityManager* entities) :

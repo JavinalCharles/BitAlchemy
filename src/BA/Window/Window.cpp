@@ -74,10 +74,18 @@ void Window::clear(ba::Color color) {
 
 void Window::draw(SDL_Texture* texture, const ba::IntRect& textureRect, const FloatRect& destRect) {
 
+	SDL_RendererFlip flip = SDL_FLIP_NONE;
+	if(textureRect.w < 0) {
+		flip = SDL_FLIP_HORIZONTAL;
+	}
+	else if(textureRect.h < 0) {
+		flip = SDL_FLIP_VERTICAL;
+	}
+
 	SDL_Rect screenCoordsRect = m_view.mapToView(destRect).toSDL_Rect();
 	SDL_Rect textureSDLRect = textureRect.toSDL_Rect();
 
-	SDL_RenderCopy(m_renderer, texture, &textureSDLRect, &screenCoordsRect);
+	SDL_RenderCopyEx(m_renderer, texture, &textureSDLRect, &screenCoordsRect, 0.f, NULL, flip);
 }
 
 void Window::drawRect(const IntRect& rect, Color rc) {
