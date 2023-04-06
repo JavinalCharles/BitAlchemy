@@ -1,6 +1,6 @@
 #pragma once
 #include <cstdint>
-
+#include <cstddef>
 
 namespace ba
 {
@@ -13,7 +13,7 @@ namespace ba
 	using int64 =	std::int64_t;
 	using uint64 = 	std::uint64_t;
 
-	using IDtype = 	std::uint64_t;
+	using IDtype = 	std::size_t;
 } // namespace ba
 
 

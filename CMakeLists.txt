@@ -76,5 +76,12 @@ target_include_directories(sample
 	${PROJECT_SOURCE_DIR}/samples/Animation/
 )
 
-target_link_libraries(BA SDL2 SDL2_image SDL2_ttf compiler_flags)
-target_link_libraries(sample BA SDL2 SDL2_image SDL2_ttf compiler_flags)
+set(LIBS
+	SDL2
+	SDL2_image
+	SDL2_mixer
+	SDL2_ttf
+)
+
+target_link_libraries(BA SDL2 compiler_flags)
+target_link_libraries(sample BA ${LIBS} compiler_flags)

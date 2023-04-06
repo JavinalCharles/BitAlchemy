@@ -12,13 +12,15 @@ ResourceManager::ResourceManager(SDL_Renderer* rend) :
 	m_renderer(rend),
 	m_paths({
 		BASE_DIR / path{"Textures"},
+		BASE_DIR / path{"Sounds"},
+		BASE_DIR / path{"Musics"},
 		BASE_DIR / path{"Fonts"}
 	})
 {
 
 }
 
-unsigned int ResourceManager::loadTexture(const std::string& fileName) {
+IDtype ResourceManager::loadTexture(const std::string& fileName) {
 	path file(m_paths[TEXTURES_PATH] / path{fileName});
 	SDL_Texture* newTexture = NULL;
 	SDL_Surface* loadedSurface = IMG_Load(file.c_str());
@@ -31,37 +33,72 @@ unsigned int ResourceManager::loadTexture(const std::string& fileName) {
 		throw std::runtime_error(SDL_GetError());
 	}
 	SDL_FreeSurface(loadedSurface);
-	unsigned int id = ++textureCount;
+	IDtype id = ++textureCount;
 	texturesMap.insert_or_assign(id, newTexture);
 	
 	return id;
 }
 
-unsigned int ResourceManager::loadFont(const std::string& fileName, int fontSize) {
+IDtype ResourceManager::loadSound(const std::string& fileName) {
+	path file(m_paths[SOUNDS_PATH] / path{fileName});
+	Mix_Chunk* newSound = Mix_LoadWAV(file.c_str());
+	if(newSound == NULL) {
+		throw std::invalid_argument(Mix_GetError());
+	}
+	IDtype id = ++soundCount;
+	soundsMap.insert_or_assign(id, newSound);
+
+	return id;
+}
+
+IDtype ResourceManager::loadMusic(const std::string& fileName) {
+	path file(m_paths[MUSICS_PATH] / path{fileName});
+	Mix_Music* newMusic = Mix_LoadMUS(file.c_str());
+	if(newMusic == NULL) {
+		throw std::invalid_argument(Mix_GetError());
+	}
+
+	IDtype id = ++musicCount;
+	musicsMap.insert_or_assign(id, newMusic);
+
+	return id;
+}
+
+IDtype ResourceManager::loadFont(const std::string& fileName, int fontSize) {
 	path file(m_paths[FONTS_PATH] / path{fileName});
 	TTF_Font* newFont = TTF_OpenFont(file.c_str(), fontSize);
 	if (newFont == NULL) {
 		throw std::invalid_argument(TTF_GetError());
 	}
 
-	unsigned int id = ++fontCount;
+	IDtype id = ++fontCount;
 	fontsMap.insert_or_assign(id,  newFont);
 
 	return id;
 }
 
-SDL_Texture* ResourceManager::getTexture(unsigned int id) const {
-	auto search = texturesMap.find(id);
-	if (search == texturesMap.end())
-		return NULL;
-	return search->second;
+SDL_Texture* ResourceManager::getTexture(IDtype id) const {
+	if(texturesMap.contains(id))
+		return texturesMap.at(id);
+	return NULL;
 }
 
-TTF_Font* ResourceManager::getFont(unsigned int id) const {
-	auto search = fontsMap.find(id);
-	if (search == fontsMap.end())
-		return NULL;
-	return search->second;
+Mix_Chunk* ResourceManager::getSound(IDtype id) const {
+	if(soundsMap.contains(id))
+		return soundsMap.at(id);
+	return NULL;
+}
+
+Mix_Music* ResourceManager::getMusic(IDtype id) const {
+	if(musicsMap.contains(id))
+		return musicsMap.at(id);
+	return NULL;
+}
+
+TTF_Font* ResourceManager::getFont(IDtype id) const {
+	if(fontsMap.contains(id))
+		return fontsMap.at(id);
+	return NULL;
 }
 
 void ResourceManager::setRenderer(SDL_Renderer* renderer) {
