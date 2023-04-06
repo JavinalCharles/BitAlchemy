@@ -14,6 +14,9 @@ int main() {
 	context->entities->includeSystem<ba::MovementSystem>();
 	context->entities->includeSystem<ba::KeyboardControlSystem>();
 
+	context->player->addMusic("Patreon Goal Reward Loops - Track 01.wav");
+
+	context->player->play();
 
 	auto skeleton = std::make_shared<SkeletonEntity>(context);
 	context->entities->add(skeleton);

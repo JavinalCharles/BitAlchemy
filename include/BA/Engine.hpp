@@ -39,6 +39,7 @@ protected:
     EntityManager m_entities;
     ResourceManager m_resources;
     InputManager m_inputs;
+    MusicPlayer m_player;
 
     SharedContext m_context;
 

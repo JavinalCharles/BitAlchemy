@@ -8,7 +8,8 @@ Engine::Engine() :
 	m_entities(),
 	m_resources(nullptr),
 	m_inputs(),
-	m_context{&m_entities, &m_resources, &m_window, &m_inputs}
+	m_player(&m_resources),
+	m_context{&m_entities, &m_resources, &m_window, &m_inputs, &m_player}
 {
 
 }
@@ -18,7 +19,8 @@ Engine::Engine(const std::string& title, IntRect dimension, std::uint32_t winFla
 	m_entities(),
 	m_resources(nullptr),
 	m_inputs(),
-	m_context{&m_entities, &m_resources, &m_window, &m_inputs}
+	m_player(&m_resources),
+	m_context{&m_entities, &m_resources, &m_window, &m_inputs, &m_player}
 {
 
 }
@@ -66,12 +68,14 @@ void Engine::run() {
 		this->handleEvents();
 
 		if (m_window.isOpen()) {
+			m_player.update();
 			this->update(deltaTime);
 			this->postUpdate(deltaTime);
 			this->draw();
 		}
 
 	} while(m_window.isOpen());
+	m_player.clearMusicList();
 }
 
 void Engine::handleEvents() {
