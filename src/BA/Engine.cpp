@@ -31,6 +31,10 @@ void Engine::init() {
 	if(!(IMG_Init(imgFlags) & imgFlags)) {
 		throw std::runtime_error(IMG_GetError());
 	}
+	int audioInit = Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 2048);
+	if (audioInit != 0) {
+		throw std::runtime_error(Mix_GetError());
+	}
 	if(TTF_Init() < 0) {
 		throw std::runtime_error(TTF_GetError());
 	}
@@ -96,6 +100,7 @@ SharedContext* Engine::getContext(){
 
 void Engine::cleanUp() {
 	TTF_Quit();
+	Mix_Quit();
 	IMG_Quit();
 	SDL_Quit();
 }
