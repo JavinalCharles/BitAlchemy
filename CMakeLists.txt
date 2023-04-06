@@ -25,6 +25,7 @@ set(SOURCES
 	src/BA/Systems/InputManager.cpp
 	src/BA/Systems/KeyboardControlSystem.cpp
 	src/BA/Systems/MovementSystem.cpp
+	src/BA/Systems/MusicPlayer.cpp
 	src/BA/Systems/RenderSystem.cpp
 	src/BA/Utilities/Transform.cpp
 	src/BA/Window/Window.cpp
