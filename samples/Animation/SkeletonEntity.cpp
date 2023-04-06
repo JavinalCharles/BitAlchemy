@@ -8,7 +8,7 @@ SkeletonEntity::SkeletonEntity(SharedContext* context) :
 	Entity(context)
 {
 	if(!m_resourcesLoaded) {
-		WALK_TEXTURE = CONTEXT->resources->loadTexture("/home/vianou/Pictures/Skeleton_Walk.png");
+		WALK_TEXTURE = CONTEXT->resources->loadTexture("Skeleton_Walk.png");
 		m_resourcesLoaded = true;
 
 	}

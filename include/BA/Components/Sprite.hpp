@@ -18,7 +18,7 @@ public:
 
 	bool hasTexture() const;
 
-	unsigned loadTextureFromFile(const std::string& path);
+	unsigned loadTextureFromFile(const std::string& fileName);
 	void setTexture(IDtype textureID);
 	void setTexture(IDtype textureID, const IntRect& textureRect);
 	void setTextureRect(const IntRect& rect);

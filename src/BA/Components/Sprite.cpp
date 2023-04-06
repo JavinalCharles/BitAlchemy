@@ -23,11 +23,10 @@ bool Sprite::hasTexture() const {
 	return m_textureID > 0;
 }
 
-unsigned Sprite::loadTextureFromFile(const std::string& path) {
-	m_textureID = getOwner()->CONTEXT->resources->loadTexture(path);
+unsigned Sprite::loadTextureFromFile(const std::string& fileName) {
+	m_textureID = getOwner()->CONTEXT->resources->loadTexture(fileName);
 
 	SDL_Texture* textureObj = getOwner()->CONTEXT->resources->getTexture(m_textureID);
-
 
 	// Initial textureRect is the whole dimension of the texture.
 	m_textureRect.l = 0;
