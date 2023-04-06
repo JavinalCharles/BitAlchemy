@@ -1,10 +1,15 @@
 #pragma once
+
+#include <array>
+#include <filesystem>
 #include <stdexcept>
 #include <string>
 #include <unordered_map>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
+
+using std::filesystem::path;
 
 namespace ba {
 
@@ -18,13 +23,13 @@ public: // Methods and Constructors
 	 * - Creates an SDL_Texture* object from path and stores it into memory. 
 	 * Returns the id of the loaded SDL_Texture for future access.
 	*/
-	unsigned int loadTexture(const std::string& path);
+	unsigned int loadTexture(const std::string& fileName);
 	/**
 	 * loadFont()
 	 * - Creates a TTF_Font* object from path and stores it into memory.
 	 * Returns the id of the loaded TTF_Font for future access.
 	*/
-	unsigned int loadFont(const std::string& path, int fontSize);
+	unsigned int loadFont(const std::string& fileName, int fontSize);
 
 	/**
 	 * getTexture()
@@ -47,10 +52,19 @@ private:
 	unsigned int fontCount = 0;
 	// TODO: Map for audios/musics
 
-	SDL_Renderer* m_renderer;
+	SDL_Renderer* m_renderer; 
 
+	std::array<std::filesystem::path, 2>	m_paths;
+	/*********************************
+	 * CONSTANTS FOR INDEXES
+	**********************************/
+	static const std::size_t TEXTURES_PATH = 0;
+	static const std::size_t FONTS_PATH = 1;
+	/*********************************
+	 * BASE-DIRECTORY
+	*********************************/
+	static const path BASE_DIR;
 
-	
 }; // class ResourceManager
 
 } // namespace ba
