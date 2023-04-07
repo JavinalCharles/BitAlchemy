@@ -71,7 +71,7 @@ constexpr FloatRect Transform::transformRect(const FloatRect& rectangle) const {
 			bottom = points[i].y;
 	}
 
-	return FloatRect(left, top, right - left, bottom - top);
+	return FloatRect({left, top}, {right - left, bottom - top});
 }
 
 constexpr Transform& Transform::combine(const Transform& transform) {

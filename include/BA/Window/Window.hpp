@@ -3,6 +3,7 @@
 #include <string>
 #include <stdexcept>
 #include <SDL2/SDL.h>
+#include <BA/Utilities/Angle.hpp>
 #include <BA/Utilities/Color.hpp>
 #include <BA/Utilities/Rect.hpp>
 #include <BA/Window/View.hpp>
@@ -28,7 +29,9 @@ public:
 
 	void clear(ba::Color color = ba::Color::Black);
 
-	void draw(SDL_Texture* texture, const IntRect& textureRect, const FloatRect& destRect);
+	void draw(SDL_Texture* texture, const IntRect& textureRect, const FloatRect& destRect, const Angle& angle = Angle::Zero);
+
+	void drawPoint(const Vector2f& point, Color pointColor = Color::White);
 
 	void drawRect(const IntRect& rect, Color rectColor = Color::White);
 

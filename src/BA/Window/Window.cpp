@@ -72,25 +72,40 @@ void Window::clear(ba::Color color) {
 	SDL_RenderClear(m_renderer);
 }
 
-void Window::draw(SDL_Texture* texture, const ba::IntRect& textureRect, const FloatRect& destRect) {
+namespace {
+	SDL_RendererFlip getFlip(const IntRect& rect) {
+		SDL_RendererFlip flip = SDL_FLIP_NONE;
+		if(rect.w < 0) {
+			flip = SDL_FLIP_HORIZONTAL;
+		}
+		else if(rect.h < 0) {
+			flip = SDL_FLIP_VERTICAL;
+		}
+		return flip;
+	}
+} // anonymous namespace
 
-	SDL_RendererFlip flip = SDL_FLIP_NONE;
-	if(textureRect.w < 0) {
-		flip = SDL_FLIP_HORIZONTAL;
-	}
-	else if(textureRect.h < 0) {
-		flip = SDL_FLIP_VERTICAL;
-	}
+void Window::draw(SDL_Texture* texture, const ba::IntRect& textureRect, const FloatRect& destRect, const Angle& angle) {
+	SDL_RendererFlip flip = getFlip(textureRect);
 
 	SDL_Rect screenCoordsRect = m_view.mapToView(destRect).toSDL_Rect();
 	SDL_Rect textureSDLRect = textureRect.toSDL_Rect();
 
-	SDL_RenderCopyEx(m_renderer, texture, &textureSDLRect, &screenCoordsRect, 0.f, NULL, flip);
+	SDL_RenderCopyEx(m_renderer, texture, &textureSDLRect, &screenCoordsRect, angle.asDegrees(), NULL, flip);
+}
+
+void Window::drawPoint(const Vector2f& point, Color pc) {
+	Color cb; // Color buffer
+	Vector2f screenCoords = m_view.mapToView(point);
+	SDL_GetRenderDrawColor(m_renderer, &cb.r, &cb.g, &cb.b, &cb.a);
+	SDL_SetRenderDrawColor(m_renderer, pc.r, pc.g, pc.b, pc.a);
+	SDL_RenderDrawPoint(m_renderer, screenCoords.x, screenCoords.y);
+	SDL_SetRenderDrawColor(m_renderer, cb.r, cb.g, cb.b, cb.a);
 }
 
 void Window::drawRect(const IntRect& rect, Color rc) {
 	Color cb; // Color Buffer
-	SDL_Rect r = rect.toSDL_Rect(); 
+	SDL_Rect r = m_view.mapToView(rect).toSDL_Rect();
 	SDL_GetRenderDrawColor(m_renderer, &cb.r, &cb.g, &cb.b, &cb.a);
 	SDL_SetRenderDrawColor(m_renderer, rc.r, rc.g, rc.b, rc.a);
 	SDL_RenderDrawRect(m_renderer, &r);
