@@ -34,10 +34,10 @@ set(SOURCES
 	src/BA/Engine.cpp
 )
 
-set(SOURCE_ANIMATION_SAMPLE
-	samples/Animation/SkeletonEntity.cpp
-	samples/Animation/main.cpp
-)
+# set(SOURCE_ANIMATION_SAMPLE
+# 	samples/Animation/SkeletonEntity.cpp
+# 	samples/Animation/main.cpp
+# )
 
 add_library(compiler_flags INTERFACE)
 target_compile_features(compiler_flags INTERFACE cxx_std_20)
@@ -62,7 +62,7 @@ target_compile_options(compiler_flags INTERFACE
 
 add_library(BA STATIC ${SOURCES})
 
-add_executable(sample ${SOURCE_ANIMATION_SAMPLE})
+# add_executable(sample ${SOURCE_ANIMATION_SAMPLE})
 
 
 target_include_directories(BA 
@@ -70,19 +70,38 @@ target_include_directories(BA
 	${PROJECT_SOURCE_DIR}/include/
 )
 
-target_include_directories(sample 
-	PUBLIC
+# target_include_directories(sample 
+# 	PUBLIC
+# 	${PROJECT_SOURCE_DIR}/include/
+# 	${PROJECT_BINARY_DIR}
+# 	${PROJECT_SOURCE_DIR}/samples/Animation/
+# )
+
+set(SAMPLES_INCLUDE_DIRS
 	${PROJECT_SOURCE_DIR}/include/
 	${PROJECT_BINARY_DIR}
-	${PROJECT_SOURCE_DIR}/samples/Animation/
 )
 
-set(LIBS
+set(SDL_LIBS
 	SDL2
 	SDL2_image
 	SDL2_mixer
 	SDL2_ttf
 )
 
-target_link_libraries(BA SDL2 compiler_flags)
-target_link_libraries(sample BA ${LIBS} compiler_flags)
+add_subdirectory(samples)
+
+target_link_libraries(BA compiler_flags)
+
+
+# INSTALLATION
+if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
+install(DIRECTORY ${PROJECT_SOURCE_DIR}/dirs/ DESTINATION share)
+
+install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/ DESTINATION include)
+
+install(TARGETS BA DESTINATION lib)
+
+elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
+
+endif()
