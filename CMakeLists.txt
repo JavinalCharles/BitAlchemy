@@ -34,11 +34,6 @@ set(SOURCES
 	src/BA/Engine.cpp
 )
 
-# set(SOURCE_ANIMATION_SAMPLE
-# 	samples/Animation/SkeletonEntity.cpp
-# 	samples/Animation/main.cpp
-# )
-
 add_library(compiler_flags INTERFACE)
 target_compile_features(compiler_flags INTERFACE cxx_std_20)
 
@@ -92,7 +87,6 @@ set(SDL_LIBS
 add_subdirectory(samples)
 
 target_link_libraries(BA compiler_flags)
-
 
 # INSTALLATION
 if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
