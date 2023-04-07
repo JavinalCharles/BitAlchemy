@@ -34,7 +34,7 @@ private:
 	Vector2f			m_origin;
 	Vector2f			m_position;
 	Angle				m_rotation;
-	Vector2f			m_scale{1, 1};
+	Vector2f			m_scale{1.f, 1.f};
 	mutable Transform 	m_transform;
 	mutable Transform	m_inverseTransform;
 	mutable bool		m_transformNeedUpdate{true};

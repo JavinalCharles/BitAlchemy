@@ -14,7 +14,7 @@ SkeletonEntity::SkeletonEntity(SharedContext* context) :
 	}
 
 	this->setPosition({128.f, 128.f});
-	this->setOrigin({11.f, 16.5f});
+	// this->setOrigin({22/2.f, 33/2.f});
 	this->setScale({2.5f, 2.5f});
 
 	auto sprite = this->addComponent<ba::Sprite>();
@@ -64,24 +64,23 @@ SkeletonEntity::SkeletonEntity(SharedContext* context) :
 	anime->set(WalkRight);
 
 	kc->bindOnKeyActive(SDLK_a, std::bind(&ba::Velocity::moveLeft, vel.get()));
-	// kc->bindOnKeyActive(SDLK_a, std::bind([vel](){
-	// 	vel->setX(-300.f);
-	// }));
 	kc->bindOnKeyActive(SDLK_a, std::bind([anime, WalkLeft](){
 		anime->set(WalkLeft);
 	}));
-
 	kc->bindOnKeyActive(SDLK_d, std::bind(&ba::Velocity::moveRight, vel.get()));
-	// kc->bindOnKeyActive(SDLK_d, std::bind([vel](){
-	// 	vel->setX(300.f);
-	// }));
 	kc->bindOnKeyActive(SDLK_d, std::bind([anime, WalkRight](){
 		anime->set(WalkRight);
 	}));
-
 	kc->bindOnKeyActive(SDLK_w, std::bind(&ba::Velocity::moveUp, vel.get()));
-
 	kc->bindOnKeyActive(SDLK_s, std::bind(&ba::Velocity::moveDown, vel.get()));
+
+	kc->bindOnKeyPressed(SDLK_RIGHT, std::bind([this](){
+		this->rotate(ba::Angle{15.f});
+	}));
+
+	kc->bindOnKeyPressed(SDLK_LEFT, std::bind([this](){
+		this->rotate(ba::Angle{-15.f});
+	}));
 }
 
 

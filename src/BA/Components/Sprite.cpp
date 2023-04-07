@@ -15,7 +15,7 @@ void Sprite::draw(Window& window) {
 		return;
 
 	SDL_Texture* texture = getOwner()->CONTEXT->resources->getTexture(m_textureID);
-	window.draw(texture, m_textureRect, this->getGlobalBounds());
+	window.draw(texture, m_textureRect, this->getGlobalBounds(), m_owner->getRotation());
 	window.drawRect(this->getGlobalBounds(), Color::Blue);
 }
 
