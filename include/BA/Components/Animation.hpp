@@ -1,5 +1,7 @@
 #pragma once
 
+#include <functional>
+#include <forward_list>
 #include <stdexcept>
 #include <unordered_map>
 #include <vector>
@@ -11,12 +13,13 @@
 
 namespace ba {
 
-usin
+using FrameAction = std::function<void(void)>;
 
 struct Frame {
-	IDtype		textureID;
-	IntRect 	textureRect;
-	float		displaySeconds;
+	IDtype								textureID;
+	IntRect 							textureRect;
+	float								displaySeconds;
+	std::forward_list<FrameAction>		actions;
 }; // struct Frame
 
 struct Sequence {

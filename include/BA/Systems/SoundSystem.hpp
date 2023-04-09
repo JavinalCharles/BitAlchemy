@@ -1,5 +1,7 @@
 #pragma once
 
+#include <BA/Components/SoundEmitter.hpp>
+#include <BA/Entities/Entity.hpp>
 #include <BA/Systems/ComponentSystem.hpp>
 
 namespace ba {

@@ -3,6 +3,7 @@
 #include <BA/Components/Animation.hpp>
 #include <BA/Components/KeyboardControl.hpp>
 #include <BA/Components/Velocity.hpp>
+#include <BA/Components/SoundEmitter.hpp>
 #include <BA/Entities/Entity.hpp>
 #include <BA/Types.hpp>
 
@@ -31,4 +32,5 @@ private:
 	static ba::IDtype leftID;
 
 	static ba::IDtype WALK_TEXTURE;
+	static ba::IDtype WALK_SOUND;
 }; // class SkeletonEntity

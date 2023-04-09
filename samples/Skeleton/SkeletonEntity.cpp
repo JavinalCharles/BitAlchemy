@@ -1,6 +1,7 @@
 #include "SkeletonEntity.hpp"
 
 ba::IDtype SkeletonEntity::WALK_TEXTURE = 0;
+ba::IDtype SkeletonEntity::WALK_SOUND = 0;
 ba::IDtype SkeletonEntity::rightID = 1;
 ba::IDtype SkeletonEntity::leftID = 2;
 
@@ -9,8 +10,8 @@ SkeletonEntity::SkeletonEntity(SharedContext* context) :
 {
 	if(!m_resourcesLoaded) {
 		WALK_TEXTURE = CONTEXT->resources->loadTexture("Skeleton_Walk.png");
+		WALK_SOUND = CONTEXT->resources->loadSound("Concrete 1.wav");
 		m_resourcesLoaded = true;
-
 	}
 
 	this->setPosition({128.f, 128.f});
@@ -21,11 +22,13 @@ SkeletonEntity::SkeletonEntity(SharedContext* context) :
 	auto anime = this->addComponent<ba::Animation>();
 	auto kc = this->addComponent<ba::KeyboardControl>();
 	auto vel = this->addComponent<ba::Velocity>();
+	auto se = this->addComponent<ba::SoundEmitter>();
 
 	vel->setMax({64.f, 64.f});
 
 	m_anime = anime.get();
 	m_velocity = vel.get();
+
 
 	/************************************************
 	 * Setting up Animations
@@ -39,22 +42,36 @@ SkeletonEntity::SkeletonEntity(SharedContext* context) :
 	const float time = 1.f / 12.f;
 	ba::Sequence walkLeft;
 	while(L <= 286) {
-		walkLeft.frames.push_back(ba::Frame{
+		ba::Frame frame{
 			WALK_TEXTURE,
 			ba::IntRect{L, T, -W, H},
 			time
-		});
+		};
+		ba::IDtype soundID = WALK_SOUND;
+		if(walkLeft.frames.size() == 7 || walkLeft.frames.size() == 12) {
+			frame.actions.push_front(std::bind([se, soundID](){
+				se->emitSound(soundID);
+			}));
+		}
+		walkLeft.frames.push_back(frame);
 		L += W;
 	}
 	walkLeft.looped = true;
 	L = 0;
 	ba::Sequence walkRight;
 	while(L < 286) {
-		walkRight.frames.push_back(ba::Frame{
+		ba::Frame frame{
 			WALK_TEXTURE,
 			ba::IntRect{L, T, W, H},
 			time
-		});
+		};
+		ba::IDtype soundID = WALK_SOUND;
+		if(walkRight.frames.size() == 7 || walkRight.frames.size() == 12) {
+			frame.actions.push_front(std::bind([se, soundID](){
+				se->emitSound(soundID);
+			}));
+		}
+		walkRight.frames.push_back(frame);
 		L += W;
 	}
 	walkRight.looped = true;
