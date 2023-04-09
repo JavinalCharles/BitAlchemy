@@ -57,20 +57,10 @@ target_compile_options(compiler_flags INTERFACE
 
 add_library(BA STATIC ${SOURCES})
 
-# add_executable(sample ${SOURCE_ANIMATION_SAMPLE})
-
-
 target_include_directories(BA 
 	PUBLIC 
 	${PROJECT_SOURCE_DIR}/include/
 )
-
-# target_include_directories(sample 
-# 	PUBLIC
-# 	${PROJECT_SOURCE_DIR}/include/
-# 	${PROJECT_BINARY_DIR}
-# 	${PROJECT_SOURCE_DIR}/samples/Animation/
-# )
 
 set(SAMPLES_INCLUDE_DIRS
 	${PROJECT_SOURCE_DIR}/include/

@@ -11,6 +11,8 @@
 
 namespace ba {
 
+usin
+
 struct Frame {
 	IDtype		textureID;
 	IntRect 	textureRect;
