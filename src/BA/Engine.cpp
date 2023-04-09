@@ -49,6 +49,13 @@ void Engine::run() {
 	const std::uint64_t CPS = SDL_GetPerformanceFrequency();
 	const float FPS = CPS / 60.f;
 
+#ifdef DEBUG_MODE_ON
+	const IDtype fontID = m_resources.loadFont("UbuntuMono-Regular.ttf", 24);
+	TTF_Font* font = m_resources.getFont(fontID);
+	SDL_Color white = {255, 255, 255, 0};
+	SDL_Renderer* renderer = m_window.getRenderer();
+#endif
+
 	std::uint64_t NOW = SDL_GetPerformanceCounter();
 	std::uint64_t LAST = 0;
 	std::uint64_t elapsedTime = 0;
@@ -71,7 +78,22 @@ void Engine::run() {
 			m_player.update();
 			this->update(deltaTime);
 			this->postUpdate(deltaTime);
+#ifdef DEBUG_MODE_ON
+			m_window.clear();
+			m_entities.draw(m_window);
+			std::string textString{"FPS: "};
+			int fpsText = static_cast<int>(std::round(1.0f / deltaTime));
+			textString += std::to_string(fpsText);
+			SDL_Surface* textSurface = TTF_RenderText_Solid(font, textString.c_str(), white);
+			SDL_Texture* textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
+			SDL_Rect dest = { 0, 0, textSurface->w, textSurface->h };
+			SDL_RenderCopy(renderer, textTexture, NULL, &dest);
+			SDL_FreeSurface(textSurface);
+			SDL_DestroyTexture(textTexture);
+			m_window.display();
+#else
 			this->draw();
+#endif
 		}
 
 	} while(m_window.isOpen());

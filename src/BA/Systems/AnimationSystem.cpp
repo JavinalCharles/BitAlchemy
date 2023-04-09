@@ -30,7 +30,15 @@ void AnimationSystem::postUpdate(float deltaTime) {
 				a->m_currentFrame = ((a->m_currentFrame + 1) % s.frames.size());
 				a->m_sprite->setTexture(s.frames[a->m_currentFrame].textureID);
 				a->m_sprite->setTextureRect(s.frames[a->m_currentFrame].textureRect);
+
+				if(!s.frames[a->m_currentFrame].actions.empty()) {
+					for(auto& action : s.frames[a->m_currentFrame].actions) {
+						action();
+					}
+				}
 			}
+
+
 			
 		}
 	}

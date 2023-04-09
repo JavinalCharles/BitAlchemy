@@ -2,6 +2,7 @@
 #include <BA/Systems/AnimationSystem.hpp>
 #include <BA/Systems/KeyboardControlSystem.hpp>
 #include <BA/Systems/MovementSystem.hpp>
+#include <BA/Systems/SoundSystem.hpp>
 #include <BA/Engine.hpp>
 
 int main() {
@@ -13,6 +14,7 @@ int main() {
 	context->entities->includeSystem<ba::AnimationSystem>();
 	context->entities->includeSystem<ba::MovementSystem>();
 	context->entities->includeSystem<ba::KeyboardControlSystem>();
+	context->entities->includeSystem<ba::SoundSystem>();
 
 	context->player->addMusic("Patreon Goal Reward Loops - Track 01.wav");
 

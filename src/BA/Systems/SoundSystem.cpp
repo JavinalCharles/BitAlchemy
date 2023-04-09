@@ -1,0 +1,32 @@
+#include <BA/Systems/SoundSystem.hpp>
+#include <BA/Systems/EntityManager.hpp>
+
+namespace ba {
+
+SoundSystem::SoundSystem(EntityManager* entities) :
+	ComponentSystem(entities)
+{
+
+}
+
+void SoundSystem::postUpdate(float) {
+	for(IDtype ID : m_entityIDs) {
+		std::queue<IDtype>& soundQueue = m_entities->at(ID)->getComponent<SoundEmitter>()->getSounds();
+
+		while(!soundQueue.empty()) {
+			Mix_Chunk* sound = m_entities->at(ID)->CONTEXT->resources->getSound(soundQueue.front());
+			Mix_PlayChannel(-1, sound, 0);
+			soundQueue.pop();
+		}
+	}
+}
+
+void SoundSystem::add(std::shared_ptr<Entity>& entity) {
+	auto soundEmitter = entity->getComponent<SoundEmitter>();
+	if(soundEmitter == nullptr) {
+		return;
+	}
+	m_entityIDs.insert(entity->ID);
+}
+
+} // namespace ba
