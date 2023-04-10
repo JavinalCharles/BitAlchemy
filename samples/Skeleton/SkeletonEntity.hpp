@@ -27,10 +27,13 @@ private:
 
 	ba::Animation* m_anime = nullptr;
 	ba::Velocity* m_velocity = nullptr;
+ 
+	static const ba::IDtype rightID;
+	static const ba::IDtype leftID;
+	static const ba::IDtype idleRightID;
+	static const ba::IDtype idleLeftID;
 
-	static ba::IDtype rightID;
-	static ba::IDtype leftID;
-
+	static ba::IDtype IDLE_TEXTURE;
 	static ba::IDtype WALK_TEXTURE;
 	static ba::IDtype WALK_SOUND;
 }; // class SkeletonEntity
