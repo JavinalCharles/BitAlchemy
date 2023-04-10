@@ -1,14 +1,18 @@
 #include "SkeletonEntity.hpp"
 
+ba::IDtype SkeletonEntity::IDLE_TEXTURE = 0;
 ba::IDtype SkeletonEntity::WALK_TEXTURE = 0;
 ba::IDtype SkeletonEntity::WALK_SOUND = 0;
-ba::IDtype SkeletonEntity::rightID = 1;
-ba::IDtype SkeletonEntity::leftID = 2;
+const ba::IDtype SkeletonEntity::rightID = 1;
+const ba::IDtype SkeletonEntity::leftID = 2;
+const ba::IDtype SkeletonEntity::idleRightID = 3;
+const ba::IDtype SkeletonEntity::idleLeftID =4;
 
 SkeletonEntity::SkeletonEntity(SharedContext* context) :
 	Entity(context)
 {
 	if(!m_resourcesLoaded) {
+		IDLE_TEXTURE = CONTEXT->resources->loadTexture("Skeleton Idle.png");
 		WALK_TEXTURE = CONTEXT->resources->loadTexture("Skeleton_Walk.png");
 		WALK_SOUND = CONTEXT->resources->loadSound("Concrete 1.wav");
 		m_resourcesLoaded = true;
@@ -35,6 +39,9 @@ SkeletonEntity::SkeletonEntity(SharedContext* context) :
 	*************************************************/
 	const ba::IDtype WalkLeft = leftID;
 	const ba::IDtype WalkRight = rightID;
+	const ba::IDtype IdleLeft = idleLeftID;
+	const ba::IDtype IdleRight = idleRightID;
+
 	int L = 22;
 	int T = 0;
 	const int W = 22;
@@ -45,7 +52,8 @@ SkeletonEntity::SkeletonEntity(SharedContext* context) :
 		ba::Frame frame{
 			WALK_TEXTURE,
 			ba::IntRect{L, T, -W, H},
-			time
+			time,
+			{}
 		};
 		ba::IDtype soundID = WALK_SOUND;
 		if(walkLeft.frames.size() == 7 || walkLeft.frames.size() == 12) {
@@ -63,7 +71,8 @@ SkeletonEntity::SkeletonEntity(SharedContext* context) :
 		ba::Frame frame{
 			WALK_TEXTURE,
 			ba::IntRect{L, T, W, H},
-			time
+			time,
+			{}
 		};
 		ba::IDtype soundID = WALK_SOUND;
 		if(walkRight.frames.size() == 7 || walkRight.frames.size() == 12) {
@@ -76,9 +85,58 @@ SkeletonEntity::SkeletonEntity(SharedContext* context) :
 	}
 	walkRight.looped = true;
 
+	int idleL = 0;
+	const int idleT = 0;
+	const int idleW = 24;
+	const int idleH = 32;
+	const float idleTime = 1.f / 11.f;
+
+	ba::Sequence idleRightSequence;
+	while(idleL < 264) {
+		ba::Frame frame{
+			IDLE_TEXTURE,
+			ba::IntRect{idleL, idleT, idleW, idleH},
+			idleTime,
+			{}
+		};
+		idleRightSequence.frames.push_back(frame);
+		idleL += idleW;
+	}
+	idleRightSequence.looped = true;
+
+	ba::Sequence idleLeftSequence;
+	idleL = 24;
+	while(idleL <= 264) {
+		ba::Frame frame {
+			IDLE_TEXTURE,
+			ba::IntRect{idleL, idleT, -idleW, idleH},
+			idleTime,
+			{}
+		};
+		idleLeftSequence.frames.push_back(frame);
+		idleL += idleW;
+	}
+	idleLeftSequence.looped = true;
+
 	anime->add(WalkLeft, walkLeft);
 	anime->add(WalkRight, walkRight);
-	anime->set(WalkRight);
+	anime->add(IdleRight, idleRightSequence);
+	anime->add(IdleLeft, idleLeftSequence);
+	anime->set(idleRightID);
+
+	auto setVerticalWalkAnimation = std::bind([anime, WalkLeft, WalkRight, IdleLeft, IdleRight](){
+		switch(anime->getCurrentAnimationID()) {
+			case WalkLeft:
+			case WalkRight:
+				break; // SKIP IF THERE'S ALREADY A WALKANIMATION.
+			case IdleLeft:
+				anime->set(WalkLeft);
+				break;
+			case IdleRight:
+			default:
+				anime->set(WalkRight);
+		}
+	});
 
 	kc->bindOnKeyActive(SDLK_a, std::bind(&ba::Velocity::moveLeft, vel.get()));
 	kc->bindOnKeyActive(SDLK_a, std::bind([anime, WalkLeft](){
@@ -89,7 +147,9 @@ SkeletonEntity::SkeletonEntity(SharedContext* context) :
 		anime->set(WalkRight);
 	}));
 	kc->bindOnKeyActive(SDLK_w, std::bind(&ba::Velocity::moveUp, vel.get()));
+	kc->bindOnKeyActive(SDLK_w, setVerticalWalkAnimation);
 	kc->bindOnKeyActive(SDLK_s, std::bind(&ba::Velocity::moveDown, vel.get()));
+	kc->bindOnKeyActive(SDLK_s, setVerticalWalkAnimation);
 
 	kc->bindOnKeyPressed(SDLK_RIGHT, std::bind([this](){
 		this->rotate(ba::Angle{15.f});
@@ -98,6 +158,29 @@ SkeletonEntity::SkeletonEntity(SharedContext* context) :
 	kc->bindOnKeyPressed(SDLK_LEFT, std::bind([this](){
 		this->rotate(ba::Angle{-15.f});
 	}));
+
+	auto setIdleAnimation = std::bind([anime, WalkLeft, WalkRight, IdleLeft, IdleRight](){
+		ba::InputManager* im = anime->getOwner()->CONTEXT->inputs;
+
+		if(im->isKeyActive(SDLK_w) || im->isKeyActive(SDLK_a) || im->isKeyActive(SDLK_s) || im->isKeyActive(SDLK_d)) {
+			return;
+		}
+
+		switch(anime->getCurrentAnimationID()) {
+			case WalkLeft:
+				anime->set(IdleLeft);
+				break;
+			case WalkRight:
+			default:
+				anime->set(IdleRight);
+				break;
+		}
+	});
+
+	kc->bindOnKeyReleased(SDLK_w, setIdleAnimation);
+	kc->bindOnKeyReleased(SDLK_a, setIdleAnimation);
+	kc->bindOnKeyReleased(SDLK_s, setIdleAnimation);
+	kc->bindOnKeyReleased(SDLK_d, setIdleAnimation);
 }
 
 
