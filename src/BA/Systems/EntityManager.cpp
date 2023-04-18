@@ -4,11 +4,8 @@
 namespace ba {
 
 EntityManager::EntityManager() :
-	m_drawables(this),
-	m_colliders(this)
+	m_drawables(this)
 {
-	m_colliders.addCollisionLayer(1u);
-	m_colliders.setCollision(1u, 1u);
 }
 
 EntityManager::~EntityManager() {
@@ -30,7 +27,6 @@ void EntityManager::update(float deltaTime) {
 		system->update(deltaTime);
 	}
 	m_drawables.update(deltaTime);
-	m_colliders.update(deltaTime);
 }
 
 void EntityManager::postUpdate(float deltaTime) {
@@ -57,7 +53,6 @@ void EntityManager::processNewObjects() {
 		m_entities.insert_or_assign(ID, e);
 
 		m_drawables.add(e);
-		m_colliders.add(e);
 
 		for (auto& system: m_componentSystems) {
 			system->add(e);
@@ -72,7 +67,6 @@ void EntityManager::processRemovals() {
 	while(iter != m_entities.end()) {
 		if(iter->second->isQueuedForRemoval()) {
 			m_drawables.remove(iter->first);
-			m_colliders.remove(iter->first);
 			for(auto& componentSystem : m_componentSystems) {
 				componentSystem->remove(iter->first);
 			}
@@ -86,9 +80,6 @@ void EntityManager::processRemovals() {
 }
 
 std::shared_ptr<ba::Entity>& EntityManager::operator[](unsigned entityID) {
-	// if (!m_entities.contains(entityID)) {
-	// 	throw std::out_of_range("No entity exists with such ID: " + entityID);
-	// }
 	return m_entities.at(entityID);
 }
 
