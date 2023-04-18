@@ -19,6 +19,8 @@ set(SOURCES
 	src/BA/Components/SoundEmitter.cpp
 	src/BA/Entities/Entity.cpp
 	src/BA/Entities/Transformable.cpp
+	src/BA/Scenes/Scene.cpp
+	src/BA/Scenes/SceneManager.cpp
 	src/BA/Systems/AnimationSystem.cpp
 	src/BA/Systems/CollisionSystem.cpp
 	src/BA/Systems/ComponentSystem.cpp
