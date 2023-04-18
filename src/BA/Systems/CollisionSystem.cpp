@@ -4,7 +4,7 @@
 namespace ba {
 
 CollisionSystem::CollisionSystem(EntityManager* entities) :
-	m_entities(entities)
+	ComponentSystem(entities)
 {
 
 }
@@ -12,13 +12,6 @@ CollisionSystem::CollisionSystem(EntityManager* entities) :
 CollisionSystem::~CollisionSystem() {
 	m_staticColliderTree.clear();
 	m_collisionLayers.clear();
-	m_IDs.clear();
-}
-
-void CollisionSystem::add(std::vector<std::shared_ptr<Entity>>& entities) {
-	for(auto& e : entities) {
-		this->add(e);
-	}
 }
 
 void CollisionSystem::add(std::shared_ptr<Entity>& entity) {
@@ -29,41 +22,36 @@ void CollisionSystem::add(std::shared_ptr<Entity>& entity) {
 		m_staticColliderTree.insert(collider);
 	}
 	else {
-		m_IDs.insert(entity->ID);
+		this->m_entityIDs.insert(entity->ID);
 	}
 }
 
 void CollisionSystem::remove(IDtype entityID) {
-	if(m_IDs.contains(entityID)) {
-		m_IDs.erase(entityID);
+	if(m_entityIDs.contains(entityID)) {
+		m_entityIDs.erase(entityID);
 		return;
 	}
 	m_staticColliderTree.remove(m_entities->at(entityID)->getCollider());
 }
 
-void CollisionSystem::update(float) {
+void CollisionSystem::postUpdate(float) {
 	detectCollisions();
 	processCollisions();
 	resolveCollisions();
 }
 
-void CollisionSystem::addCollisionLayer(unsigned layer, const std::bitset<127>& collisionBitmask) {
-	if(m_collisionLayers.contains(layer)) {
-		m_collisionLayers.at(layer) = collisionBitmask;
-	}
-	else {
-		m_collisionLayers.insert(std::make_pair(layer, collisionBitmask));
-	}
+void CollisionSystem::addCollisionLayer(IDtype layer, const std::bitset<128>& collisionBitmask) {
+	m_collisionLayers.insert_or_assign(layer, collisionBitmask);
 }
 
-void CollisionSystem::setCollision(unsigned layer, unsigned otherLayer) {
+void CollisionSystem::setCollision(IDtype layer, IDtype otherLayer) {
 	if(!m_collisionLayers.contains(layer)) {
 		addCollisionLayer(layer);
 	}
 	m_collisionLayers.at(layer).set(otherLayer);
 }
 
-void CollisionSystem::unsetCollision(unsigned layer, unsigned otherLayer) {
+void CollisionSystem::unsetCollision(IDtype layer, IDtype otherLayer) {
 	if(!m_collisionLayers.contains(layer)) {
 		addCollisionLayer(layer);
 	}
@@ -71,7 +59,7 @@ void CollisionSystem::unsetCollision(unsigned layer, unsigned otherLayer) {
 }
 
 void CollisionSystem::detectCollisions() {
-	for(IDtype ID : m_IDs) {
+	for(IDtype ID : m_entityIDs) {
 		auto i_collider = m_entities->at(ID)->getCollider();
 		unsigned i_layer = i_collider->getLayer();
 		auto staticSearched = m_staticColliderTree.search(i_collider->getGlobalBounds());
@@ -85,7 +73,7 @@ void CollisionSystem::detectCollisions() {
 			}
 		}
 
-		for(IDtype j_ID : m_IDs) {
+		for(IDtype j_ID : m_entityIDs) {
 			if (j_ID == ID) continue;
 
 			auto j_collider = m_entities->at(j_ID)->getCollider();

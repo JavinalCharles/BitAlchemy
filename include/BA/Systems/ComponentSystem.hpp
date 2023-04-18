@@ -2,6 +2,7 @@
 
 #include <memory>
 #include <set>
+#include <vector>
 #include <BA/Types.hpp>
 
 namespace ba {
@@ -17,7 +18,8 @@ public:
 	virtual void update(float deltaTime);
 	virtual void postUpdate(float deltaTime);
 
-	virtual void add(std::shared_ptr<ba::Entity>& entity) = 0;
+	virtual void add(std::vector<std::shared_ptr<Entity>>& entities);
+	virtual void add(std::shared_ptr<Entity>& entity) = 0;
 	virtual void remove(unsigned entityID);
 
 protected:

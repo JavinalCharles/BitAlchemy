@@ -43,7 +43,6 @@ private:
 
 	std::vector<std::shared_ptr<ba::ComponentSystem>> m_componentSystems;
 	RenderSystem m_drawables;
-	CollisionSystem m_colliders;
 }; // class EntityManager
 
 
