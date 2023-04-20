@@ -1,5 +1,6 @@
 set(SKELETON_SOURCES
 	SkeletonEntity.cpp
+	SkeletonScene.cpp
 	main.cpp
 )
 

@@ -10,6 +10,7 @@
 #include <SDL2/SDL_ttf.h>
 
 #include <BA/Entities/SharedContext.hpp>
+#include <BA/Scenes/SceneManager.hpp>
 #include <BA/Systems/EntityManager.hpp>
 #include <BA/Utilities/Vector2.hpp>
 #include <BA/Utilities/Rect.hpp>
@@ -31,18 +32,12 @@ public:
     void postUpdate(float deltaTime);
     void draw();
 
-    SharedContext* getContext();
-
     void cleanUp();
 protected:
     Window m_window;
-    EntityManager m_entities;
     ResourceManager m_resources;
-    InputManager m_inputs;
-    MusicPlayer m_player;
 
-    SharedContext m_context;
-
+    SceneManager m_sceneManager;
 }; // class Engine
 
 } // namespace ba
