@@ -7,9 +7,9 @@ SceneManager::SceneManager()
 
 }
 
-void SceneManager::handleInputs() {
+void SceneManager::handleEvents() {
 	if (m_currentSceneID != 0) {
-		m_scenes.at(m_currentSceneID)->handleInputs();
+		m_scenes.at(m_currentSceneID)->handleEvents();
 	}
 }
 
@@ -26,7 +26,7 @@ void SceneManager::postUpdate(float deltaTime) {
 }
 
 void SceneManager::draw(Window& window) {
-	if (m_currentSceneID) {
+	if (m_currentSceneID != 0) {
 		m_scenes.at(m_currentSceneID)->draw(window);
 	}
 }
@@ -68,7 +68,10 @@ void SceneManager::switchTo(IDtype id) {
 	m_scenes.at(id)->onActivate();
 	m_currentSceneID = id;
 }
-	
+
+IDtype SceneManager::getCurrentSceneID() const {
+	return m_currentSceneID;
+}
 
 
 } // namespace ba

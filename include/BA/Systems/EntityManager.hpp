@@ -9,6 +9,7 @@
 #include <BA/Systems/CollisionSystem.hpp>
 #include <BA/Systems/ComponentSystem.hpp>
 #include <BA/Systems/RenderSystem.hpp>
+#include <BA/Types.hpp>
 #include <BA/Window/Window.hpp>
 
 namespace ba {
@@ -19,11 +20,14 @@ public: // METHODS
 
 	~EntityManager();
 
-	void add(std::vector<std::shared_ptr<ba::Entity>> &otherEntities);
-	void add(std::shared_ptr<ba::Entity> entity);
+	void add(std::vector<std::shared_ptr<Entity>> &otherEntities);
+	void add(std::shared_ptr<Entity> entity);
 
-	template <typename T>
-	void includeSystem();
+	template <typename System>
+	std::shared_ptr<System> includeSystem();
+
+	template <typename System>
+	std::shared_ptr<System> getSystem() const;
 
 	void update(float deltaTime);
 	void postUpdate(float deltaTime);
@@ -34,8 +38,8 @@ public: // METHODS
 
 	void processRemovals();
 
-	std::shared_ptr<ba::Entity>& operator[](unsigned entityID);
-	std::shared_ptr<ba::Entity>& at(unsigned entityID);
+	std::shared_ptr<Entity>& operator[](IDtype entityID);
+	std::shared_ptr<Entity>& at(IDtype entityID);
 
 private:
 	std::map<unsigned, std::shared_ptr<ba::Entity>> m_entities;
@@ -46,18 +50,33 @@ private:
 }; // class EntityManager
 
 
-template <typename T>
-void EntityManager::includeSystem() {
-	static_assert(std::is_base_of<ba::ComponentSystem, T>::value, "Error. EntityManager::includeSystem<T>(). T must be a derived type of ba::ComponentSystem. Assertion returned false.");
+template <typename System>
+std::shared_ptr<System> EntityManager::includeSystem() {
+	static_assert(std::is_base_of<ba::ComponentSystem, System>::value, "Error. EntityManager::includeSystem<T>(). T must be a derived type of ba::ComponentSystem. Assertion returned false.");
 
 	for (auto& existingSystem : m_componentSystems) {
-		if (std::dynamic_pointer_cast<T>(existingSystem)) {
-			return;
+		if (std::dynamic_pointer_cast<System>(existingSystem)) {
+			return std::dynamic_pointer_cast<System>(existingSystem);
 		}
 	}
 
-	std::shared_ptr<T> newComponentSystem = std::make_shared<T>(this);
+	std::shared_ptr<System> newComponentSystem = std::make_shared<System>(this);
 	m_componentSystems.push_back(newComponentSystem);
+
+	return newComponentSystem;
+}
+
+template <typename System>
+std::shared_ptr<System> EntityManager::getSystem() const {
+	static_assert(std::is_base_of<ba::ComponentSystem, System>::value, "Error. EntityManager::getSystem<T>(). T must be a derived type of ba::ComponentSystem. Assertion returned false.");
+
+	for (auto& existingSystem : m_componentSystems) {
+		if (std::dynamic_pointer_cast<System>(existingSystem)) {
+			return std::dynamic_pointer_cast<System>(existingSystem);
+		}
+	}
+
+	return nullptr;
 }
 
 

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <iostream>
 #include <stdexcept>
 #include <memory>
 #include <unordered_map>
@@ -14,7 +15,7 @@ class SceneManager {
 public:
 	SceneManager();
 
-	void handleInputs();
+	void handleEvents();
 	void update(float deltaTime);
 	void postUpdate(float deltaTime);
 	void draw(Window& window);
@@ -24,7 +25,7 @@ public:
 
 	void switchTo(IDtype id);
 
-	
+	IDtype getCurrentSceneID() const;
 
 private:
 	std::unordered_map<IDtype, std::shared_ptr<Scene>> m_scenes;

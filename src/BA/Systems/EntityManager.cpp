@@ -79,11 +79,11 @@ void EntityManager::processRemovals() {
 	}
 }
 
-std::shared_ptr<ba::Entity>& EntityManager::operator[](unsigned entityID) {
+std::shared_ptr<ba::Entity>& EntityManager::operator[](IDtype entityID) {
 	return m_entities.at(entityID);
 }
 
-std::shared_ptr<ba::Entity>& EntityManager::at(unsigned entityID) {
+std::shared_ptr<ba::Entity>& EntityManager::at(IDtype entityID) {
 	return m_entities.at(entityID);
 }
 
