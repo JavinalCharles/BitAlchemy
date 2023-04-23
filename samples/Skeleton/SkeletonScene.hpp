@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include <BA/Scenes/Scene.hpp>
+#include <BA/Components/Text.hpp>
 #include <BA/Systems/EntityManager.hpp>
 #include <BA/Systems/AnimationSystem.hpp>
 #include <BA/Systems/KeyboardControlSystem.hpp>
@@ -31,6 +32,8 @@ private:
 	void createSkeleton();
 
 private:
+	std::shared_ptr<Text>	m_FPSText;
+
 	EntityManager	m_entityManager;
 	InputManager 	m_inputManager;
 	MusicPlayer 	m_musicPlayer;

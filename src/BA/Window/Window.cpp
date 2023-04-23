@@ -85,6 +85,12 @@ namespace {
 	}
 } // anonymous namespace
 
+void Window::draw(SDL_Texture* texture, const FloatRect& destRect) {
+	SDL_Rect screenDest = m_view.mapToView(destRect).toSDL_Rect();
+
+	SDL_RenderCopy(m_renderer, texture, NULL, &screenDest);
+}
+
 void Window::draw(SDL_Texture* texture, const ba::IntRect& textureRect, const FloatRect& destRect, const Angle& angle) {
 	SDL_RendererFlip flip = getFlip(textureRect);
 

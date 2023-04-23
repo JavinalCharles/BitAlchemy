@@ -10,15 +10,15 @@
 
 namespace ba {
 
-class Sprite : public Drawable, Boundable {
+class Sprite : public Drawable {
 public:
-	Sprite(ba::Entity* owner, unsigned drawLayer = 0, unsigned sortOrder = 0);
+	Sprite(ba::Entity* owner, IDtype drawLayer = 0, IDtype sortOrder = 0);
 
-	virtual void draw(ba::Window& window);
+	virtual void draw(ba::Window& window) override;
 
 	bool hasTexture() const;
 
-	unsigned loadTextureFromFile(const std::string& fileName);
+	IDtype loadTextureFromFile(const std::string& fileName);
 	void setTexture(IDtype textureID);
 	void setTexture(IDtype textureID, const IntRect& textureRect);
 	void setTextureRect(const IntRect& rect);
@@ -28,7 +28,7 @@ public:
 	virtual FloatRect getGlobalBounds() const override;
 
 private:
-	unsigned m_textureID;
+	IDtype m_textureID;
 
 	ba::IntRect m_textureRect;
 }; // class Sprite

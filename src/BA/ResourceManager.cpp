@@ -3,7 +3,7 @@
 namespace ba {
 
 #ifdef __linux__
-	const path ResourceManager::BASE_DIR{"/opt/bit-alchemy/assets"};
+	const path ResourceManager::BASE_DIR{"/usr/local/share/bit-alchemy/assets"};
 #else
 	const path ResourceManager::BASE_DIR{std::filesystem::current_path() / path{"assets"}};
 #endif

@@ -1,5 +1,7 @@
 #include "SkeletonScene.hpp"
 
+#include <iostream>
+
 namespace ba {
 
 SkeletonScene::SkeletonScene() :
@@ -33,6 +35,15 @@ void SkeletonScene::onActivate() {
 
 	m_musicPlayer.play();
 	createSkeleton();
+
+	std::shared_ptr<Entity> fpsEntity = std::make_shared<Entity>(&m_CONTEXT);
+	fpsEntity->setPosition({5.f, 5.f});
+
+	m_FPSText = fpsEntity->addComponent<Text>();
+	m_FPSText->loadFontFromFile("UbuntuMono-Bold.ttf", 16);
+	m_FPSText->setColor(Color::Blue);
+
+	m_entityManager.add(fpsEntity);
 }
 
 void SkeletonScene::onDestroy() {
@@ -46,7 +57,12 @@ void SkeletonScene::handleEvents() {
 
 void SkeletonScene::update(float deltaTime) {
 	m_musicPlayer.update();
+	int fps = static_cast<int>(std::round(1.0f / deltaTime));
+	m_FPSText->setText(std::to_string(fps) + " FPS");
+
+	// std::clog << "Text: " << m_FPSText->getText() << std::endl;
 	m_entityManager.update(deltaTime);
+	
 }
 
 void SkeletonScene::postUpdate(float deltaTime) {
@@ -55,6 +71,7 @@ void SkeletonScene::postUpdate(float deltaTime) {
 
 void SkeletonScene::draw(Window& window) {
 	m_entityManager.draw(window);
+	// m_FPSText->draw(window);
 }
 
 void SkeletonScene::createSkeleton() {

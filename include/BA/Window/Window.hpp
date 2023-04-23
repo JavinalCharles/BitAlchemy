@@ -29,6 +29,7 @@ public:
 
 	void clear(ba::Color color = ba::Color::Black);
 
+	void draw(SDL_Texture* texture, const FloatRect& destRect);
 	void draw(SDL_Texture* texture, const IntRect& textureRect, const FloatRect& destRect, const Angle& angle = Angle::Zero);
 
 	void drawPoint(const Vector2f& point, Color pointColor = Color::White);

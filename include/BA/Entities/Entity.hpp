@@ -1,5 +1,6 @@
 #pragma once
 
+#include <iostream>
 #include <vector>
 #include <memory>
 #include <BA/Components/Colliders/Collider.hpp>
@@ -79,7 +80,8 @@ std::shared_ptr<T> Entity::addComponent() {
 
 	// Checks if the object is also a drawable.
 	if(std::dynamic_pointer_cast<Drawable>(newComponent)) {
-		m_drawable = std::dynamic_pointer_cast<ba::Drawable>(newComponent);
+		std::clog << "Entity #" << ID << " has a Drawable." << std::endl;
+ 		m_drawable = std::dynamic_pointer_cast<Drawable>(newComponent);
 	}
 	else if (std::dynamic_pointer_cast<Collider>(newComponent)) {
 		m_collider = std::dynamic_pointer_cast<Collider>(newComponent);

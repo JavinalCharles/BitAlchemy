@@ -1,10 +1,13 @@
 # BitAlchemy
-BitAlchemy is a free and open-source 2D game engine built on top of SDL2. BitAlchemy focuses on being fast and easy to use, making game development more accessible while giving you most of what you need to build and realize your games.
+BitAlchemy is a free and open-source 2D game engine built on top of SDL2. BitAlchemy focuses on being fast and easy to use, making game development more accessible while giving you most of the tools you need to build and realize your games.
 
 <sub>*BitAlchemy is currently still in development. While it is possible to make games with what we have now, there are still some APIs that need to be created before we can have a 1.0 release.*</sub>
 
 ## Dependencies
-- **SDL2** - *As well as some os other SDL2 external libraries. `SDL2_image`, `SDL2_mixer`, `SDL2_ttf`*
+- **SDL2** - *As well as some other SDL2_* extersion libraries:*
+  - `SDL2_image` 
+  - `SDL2_mixer` 
+  - `SDL2_ttf`
 - **CMAKE `3.15+`** - For building and installing this library.
 
 ## Building and Installing
@@ -26,10 +29,11 @@ BitAlchemy is a free and open-source 2D game engine built on top of SDL2. BitAlc
 ## Development Progress
 - *v1.0 Release Goals:*
   - ~~Basic Collision System~~
-  - ~~A simple Animation system~~
+  - ~~A Sprite and Animation system~~
   - ~~Scene Manager~~
   - ~~Music Player~~
   - ~~Sound Effects System~~
+  - Text and Text display.
   - Map Generator
   - Simple A.I. behavior
   - Input Manager
@@ -38,6 +42,7 @@ BitAlchemy is a free and open-source 2D game engine built on top of SDL2. BitAlc
     - Window Events (Focus-in, Focus-out, Minimized, Maximized, Resized)
     - Joystic/Controller Input
   - A packaging system.
+  - More example games/sample usage programs.
 
 - <sub>*NOTE: The strikethroughed items are completed features.*</sub>
 - <sub>* *partially completed.*</sub>
@@ -45,4 +50,4 @@ BitAlchemy is a free and open-source 2D game engine built on top of SDL2. BitAlc
 ## Contributors
 - Me (@JavinalCharles)
 
-*There are a lot of things that needed to be done, even after the v1.0 release. If you've got some ideas or would like to contribute to this project, please don't hesitate to make a PR. All contributors will have their handle (or real name, if preferred) added to the contributor list no matter how big or small the contribution. Everything is appreciated. Thank you! :-)*
+*There are a lot of things that needed to be done, even after the v1.0 release. If you've got some ideas or would like to contribute to this project, please don't hesitate to make a PR. All contributors will have their handle (or real name, if preferred) added to the contributor list no matter how big or small the contribution. Everything is appreciated. Thank you! :-D*
