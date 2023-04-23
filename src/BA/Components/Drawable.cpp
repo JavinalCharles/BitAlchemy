@@ -3,7 +3,7 @@
 
 namespace ba {
 
-Drawable::Drawable(ba::Entity* owner, unsigned drawLayer, unsigned sortOrder)
+Drawable::Drawable(ba::Entity* owner, IDtype drawLayer, IDtype sortOrder)
 	: Component(owner),
 	m_drawLayer(drawLayer),
 	m_sortOrder(sortOrder)
@@ -11,24 +11,20 @@ Drawable::Drawable(ba::Entity* owner, unsigned drawLayer, unsigned sortOrder)
 
 }
 
-void Drawable::setDrawLayer(unsigned drawLayer) {
+void Drawable::setDrawLayer(IDtype drawLayer) {
 	m_drawLayer = drawLayer;
 }
 
-unsigned Drawable::getDrawLayer() const {
+IDtype Drawable::getDrawLayer() const {
 	return m_drawLayer;
 }
 
-void Drawable::setSortOrder(unsigned sortOrder) {
+void Drawable::setSortOrder(IDtype sortOrder) {
 	m_sortOrder = sortOrder;
 }
 
-unsigned Drawable::getSortOrder() const {
+IDtype Drawable::getSortOrder() const {
 	return m_sortOrder;
-}
-
-FloatRect Drawable::getGlobalBounds() const {
-	return {m_owner->getPosition(), {1.f, 1.f}};
 }
 
 } // namespace

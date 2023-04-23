@@ -3,7 +3,7 @@
 
 namespace ba {
 
-Sprite::Sprite(ba::Entity* owner, unsigned drawLayer, unsigned sortOrder) : 
+Sprite::Sprite(ba::Entity* owner, IDtype drawLayer, IDtype sortOrder) : 
 	Drawable(owner, drawLayer, sortOrder),
 	m_textureID(0u) // 0 == no texture
 {
@@ -23,7 +23,7 @@ bool Sprite::hasTexture() const {
 	return m_textureID > 0;
 }
 
-unsigned Sprite::loadTextureFromFile(const std::string& fileName) {
+IDtype Sprite::loadTextureFromFile(const std::string& fileName) {
 	m_textureID = getOwner()->CONTEXT->resources->loadTexture(fileName);
 
 	SDL_Texture* textureObj = getOwner()->CONTEXT->resources->getTexture(m_textureID);

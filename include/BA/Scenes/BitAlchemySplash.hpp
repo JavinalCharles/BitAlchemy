@@ -27,7 +27,7 @@ private:
 	IDtype			m_splashTexID		= 0;
 	SDL_Texture*	m_splashTexture 	= nullptr;
 	float			m_timeElapsed 		= 0.0f;
-	const float		mk_displayTime 		= 2.8f;
+	const float		mk_displayTime 		= 3.75f;
 
 
 

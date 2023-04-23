@@ -17,6 +17,7 @@ set(SOURCES
 	src/BA/Components/Sprite.cpp
 	src/BA/Components/Velocity.cpp
 	src/BA/Components/SoundEmitter.cpp
+	src/BA/Components/Text.cpp
 	src/BA/Entities/Entity.cpp
 	src/BA/Entities/Transformable.cpp
 	src/BA/Scenes/BitAlchemySplash.cpp
@@ -85,6 +86,7 @@ target_link_libraries(BA compiler_flags)
 
 # INSTALLATION
 if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
+message("${CMAKE_SYSTEM_PREFIX_PATH}")
 install(DIRECTORY ${PROJECT_SOURCE_DIR}/dirs/ DESTINATION share)
 
 install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/ DESTINATION include)

@@ -18,6 +18,12 @@ constexpr Color::Color(std::uint32_t color)
 
 }
 
+constexpr SDL_Color Color::toSDL_Color() const {
+	return SDL_Color {
+		r, g, b, a
+	};
+}
+
 constexpr Color Color::Black(0, 0, 0);
 constexpr Color Color::White(255, 255, 255);
 constexpr Color Color::Red(255, 0, 0);
