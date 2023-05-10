@@ -5,6 +5,8 @@
 
 namespace ba {
 
+const IDtype Velocity::CID = ComponentID::VELOCITY;
+
 Velocity::Velocity(Entity* owner) :
 	Component(owner)
 {

@@ -90,7 +90,7 @@ std::shared_ptr<T> Entity::addComponent() {
 template <typename T>
 std::shared_ptr<T> Entity::getComponent() {
 	if (m_components.contains(T::CID)) {
-		return std::dynamic_pointer_cast<T>(T::CID);
+		return std::dynamic_pointer_cast<T>(m_components.at(T::CID));
 	}
 
 	return nullptr;

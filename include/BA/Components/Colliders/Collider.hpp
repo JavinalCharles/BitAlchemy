@@ -24,7 +24,7 @@ private:
 	unsigned m_layer{};
 
 public:
-	static const IDtype CID = ComponentID::COLLIDER;
+	static const IDtype CID;
 }; // class Collider
 
 } // namespace ba
