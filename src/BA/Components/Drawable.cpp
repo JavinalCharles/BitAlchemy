@@ -3,6 +3,8 @@
 
 namespace ba {
 
+const IDtype Drawable::CID = ComponentID::DRAWABLE;
+
 Drawable::Drawable(ba::Entity* owner, IDtype drawLayer, IDtype sortOrder)
 	: Component(owner),
 	m_drawLayer(drawLayer),

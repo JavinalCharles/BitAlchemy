@@ -18,6 +18,9 @@ private:
 	std::queue<IDtype>& getSounds();
 
 	std::queue<IDtype>	m_sounds;
+
+public:
+	static const IDtype CID;
 }; // class SoundEmitter
 
 } // namespace ba

@@ -4,6 +4,8 @@
 
 namespace ba {
 
+const IDtype Animation::CID = ComponentID::ANIMATION;
+
 Animation::Animation(Entity* owner) :
 	Component(owner) 
 {

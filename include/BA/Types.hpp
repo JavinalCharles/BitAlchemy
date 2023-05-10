@@ -14,6 +14,16 @@ namespace ba
 	using uint64 = 	std::uint64_t;
 
 	using IDtype = 	std::size_t;
+
+	enum ComponentID : IDtype {
+		NONE = 0,
+		ANIMATION,
+		COLLIDER,
+		DRAWABLE,
+		KEYBOARD_CONTROL,
+		SOUND_EMITTER,
+		VELOCITY,
+	};
 } // namespace ba
 
 
