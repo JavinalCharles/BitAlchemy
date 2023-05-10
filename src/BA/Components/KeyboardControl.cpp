@@ -3,6 +3,8 @@
 
 namespace ba {
 
+const IDtype KeyboardControl::CID = ComponentID::KEYBOARD_CONTROL;
+
 KeyboardControl::KeyboardControl(Entity* owner) :
 	Component(owner)
 {

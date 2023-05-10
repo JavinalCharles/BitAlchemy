@@ -30,6 +30,8 @@ protected:
 
 	// Determines how this Drawable will be sorted within its respective layer. Lower sortOrder are drawn first.
 	IDtype m_sortOrder;
+public:
+	static const IDtype CID;
 
 }; // class Drawable
 

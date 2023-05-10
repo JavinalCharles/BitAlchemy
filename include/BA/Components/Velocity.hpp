@@ -30,6 +30,9 @@ private:
 
 	Vector2f m_velocity{};
 	Vector2f m_maxVelocity{600.f,600.f};
+
+public:
+	static const IDtype CID;
 }; // class Velocity
 
 

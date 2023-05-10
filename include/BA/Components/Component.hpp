@@ -1,5 +1,7 @@
 #pragma once
 
+#include <BA/Types.hpp>
+
 namespace ba {
 
 /* Forward Declaration. Every non-virtual subclass of ba::Component should be declared in a file that imports "feather/entities/entity.h"*/
@@ -13,9 +15,9 @@ public: // METHODS & CONSTRUCTORS
 	virtual void awake();
 
 	virtual Entity* getOwner() const;
+	
 protected: // ATTRIBUTES
 	Entity* m_owner;
-
 }; // class Component
 
 } // namespace ba
