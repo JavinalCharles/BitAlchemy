@@ -13,7 +13,7 @@ Entity::Entity(ba::SharedContext* context) :
 }
 
 void Entity::awake() {
-	for (const auto& component: m_components) {
+	for (const auto& [key, component]: m_components) {
 		component->awake();
 	}
 }
@@ -35,11 +35,17 @@ void Entity::queueForRemoval(bool remove) {
 }
 
 std::shared_ptr<Drawable> Entity::getDrawable() const {
-	return m_drawable;
+	if (m_components.contains(ComponentID::DRAWABLE)) {
+		return std::dynamic_pointer_cast<Drawable>(m_components.at(ComponentID::DRAWABLE));
+	}
+	return nullptr;
 }
 
 std::shared_ptr<Collider> Entity::getCollider() const {
-	return m_collider;
+	if (m_components.contains(ComponentID::COLLIDER)) {
+		return std::dynamic_pointer_cast<Collider>(m_components.at(ComponentID::COLLIDER));
+	}
+	return nullptr;
 }
 
 } // namespace ba

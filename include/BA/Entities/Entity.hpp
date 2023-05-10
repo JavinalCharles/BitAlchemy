@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <map>
 #include <vector>
 #include <memory>
 #include <BA/Components/Colliders/Collider.hpp>
@@ -51,17 +52,16 @@ public: // METHODS & CONSTRUCTORS
 	std::shared_ptr<Collider> getCollider() const;
 
 private: // ATTRIBUTES
-	
+
 	/* Boolean attribute to signal the systems if this entity is subject for destruction.	*/
 	bool m_queuedForRemoval = false;
+
 	bool m_static = false;
-	// TODO: Pointer to Game Context here.
 
-	std::vector<std::shared_ptr<ba::Component>> m_components;
+	std::map<IDtype, std::shared_ptr<ba::Component>> m_components;
 
-	std::shared_ptr<Drawable> m_drawable = nullptr;
-	std::shared_ptr<Collider> m_collider = nullptr;
-
+	// std::shared_ptr<Drawable> m_drawable = nullptr;
+	// std::shared_ptr<Collider> m_collider = nullptr;
 }; // class Entity
 
 template<typename T>
@@ -69,45 +69,31 @@ std::shared_ptr<T> Entity::addComponent() {
 	// Prevents this method from continuing if T is not a derivation of ba::Component
 	static_assert(std::is_base_of<ba::Component, T>::value, "Error. T must be a derived type of ba::Component. Assertion returned false");
 
-	// Checks m_components for any type T object stored. Returns it if it does.
-	std::shared_ptr<T> existingComponent = this->getComponent<T>();
-	if(existingComponent != nullptr)
-		return existingComponent;
-
-	// T does not exist. Create one and store it into memory.
-	std::shared_ptr<T> newComponent = std::make_shared<T>(this);
-	m_components.push_back(newComponent);
-
-	// Checks if the object is also a drawable.
-	if(std::dynamic_pointer_cast<Drawable>(newComponent)) {
-		std::clog << "Entity #" << ID << " has a Drawable." << std::endl;
- 		m_drawable = std::dynamic_pointer_cast<Drawable>(newComponent);
+	if(m_components.contains(T::CID)) {
+		if (std::dynamic_pointer_cast<T>(m_components.at(T::CID))) {
+			// If T already exists, just return it.
+			return std::dynamic_pointer_cast<T>(m_components.at(T::CID));
+		}
+		else {
+			// Otherwise, if T does not exist but a similar CID is used, replaced the object mapped to that CID.
+			m_components.at(T::CID) = std::make_shared<T>(this);
+		}
 	}
-	else if (std::dynamic_pointer_cast<Collider>(newComponent)) {
-		m_collider = std::dynamic_pointer_cast<Collider>(newComponent);
+	else {
+		// T doesn't already exist. create it.
+		m_components.insert(std::make_pair(T::CID, std::make_shared<T>(this)));
 	}
 
-	return newComponent;
+	return std::dynamic_pointer_cast<T>(m_components.at(T::CID));
 }
 
 template <typename T>
 std::shared_ptr<T> Entity::getComponent() {
-	// If the component being queried is a Drawable, then return getDrawable instead.
-	// if (std::is_base_of<Drawable, T>::value) {
-	// 	return getDrawable();
-	// }
-
-	// Otherwise, search the m_components array
-	for (auto& existingComponent : m_components)
-	{
-		if (std::dynamic_pointer_cast<T>(existingComponent))
-		{
-			return std::dynamic_pointer_cast<T>(existingComponent);
-		}
+	if (m_components.contains(T::CID)) {
+		return std::dynamic_pointer_cast<T>(T::CID);
 	}
 
 	return nullptr;
 }
-
 
 } // namespace ba
