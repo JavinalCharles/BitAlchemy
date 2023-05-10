@@ -30,7 +30,8 @@ private:
 	KeyBindings 	m_keyActiveActions;
 	KeyBindings 	m_keyReleasedActions;
 
-	// friend class KeyboardControlSystem;
+public:
+	static const IDtype CID = ComponentID::KEYBOARD_CONTROL;
 
 }; // class KeyboardControl
 

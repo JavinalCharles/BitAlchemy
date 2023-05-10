@@ -29,9 +29,10 @@ struct Sequence {
 
 class Animation : public Component {
 
-friend class AnimationSystem;
+friend class AnimationSyste;
 
 public:
+
 	Animation(Entity* owner);
 
 	virtual void awake() override;
@@ -51,6 +52,8 @@ private:
 	float 			m_currentFrameTime{};
 
 	Sprite*			m_sprite = nullptr;
+public:
+	static const IDtype CID = ComponentID::ANIMATION;
 }; // class Animation
 
 } // namespace ba
