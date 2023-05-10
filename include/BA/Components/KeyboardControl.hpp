@@ -31,7 +31,7 @@ private:
 	KeyBindings 	m_keyReleasedActions;
 
 public:
-	static const IDtype CID = ComponentID::KEYBOARD_CONTROL;
+	static const IDtype CID;
 
 }; // class KeyboardControl
 

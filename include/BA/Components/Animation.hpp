@@ -29,7 +29,7 @@ struct Sequence {
 
 class Animation : public Component {
 
-friend class AnimationSyste;
+friend class AnimationSystem;
 
 public:
 
@@ -53,7 +53,7 @@ private:
 
 	Sprite*			m_sprite = nullptr;
 public:
-	static const IDtype CID = ComponentID::ANIMATION;
+	static const IDtype CID;
 }; // class Animation
 
 } // namespace ba

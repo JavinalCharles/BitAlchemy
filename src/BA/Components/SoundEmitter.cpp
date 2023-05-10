@@ -4,6 +4,8 @@
 
 namespace ba {
 
+const IDtype SoundEmitter::CID  = ComponentID::SOUND_EMITTER;
+
 SoundEmitter::SoundEmitter(Entity* owner) :
 	Component(owner)
 {

@@ -3,6 +3,8 @@
 
 namespace ba {
 
+const IDtype Collider::CID = ComponentID::COLLIDER;
+
 Collider::Collider(Entity* owner) :
 	Component(owner)
 {

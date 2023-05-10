@@ -20,7 +20,7 @@ private:
 	std::queue<IDtype>	m_sounds;
 
 public:
-	static const IDtype CID = ComponentID::SOUND_EMITTER;
+	static const IDtype CID;
 }; // class SoundEmitter
 
 } // namespace ba
