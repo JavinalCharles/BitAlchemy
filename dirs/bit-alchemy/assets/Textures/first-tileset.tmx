@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" width="16" height="8" tilewidth="24" tileheight="24" infinite="0" nextlayerid="2" nextobjectid="1">
+ <tileset firstgid="1" source="oak_woods_tileset.tsx"/>
+ <layer id="1" name="Tile Layer 1" width="16" height="8">
+  <data encoding="csv">
+0,148,149,150,151,0,0,0,0,0,0,0,0,0,0,0,
+69,169,23,23,172,71,0,0,0,0,0,0,0,0,0,69,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,69,23,
+0,0,0,0,0,0,0,0,0,0,0,0,0,69,23,23,
+0,0,0,0,0,0,0,0,0,0,0,0,69,23,23,23,
+2,2,2,2,2,2,2,2,3,3,3,3,23,23,23,23,
+23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,
+23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23
+</data>
+ </layer>
+</map>
