@@ -79,6 +79,8 @@ public: // Methods and Constructors
 
 
 	void setRenderer(SDL_Renderer* renderer);
+
+	path getBaseDirectory() const;
 private:
 	std::unordered_map<IDtype, SDL_Texture*> texturesMap;
 	std::unordered_map<IDtype, Mix_Chunk*> soundsMap;

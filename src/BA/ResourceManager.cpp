@@ -105,4 +105,8 @@ void ResourceManager::setRenderer(SDL_Renderer* renderer) {
 	m_renderer = renderer;
 }
 
+path ResourceManager::getBaseDirectory() const {
+	return BASE_DIR;
+}
+
 } // namespace ba
