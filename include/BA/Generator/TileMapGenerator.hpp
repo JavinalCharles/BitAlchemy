@@ -19,14 +19,14 @@
 namespace ba {
 
 struct TileData {
-	int 		gid;
+	IDtype 		gid;
 	IDtype 		textureID;
 	IntRect 	textureRect;
 }; // TileData
 
-using TileSet = std::unordered_map<int, TileData>;
+using TileSet = std::unordered_map<IDtype, TileData>;
 
-std::vector<std::shared_ptr<Entity>> parseMap(const std::string& tmxFileName, ResourceManager* resources);
+// std::vector<std::shared_ptr<Entity>> parseMap(const std::string& tmxFileName, ResourceManager* resources);
 
 TileSet generateTileSet(int firstgid, const std::string& tsxFile, ResourceManager* resources);
 
