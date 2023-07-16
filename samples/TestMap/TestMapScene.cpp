@@ -28,25 +28,12 @@ void TestMapScene::onDestroy() {
 
 void TestMapScene::onActivate() {
 	const Vector2f SCALE{1.5f, 1.5f};
-	path p = m_CONTEXT.resources->getBaseDirectory() / path("Textures") / path("oak_woods_tileset.tsx");
+	path p = m_CONTEXT.resources->getBaseDirectory() / path("Textures") / path("first-tileset.tmx");
 
-	TileSet tiles = generateTileSet(1, p.string(), m_CONTEXT.resources);
+	std::clog << "Generating Map Entities." << std::endl;
+	std::vector<std::shared_ptr<Entity>> entities = ba::generator::parseMap(p.string(), &m_CONTEXT);
+	std::clog << "Generated total " << entities.size() << " entities." << std::endl;
 
-	std::clog << "Generated " << tiles.size() << " tiles." << std::endl;
-
-	std::vector<std::shared_ptr<Entity>> entities;
-
-	std::clog << "Creating entities." << std::endl;
-	for (auto& [k, v] : tiles) {
-		std::shared_ptr<Entity> e = std::make_shared<Entity>(&m_CONTEXT);
-		e->setScale(SCALE);
-		e->setPosition({v.textureRect.l * SCALE.x, v.textureRect.t * SCALE.y});
-		std::shared_ptr<Sprite> sprite = e->addComponent<Sprite>();
-		sprite->setTexture(v.textureID);
-		sprite->setTextureRect(v.textureRect);
-
-		entities.push_back(e);
-	}
 	std::clog << "Adding new entities to the game." << std::endl;
 	m_CONTEXT.entities->add(entities);
 }

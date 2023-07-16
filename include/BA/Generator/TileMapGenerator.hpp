@@ -1,5 +1,6 @@
 #pragma once
 
+#include <algorithm>
 #include <iostream>
 #include <fstream>
 #include <map>
@@ -18,6 +19,8 @@
 
 namespace ba {
 
+namespace generator {
+
 struct TileData {
 	IDtype 		gid;
 	IDtype 		textureID;
@@ -26,10 +29,12 @@ struct TileData {
 
 using TileSet = std::unordered_map<IDtype, TileData>;
 
-// std::vector<std::shared_ptr<Entity>> parseMap(const std::string& tmxFileName, ResourceManager* resources);
+std::vector<std::shared_ptr<Entity>> parseMap(const std::string& tmxFileName, SharedContext* context);
 
 TileSet generateTileSet(int firstgid, const std::string& tsxFile, ResourceManager* resources);
 
 std::string getXMLdata(const std::string& fileName);
+
+} // namespace generator
 
 } // namespace ba
