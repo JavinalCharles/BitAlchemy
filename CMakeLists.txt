@@ -24,6 +24,7 @@ set(SOURCES
 	src/BA/Inputs/Input.cpp
 	src/BA/Inputs/InputManager.cpp
 	src/BA/Inputs/KeyboardInput.cpp
+	src/BA/Inputs/MouseInput.cpp
 	src/BA/Scenes/BitAlchemySplash.cpp
 	src/BA/Scenes/Scene.cpp
 	src/BA/Scenes/SceneManager.cpp

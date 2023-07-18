@@ -2,6 +2,7 @@
 
 #include <BA/Scenes/Scene.hpp>
 #include <BA/Components/Text.hpp>
+#include <BA/Inputs/MouseInput.hpp>
 #include <BA/Systems/EntityManager.hpp>
 #include <BA/Systems/AnimationSystem.hpp>
 #include <BA/Systems/KeyboardControlSystem.hpp>
@@ -34,10 +35,11 @@ private:
 private:
 	std::shared_ptr<Text>	m_FPSText;
 
+	std::shared_ptr<MouseInput>	m_mouseInput = nullptr;
+
 	EntityManager	m_entityManager;
 	InputManager 	m_inputManager;
 	MusicPlayer 	m_musicPlayer;
-
 }; // class SkeletonScene
 
 

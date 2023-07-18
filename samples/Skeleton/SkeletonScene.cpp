@@ -20,11 +20,10 @@ SkeletonScene::SkeletonScene(Window* window, ResourceManager* resourceManager, S
 	m_CONTEXT.entities = &m_entityManager;
 	m_CONTEXT.inputs = &m_inputManager;
 	m_CONTEXT.player = &m_musicPlayer;
-
-
 }
 
 void SkeletonScene::onCreate() {
+	m_mouseInput = m_CONTEXT.inputs->addInput<MouseInput>();
 	m_CONTEXT.inputs->addInput<KeyboardInput>();
 
 	m_entityManager.includeSystem<AnimationSystem>();
@@ -67,6 +66,20 @@ void SkeletonScene::update(float deltaTime) {
 	// std::clog << "Text: " << m_FPSText->getText() << std::endl;
 	m_entityManager.update(deltaTime);
 	
+	if (m_mouseInput->isButtonDown(MouseButton::LEFT)) {
+		Vector2i pos = m_mouseInput->getCurrMousePos();
+		std::clog << "Left Mouse Button Clicked: {" << pos.x << ", " << pos.y << " }\n";
+	}
+
+	if (m_mouseInput->isButtonDown(MouseButton::MIDDLE)) {
+		Vector2i pos = m_mouseInput->getCurrMousePos();
+		std::clog << "Middle Mouse Button Clicked: {" << pos.x << ", " << pos.y << " }\n";
+	}
+
+	if (m_mouseInput->isButtonDown(MouseButton::RIGHT)) {
+		Vector2i pos = m_mouseInput->getCurrMousePos();
+		std::clog << "Right Mouse Button Clicked: {" << pos.x << ", " << pos.y << " }\n";
+	}
 }
 
 void SkeletonScene::postUpdate(float deltaTime) {
@@ -76,6 +89,14 @@ void SkeletonScene::postUpdate(float deltaTime) {
 void SkeletonScene::draw(Window& window) {
 	m_entityManager.draw(window);
 	// m_FPSText->draw(window);
+	Vector2i pos = m_mouseInput->getCurrMousePos();
+	IntRect rect{
+		64 * (pos.x / 64),
+		64 * (pos.y / 64),
+		64,
+		64
+	};
+	window.drawRect(rect);
 }
 
 void SkeletonScene::createSkeleton() {
