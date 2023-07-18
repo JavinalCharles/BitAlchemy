@@ -21,6 +21,9 @@ set(SOURCES
 	src/BA/Entities/Entity.cpp
 	src/BA/Entities/Transformable.cpp
 	src/BA/Generator/TileMapGenerator.cpp
+	src/BA/Inputs/Input.cpp
+	src/BA/Inputs/InputManager.cpp
+	src/BA/Inputs/KeyboardInput.cpp
 	src/BA/Scenes/BitAlchemySplash.cpp
 	src/BA/Scenes/Scene.cpp
 	src/BA/Scenes/SceneManager.cpp
@@ -28,7 +31,6 @@ set(SOURCES
 	src/BA/Systems/CollisionSystem.cpp
 	src/BA/Systems/ComponentSystem.cpp
 	src/BA/Systems/EntityManager.cpp
-	src/BA/Systems/InputManager.cpp
 	src/BA/Systems/KeyboardControlSystem.cpp
 	src/BA/Systems/MovementSystem.cpp
 	src/BA/Systems/MusicPlayer.cpp

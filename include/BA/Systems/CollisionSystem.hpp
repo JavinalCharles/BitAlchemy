@@ -1,5 +1,6 @@
 #pragma once 
 
+#include <bitset>
 #include <cmath>
 #include <memory>
 #include <map>
