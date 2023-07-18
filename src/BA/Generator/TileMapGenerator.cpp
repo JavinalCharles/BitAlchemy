@@ -23,8 +23,8 @@ std::vector<std::shared_ptr<Entity>> parseMap(const std::string& tmxFileName, Sh
 	rapidxml::xml_node<>* tmxNode = doc.first_node("map");
 	int tileWidth;
 	int tileHeight;
-	int mapWidth;
-	int mapHeight;
+	// int mapWidth;
+	// int mapHeight;
 
 	// GATHER MAP DATA
 	if (tmxNode->first_attribute("tilewidth") == nullptr || tmxNode->first_attribute("tileheight") == nullptr || tmxNode->first_attribute("width") == nullptr || tmxNode->first_attribute("height") == nullptr) {
@@ -32,8 +32,8 @@ std::vector<std::shared_ptr<Entity>> parseMap(const std::string& tmxFileName, Sh
 	}
 	tileWidth = std::stoi(tmxNode->first_attribute("tilewidth")->value());
 	tileHeight = std::stoi(tmxNode->first_attribute("tileheight")->value());
-	mapWidth = std::stoi(tmxNode->first_attribute("width")->value());
-	mapHeight = std::stoi(tmxNode->first_attribute("height")->value());
+	// mapWidth = std::stoi(tmxNode->first_attribute("width")->value());
+	// mapHeight = std::stoi(tmxNode->first_attribute("height")->value());
 
 	// GENERATE TILESETS
 	TileSet tilesets;
@@ -72,7 +72,7 @@ std::vector<std::shared_ptr<Entity>> parseMap(const std::string& tmxFileName, Sh
 					continue;
 				}
 				std::shared_ptr<Entity> e = std::make_shared<Entity>(context);
-				e->setPosition({c * tileWidth, r * tileHeight});
+				e->setPosition({static_cast<float>(c * tileWidth), static_cast<float>(r * tileHeight)});
 				auto e_sprite = e->addComponent<Sprite>();
 				
 				e_sprite->setTexture(tilesets.at(GID).textureID);
