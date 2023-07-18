@@ -20,9 +20,13 @@ SkeletonScene::SkeletonScene(Window* window, ResourceManager* resourceManager, S
 	m_CONTEXT.entities = &m_entityManager;
 	m_CONTEXT.inputs = &m_inputManager;
 	m_CONTEXT.player = &m_musicPlayer;
+
+
 }
 
 void SkeletonScene::onCreate() {
+	m_CONTEXT.inputs->addInput<KeyboardInput>();
+
 	m_entityManager.includeSystem<AnimationSystem>();
 	m_entityManager.includeSystem<KeyboardControlSystem>();
 	m_entityManager.includeSystem<MovementSystem>();

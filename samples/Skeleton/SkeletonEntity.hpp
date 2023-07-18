@@ -4,6 +4,7 @@
 #include <BA/Components/KeyboardControl.hpp>
 #include <BA/Components/Velocity.hpp>
 #include <BA/Components/SoundEmitter.hpp>
+#include <BA/Inputs/KeyboardInput.hpp>
 #include <BA/Entities/Entity.hpp>
 #include <BA/Types.hpp>
 

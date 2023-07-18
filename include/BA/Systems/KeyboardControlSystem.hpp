@@ -1,6 +1,7 @@
 #pragma once
 
 #include <BA/Components/KeyboardControl.hpp>
+#include <BA/Inputs/KeyboardInput.hpp>
 #include <BA/Systems/ComponentSystem.hpp>
 
 namespace ba {
@@ -13,6 +14,8 @@ public:
 	// virtual void postUpdate(float deltaTime);
 
 	virtual void add(std::shared_ptr<Entity>& entity);
+private:
+	KeyboardInput* m_keyInput;
 
 }; // class KeyboardControlSystem
 

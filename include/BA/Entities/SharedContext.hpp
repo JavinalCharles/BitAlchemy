@@ -1,6 +1,6 @@
 #pragma once
 
-#include <BA/Systems/InputManager.hpp>
+#include <BA/Inputs/InputManager.hpp>
 #include <BA/Systems/MusicPlayer.hpp>
 #include "BA/ResourceManager.hpp"
 #include "BA/Window/Window.hpp"

@@ -160,9 +160,9 @@ SkeletonEntity::SkeletonEntity(SharedContext* context) :
 	}));
 
 	auto setIdleAnimation = std::bind([anime, WalkLeft, WalkRight, IdleLeft, IdleRight](){
-		ba::InputManager* im = anime->getOwner()->CONTEXT->inputs;
+		std::shared_ptr<ba::KeyboardInput> keyboard = anime->getOwner()->CONTEXT->inputs->getInput<ba::KeyboardInput>();
 
-		if(im->isKeyActive(SDLK_w) || im->isKeyActive(SDLK_a) || im->isKeyActive(SDLK_s) || im->isKeyActive(SDLK_d)) {
+		if(keyboard->isKeyActive(SDLK_w) || keyboard->isKeyActive(SDLK_a) || keyboard->isKeyActive(SDLK_s) || keyboard->isKeyActive(SDLK_d)) {
 			return;
 		}
 

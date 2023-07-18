@@ -5,7 +5,8 @@
 #include <unordered_map>
 #include <vector>
 #include <BA/Components/Component.hpp>
-#include <BA/Systems/InputManager.hpp>
+#include <BA/Inputs/InputManager.hpp>
+#include <BA/Inputs/KeyboardInput.hpp>
 
 namespace ba {
 
@@ -29,7 +30,6 @@ private:
 	KeyBindings 	m_keyPressedActions;
 	KeyBindings 	m_keyActiveActions;
 	KeyBindings 	m_keyReleasedActions;
-
 public:
 	static const IDtype CID;
 
