@@ -8,6 +8,8 @@ project(
 )
 
 set(SOURCES 
+	src/BA/Components/AI/AI.cpp
+	src/BA/Components/AI/ProgrammedAI.cpp
 	src/BA/Components/Colliders/BoxCollider.cpp
 	src/BA/Components/Colliders/Collider.cpp
 	src/BA/Components/Animation.cpp

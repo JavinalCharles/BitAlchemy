@@ -9,6 +9,7 @@
 #include <BA/Systems/MovementSystem.hpp>
 #include <BA/Systems/SoundSystem.hpp>
 
+#include "BlueCharEntity.hpp"
 #include "SkeletonEntity.hpp"
 
 namespace ba {
@@ -40,6 +41,8 @@ private:
 	EntityManager	m_entityManager;
 	InputManager 	m_inputManager;
 	MusicPlayer 	m_musicPlayer;
+
+	ProgrammedAI* m_blueCharAI = nullptr;
 }; // class SkeletonScene
 
 

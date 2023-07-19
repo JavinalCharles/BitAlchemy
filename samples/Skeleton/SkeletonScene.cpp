@@ -64,6 +64,8 @@ void SkeletonScene::update(float deltaTime) {
 	m_FPSText->setText(std::to_string(fps) + " FPS");
 
 	// std::clog << "Text: " << m_FPSText->getText() << std::endl;
+	m_blueCharAI->behave(deltaTime);
+
 	m_entityManager.update(deltaTime);
 	
 	if (m_mouseInput->isButtonDown(MouseButton::LEFT)) {
@@ -80,6 +82,8 @@ void SkeletonScene::update(float deltaTime) {
 		Vector2i pos = m_mouseInput->getCurrMousePos();
 		std::clog << "Right Mouse Button Clicked: {" << pos.x << ", " << pos.y << " }\n";
 	}
+
+	
 }
 
 void SkeletonScene::postUpdate(float deltaTime) {
@@ -101,8 +105,12 @@ void SkeletonScene::draw(Window& window) {
 
 void SkeletonScene::createSkeleton() {
 	std::shared_ptr<SkeletonEntity> skeleton = std::make_shared<SkeletonEntity>(&m_CONTEXT);
+	std::shared_ptr<BlueCharEntity> blueChar = std::make_shared<BlueCharEntity>(&m_CONTEXT);
+	m_blueCharAI = blueChar->getComponent<ProgrammedAI>().get();
+
 
 	m_entityManager.add(skeleton);
+	m_entityManager.add(blueChar);
 }
 
 } // namespace ba
