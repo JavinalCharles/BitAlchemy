@@ -20,7 +20,12 @@ public:
 
 	virtual void add(std::vector<std::shared_ptr<Entity>>& entities);
 	virtual void add(std::shared_ptr<Entity>& entity) = 0;
-	virtual void remove(unsigned entityID);
+	virtual void remove(IDtype entityID);
+
+	const std::set<IDtype>& getIDs() const;
+
+protected:
+	std::shared_ptr<Entity> getEntity(IDtype id) const;
 
 protected:
 	std::set<IDtype> m_entityIDs;

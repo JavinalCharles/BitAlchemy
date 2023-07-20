@@ -1,4 +1,6 @@
 #include "BA/Systems/ComponentSystem.hpp"
+#include "BA/Entities/Entity.hpp"
+#include "BA/Systems/EntityManager.hpp"
 
 namespace ba {
 
@@ -22,8 +24,16 @@ void ComponentSystem::add(std::vector<std::shared_ptr<Entity>>& entities) {
 	}
 }
 
-void ComponentSystem::remove(unsigned entityID) {
+void ComponentSystem::remove(IDtype entityID) {
 	m_entityIDs.extract(entityID);
+}
+
+std::shared_ptr<Entity> ComponentSystem::getEntity(IDtype id) const {
+	return m_entities->at(id);
+}
+
+const std::set<IDtype>& ComponentSystem::getIDs() const {
+	return m_entityIDs;
 }
 
 } // namespace ba

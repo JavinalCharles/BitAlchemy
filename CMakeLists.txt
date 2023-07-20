@@ -30,6 +30,7 @@ set(SOURCES
 	src/BA/Scenes/BitAlchemySplash.cpp
 	src/BA/Scenes/Scene.cpp
 	src/BA/Scenes/SceneManager.cpp
+	src/BA/Systems/AISystem.cpp
 	src/BA/Systems/AnimationSystem.cpp
 	src/BA/Systems/CollisionSystem.cpp
 	src/BA/Systems/ComponentSystem.cpp
