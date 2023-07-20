@@ -90,7 +90,7 @@ BlueCharEntity::BlueCharEntity(SharedContext* context) :
 	anime->set(rightID);
 
 	// START ANIMATION
-	this->setPosition({512.f, 512.f});
+	this->setPosition({256.f, 256.f});
 	m_velocity->moveRight();
 
 	Condition goingRight = std::bind([this](float)-> bool {

@@ -3,8 +3,9 @@
 #include <BA/Scenes/Scene.hpp>
 #include <BA/Components/Text.hpp>
 #include <BA/Inputs/MouseInput.hpp>
-#include <BA/Systems/EntityManager.hpp>
+#include <BA/Systems/AISystem.hpp>
 #include <BA/Systems/AnimationSystem.hpp>
+#include <BA/Systems/EntityManager.hpp>
 #include <BA/Systems/KeyboardControlSystem.hpp>
 #include <BA/Systems/MovementSystem.hpp>
 #include <BA/Systems/SoundSystem.hpp>
@@ -42,7 +43,6 @@ private:
 	InputManager 	m_inputManager;
 	MusicPlayer 	m_musicPlayer;
 
-	ProgrammedAI* m_blueCharAI = nullptr;
 }; // class SkeletonScene
 
 

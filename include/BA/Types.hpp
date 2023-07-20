@@ -17,7 +17,7 @@ namespace ba
 
 	enum ComponentID : IDtype {
 		NONE = 0,
-		AI,
+		A_I,
 		ANIMATION,
 		COLLIDER,
 		DRAWABLE,

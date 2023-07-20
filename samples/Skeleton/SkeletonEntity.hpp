@@ -6,6 +6,7 @@
 #include <BA/Components/SoundEmitter.hpp>
 #include <BA/Inputs/KeyboardInput.hpp>
 #include <BA/Entities/Entity.hpp>
+#include <BA/Systems/AISystem.hpp>
 #include <BA/Types.hpp>
 
 #include <iostream>

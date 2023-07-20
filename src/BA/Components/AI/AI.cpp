@@ -3,11 +3,15 @@
 
 namespace ba {
 
-const IDtype AI::CID = ComponentID::AI;
+const IDtype AI::CID = ComponentID::A_I;
 
 AI::AI(Entity* owner) :
 	Component::Component(owner)
 {
+	
+}
+
+void AI::behave(float) {
 	
 }
 

@@ -26,6 +26,7 @@ void SkeletonScene::onCreate() {
 	m_mouseInput = m_CONTEXT.inputs->addInput<MouseInput>();
 	m_CONTEXT.inputs->addInput<KeyboardInput>();
 
+	m_entityManager.includeSystem<AISystem>();
 	m_entityManager.includeSystem<AnimationSystem>();
 	m_entityManager.includeSystem<KeyboardControlSystem>();
 	m_entityManager.includeSystem<MovementSystem>();
@@ -62,9 +63,6 @@ void SkeletonScene::update(float deltaTime) {
 	m_musicPlayer.update();
 	int fps = static_cast<int>(std::round(1.0f / deltaTime));
 	m_FPSText->setText(std::to_string(fps) + " FPS");
-
-	// std::clog << "Text: " << m_FPSText->getText() << std::endl;
-	m_blueCharAI->behave(deltaTime);
 
 	m_entityManager.update(deltaTime);
 	
@@ -106,8 +104,6 @@ void SkeletonScene::draw(Window& window) {
 void SkeletonScene::createSkeleton() {
 	std::shared_ptr<SkeletonEntity> skeleton = std::make_shared<SkeletonEntity>(&m_CONTEXT);
 	std::shared_ptr<BlueCharEntity> blueChar = std::make_shared<BlueCharEntity>(&m_CONTEXT);
-	m_blueCharAI = blueChar->getComponent<ProgrammedAI>().get();
-
 
 	m_entityManager.add(skeleton);
 	m_entityManager.add(blueChar);
