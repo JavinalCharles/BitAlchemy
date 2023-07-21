@@ -36,4 +36,8 @@ const std::set<IDtype>& ComponentSystem::getIDs() const {
 	return m_entityIDs;
 }
 
+void ComponentSystem::addID(IDtype entityID){
+	m_entityIDs.insert(entityID);
+}
+
 } // namespace ba

@@ -23,6 +23,7 @@ namespace ba
 		DRAWABLE,
 		KEYBOARD_CONTROL,
 		SOUND_EMITTER,
+		TIMER,
 		VELOCITY,
 	};
 } // namespace ba

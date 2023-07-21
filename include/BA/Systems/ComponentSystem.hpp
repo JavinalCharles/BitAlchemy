@@ -25,6 +25,7 @@ public:
 	const std::set<IDtype>& getIDs() const;
 
 protected:
+	void addID(IDtype entityID);
 	std::shared_ptr<Entity> getEntity(IDtype id) const;
 
 protected:

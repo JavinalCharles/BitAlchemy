@@ -2,6 +2,7 @@
 
 #include <BA/Components/Animation.hpp>
 #include <BA/Components/KeyboardControl.hpp>
+#include <BA/Components/Timer.hpp>
 #include <BA/Components/Velocity.hpp>
 #include <BA/Components/SoundEmitter.hpp>
 #include <BA/Inputs/KeyboardInput.hpp>

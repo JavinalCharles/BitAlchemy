@@ -17,6 +17,7 @@ set(SOURCES
 	src/BA/Components/Drawable.cpp
 	src/BA/Components/KeyboardControl.cpp
 	src/BA/Components/Sprite.cpp
+	src/BA/Components/Timer.cpp
 	src/BA/Components/Velocity.cpp
 	src/BA/Components/SoundEmitter.cpp
 	src/BA/Components/Text.cpp
@@ -40,6 +41,7 @@ set(SOURCES
 	src/BA/Systems/MusicPlayer.cpp
 	src/BA/Systems/RenderSystem.cpp
 	src/BA/Systems/SoundSystem.cpp
+	src/BA/Systems/TimerSystem.cpp
 	src/BA/Utilities/Transform.cpp
 	src/BA/Window/Window.cpp
 	src/BA/Window/View.cpp

@@ -6,6 +6,7 @@
 #include <BA/Components/Animation.hpp>
 #include <BA/Components/Sprite.hpp>
 #include <BA/Components/Velocity.hpp>
+#include <BA/Components/Timer.hpp>
 #include <BA/Entities/Entity.hpp>
 #include <BA/Types.hpp>
 

@@ -31,6 +31,7 @@ void SkeletonScene::onCreate() {
 	m_entityManager.includeSystem<KeyboardControlSystem>();
 	m_entityManager.includeSystem<MovementSystem>();
 	m_entityManager.includeSystem<SoundSystem>();
+	m_entityManager.includeSystem<TimerSystem>();
 }
 
 void SkeletonScene::onActivate() {
