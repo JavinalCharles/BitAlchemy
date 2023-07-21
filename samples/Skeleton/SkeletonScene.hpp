@@ -9,6 +9,7 @@
 #include <BA/Systems/KeyboardControlSystem.hpp>
 #include <BA/Systems/MovementSystem.hpp>
 #include <BA/Systems/SoundSystem.hpp>
+#include <BA/Systems/TimerSystem.hpp>
 
 #include "BlueCharEntity.hpp"
 #include "SkeletonEntity.hpp"

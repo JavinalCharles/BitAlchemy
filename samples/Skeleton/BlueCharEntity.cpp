@@ -25,6 +25,7 @@ BlueCharEntity::BlueCharEntity(SharedContext* context) :
 	auto anime = this->addComponent<Animation>();
 	auto vel = this->addComponent<Velocity>();
 	auto ai = this->addComponent<ProgrammedAI>();
+	auto timer = this->addComponent<Timer>();
 
 	vel-> setMax({64.f, 64.f});
 
@@ -168,6 +169,10 @@ BlueCharEntity::BlueCharEntity(SharedContext* context) :
 		anime->set(right);
 	}, std::placeholders::_1);
 	ai->assignBindings(5, idling, startWalkingRight);
+
+	timer->setTimer(std::bind([this](){
+		this->queueForRemoval();
+	}), 16.f, false);
 
 }
 
