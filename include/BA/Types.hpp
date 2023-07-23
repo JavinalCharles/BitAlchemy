@@ -22,9 +22,18 @@ namespace ba
 		COLLIDER,
 		DRAWABLE,
 		KEYBOARD_CONTROL,
+		MOUSE_CONTROL,
 		SOUND_EMITTER,
 		TIMER,
 		VELOCITY,
+		XTRA1,
+		XTRA2,
+		XTRA3,
+		XTRA4,
+		XTRA5,
+		XTRA6,
+		XTRA7,
+		XTRA8
 	};
 } // namespace ba
 

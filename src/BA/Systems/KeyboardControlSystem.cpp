@@ -12,17 +12,13 @@ KeyboardControlSystem::KeyboardControlSystem(EntityManager* entities) :
 }
 
 void KeyboardControlSystem::update(float) {
-	std::shared_ptr<KeyboardInput> keyboard = nullptr;
-	for(unsigned ID : m_entityIDs) {
+	for(IDtype ID : m_entityIDs) {
 		auto& e = m_entities->at(ID);
-		if (keyboard == nullptr) {
-			keyboard = e->CONTEXT->inputs->getInput<KeyboardInput>();
-		}
 
 		auto kcs = e->getComponent<KeyboardControl>();
 		auto& keyPressedBindings = kcs->getBindingsOnKeyPressed();
 		for(auto& [key, actions] : keyPressedBindings) {
-			if(keyboard->isKeyDown(key)) {
+			if(m_keyInput->isKeyDown(key)) {
 				for(auto& action: actions) {
 					action();
 				}
@@ -30,7 +26,7 @@ void KeyboardControlSystem::update(float) {
 		}
 		auto& keyReleasedBindings = kcs->getBindingsOnKeyReleased();
 		for(auto& [key, actions] : keyReleasedBindings) {
-			if(keyboard->isKeyUp(key)) {
+			if(m_keyInput->isKeyUp(key)) {
 				for(auto& action: actions) {
 					action();
 				}
@@ -38,7 +34,7 @@ void KeyboardControlSystem::update(float) {
 		}
 		auto& keyHeldBindings = kcs->getBindingsOnKeyActive();
 		for(auto& [key, actions] : keyHeldBindings) {
-			if(keyboard->isKeyActive(key)) {
+			if(m_keyInput->isKeyActive(key)) {
 				for(auto& action: actions) {
 					action();
 				}
@@ -53,9 +49,12 @@ void KeyboardControlSystem::update(float) {
 
 
 void KeyboardControlSystem::add(std::shared_ptr<Entity>& entity) {
-	auto keyboardControl = entity->getComponent<KeyboardControl>();
-	if (keyboardControl != nullptr) {
-		m_entityIDs.insert(entity->ID);
+	if (entity->getComponent<KeyboardControl>() != nullptr) {
+		this->addID(entity->ID);
+
+		if (this->m_keyInput == nullptr) {
+			this->m_keyInput = entity->CONTEXT->inputs->getInput<KeyboardInput>().get();
+		}
 	}
 }
 
