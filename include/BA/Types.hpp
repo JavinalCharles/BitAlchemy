@@ -19,6 +19,7 @@ namespace ba
 		NONE = 0,
 		A_I,
 		ANIMATION,
+		CAMERA,
 		COLLIDER,
 		DRAWABLE,
 		KEYBOARD_CONTROL,
