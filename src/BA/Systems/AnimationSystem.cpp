@@ -12,12 +12,12 @@ AnimationSystem::AnimationSystem(EntityManager* entityManager) :
 }
 
 void AnimationSystem::update(float) {
-	
+
 }
 
 void AnimationSystem::postUpdate(float deltaTime) {
-	for (IDtype ID : m_entityIDs) {
-		auto a = m_entities->at(ID)->getComponent<Animation>();
+	for (const IDtype& ID : m_entityIDs) {
+		auto a = getEntity(ID)->getComponent<Animation>();
 
 		const Sequence& s = a->getCurrentSequence();
 
@@ -25,21 +25,18 @@ void AnimationSystem::postUpdate(float deltaTime) {
 			a->m_currentFrameTime += deltaTime;
 
 			if(a->m_currentFrameTime >= s.frames[a->m_currentFrame].displaySeconds) {
-				a->m_currentFrameTime = 0.f;
-
-				a->m_currentFrame = ((a->m_currentFrame + 1) % s.frames.size());
-				a->m_sprite->setTexture(s.frames[a->m_currentFrame].textureID);
-				a->m_sprite->setTextureRect(s.frames[a->m_currentFrame].textureRect);
-
 				if(!s.frames[a->m_currentFrame].actions.empty()) {
 					for(auto& action : s.frames[a->m_currentFrame].actions) {
 						action();
 					}
 				}
+
+				a->m_currentFrameTime = 0.f;
+
+				a->m_currentFrame = ((a->m_currentFrame + 1) % s.frames.size());
+				a->m_sprite->setTexture(s.frames[a->m_currentFrame].textureID);
+				a->m_sprite->setTextureRect(s.frames[a->m_currentFrame].textureRect);			
 			}
-
-
-			
 		}
 	}
 }

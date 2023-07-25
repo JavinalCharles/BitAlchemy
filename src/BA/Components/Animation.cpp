@@ -30,6 +30,41 @@ void Animation::add(IDtype animationID, Sequence sequence) {
 	}
 }
 
+void Animation::setLoop(IDtype animationID, bool isLoop) {
+	if (!m_animationMap.contains(animationID)) {
+		return;
+	}
+	m_animationMap.at(animationID).looped = isLoop;
+}
+
+void Animation::setFrame(IDtype animationID, std::size_t frameIndex, const Frame& frame) {
+	if (!m_animationMap.contains(animationID)) {
+		return;
+	}
+	if(frameIndex > m_animationMap.at(animationID).frames.size()-1) {
+		return;
+	}
+
+	m_animationMap.at(animationID).frames.at(frameIndex) = frame;
+}
+
+void Animation::addFrame(IDtype animationID, const Frame& frame) {
+	if (!m_animationMap.contains(animationID)) {
+		return;
+	}
+	m_animationMap.at(animationID).frames.push_back(frame);
+}
+
+void Animation::addFrameAction(IDtype animationID, std::size_t frameIndex, const FrameAction& frameAction) {
+	if (!m_animationMap.contains(animationID)) {
+		return;
+	}
+	if (frameIndex > m_animationMap.at(animationID).frames.size()-1) {
+		return;
+	}
+	m_animationMap.at(animationID).frames.at(frameIndex).actions.push_front(frameAction);
+}
+
 void Animation::set(IDtype animationID) {
 	if (!m_animationMap.contains(animationID)) {
 		throw std::invalid_argument("INVALID! No matching animation ID found.");
