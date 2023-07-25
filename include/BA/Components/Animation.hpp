@@ -32,7 +32,6 @@ class Animation : public Component {
 friend class AnimationSystem;
 
 public:
-
 	Animation(Entity* owner);
 
 	virtual void awake() override;
@@ -40,6 +39,11 @@ public:
 	void add(IDtype animationID, Sequence sequence);
 
 	void set(IDtype animationID);
+	void setLoop(IDtype animationID, bool isLoop = true);
+	void setFrame(IDtype animationID, std::size_t frameIndex, const Frame& frame);
+	void addFrame(IDtype animationID, const Frame& frame);
+	void addFrameAction(IDtype animationID, std::size_t frameIndex, const FrameAction& frameAction);
+
 
 	IDtype getCurrentAnimationID() const;
 	const Sequence& getCurrentSequence() const;
