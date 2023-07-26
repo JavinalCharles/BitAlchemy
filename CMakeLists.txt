@@ -10,12 +10,14 @@ project(
 set(SOURCES 
 	src/BA/Components/AI/AI.cpp
 	src/BA/Components/AI/ProgrammedAI.cpp
+	src/BA/Components/Camera.cpp
 	src/BA/Components/Colliders/BoxCollider.cpp
 	src/BA/Components/Colliders/Collider.cpp
 	src/BA/Components/Animation.cpp
 	src/BA/Components/Component.cpp
 	src/BA/Components/Drawable.cpp
 	src/BA/Components/KeyboardControl.cpp
+	src/BA/Components/MouseControl.cpp
 	src/BA/Components/Sprite.cpp
 	src/BA/Components/Timer.cpp
 	src/BA/Components/Velocity.cpp
@@ -33,10 +35,12 @@ set(SOURCES
 	src/BA/Scenes/SceneManager.cpp
 	src/BA/Systems/AISystem.cpp
 	src/BA/Systems/AnimationSystem.cpp
+	src/BA/Systems/CameraSystem.cpp
 	src/BA/Systems/CollisionSystem.cpp
 	src/BA/Systems/ComponentSystem.cpp
 	src/BA/Systems/EntityManager.cpp
 	src/BA/Systems/KeyboardControlSystem.cpp
+	src/BA/Systems/MouseControlSystem.cpp
 	src/BA/Systems/MovementSystem.cpp
 	src/BA/Systems/MusicPlayer.cpp
 	src/BA/Systems/RenderSystem.cpp

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <bitset>
+#include <vector>
 #include <SDL2/SDL_events.h>
 
 #include <BA/Inputs/Input.hpp>
@@ -21,8 +21,9 @@ public:
 	bool isKeyDown(SDL_KeyCode key);
 	bool isKeyActive(SDL_KeyCode key);
 private:
-	std::bitset<256> m_prevKeys;
-	std::bitset<256> m_currKeys;
+	std::vector<bool> m_prevKeys;
+	std::vector<bool> m_currKeys;
+	int m_numKeys;
 }; // class KeyboardInput
 
 } // namespace ba
