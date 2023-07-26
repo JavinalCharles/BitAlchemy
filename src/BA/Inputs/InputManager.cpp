@@ -2,6 +2,10 @@
 
 namespace ba {
 
+InputManager::~InputManager() {
+	m_inputs.clear();
+}
+
 void InputManager::handleEvents() {
 	for(auto& [id, input] : m_inputs) {
 		input->handleEvents();

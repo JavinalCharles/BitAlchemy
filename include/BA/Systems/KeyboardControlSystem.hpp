@@ -15,7 +15,7 @@ public:
 
 	virtual void add(std::shared_ptr<Entity>& entity);
 private:
-	KeyboardInput* m_keyInput;
+	std::shared_ptr<KeyboardInput> m_keyInput = nullptr;
 
 }; // class KeyboardControlSystem
 

@@ -11,6 +11,7 @@ EntityManager::EntityManager() :
 EntityManager::~EntityManager() {
 	m_entities.clear();
 	m_newEntities.clear();
+	m_componentSystems.clear();
 }
 
 void EntityManager::add(std::vector<std::shared_ptr<ba::Entity>>& newEntities) {
