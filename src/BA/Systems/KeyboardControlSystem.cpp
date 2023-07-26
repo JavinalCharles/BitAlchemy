@@ -53,7 +53,7 @@ void KeyboardControlSystem::add(std::shared_ptr<Entity>& entity) {
 		this->addID(entity->ID);
 
 		if (this->m_keyInput == nullptr) {
-			this->m_keyInput = entity->CONTEXT->inputs->getInput<KeyboardInput>().get();
+			this->m_keyInput = entity->CONTEXT->inputs->getInput<KeyboardInput>();
 		}
 	}
 }

@@ -11,6 +11,7 @@ namespace ba {
 
 class InputManager {
 public:
+	virtual ~InputManager();
 	void handleEvents();
 
 	template <typename T>
