@@ -3,6 +3,8 @@
 
 namespace ba {
 
+const IDtype Camera::CID = ba::ComponentID::CAMERA;
+
 Camera::Camera(Entity* owner) :
 	Component::Component(owner)
 {

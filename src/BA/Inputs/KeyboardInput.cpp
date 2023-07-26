@@ -8,36 +8,37 @@ const IDtype KeyboardInput::IID = 1;
 KeyboardInput::KeyboardInput(InputManager* im) :
 	Input::Input(im)
 {
-
+	SDL_GetKeyboardState(&m_numKeys);
+	m_prevKeys.resize(m_numKeys, false);
+	m_currKeys.resize(m_numKeys, false);
 }
 
 void KeyboardInput::handleEvents() {
-	m_prevKeys = m_currKeys;
-	m_currKeys.reset();
+	m_prevKeys.swap(m_currKeys);
 
-	int numkeys = 0;
-	const std::uint8_t* keys = SDL_GetKeyboardState(&numkeys);
+	const std::uint8_t* keys = SDL_GetKeyboardState(&m_numKeys);
+	if (m_numKeys != m_currKeys.size()) {
+		m_currKeys.resize(m_numKeys, false);
+	}
 
-	for(int i = 0; i < numkeys; ++i) {
-		if(keys[i] != 0) {
-			m_currKeys.set(i);
-		}		
+	for(int i = 0; i < m_numKeys; ++i) {
+		m_currKeys.at(i) = keys[i] > 0 ? true : false;
 	}
 }
 
 bool KeyboardInput::isKeyUp(SDL_KeyCode key) {
 	SDL_Scancode code = SDL_GetScancodeFromKey(key);
-	return m_prevKeys[code] && !m_currKeys[code];
+	return m_prevKeys.at(code) && !m_currKeys.at(code);
 }
 
 bool KeyboardInput::isKeyDown(SDL_KeyCode key) {
 	SDL_Scancode code = SDL_GetScancodeFromKey(key);
-	return !m_prevKeys[code] && m_currKeys[code];
+	return !m_prevKeys.at(code) && m_currKeys.at(code);
 }
 
 bool KeyboardInput::isKeyActive(SDL_KeyCode key) {
 	SDL_Scancode code = SDL_GetScancodeFromKey(key);
-	return m_currKeys[code];
+	return m_currKeys.at(code);
 }
 
 
