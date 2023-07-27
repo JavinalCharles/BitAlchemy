@@ -13,6 +13,7 @@
 #include "BA/Components/Sprite.hpp"
 #include "BA/Entities/Entity.hpp"
 #include "BA/ResourceManager.hpp"
+#include "BA/Utilities/Vector2.hpp"
 #include "BA/Utilities/Rect.hpp"
 
 #include <rapidxml/rapidxml.hpp>
@@ -29,7 +30,7 @@ struct TileData {
 
 using TileSet = std::unordered_map<IDtype, TileData>;
 
-std::vector<std::shared_ptr<Entity>> parseMap(const std::string& tmxFileName, SharedContext* context);
+std::vector<std::shared_ptr<Entity>> parseMap(const std::string& tmxFileName, const Vector2f& SCALE, SharedContext* context);
 
 TileSet generateTileSet(int firstgid, const std::string& tsxFile, ResourceManager* resources);
 
