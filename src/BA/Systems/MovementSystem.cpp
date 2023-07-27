@@ -19,7 +19,7 @@ void MovementSystem::update(float deltaTime) {
 		Vector2f displacement = v->get() * deltaTime;
 		e->move(displacement);
 
-		v->resetVelocity();
+		// v->resetVelocity();
 	}
 }
 

@@ -6,13 +6,17 @@ using std::filesystem::path;
 
 namespace {
 	std::vector<std::vector<int>> getLayerData(rapidxml::xml_node<>* layerNode);
+
+	void getChunkedData(rapidxml::xml_node<>* dataNode, std::vector<std::vector<int>>& r);
+
+	void getCSVData(const std::string& csvData, int W, int H, std::vector<std::vector<int>>& r);
 } // anonymouse namespace
 
 namespace ba {
 
 namespace generator {
 
-std::vector<std::shared_ptr<Entity>> parseMap(const std::string& tmxFileName, SharedContext* context) {
+std::vector<std::shared_ptr<Entity>> parseMap(const std::string& tmxFileName, const Vector2f& SCALE, SharedContext* context) {
 	std::string xml{getXMLdata(tmxFileName)};
 	char c_data[xml.size()+1];
 	strncpy(c_data, xml.c_str(), xml.size()+1);
@@ -72,7 +76,8 @@ std::vector<std::shared_ptr<Entity>> parseMap(const std::string& tmxFileName, Sh
 					continue;
 				}
 				std::shared_ptr<Entity> e = std::make_shared<Entity>(context);
-				e->setPosition({static_cast<float>(c * tileWidth), static_cast<float>(r * tileHeight)});
+				e->setPosition({static_cast<float>(c * tileWidth * SCALE.x), static_cast<float>(r * tileHeight * SCALE.y)});
+				e->setScale(SCALE);
 				auto e_sprite = e->addComponent<Sprite>();
 				
 				e_sprite->setTexture(tilesets.at(GID).textureID);
@@ -188,18 +193,48 @@ std::string getXMLdata(const std::string& filePath) {
 
 namespace {
 
-std::vector<std::vector<int>> getLayerData(rapidxml::xml_node<>* layerNode) {
-	std::clog << "Generating layer data." << std::endl;
-	rapidxml::xml_node<>* dataNode = layerNode->first_node("data");
-	if (dataNode == nullptr) {
-		throw std::invalid_argument("Error: Layer has no data");
+void getChunkedData(rapidxml::xml_node<>* dataNode, std::vector<std::vector<int>>& r) {
+	rapidxml::xml_node<>* chunkNode = dataNode->first_node("chunk");
+	while (chunkNode != nullptr) {
+		if (chunkNode->first_attribute("x") == nullptr || chunkNode->first_attribute("y") == nullptr || chunkNode->first_attribute("width") == nullptr ||
+		chunkNode->first_attribute("height") == nullptr) {
+			// just continue to next loop.
+			continue;
+		}
+		const int X = std::atoi(chunkNode->first_attribute("x")->value());
+		const int Y = std::atoi(chunkNode->first_attribute("y")->value());
+		const int WIDTH = std::atoi(chunkNode->first_attribute("width")->value());
+		const int HEIGHT = std::atoi(chunkNode->first_attribute("height")->value());
+		std::string data{chunkNode->value()};
+		std::replace(data.begin(), data.end(), ',', ' ');
+		std::erase(data, '\n');
+		std::erase(data, '\r');
+		std::stringstream stream(data);
+
+		int row = 0;
+		int col = 0;
+
+		while(stream.good()) {
+			while(row < HEIGHT) {
+				while(col < WIDTH) {
+					int found;
+					stream >> found;
+					r.at(Y+row).at(X+col) = found;
+					std::clog << found << ' ';
+					++col;
+				}
+				col = 0;
+				++row;
+				std::clog << std::endl;
+			}
+		}
+
+		chunkNode = chunkNode->next_sibling("chunk");
 	}
-	const int W = std::stoi(layerNode->first_attribute("width")->value());
-	const int H = std::stoi(layerNode->first_attribute("height")->value());
+}
 
-	std::vector<std::vector<int>> r;
-
-	std::string data{dataNode->value()};
+void getCSVData(const std::string& csvData, int W, int H, std::vector<std::vector<int>>& r) {
+	std::string data{csvData};
 	std::replace(data.begin(), data.end(), ',', ' ');
 	std::erase(data, '\n');
 	std::erase(data, '\r');
@@ -209,20 +244,40 @@ std::vector<std::vector<int>> getLayerData(rapidxml::xml_node<>* layerNode) {
 
 	while(stream.good()) {
 		while(row < H) {
-			std::vector<int> numCol;
 			while(col < W) {
 				int found;
 				stream >> found;
-				numCol.push_back(found);
+				r.at(row).at(col) = found;
 				std::clog << found << ' ';
 				++col;
 			}
-			r.push_back(numCol);
 			col = 0;
 			++row;
 			std::clog << std::endl;
 		}
 	}
+}
+
+std::vector<std::vector<int>> getLayerData(rapidxml::xml_node<>* layerNode) {
+	std::clog << "Generating layer data." << std::endl;
+	rapidxml::xml_node<>* dataNode = layerNode->first_node("data");
+	if (dataNode == nullptr) {
+		throw std::invalid_argument("Error: Layer has no data");
+	}
+	const int W = std::stoi(layerNode->first_attribute("width")->value());
+	const int H = std::stoi(layerNode->first_attribute("height")->value());
+
+	std::vector<std::vector<int>> r(H, std::vector<int>(W, 0));
+
+	if(dataNode->first_node("chunk") != nullptr) {
+		std::clog << "Generating From Chunked Data" << std::endl;
+		getChunkedData(dataNode, r);
+	}
+	else {
+		std::clog << "Generating from CSV data" << std::endl;
+		getCSVData(std::string{dataNode->value()}, W, H, r);
+	}
+	
 	std::clog << "Generated layer data." << std::endl;
 	return r;
 }

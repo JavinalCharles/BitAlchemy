@@ -31,7 +31,7 @@ void TestMapScene::onActivate() {
 	path p = m_CONTEXT.resources->getBaseDirectory() / path("Textures") / path("first-tileset.tmx");
 
 	std::clog << "Generating Map Entities." << std::endl;
-	std::vector<std::shared_ptr<Entity>> entities = ba::generator::parseMap(p.string(), &m_CONTEXT);
+	std::vector<std::shared_ptr<Entity>> entities = ba::generator::parseMap(p.string(), SCALE, &m_CONTEXT);
 	std::clog << "Generated total " << entities.size() << " entities." << std::endl;
 
 	std::clog << "Adding new entities to the game." << std::endl;
