@@ -28,7 +28,7 @@ void TestMapScene::onDestroy() {
 
 void TestMapScene::onActivate() {
 	const Vector2f SCALE{1.5f, 1.5f};
-	path p = m_CONTEXT.resources->getBaseDirectory() / path("Textures") / path("first-tileset.tmx");
+	path p = m_CONTEXT.resources->getBaseDirectory() / path("Textures") / path("oak_forest.tmx");
 
 	std::clog << "Generating Map Entities." << std::endl;
 	std::vector<std::shared_ptr<Entity>> entities = ba::generator::parseMap(p.string(), SCALE, &m_CONTEXT);
