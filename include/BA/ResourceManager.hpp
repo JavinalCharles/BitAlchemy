@@ -29,6 +29,15 @@ public: // Methods and Constructors
 	*****************************************/
 	IDtype loadTexture(const std::string& fileName);
 
+
+	/****************************************
+	 * addTexture()
+	 * @brief Adds the given texture and store it into memory.
+	 * @param texture The texture to be stored.
+	 * @returns the ID of the stored SDL_Texture for future access.
+	*****************************************/
+	IDtype addTexture(SDL_Texture* texture);
+
 	/****************************************
 	 * loadMusic()
 	 * @brief Creats a Mix_Chunk* object from fileName and stores it into memory.

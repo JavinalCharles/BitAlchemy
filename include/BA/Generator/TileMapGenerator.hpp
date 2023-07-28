@@ -17,6 +17,9 @@
 #include "BA/Utilities/Rect.hpp"
 
 #include <rapidxml/rapidxml.hpp>
+#include <rapidxml/rapidxml_utils.hpp>
+
+using rapidxml::file;
 
 namespace ba {
 

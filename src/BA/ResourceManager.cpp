@@ -39,6 +39,13 @@ IDtype ResourceManager::loadTexture(const std::string& fileName) {
 	return id;
 }
 
+IDtype ResourceManager::addTexture(SDL_Texture* texture) {
+	IDtype id = ++textureCount;
+	texturesMap.insert_or_assign(id, texture);
+
+	return id;
+}
+
 IDtype ResourceManager::loadSound(const std::string& fileName) {
 	path file(m_paths[SOUNDS_PATH] / path{fileName});
 	Mix_Chunk* newSound = Mix_LoadWAV(file.c_str());
