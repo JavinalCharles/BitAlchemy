@@ -17,6 +17,10 @@ void BoxCollider::setSize(const Vector2f& dimension) {
 	m_boxSize = dimension;
 }
 
+const Vector2f& BoxCollider::getSize() const {
+	return m_boxSize;
+}
+
 bool BoxCollider::isColliding(std::shared_ptr<Collider>& other) {
 	if(std::dynamic_pointer_cast<BoxCollider>(other)) {
 		auto otherBoxCollider = std::dynamic_pointer_cast<BoxCollider>(other);

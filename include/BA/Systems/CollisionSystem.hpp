@@ -7,6 +7,7 @@
 #include <utility>
 #include <vector>
 #include <BA/Components/Colliders/Collider.hpp>
+#include <BA/Components/Colliders/BoxCollider.hpp>
 #include <BA/Containers/Quadtree.hpp>
 #include <BA/Entities/Entity.hpp>
 #include <BA/Systems/ComponentSystem.hpp>

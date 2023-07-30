@@ -1,10 +1,13 @@
 #include <BA/Systems/CollisionSystem.hpp>
 #include <BA/Systems/EntityManager.hpp>
 
+#include <iostream>
+
 namespace ba {
 
 CollisionSystem::CollisionSystem(EntityManager* entities) :
-	ComponentSystem(entities)
+	ComponentSystem(entities),
+	m_staticColliderTree(15, 8, 0, ba::FloatRect{0, 0, 9600, 4600})
 {
 
 }
@@ -68,8 +71,7 @@ void CollisionSystem::detectCollisions() {
 			if(m_collisionLayers.at(i_layer)[j_layer]) {
 				if(i_collider->isColliding(j_collider)) {
 					m_collisions.push_back(std::make_pair(ID, j_collider->getOwner()->ID));
-				}
-				
+				}	
 			}
 		}
 
@@ -127,14 +129,17 @@ void CollisionSystem::resolveCollisions() {
 		const bool jStatic = j_collider->getOwner()->isStatic();
 
 		if(!iStatic && jStatic) {
+			std::clog << "non-static vs static" << std::endl;
 			i_collider->getOwner()->move(measureDisplacement(iBounds, rect.value()));
 		}
 		else if (iStatic && !jStatic) {
+			std::clog << "static vs non-static" << std::endl;
 			j_collider->getOwner()->move(measureDisplacement(jBounds, rect.value()));
 		}
 		else if (!iStatic && !jStatic) {
-			i_collider->getOwner()->move(measureDisplacement(iBounds, rect.value()) * 0.5f);
-			j_collider->getOwner()->move(measureDisplacement(jBounds, rect.value()) * 0.5f);
+			std::clog << "static vs static" << std::endl;
+			// i_collider->getOwner()->move(measureDisplacement(iBounds, rect.value()) * 0.5f);
+			// j_collider->getOwner()->move(measureDisplacement(jBounds, rect.value()) * 0.5f);
 		}
 	}
 

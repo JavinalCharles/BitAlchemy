@@ -102,10 +102,22 @@ void Window::draw(SDL_Texture* texture, const ba::IntRect& textureRect, const Fl
 
 void Window::drawPoint(const Vector2f& point, Color pc) {
 	Color cb; // Color buffer
-	Vector2f screenCoords = m_view.mapToView(point);
+	Vector2f sc = m_view.mapToView(point);
+	SDL_Point points[] = {
+		SDL_Point{sc.x, sc.y},
+		SDL_Point{sc.x+1, sc.y},
+		SDL_Point{sc.x-1, sc.y},
+		SDL_Point{sc.x, sc.y+1},
+		SDL_Point{sc.x, sc.y-1}
+	};
+
 	SDL_GetRenderDrawColor(m_renderer, &cb.r, &cb.g, &cb.b, &cb.a);
+
 	SDL_SetRenderDrawColor(m_renderer, pc.r, pc.g, pc.b, pc.a);
-	SDL_RenderDrawPoint(m_renderer, screenCoords.x, screenCoords.y);
+	SDL_RenderDrawPoint(m_renderer, sc.x, sc.y);
+	SDL_RenderDrawPoints(m_renderer, points, 5);
+
+
 	SDL_SetRenderDrawColor(m_renderer, cb.r, cb.g, cb.b, cb.a);
 }
 

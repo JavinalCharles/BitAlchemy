@@ -11,6 +11,7 @@ public:
 	virtual void awake() override;
 
 	void setSize(const Vector2f& dimension);
+	const Vector2f& getSize() const;
 
 	virtual bool isColliding(std::shared_ptr<Collider>& other) override;
 
