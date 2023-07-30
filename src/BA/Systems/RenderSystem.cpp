@@ -23,12 +23,12 @@ void RenderSystem::add(std::shared_ptr<Entity> entity) {
 		return;
 	DrawLayer layer = drawable->getDrawLayer();
 	if(m_drawables.contains(layer)) {
-		std::clog << "Adding Entity #" << entity->ID << " to drawable layer: " << layer << std::endl;
+		// std::clog << "Adding Entity #" << entity->ID << " to drawable layer: " << layer << std::endl;
 		m_drawables.at(layer).push_back(entity->ID);
 	}
 	else {
-		std::clog << "Adding a new drawable layer: " << layer << std::endl;
-		std::clog << "Adding Entity #" << entity->ID << " to drawable layer: " << layer << std::endl;
+		// std::clog << "Adding a new drawable layer: " << layer << std::endl;
+		// std::clog << "Adding Entity #" << entity->ID << " to drawable layer: " << layer << std::endl;
 		m_drawables.insert_or_assign(layer, std::vector<IDtype>{entity->ID});
 	}
 
