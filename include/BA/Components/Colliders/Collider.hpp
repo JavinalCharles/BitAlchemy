@@ -3,12 +3,13 @@
 #include <memory>
 #include <BA/Components/Boundable.hpp>
 #include <BA/Components/Component.hpp>
+#include <BA/Entities/Transformable.hpp>
 #include <BA/Utilities/Circle.hpp>
 #include <BA/Utilities/Rect.hpp>
 
 namespace ba {
 
-class Collider : public Component, Boundable {
+class Collider : public Component, public Boundable {
 public:
 	Collider(Entity* owner);
 
@@ -16,6 +17,8 @@ public:
 	unsigned getLayer() const;
 
 	virtual bool isColliding(std::shared_ptr<Collider>& other) = 0;
+
+
 
 	virtual FloatRect getLocalBounds() const = 0;
 	virtual FloatRect getGlobalBounds() const = 0;

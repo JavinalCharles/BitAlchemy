@@ -61,6 +61,8 @@ std::vector<std::shared_ptr<Entity>> parseMap(const std::string& tmxFileName, co
 		if (layerNode->first_attribute("id") == nullptr || layerNode->first_attribute("width") == nullptr || layerNode->first_attribute("height") == nullptr || layerNode->first_attribute("name") == nullptr) {
 			throw std::invalid_argument("Error at " + tmxFileName + "; A layer is missing some attributes.");
 		}
+		std::string layerName(layerNode->first_attribute("name")->value());
+
 		std::vector<std::vector<int>> layerData = getLayerData(layerNode);
 		
 		std::clog << "Translating data." << std::endl; 
@@ -75,11 +77,22 @@ std::vector<std::shared_ptr<Entity>> parseMap(const std::string& tmxFileName, co
 				std::shared_ptr<Entity> e = std::make_shared<Entity>(context);
 				e->setPosition({static_cast<float>(c * tileWidth * SCALE.x), static_cast<float>(r * tileHeight * SCALE.y)});
 				e->setScale(SCALE);
+				e->setStatic(true);
 				auto e_sprite = e->addComponent<Sprite>();
 				
 				e_sprite->setTexture(tilesets.at(GID).textureID);
 				e_sprite->setTextureRect(tilesets.at(GID).textureRect);
 				e_sprite->setDrawLayer(LAYER);
+
+				if (layerName.find("[COLLISION]") != std::string::npos) {
+					std::clog << "Detected a Collider" << std::endl;
+					auto collider = e->addComponent<BoxCollider>();
+					collider->setSize(Vector2f{
+						static_cast<float>(tilesets.at(GID).textureRect.w), 
+						static_cast<float>(tilesets.at(GID).textureRect.h)
+					});
+					collider->setLayer(1u);
+				}
 
 				r_entities.push_back(e);
 			}

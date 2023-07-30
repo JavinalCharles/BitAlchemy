@@ -1,5 +1,6 @@
 #pragma once
 
+#include <iostream>
 #include <memory>
 #include <unordered_map>
 #include <vector>
@@ -27,6 +28,8 @@ public:
 
 	const FloatRect& getBounds() const;
 
+	void drawBounds(Window& window);
+
 private:
 	void split();
 	int getChildIndexForObject(const FloatRect& objectBounds);
@@ -51,6 +54,18 @@ private:
 	std::unordered_map<IDtype, std::shared_ptr<T>> m_objects;
 }; // class Quadtree
 
+template <typename T>
+void Quadtree<T>::drawBounds(Window& window) {
+	window.drawRect(m_bounds, Color::Red);
+
+	if (m_children[0] == nullptr) {
+		return;
+	}
+
+	for (std::size_t i = 0; i < 4; ++i) {
+		m_children[i]->drawBounds(window);
+	}
+}
 
 template <typename T>
 Quadtree<T>::Quadtree() :
@@ -76,8 +91,12 @@ void Quadtree<T>::insert(std::shared_ptr<T> object) {
 	FloatRect bounds = object->getGlobalBounds();
 	std::optional<FloatRect> intersection = m_bounds.intersects(bounds);
 
+	std::clog << "m_bounds: {" << m_bounds.l << ", " << m_bounds.t << ", " << m_bounds.w << ", " << m_bounds.h << " };\n";
+
 	// Terminate function if the given object does not intersect with the bounds of this quadtree
+	std::clog << "{" << bounds.l << ", " << bounds.t << ", " << bounds.w << ", " << bounds.h << "};\n";
 	if (!intersection.has_value()) {
+		std::clog << "Out of Bounds: \n";
 		return;
 	}
 
@@ -179,41 +198,38 @@ template <typename T>
 int Quadtree<T>::getChildIndexForObject(const FloatRect& objectBounds) {
 	int index = thisTree;
 
-	const Vector2f origin{
-		m_bounds.l + m_bounds.w * 0.5f,
-		m_bounds.t + m_bounds.h * 0.5f
-	};
+	double verticalDividingLine = m_bounds.l + m_bounds.w * 0.5f;
+	double horizontalDividingLine = m_bounds.t + m_bounds.h * 0.5f;
 
-	const Vector2i direction{
-		// -1 west, 1 east, 0 center
-		(objectBounds.l > origin.x) ? 1 : ((objectBounds.l < origin.x && (objectBounds.l + objectBounds.w < origin.x))),
-		// -1 north, 1 south 0 center
-		(objectBounds.t > origin.y) ? 1 : ((objectBounds.t < origin.y && objectBounds.t + objectBounds.h < origin.y) ? -1 : 0)
-	};
+	bool north = objectBounds.t < horizontalDividingLine && (objectBounds.h + objectBounds.t < horizontalDividingLine);
+    bool south = objectBounds.t > horizontalDividingLine;
+    bool west = objectBounds.l < verticalDividingLine && (objectBounds.l + objectBounds.w < verticalDividingLine);
+    bool east = objectBounds.l > verticalDividingLine;
 
-	switch(direction.x) {
-		case -1: // north
-			switch(direction.y) {
-				case -1: // west
-					index = childNW;
-					break;
-				case 1: // east
-					index = childNE;
-					break;
-			}
-			break;
-		case 1: // south
-			switch(direction.y) {
-				case -1: // west
-					index = childSW;
-					break;
-				case 1: // east
-					index = childSE;
-			}
-			break;
-	}
+	if(east)
+    {
+        if(north)
+        {
+            index = childNE;
+        }
+        else if(south)
+        {
+            index = childSE;
+        }
+    }
+    else if(west)
+    {
+        if(north)
+        {
+            index = childNW;
+        }
+        else if(south)
+        {
+            index = childSW;
+        }
+    }
 
-	return index;
+    return index;
 }
 
 template <typename T>

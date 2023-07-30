@@ -11,6 +11,7 @@
 #include <string>
 
 #include "BA/Components/Sprite.hpp"
+#include "BA/Components/Colliders/BoxCollider.hpp"
 #include "BA/Entities/Entity.hpp"
 #include "BA/ResourceManager.hpp"
 #include "BA/Utilities/Vector2.hpp"
@@ -18,8 +19,6 @@
 
 #include <rapidxml/rapidxml.hpp>
 #include <rapidxml/rapidxml_utils.hpp>
-
-using rapidxml::file;
 
 namespace ba {
 
