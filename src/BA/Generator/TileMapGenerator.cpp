@@ -51,7 +51,6 @@ std::vector<std::shared_ptr<Entity>> parseMap(const std::string& tmxFileName, co
 
 		tilesetNode = tilesetNode->next_sibling("tileset");
 	}
-	std::clog << "Generated a total of " << tilesets.size() << " tiles." << std::endl;
 
 	std::vector<std::shared_ptr<Entity>> r_entities;
 	// GENERATE LAYERS
@@ -65,7 +64,6 @@ std::vector<std::shared_ptr<Entity>> parseMap(const std::string& tmxFileName, co
 
 		std::vector<std::vector<int>> layerData = getLayerData(layerNode);
 		
-		std::clog << "Translating data." << std::endl; 
 		const int LAYER = drawLayer++;
 
 		for(std::size_t r = 0; r < layerData.size(); ++r) {
@@ -85,7 +83,6 @@ std::vector<std::shared_ptr<Entity>> parseMap(const std::string& tmxFileName, co
 				e_sprite->setDrawLayer(LAYER);
 
 				if (layerName.find("[COLLISION]") != std::string::npos) {
-					std::clog << "Detected a Collider" << std::endl;
 					auto collider = e->addComponent<BoxCollider>();
 					collider->setSize(Vector2f{
 						static_cast<float>(tilesets.at(GID).textureRect.w), 
@@ -113,7 +110,6 @@ TileSet generateTileSet(int firstgid, const std::string& tsxFile, ResourceManage
 
 	// Open up the tsx file and get the data.
 	std::string xml(getXMLdata(tsxFile));
-	std::clog << "Recieved data: \n" << xml << std::endl;
 	char data[xml.size()+1];
 	strncpy(data, xml.c_str(), xml.size()+1);
 
@@ -122,38 +118,31 @@ TileSet generateTileSet(int firstgid, const std::string& tsxFile, ResourceManage
 	doc.parse<0>(data);
 
 	// Traverse the xml nodes and collect data
-	std::clog << "Procuring tileset node." << std::endl;
 	rapidxml::xml_node<>* tsxNode = doc.first_node("tileset");
 	
-	std::clog << "Checking tileset attributes." << std::endl;
 	if(tsxNode->first_attribute("tilewidth") == nullptr || tsxNode->first_attribute("tileheight") == nullptr || tsxNode->first_attribute("tilecount") == nullptr || tsxNode->first_attribute("columns") == nullptr) {
 		// CHECK IF ALL ATTRIBUTES ARE ACCOUNTED FOR.
 		// THROW ERROR IF NOT.
 		throw std::invalid_argument("TSX file: " + tsxFile + " is missing some attributes.");
 	}
-	std::clog << "Procuring tileset attributes." << std::endl;
 	tilewidth = std::atoi(tsxNode->first_attribute("tilewidth")->value());
 	tileheight = std::atoi(tsxNode->first_attribute("tileheight")->value());
 	tilecount = std::atoi(tsxNode->first_attribute("tilecount")->value());
 	columns = std::atoi(tsxNode->first_attribute("columns")->value());
 
-	std::clog << "Procuring image node. " << std::endl;
 	rapidxml::xml_node<>* imgNode = tsxNode->first_node("image");
 	if (imgNode == nullptr) {
 		throw std::invalid_argument("TSX file: " + tsxFile + " does not have an \"image\" node.");
 	}
 
-	std::clog << "Checking image attribute." << std::endl;
 	if (imgNode->first_attribute("source") == 0) {
 		// NO "source" ATTRIBUTE. THROW ANOTHER ERROR.
 		throw std::invalid_argument("TSX file: " + tsxFile + " image node is missing it's \"source\" attribute");
 	}
 	
-	std::clog << "Procuring image attribute." << std::endl;
 	IDtype textureID = resources->loadTexture(std::string(imgNode->first_attribute("source")->value()));
 
 
-	std::clog << "Generating tileset." << std::endl;
 	TileSet r_tileset;
 
 	int row = 0; // first row
@@ -188,7 +177,6 @@ TileSet generateTileSet(int firstgid, const std::string& tsxFile, ResourceManage
 }
 
 std::string getXMLdata(const std::string& filePath) {
-	std::clog << "Reading tsx file: " << filePath << std::endl;
 	std::ifstream f(filePath);
 	if(f.fail()) {
 		throw std::invalid_argument("Error. Can't open file; \"" + filePath + "\" Either the file does not exist or is corrupted.");
@@ -207,7 +195,6 @@ std::string getXMLdata(const std::string& filePath) {
 namespace {
 
 std::vector<std::vector<int>> getLayerData(rapidxml::xml_node<>* layerNode) {
-	std::clog << "Generating layer data." << std::endl;
 	rapidxml::xml_node<>* dataNode = layerNode->first_node("data");
 	if (dataNode == nullptr) {
 		throw std::invalid_argument("Error: Layer has no data");
@@ -263,7 +250,6 @@ std::vector<std::vector<int>> getLayerData(rapidxml::xml_node<>* layerNode) {
 		}
 	}
 	
-	std::clog << "Generated layer data." << std::endl;
 	return tileGIDs;
 }
 

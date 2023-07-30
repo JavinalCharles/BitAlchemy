@@ -12,6 +12,9 @@ public:
 	View();
 	View(const Vector2f& area, const Vector2f& center);
 	View(const FloatRect& rectangle);
+	View(const View& otherView);
+
+	constexpr View& operator=(const View& otherView);
 
 	const Vector2f& getCenter() const;
 	const Vector2f& getArea() const;
@@ -55,5 +58,12 @@ private:
 	FloatRect 	m_viewport{{0, 0}, {1, 1}};
 
 }; // class View
+
+
+constexpr View& View::operator=(const View& otherView) {
+	this->m_center = otherView.m_center;
+	this->m_area = otherView.m_area;
+	return *this;
+}
 
 } // namespace ba

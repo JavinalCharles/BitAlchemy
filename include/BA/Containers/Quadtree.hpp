@@ -91,12 +91,9 @@ void Quadtree<T>::insert(std::shared_ptr<T> object) {
 	FloatRect bounds = object->getGlobalBounds();
 	std::optional<FloatRect> intersection = m_bounds.intersects(bounds);
 
-	std::clog << "m_bounds: {" << m_bounds.l << ", " << m_bounds.t << ", " << m_bounds.w << ", " << m_bounds.h << " };\n";
 
 	// Terminate function if the given object does not intersect with the bounds of this quadtree
-	std::clog << "{" << bounds.l << ", " << bounds.t << ", " << bounds.w << ", " << bounds.h << "};\n";
 	if (!intersection.has_value()) {
-		std::clog << "Out of Bounds: \n";
 		return;
 	}
 
