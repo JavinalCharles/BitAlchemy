@@ -95,11 +95,11 @@ constexpr Vector2<T> operator/=(Vector2<T>& lhs, T rhs) {
 }
 
 template<typename T>
-bool operator==(const Vector2<T>& lhs, const Vector2<T>& rhs) {
+constexpr bool operator==(const Vector2<T>& lhs, const Vector2<T>& rhs) {
 	return lhs.x == rhs.x && lhs.y == rhs.y;
 }
 
 template<typename T>
-bool operator!=(const Vector2<T>& lhs, const Vector2<T>& rhs) {
+constexpr bool operator!=(const Vector2<T>& lhs, const Vector2<T>& rhs) {
 	return lhs.x != rhs.x || lhs.y != rhs.y;
 }

@@ -37,10 +37,13 @@ void CollisionSystem::remove(IDtype entityID) {
 	m_staticColliderTree.remove(m_entities->at(entityID)->getCollider());
 }
 
-void CollisionSystem::postUpdate(float) {
-	detectCollisions();
+void CollisionSystem::update(float) {
 	processCollisions();
 	resolveCollisions();
+}
+
+void CollisionSystem::postUpdate(float) {	
+	detectCollisions();
 }
 
 void CollisionSystem::addCollisionLayer(IDtype layer, const std::bitset<128>& collisionBitmask) {
