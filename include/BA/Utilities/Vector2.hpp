@@ -55,10 +55,10 @@ template <typename T>
 constexpr Vector2<T>& operator/=(Vector2<T>& lhs, T rhs);
 
 template <typename T>
-constexpr Vector2<T> operator==(const Vector2<T>& lhs, const Vector2<T>& rhs);
+constexpr bool operator==(const Vector2<T>& lhs, const Vector2<T>& rhs);
 
 template <typename T>
-constexpr Vector2<T> operator!=(const Vector2<T>& lhs, const Vector2<T>& rhs);
+constexpr bool operator!=(const Vector2<T>& lhs, const Vector2<T>& rhs);
 
 /***********************************
  * IMPLEMENTATIONS

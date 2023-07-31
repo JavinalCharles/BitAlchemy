@@ -25,7 +25,8 @@ public:
 
 	void remove(IDtype entityID);
 
-	void postUpdate(float deltaTime);
+	virtual void update(float deltaTime) override;
+	virtual void postUpdate(float deltaTime) override;
 
 	void addCollisionLayer(IDtype layerID, const std::bitset<128>& collisionBitmask = std::bitset<128>());
 	void setCollision(IDtype layerID, IDtype otherLayer);
