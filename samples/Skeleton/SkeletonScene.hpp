@@ -43,7 +43,6 @@ private:
 	EntityManager	m_entityManager;
 	InputManager 	m_inputManager;
 	MusicPlayer 	m_musicPlayer;
-
 }; // class SkeletonScene
 
 

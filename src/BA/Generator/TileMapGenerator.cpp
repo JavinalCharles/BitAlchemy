@@ -4,8 +4,12 @@
 
 using std::filesystem::path;
 
+using ba::generator::TileInfo;
+using ba::generator::TileData;
+using ba::IDtype;
+
 namespace {
-	std::vector<std::vector<int>> getLayerData(rapidxml::xml_node<>* layerNode);
+	std::vector<TileInfo> getLayerData(rapidxml::xml_node<>* layerNode);
 } // anonymouse namespace
 
 namespace ba {
@@ -62,37 +66,40 @@ std::vector<std::shared_ptr<Entity>> parseMap(const std::string& tmxFileName, co
 		}
 		std::string layerName(layerNode->first_attribute("name")->value());
 
-		std::vector<std::vector<int>> layerData = getLayerData(layerNode);
+		std::vector<TileInfo> layerData = getLayerData(layerNode);
 		
 		const int LAYER = drawLayer++;
 
-		for(std::size_t r = 0; r < layerData.size(); ++r) {
-			for(std::size_t c = 0; c < layerData.at(r).size(); ++c) {
-				const int GID = layerData.at(r).at(c);
-				if (GID == 0) {
-					continue;
-				}
-				std::shared_ptr<Entity> e = std::make_shared<Entity>(context);
-				e->setPosition({static_cast<float>(c * tileWidth * SCALE.x), static_cast<float>(r * tileHeight * SCALE.y)});
-				e->setScale(SCALE);
-				e->setStatic(true);
-				auto e_sprite = e->addComponent<Sprite>();
-				
-				e_sprite->setTexture(tilesets.at(GID).textureID);
-				e_sprite->setTextureRect(tilesets.at(GID).textureRect);
-				e_sprite->setDrawLayer(LAYER);
-
-				if (layerName.find("[COLLISION]") != std::string::npos) {
-					auto collider = e->addComponent<BoxCollider>();
-					collider->setSize(Vector2f{
-						static_cast<float>(tilesets.at(GID).textureRect.w), 
-						static_cast<float>(tilesets.at(GID).textureRect.h)
-					});
-					collider->setLayer(1u);
-				}
-
-				r_entities.push_back(e);
+		for(std::size_t i = 0; i < layerData.size(); ++i) {
+			const int GID = layerData.at(i).gid;
+			const Vector2i POS = layerData.at(i).pos;
+			if (GID == 0) {
+				continue;
 			}
+
+			std::shared_ptr<Entity> e = std::make_shared<Entity>(context);
+			e->setPosition({
+				static_cast<float>(POS.x * tileWidth * SCALE.x),
+				static_cast<float>(POS.y * tileHeight * SCALE.y)
+			});
+			e->setScale(SCALE);
+			e->setStatic(true);
+
+			auto e_sprite = e->addComponent<Sprite>();
+			e_sprite->setTexture(tilesets.at(GID).textureID);
+			e_sprite->setTextureRect(tilesets.at(GID).textureRect);
+			e_sprite->setDrawLayer(LAYER);
+
+			if (layerName.find("[COLLISION]") != std::string::npos) {
+				auto collider = e->addComponent<BoxCollider>();
+				collider->setSize({
+					static_cast<float>(tilesets.at(GID).textureRect.w),
+					static_cast<float>(tilesets.at(GID).textureRect.h)
+				});
+				collider->setLayer(1u);
+			}
+
+			r_entities.push_back(e);
 		}
 		// next layer
 		layerNode = layerNode->next_sibling("layer");
@@ -194,15 +201,15 @@ std::string getXMLdata(const std::string& filePath) {
 
 namespace {
 
-std::vector<std::vector<int>> getLayerData(rapidxml::xml_node<>* layerNode) {
+std::vector<TileInfo> getLayerData(rapidxml::xml_node<>* layerNode) {
 	rapidxml::xml_node<>* dataNode = layerNode->first_node("data");
 	if (dataNode == nullptr) {
 		throw std::invalid_argument("Error: Layer has no data");
 	}
 	const int W = std::stoi(layerNode->first_attribute("width")->value());
-	const int H = std::stoi(layerNode->first_attribute("height")->value());
+	// const int H = std::stoi(layerNode->first_attribute("height")->value());
 
-	std::vector<std::vector<int>> tileGIDs(H, std::vector<int>(W, 0));
+	std::vector<TileInfo> r_tiles;
 
 	if(dataNode->first_node("chunk") != nullptr) {
 		for (rapidxml::xml_node<>* chunkNode = dataNode->first_node("chunk"); chunkNode != nullptr; chunkNode = chunkNode->next_sibling("chunk")) {
@@ -219,9 +226,13 @@ std::vector<std::vector<int>> getLayerData(rapidxml::xml_node<>* layerNode) {
 			int col = 0;
 
 			while (std::getline(ss, token, ',')) {
-				int gid = std::atoi(token.c_str());
+				TileInfo tile;
+				ba::IDtype gid = static_cast<IDtype>(std::atoi(token.c_str()));
 				if (gid != 0) {
-					tileGIDs.at(row+Y).at(col+X) = gid;
+					r_tiles.push_back({TileInfo{
+						gid,
+						{col+X, row+Y}
+					}});
 				}
 				++col;
 				if (col == WIDTH) {
@@ -238,9 +249,12 @@ std::vector<std::vector<int>> getLayerData(rapidxml::xml_node<>* layerNode) {
 		int row = 0;
 		int col = 0;
 		while(std::getline(ss, token, ',')) {
-			int gid = std::atoi(token.c_str());
+			IDtype gid = static_cast<IDtype>(std::atoi(token.c_str()));
 			if (gid != 0) {
-				tileGIDs.at(row).at(col) = gid;
+				r_tiles.push_back(TileInfo{
+					gid,
+					{col, row}
+				});
 			}
 			++col;
 			if (col == W) {
@@ -250,7 +264,7 @@ std::vector<std::vector<int>> getLayerData(rapidxml::xml_node<>* layerNode) {
 		}
 	}
 	
-	return tileGIDs;
+	return r_tiles;
 }
 
 } // anonymous namespace
