@@ -17,9 +17,6 @@ void KeyboardInput::handleEvents() {
 	m_prevKeys.swap(m_currKeys);
 
 	const std::uint8_t* keys = SDL_GetKeyboardState(&m_numKeys);
-	if (m_numKeys != m_currKeys.size()) {
-		m_currKeys.resize(m_numKeys, false);
-	}
 
 	for(int i = 0; i < m_numKeys; ++i) {
 		m_currKeys.at(i) = keys[i] > 0 ? true : false;

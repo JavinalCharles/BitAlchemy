@@ -104,11 +104,11 @@ void Window::drawPoint(const Vector2f& point, Color pc) {
 	Color cb; // Color buffer
 	Vector2f sc = m_view.mapToView(point);
 	SDL_Point points[] = {
-		SDL_Point{sc.x, sc.y},
-		SDL_Point{sc.x+1, sc.y},
-		SDL_Point{sc.x-1, sc.y},
-		SDL_Point{sc.x, sc.y+1},
-		SDL_Point{sc.x, sc.y-1}
+		SDL_Point{static_cast<int>(sc.x), 	static_cast<int>(sc.y)},
+		SDL_Point{static_cast<int>(sc.x)+1, static_cast<int>(sc.y)},
+		SDL_Point{static_cast<int>(sc.x)-1, static_cast<int>(sc.y)},
+		SDL_Point{static_cast<int>(sc.x), 	static_cast<int>(sc.y)+1},
+		SDL_Point{static_cast<int>(sc.x), 	static_cast<int>(sc.y)-1}
 	};
 
 	SDL_GetRenderDrawColor(m_renderer, &cb.r, &cb.g, &cb.b, &cb.a);

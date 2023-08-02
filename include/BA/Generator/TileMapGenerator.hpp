@@ -16,6 +16,7 @@
 #include "BA/ResourceManager.hpp"
 #include "BA/Utilities/Vector2.hpp"
 #include "BA/Utilities/Rect.hpp"
+#include "BA/Types.hpp"
 
 #include <rapidxml/rapidxml.hpp>
 #include <rapidxml/rapidxml_utils.hpp>
@@ -28,7 +29,12 @@ struct TileData {
 	IDtype 		gid;
 	IDtype 		textureID;
 	IntRect 	textureRect;
-}; // TileData
+}; // struct TileData
+
+struct TileInfo {
+	IDtype		gid;
+	Vector2i	pos;
+}; // struct TileInfo
 
 using TileSet = std::unordered_map<IDtype, TileData>;
 
