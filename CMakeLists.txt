@@ -15,7 +15,9 @@ set(SOURCES
 	src/BA/Components/Colliders/Collider.cpp
 	src/BA/Components/Animation.cpp
 	src/BA/Components/Component.cpp
+	src/BA/Components/Collidable.cpp
 	src/BA/Components/Drawable.cpp
+	src/BA/Components/FunctionalCollidable.cpp
 	src/BA/Components/KeyboardControl.cpp
 	src/BA/Components/MouseControl.cpp
 	src/BA/Components/Sprite.cpp

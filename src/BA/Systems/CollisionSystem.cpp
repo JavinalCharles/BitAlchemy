@@ -90,10 +90,31 @@ void CollisionSystem::detectCollisions() {
 			}
 		}
 	}
+
+	for (auto& p : m_collisions) {
+		auto p1_collidable = getEntity(p.first)->getComponent<Collidable>();
+		auto p2_collidable = getEntity(p.second)->getComponent<Collidable>();
+		if (p1_collidable != nullptr) {
+			p1_collidable->onCollisionEnter(p.second);
+		}
+		if (p2_collidable != nullptr) {
+			p2_collidable->onCollisionEnter(p.first);
+		}
+	}
 }
 
 void CollisionSystem::processCollisions() {
 	// TODO: Collision Behaviors
+	for (auto& p : m_collisions) {
+		auto p1_collidable = getEntity(p.first)->getComponent<Collidable>();
+		auto p2_collidable = getEntity(p.second)->getComponent<Collidable>();
+		if (p1_collidable != nullptr) {
+			p1_collidable->onCollisionStay(p.second);
+		}
+		if (p2_collidable != nullptr) {
+			p2_collidable->onCollisionStay(p.first);
+		}
+	}
 }
 
 namespace {
@@ -144,6 +165,16 @@ void CollisionSystem::resolveCollisions() {
 			i_collider->getOwner()->move(measureDisplacement(iBounds, rect.value()) * 0.5f);
 			j_collider->getOwner()->move(measureDisplacement(jBounds, rect.value()) * 0.5f);
 		}
+
+		auto p1_collidable = getEntity(collision.first)->getComponent<Collidable>();
+		auto p2_collidable = getEntity(collision.second)->getComponent<Collidable>();
+		if (p1_collidable != nullptr) {
+			p1_collidable->onCollisionExit(collision.second);
+		}
+		if (p2_collidable != nullptr) {
+			p2_collidable->onCollisionExit(collision.first);
+		}
+
 	}
 
 	m_collisions.clear();
