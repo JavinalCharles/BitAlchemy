@@ -38,12 +38,13 @@ void CollisionSystem::remove(IDtype entityID) {
 }
 
 void CollisionSystem::update(float) {
-	processCollisions();
-	resolveCollisions();
+	
 }
 
 void CollisionSystem::postUpdate(float) {	
 	detectCollisions();
+	processCollisions();
+	resolveCollisions();
 }
 
 void CollisionSystem::addCollisionLayer(IDtype layer, const std::bitset<128>& collisionBitmask) {
@@ -124,14 +125,14 @@ namespace {
 
 		if(std::fabs(xDiff) > std::fabs(yDiff)){
 			return Vector2f {
-				(xDiff > 0) ? ((r2.l + r2.w) - r1.l) : -((r1.l + r1.w) - r2.l),
+				(xDiff > 0) ? ((r2.l + r2.w) - r1.l) + 1.f : -((r1.l + r1.w) - r2.l) - 1.f,
 				0.f
 			};
 		}
 		else {
 			return Vector2f {
 				0.f,
-				(yDiff > 0) ? ((r2.t + r2.h) - r1.t) : -((r1.t + r1.h) - r2.t)
+				(yDiff > 0) ? ((r2.t + r2.h) - r1.t) + 1.f : -((r1.t + r1.h) - r2.t) - 1.f
 			};
 		}
 	}
@@ -142,28 +143,42 @@ void CollisionSystem::resolveCollisions() {
 		auto i_collider = m_entities->at(collision.first)->getCollider();
 		auto j_collider = m_entities->at(collision.second)->getCollider();
 
-		FloatRect iBounds = i_collider->getGlobalBounds();
-		FloatRect jBounds = j_collider->getGlobalBounds();
-
-		std::optional<FloatRect> rect = iBounds.intersects(jBounds);
-
-		if(!rect.has_value())
-			continue;
 		const bool iStatic = i_collider->getOwner()->isStatic();
 		const bool jStatic = j_collider->getOwner()->isStatic();
 
 		if(!iStatic && jStatic) {
-			// std::clog << "non-static vs static" << std::endl;
-			i_collider->getOwner()->move(measureDisplacement(iBounds, rect.value()));
+			FloatRect j_bounds = j_collider->getGlobalBounds();
+			while (i_collider->isColliding(j_collider)) {
+				FloatRect i_bounds = i_collider->getGlobalBounds();
+				std::optional<FloatRect> intersection = i_bounds.intersects(j_bounds);
+				if (!intersection.has_value()) {
+					break;
+				}
+				i_collider->getOwner()->move(measureDisplacement(i_bounds, j_bounds));
+			}
 		}
 		else if (iStatic && !jStatic) {
-			// std::clog << "static vs non-static" << std::endl;
-			j_collider->getOwner()->move(measureDisplacement(jBounds, rect.value()));
+			FloatRect i_bounds = j_collider->getGlobalBounds();
+			while(j_collider->isColliding(i_collider)) {
+				FloatRect j_bounds = i_collider->getGlobalBounds();
+				std::optional<FloatRect> intersection = j_bounds.intersects(i_bounds);
+				if (!intersection.has_value()) {
+					break;
+				}
+				j_collider->getOwner()->move(measureDisplacement(j_bounds, i_bounds));
+			}
 		}
 		else if (!iStatic && !jStatic) {
-			std::clog << "static vs static" << std::endl;
-			i_collider->getOwner()->move(measureDisplacement(iBounds, rect.value()) * 0.5f);
-			j_collider->getOwner()->move(measureDisplacement(jBounds, rect.value()) * 0.5f);
+			while(i_collider->isColliding(j_collider)) {
+				FloatRect i_bounds = i_collider->getGlobalBounds();
+				FloatRect j_bounds = j_collider->getGlobalBounds();
+				std::optional<FloatRect> intersection = i_bounds.intersects(j_bounds);
+				if (!intersection.has_value()) {
+					break;
+				}
+				i_collider->getOwner()->move(measureDisplacement(i_bounds, j_bounds) * 0.5f);
+				j_collider->getOwner()->move(measureDisplacement(j_bounds, i_bounds) * 0.5f);
+			}
 		}
 
 		auto p1_collidable = getEntity(collision.first)->getComponent<Collidable>();
