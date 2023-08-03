@@ -14,17 +14,19 @@
 namespace ba {
 
 using FrameAction = std::function<void(void)>;
+using SequenceAction = std::function<void(void)>;
 
 struct Frame {
 	IDtype								textureID;
 	IntRect 							textureRect;
 	float								displaySeconds;
-	std::forward_list<FrameAction>		actions;
+	std::forward_list<FrameAction>		actions{};
 }; // struct Frame
 
 struct Sequence {
-	std::vector<Frame>	frames;
-	bool 				looped = false;
+	std::vector<Frame>					frames;
+	std::forward_list<SequenceAction>	actions{};
+	bool 								looped = false;
 }; // struct Sequence
 
 class Animation : public Component {
@@ -44,6 +46,7 @@ public:
 	void addFrame(IDtype animationID, const Frame& frame);
 	void addFrameAction(IDtype animationID, std::size_t frameIndex, const FrameAction& frameAction);
 
+	void addSequenceAction(IDtype animationID, const SequenceAction& sequenceAction);
 
 	IDtype getCurrentAnimationID() const;
 	const Sequence& getCurrentSequence() const;

@@ -18,8 +18,6 @@ public:
 
 	virtual bool isColliding(std::shared_ptr<Collider>& other) = 0;
 
-
-
 	virtual FloatRect getLocalBounds() const = 0;
 	virtual FloatRect getGlobalBounds() const = 0;
 

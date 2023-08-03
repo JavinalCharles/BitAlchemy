@@ -82,6 +82,13 @@ void Animation::set(IDtype animationID) {
 	m_currentFrameTime = 0.f;
 }
 
+void Animation::addSequenceAction(IDtype animationID, const SequenceAction& sequenceAction) {
+	if (!m_animationMap.contains(animationID)) {
+		throw std::invalid_argument("INVALID! No matching animation ID found.");
+	}
+	m_animationMap.at(animationID).actions.push_front(sequenceAction);
+}
+
 IDtype Animation::getCurrentAnimationID() const {
 	return m_currentAnimation;
 }

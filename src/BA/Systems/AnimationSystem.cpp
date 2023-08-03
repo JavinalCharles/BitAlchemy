@@ -35,7 +35,14 @@ void AnimationSystem::postUpdate(float deltaTime) {
 					for(auto& action : s.frames[a->m_currentFrame].actions) {
 						action();
 					}
-				}		
+				}
+
+				if (a->m_currentFrame == 0 && !s.actions.empty()) {
+					for (auto& action : s.actions) {
+						action();
+					}
+				}
+
 			}
 		}
 	}
