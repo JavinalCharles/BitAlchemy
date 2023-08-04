@@ -72,7 +72,7 @@ endif()
 endif()
 
 target_compile_options(compiler_flags INTERFACE
-  "$<${gcc_like_cxx}:$<BUILD_INTERFACE:-Wall;-Wextra;-Wshadow;-Wformat=2;-Wunused>>"
+  "$<${gcc_like_cxx}:$<BUILD_INTERFACE:-Wall;-Wextra;-Wshadow;-Wformat=2;-Wunused;-O3>>"
   "$<${msvc_cxx}:$<BUILD_INTERFACE:-W3>>"
 )
 

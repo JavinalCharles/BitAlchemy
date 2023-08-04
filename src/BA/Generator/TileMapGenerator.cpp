@@ -107,6 +107,43 @@ std::vector<std::shared_ptr<Entity>> parseMap(const std::string& tmxFileName, co
 	return r_entities;
 }
 
+std::vector<std::pair<int, Vector2f>> getObjects(const std::string& tmxFileName) {
+	std::vector<std::pair<int, Vector2f>> result;
+	std::string xml{getXMLdata(tmxFileName)};
+	char c_data[xml.size()+1];
+	strncpy(c_data, xml.c_str(), xml.size()+1);
+
+	rapidxml::xml_document<> doc;
+	doc.parse<0>(c_data);
+	rapidxml::xml_node<>* node = doc.first_node("map");
+	if (node == nullptr) {
+		return result;
+	}
+	rapidxml::xml_node<>* ogNode = node->first_node("objectgroup");
+	while (ogNode != nullptr) {
+		rapidxml::xml_node<>* objectNode = ogNode->first_node("object");
+		while (objectNode != nullptr) {
+			if (objectNode->first_attribute("id") == nullptr || objectNode->first_attribute("x") == nullptr || objectNode->first_attribute("y") == nullptr) {
+				objectNode = objectNode->next_sibling("object");
+				continue;
+			}
+
+			result.push_back(std::make_pair(
+				std::atoi(objectNode->first_attribute("id")->value()),
+				Vector2f {
+					std::atof(objectNode->first_attribute("x")->value()),
+					std::atof(objectNode->first_attribute("y")->value())
+				}
+			));
+
+			objectNode = objectNode->next_sibling("object");
+		}
+
+		ogNode = ogNode->next_sibling("objectgroup");
+	}
+
+	return result;
+}
 
 TileSet generateTileSet(int firstgid, const std::string& tsxFile, ResourceManager* resources) {
 	int gid = firstgid;

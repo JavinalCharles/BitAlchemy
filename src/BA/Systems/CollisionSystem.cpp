@@ -27,6 +27,10 @@ void CollisionSystem::add(std::shared_ptr<Entity>& entity) {
 	else {
 		this->m_entityIDs.insert(entity->ID);
 	}
+	IDtype layer = collider->getLayer();
+	if (!m_collisionLayers.contains(layer)) {
+		this->addCollisionLayer(layer);
+	}
 }
 
 void CollisionSystem::remove(IDtype entityID) {
@@ -70,6 +74,7 @@ void CollisionSystem::detectCollisions() {
 		auto i_collider = m_entities->at(ID)->getCollider();
 		unsigned i_layer = i_collider->getLayer();
 		auto staticSearched = m_staticColliderTree.search(i_collider->getGlobalBounds());
+		// Check for collision with static objects;
 		for(auto& j_collider : staticSearched) {
 			unsigned j_layer = j_collider->getLayer();
 			if(m_collisionLayers.at(i_layer)[j_layer]) {
@@ -78,10 +83,9 @@ void CollisionSystem::detectCollisions() {
 				}	
 			}
 		}
-
+		// Check for collision with non-static objects;
 		for(IDtype j_ID : m_entityIDs) {
 			if (j_ID == ID) continue;
-
 			auto j_collider = m_entities->at(j_ID)->getCollider();
 			unsigned j_layer = j_collider->getLayer();
 			if(m_collisionLayers.at(i_layer)[j_layer]) {
@@ -123,17 +127,18 @@ namespace {
 		float xDiff = (r1.l + (r1.w * 0.5f)) - (r2.l + (r2.w * 0.5f));
 		float yDiff = (r1.t + (r1.h * 0.5f)) - (r2.t + (r2.h * 0.5f));
 
-		if(std::fabs(xDiff) > std::fabs(yDiff)){
-			return Vector2f {
-				(xDiff > 0) ? ((r2.l + r2.w) - r1.l) + 1.f : -((r1.l + r1.w) - r2.l) - 1.f,
-				0.f
-			};
-		}
-		else {
+		if(std::fabs(yDiff) > std::fabs(xDiff)){
 			return Vector2f {
 				0.f,
 				(yDiff > 0) ? ((r2.t + r2.h) - r1.t) + 1.f : -((r1.t + r1.h) - r2.t) - 1.f
 			};
+		}
+		else {
+			return Vector2f {
+				(xDiff > 0) ? ((r2.l + r2.w) - r1.l) + 1.f : -((r1.l + r1.w) - r2.l) - 1.f,
+				0.f
+			};
+			
 		}
 	}
 }

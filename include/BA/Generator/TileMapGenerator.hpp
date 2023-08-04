@@ -39,6 +39,7 @@ struct TileInfo {
 using TileSet = std::unordered_map<IDtype, TileData>;
 
 std::vector<std::shared_ptr<Entity>> parseMap(const std::string& tmxFileName, const Vector2f& SCALE, SharedContext* context);
+std::vector<std::pair<int, Vector2f>> getObjects(const std::string& tmxFileName);
 
 TileSet generateTileSet(int firstgid, const std::string& tsxFile, ResourceManager* resources);
 
