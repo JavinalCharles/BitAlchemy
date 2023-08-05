@@ -15,6 +15,7 @@ public:
 
 	virtual bool isColliding(std::shared_ptr<Collider>& other) override;
 
+	virtual void resolve(const Vector2f& resolution) override;
 	virtual FloatRect getLocalBounds() const override;
 	virtual FloatRect getGlobalBounds() const override;
 private:

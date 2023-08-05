@@ -38,8 +38,11 @@ private:
 	void processCollisions();
 	void resolveCollisions();
 
+	void enterCollision(IDtype c1, IDtype c2);
+
 private:
 	Quadtree<Collider>	m_staticColliderTree;
+	Quadtree<Collider>	m_objectsColliderTree;
 
 	std::unordered_map<unsigned, std::bitset<128>> m_collisionLayers;
 

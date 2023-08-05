@@ -16,7 +16,7 @@ class ProgrammedAI : public AI {
 public:
 	ProgrammedAI(Entity* owner);
 
-	virtual void behave(float deltaTime);
+	virtual void behave(float deltaTime) override;
 
 	bool assignBindings(int id, const Condition& condition, const BehaviorList& behaviorList);
 	bool assignBindings(int id, const Condition& condition, const Behavior& behavior);

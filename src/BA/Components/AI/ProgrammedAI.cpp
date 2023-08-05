@@ -10,6 +10,7 @@ ProgrammedAI::ProgrammedAI(Entity* owner) :
 }
 
 void ProgrammedAI::behave(float deltaTime) {
+	// std::clog << "ProgrammedAI::behave();\n";;
 	for (auto& [k, v] : m_behaviorBindings) {
 		if (v.first(deltaTime)) {
 			for (auto& b : v.second) {

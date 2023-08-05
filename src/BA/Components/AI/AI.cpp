@@ -11,8 +11,4 @@ AI::AI(Entity* owner) :
 	
 }
 
-void AI::behave(float) {
-	
-}
-
 } // namespace ba

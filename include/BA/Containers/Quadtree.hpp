@@ -29,7 +29,6 @@ public:
 	const FloatRect& getBounds() const;
 
 	void drawBounds(Window& window);
-
 private:
 	void split();
 	int getChildIndexForObject(const FloatRect& objectBounds);

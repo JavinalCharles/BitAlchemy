@@ -7,13 +7,15 @@ namespace ba {
 
 CollisionSystem::CollisionSystem(EntityManager* entities) :
 	ComponentSystem(entities),
-	m_staticColliderTree(15, 8, 0, ba::FloatRect{0, 0, 9600, 4600})
+	m_staticColliderTree(15, 8, 0, ba::FloatRect{0, 0, 9600, 4600}),
+	m_objectsColliderTree(15, 8, 0, ba::FloatRect{0, 0, 9000, 4600})
 {
 
 }
 
 CollisionSystem::~CollisionSystem() {
 	m_staticColliderTree.clear();
+	m_objectsColliderTree.clear();
 	m_collisionLayers.clear();
 }
 
@@ -25,11 +27,10 @@ void CollisionSystem::add(std::shared_ptr<Entity>& entity) {
 		m_staticColliderTree.insert(collider);
 	}
 	else {
-		this->m_entityIDs.insert(entity->ID);
+		this->addID(entity->ID);
 	}
-	IDtype layer = collider->getLayer();
-	if (!m_collisionLayers.contains(layer)) {
-		this->addCollisionLayer(layer);
+	if (!m_collisionLayers.contains(collider->getLayer())) {
+		this->addCollisionLayer(collider->getLayer());
 	}
 }
 
@@ -45,7 +46,12 @@ void CollisionSystem::update(float) {
 	
 }
 
-void CollisionSystem::postUpdate(float) {	
+void CollisionSystem::postUpdate(float) {
+	m_objectsColliderTree.clear();
+	for (const IDtype& ID: getIDs()) {
+		auto collider = getEntity(ID)->getCollider();
+		m_objectsColliderTree.insert(collider);
+	}
 	detectCollisions();
 	processCollisions();
 	resolveCollisions();
@@ -73,39 +79,32 @@ void CollisionSystem::detectCollisions() {
 	for(IDtype ID : m_entityIDs) {
 		auto i_collider = m_entities->at(ID)->getCollider();
 		unsigned i_layer = i_collider->getLayer();
-		auto staticSearched = m_staticColliderTree.search(i_collider->getGlobalBounds());
+
 		// Check for collision with static objects;
+		auto staticSearched = m_staticColliderTree.search(i_collider->getGlobalBounds());
 		for(auto& j_collider : staticSearched) {
 			unsigned j_layer = j_collider->getLayer();
 			if(m_collisionLayers.at(i_layer)[j_layer]) {
 				if(i_collider->isColliding(j_collider)) {
-					m_collisions.push_back(std::make_pair(ID, j_collider->getOwner()->ID));
+					this->enterCollision(ID, j_collider->getOwner()->ID);
 				}	
 			}
-		}
+		} // end for each j_collider
+
 		// Check for collision with non-static objects;
-		for(IDtype j_ID : m_entityIDs) {
-			if (j_ID == ID) continue;
-			auto j_collider = m_entities->at(j_ID)->getCollider();
-			unsigned j_layer = j_collider->getLayer();
-			if(m_collisionLayers.at(i_layer)[j_layer]) {
-				if(i_collider->isColliding(j_collider)) {
-					m_collisions.push_back(std::make_pair(ID, j_collider->getOwner()->ID));
+		auto nonStaticSearched = m_objectsColliderTree.search(i_collider->getGlobalBounds());
+		for(auto& k_collider : nonStaticSearched) {
+			if (i_collider->getOwner()->ID == k_collider->getOwner()->ID) {
+				continue;	// Same object. Proceed to next iteration of this loop.
+			}
+			const unsigned k_layer = k_collider->getLayer();
+			if (m_collisionLayers.at(i_layer).test(k_layer)) {
+				if(i_collider->isColliding(k_collider)) {
+					this->enterCollision(ID, k_collider->getOwner()->ID);
 				}
 			}
-		}
-	}
-
-	for (auto& p : m_collisions) {
-		auto p1_collidable = getEntity(p.first)->getComponent<Collidable>();
-		auto p2_collidable = getEntity(p.second)->getComponent<Collidable>();
-		if (p1_collidable != nullptr) {
-			p1_collidable->onCollisionEnter(p.second);
-		}
-		if (p2_collidable != nullptr) {
-			p2_collidable->onCollisionEnter(p.first);
-		}
-	}
+		} // end for each k_collider
+	} // end for each ID
 }
 
 void CollisionSystem::processCollisions() {
@@ -127,19 +126,19 @@ namespace {
 		float xDiff = (r1.l + (r1.w * 0.5f)) - (r2.l + (r2.w * 0.5f));
 		float yDiff = (r1.t + (r1.h * 0.5f)) - (r2.t + (r2.h * 0.5f));
 
-		if(std::fabs(yDiff) > std::fabs(xDiff)){
+		if(std::fabs(xDiff) > std::fabs(yDiff)){
+			return Vector2f {
+				(xDiff > 0) ? ((r2.l + r2.w) - r1.l) + 1.f : -((r1.l + r1.w) - r2.l) - 1.f,
+				0.f
+			};
+		}
+		else {
 			return Vector2f {
 				0.f,
 				(yDiff > 0) ? ((r2.t + r2.h) - r1.t) + 1.f : -((r1.t + r1.h) - r2.t) - 1.f
 			};
 		}
-		else {
-			return Vector2f {
-				(xDiff > 0) ? ((r2.l + r2.w) - r1.l) + 1.f : -((r1.l + r1.w) - r2.l) - 1.f,
-				0.f
-			};
 			
-		}
 	}
 }
 
@@ -159,7 +158,7 @@ void CollisionSystem::resolveCollisions() {
 				if (!intersection.has_value()) {
 					break;
 				}
-				i_collider->getOwner()->move(measureDisplacement(i_bounds, j_bounds));
+				i_collider->resolve(measureDisplacement(i_bounds, j_bounds));
 			}
 		}
 		else if (iStatic && !jStatic) {
@@ -170,7 +169,7 @@ void CollisionSystem::resolveCollisions() {
 				if (!intersection.has_value()) {
 					break;
 				}
-				j_collider->getOwner()->move(measureDisplacement(j_bounds, i_bounds));
+				j_collider->resolve(measureDisplacement(j_bounds, i_bounds));
 			}
 		}
 		else if (!iStatic && !jStatic) {
@@ -181,8 +180,8 @@ void CollisionSystem::resolveCollisions() {
 				if (!intersection.has_value()) {
 					break;
 				}
-				i_collider->getOwner()->move(measureDisplacement(i_bounds, j_bounds) * 0.5f);
-				j_collider->getOwner()->move(measureDisplacement(j_bounds, i_bounds) * 0.5f);
+				i_collider->resolve(measureDisplacement(i_bounds, j_bounds) * 0.5f);
+				j_collider->resolve(measureDisplacement(j_bounds, i_bounds) * 0.5f);
 			}
 		}
 
@@ -198,6 +197,18 @@ void CollisionSystem::resolveCollisions() {
 	}
 
 	m_collisions.clear();
+}
+
+void CollisionSystem::enterCollision(IDtype c1, IDtype c2) {
+	m_collisions.push_back(std::make_pair(c1, c2));
+	auto c1_collidable = getEntity(c1)->getComponent<Collidable>();
+	auto c2_collidable = getEntity(c2)->getComponent<Collidable>();
+	if (c1_collidable != nullptr) {
+		c1_collidable->onCollisionEnter(c2);
+	}
+	if (c2_collidable != nullptr) {
+		c2_collidable->onCollisionEnter(c1);
+	}
 }
 
 } // namespace ba
