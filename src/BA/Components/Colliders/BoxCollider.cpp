@@ -30,6 +30,10 @@ bool BoxCollider::isColliding(std::shared_ptr<Collider>& other) {
 	return false;
 }
 
+void BoxCollider::resolve(const Vector2f& resolution) {
+	this->getOwner()->move(resolution);
+}
+
 FloatRect BoxCollider::getLocalBounds() const {
 	return FloatRect{{0.f, 0.f}, m_boxSize};
 }

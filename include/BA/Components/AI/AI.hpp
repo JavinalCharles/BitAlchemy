@@ -12,7 +12,7 @@ class AI : public Component {
 public:
 	AI(Entity* owner);
 
-	virtual void behave(float deltaTime); 
+	virtual void behave(float deltaTime) = 0;
 public:
 	static const IDtype CID;
 }; // class AI
