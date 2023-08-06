@@ -75,6 +75,14 @@ void CollisionSystem::unsetCollision(IDtype layer, IDtype otherLayer) {
 	m_collisionLayers.at(layer).set(otherLayer, false);
 }
 
+std::vector<std::shared_ptr<Collider>> CollisionSystem::searchStatic(const FloatRect& area) const {
+	return m_staticColliderTree.search(area);
+}
+
+std::vector<std::shared_ptr<Collider>> CollisionSystem::searchNonStatic(const FloatRect& area) const {
+	return m_objectsColliderTree.search(area);
+}
+
 void CollisionSystem::detectCollisions() {
 	for(IDtype ID : m_entityIDs) {
 		auto i_collider = m_entities->at(ID)->getCollider();

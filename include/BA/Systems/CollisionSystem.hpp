@@ -33,6 +33,9 @@ public:
 	void setCollision(IDtype layerID, IDtype otherLayer);
 	void unsetCollision(IDtype layerID, IDtype otherLayer);
 
+	std::vector<std::shared_ptr<Collider>> searchStatic(const FloatRect& area) const;
+	std::vector<std::shared_ptr<Collider>> searchNonStatic(const FloatRect& area) const;
+
 private:
 	void detectCollisions();
 	void processCollisions();

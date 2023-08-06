@@ -24,7 +24,7 @@ public:
 
 	void clear();
 	
-	std::vector<std::shared_ptr<T>> search(const FloatRect& area);
+	std::vector<std::shared_ptr<T>> search(const FloatRect& area) const;
 
 	const FloatRect& getBounds() const;
 
@@ -32,7 +32,7 @@ public:
 private:
 	void split();
 	int getChildIndexForObject(const FloatRect& objectBounds);
-	void search(const FloatRect& area, std::vector<std::shared_ptr<T>>& returnList);
+	void search(const FloatRect& area, std::vector<std::shared_ptr<T>>& returnList) const;
 
 	static const int thisTree = -1;
 	static const int childNE = 0;
@@ -157,7 +157,7 @@ void Quadtree<T>::clear() {
 }
 
 template <typename T>
-std::vector<std::shared_ptr<T>> Quadtree<T>::search(const FloatRect& area) {
+std::vector<std::shared_ptr<T>> Quadtree<T>::search(const FloatRect& area) const {
 	std::vector<std::shared_ptr<T>> res;
 
 	search(area, res);
@@ -166,7 +166,7 @@ std::vector<std::shared_ptr<T>> Quadtree<T>::search(const FloatRect& area) {
 }
 
 template <typename T>
-void Quadtree<T>::search(const FloatRect& area, std::vector<std::shared_ptr<T>>& returnList) {
+void Quadtree<T>::search(const FloatRect& area, std::vector<std::shared_ptr<T>>& returnList) const{
 	for (auto& [key, object] : m_objects) {
 		std::optional<FloatRect> intersection(object->getGlobalBounds().intersects(area));
 		if (intersection.has_value()) {
