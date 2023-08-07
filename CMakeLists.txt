@@ -48,6 +48,7 @@ set(SOURCES
 	src/BA/Systems/RenderSystem.cpp
 	src/BA/Systems/SoundSystem.cpp
 	src/BA/Systems/TimerSystem.cpp
+	src/BA/Systems/VelocityWithCollisionSystem.cpp
 	src/BA/Utilities/Transform.cpp
 	src/BA/Window/Window.cpp
 	src/BA/Window/View.cpp
