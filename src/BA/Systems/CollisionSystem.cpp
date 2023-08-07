@@ -162,9 +162,9 @@ void CollisionSystem::resolveCollisions() {
 			}
 		}
 		else if (iStatic && !jStatic) {
-			FloatRect i_bounds = j_collider->getGlobalBounds();
+			FloatRect i_bounds = i_collider->getGlobalBounds();
 			while(j_collider->isColliding(i_collider)) {
-				FloatRect j_bounds = i_collider->getGlobalBounds();
+				FloatRect j_bounds = j_collider->getGlobalBounds();
 				std::optional<FloatRect> intersection = j_bounds.intersects(i_bounds);
 				if (!intersection.has_value()) {
 					break;
