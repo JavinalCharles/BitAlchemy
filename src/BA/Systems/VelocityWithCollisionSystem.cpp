@@ -93,8 +93,45 @@ bool VelocityWithCollisionSystem::checkMostImmediateYRect(const FloatRect& i_BOU
 	return false;
 }
 
-void VelocityWithCollisionSystem::useContinuousCollisionDetection(std::shared_ptr<Collider>& collider, const Vector2f& displacemnt) {
-	// TODO
+void VelocityWithCollisionSystem::useContinuousCollisionDetection(std::shared_ptr<Collider>& collider, const Vector2f& displacement) {
+	auto e = collider->getOwner();
+	const IDtype& i_LAYER = collider->getLayer();
+	FloatRect i_bounds = collider->getGlobalBounds();
+	float oneStepDistance = getDistance(i_bounds.getPosition(), i_bounds.getPosition() + i_bounds.getArea()) / 2.f;
+	Vector2f targetTL = i_bounds.getPosition() + displacement;
+	float fullDistance = getDistance(i_bounds.getPosition(), targetTL);
+	float approximateSteps = fullDistance / oneStepDistance;
+
+	const Vector2f oneStepDisplacement{displacement / approximateSteps};
+	Vector2f remainingDisplacement{displacement};
+	const Vector2f ORIGIN{0.f, 0.f};
+
+
+	while (remainingDisplacement != ORIGIN) {
+		e->move(oneStepDisplacement);
+		i_bounds = collider->getGlobalBounds();
+		auto staticCollisions = m_staticColliderTree.search(i_bounds);
+		for (auto& j_collider : staticCollisions) {
+			const IDtype& j_LAYER = j_collider->getLayer();
+			if (m_collisionLayers.at(i_LAYER).test(j_LAYER) && collider->isColliding(j_collider)) {
+				collider->resolve(measureDisplacement(i_bounds, j_collider->getGlobalBounds()));
+				return;
+			}
+		}
+		// No collision detected. proceed to next step
+		if (remainingDisplacement.x != 0 && std::abs(oneStepDisplacement.x) > std::abs(remainingDisplacement.x)) {
+			remainingDisplacement.x = 0;
+		}
+		else {
+			remainingDisplacement.x -= oneStepDisplacement.x;
+		}
+		if (remainingDisplacement.y != 0 && std::abs(oneStepDisplacement.y) > std::abs(remainingDisplacement.y)) {
+			remainingDisplacement.y = 0;
+		}
+		else {
+			remainingDisplacement.y -= oneStepDisplacement.y;
+		}
+	}
 }
 
 void VelocityWithCollisionSystem::update(float deltaTime) {
