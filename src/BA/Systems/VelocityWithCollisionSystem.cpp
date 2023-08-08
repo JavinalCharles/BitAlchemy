@@ -63,7 +63,39 @@ namespace {
 		}
 		return result;
 	}
+
+	float getDistance(const Vector2f& A, const Vector2f& B) {
+		return std::sqrt(std::pow(A.x - B.x, 2.f) + std::pow(A.y - B.y, 2.f));
+	}
 } // Anonymous namespace
+
+bool VelocityWithCollisionSystem::checkMostImmediateXRect(const FloatRect& i_BOUNDS, const IDtype& i_LAYER, float xDisplacement) {
+	FloatRect xBound = get1PixelXDisplacementRect(i_BOUNDS, xDisplacement);
+	auto staticCollisions = m_staticColliderTree.search(xBound);
+	for (auto& j_collider : staticCollisions) {
+		const unsigned j_LAYER = j_collider->getLayer();
+		if (m_collisionLayers.at(i_LAYER).test(j_LAYER)) {
+			return true;
+		}
+	}
+	return false;
+}
+
+bool VelocityWithCollisionSystem::checkMostImmediateYRect(const FloatRect& i_BOUNDS, const IDtype& i_LAYER, float yDisplacement) {
+	FloatRect yBound = get1PixelYDisplacementRect(i_BOUNDS, yDisplacement);
+	auto staticCollisions = m_staticColliderTree.search(yBound);
+	for (auto& k_collider : staticCollisions) {
+		const unsigned k_LAYER = k_collider->getLayer();
+		if (m_collisionLayers.at(i_LAYER).test(k_LAYER)) {
+			return true;
+		}
+	}
+	return false;
+}
+
+void VelocityWithCollisionSystem::useContinuousCollisionDetection(std::shared_ptr<Collider>& collider, const Vector2f& displacemnt) {
+	// TODO
+}
 
 void VelocityWithCollisionSystem::update(float deltaTime) {
 	for (const IDtype& ID : m_nonCollidingEntityIDs) {
@@ -79,30 +111,28 @@ void VelocityWithCollisionSystem::update(float deltaTime) {
 		const FloatRect i_BOUNDS = i_collider->getGlobalBounds();
 
 		Vector2f displacement = velocity->get() * deltaTime;
-		if (displacement.x != 0.f) {
-			FloatRect xBound = get1PixelXDisplacementRect(i_BOUNDS, displacement.x);
-			auto staticCollisions = m_staticColliderTree.search(xBound);
-			for (auto& j_collider : staticCollisions) {
-				const unsigned j_LAYER = j_collider->getLayer();
-				if (m_collisionLayers.at(i_LAYER).test(j_LAYER)) {
-					displacement.x = 0.f;
-					break;
-				}
-			}
+		if (displacement.x != 0.f && checkMostImmediateXRect(i_BOUNDS, i_LAYER, displacement.x)) {
+			displacement.x = 0.f;
 		}
-		if (displacement.y != 0.f) {
-			FloatRect yBound = get1PixelYDisplacementRect(i_BOUNDS, displacement.y);
-			auto staticCollisions = m_staticColliderTree.search(yBound);
-			for (auto& k_collider : staticCollisions) {
-				const unsigned k_LAYER = k_collider->getLayer();
-				if (m_collisionLayers.at(i_LAYER).test(k_LAYER)) {
-					displacement.y = 0.f;
-					break;
-				}
-			}
+		if (displacement.y != 0.f && checkMostImmediateYRect(i_BOUNDS, i_LAYER, displacement.y)) {
+			displacement.y = 0.f;
+		}
+		if (displacement.x == 0.f && displacement.y == 0.f) {
+			continue;
 		}
 
-		e->move(displacement);
+		const float maxDistance = getDistance(i_BOUNDS.getPosition(), i_BOUNDS.getArea());
+
+		Vector2f projectedTopLeft{
+			i_BOUNDS.l + displacement.x,
+			i_BOUNDS.t + displacement.y
+		};
+		if (getDistance(i_BOUNDS.getPosition(), projectedTopLeft) <= maxDistance) {
+			e->move(displacement);
+		}
+		else {
+
+		}
 	}
 
 	m_objectsColliderTree.clear();

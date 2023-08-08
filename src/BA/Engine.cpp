@@ -39,8 +39,8 @@ void Engine::init() {
 }
 
 void Engine::run() {
-	const std::uint64_t CPS = SDL_GetPerformanceFrequency();
-	const float FPS = CPS / 60.f;
+	const std::uint64_t COUNTS_PER_SECOND = SDL_GetPerformanceFrequency();
+	const float COUNTS_PER_FRAME = COUNTS_PER_SECOND / 60.f;
 
 	std::uint64_t NOW = SDL_GetPerformanceCounter();
 	std::uint64_t LAST = 0;
@@ -48,15 +48,12 @@ void Engine::run() {
 
 	do {
 		LAST = NOW;
-		NOW = SDL_GetPerformanceCounter();
-
-		elapsedTime = NOW - LAST;
-		while(elapsedTime < FPS) {
+		do {
 			NOW = SDL_GetPerformanceCounter();
 			elapsedTime = NOW - LAST;
-		}
+		} while(elapsedTime < COUNTS_PER_FRAME);
 
-		float deltaTime = elapsedTime / static_cast<float>(CPS);
+		float deltaTime = elapsedTime / static_cast<float>(COUNTS_PER_SECOND);
 
 		this->handleEvents();
 
