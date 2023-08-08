@@ -37,6 +37,11 @@ private:
 
 	void enterCollision(IDtype c1, IDtype c2);
 
+	void useContinuousCollisionDetection(std::shared_ptr<Collider>& collider, const Vector2f& displacement);
+
+	bool checkMostImmediateXRect(const FloatRect& i_BOUNDS, const IDtype& i_LAYER, float xDisplacement);
+	bool checkMostImmediateYRect(const FloatRect& i_BOUNDS, const IDtype& i_LAYER, float yDisplacement);
+
 private:
 	Quadtree<Collider>	m_staticColliderTree;
 	Quadtree<Collider>	m_objectsColliderTree;

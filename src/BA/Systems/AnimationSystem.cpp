@@ -21,7 +21,11 @@ void AnimationSystem::postUpdate(float deltaTime) {
 
 		const Sequence& s = a->getCurrentSequence();
 
-		if((s.frames.size() > 1) && (s.looped || a->m_currentFrame < s.frames.size() - 1)) {
+		if (s.frames.size() <= 1) {
+			continue;
+		}
+
+		if(s.looped || a->m_currentFrame < s.frames.size() - 1) {
 			a->m_currentFrameTime += deltaTime;
 
 			if(a->m_currentFrameTime >= s.frames[a->m_currentFrame].displaySeconds) {
@@ -42,7 +46,11 @@ void AnimationSystem::postUpdate(float deltaTime) {
 						action();
 					}
 				}
-
+			}
+		}
+		else if (a->m_currentFrame == s.frames.size() - 1) {
+			for (auto& sequenceAction : s.actions) {
+				sequenceAction();
 			}
 		}
 	}
