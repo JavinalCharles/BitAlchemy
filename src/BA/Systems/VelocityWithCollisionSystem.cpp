@@ -108,28 +108,37 @@ void VelocityWithCollisionSystem::useContinuousCollisionDetection(std::shared_pt
 
 
 	while (remainingDisplacement != ORIGIN) {
-		e->move(oneStepDisplacement);
+		Vector2f thisStepMovement;
+		if (remainingDisplacement.x != 0.f && std::abs(oneStepDisplacement.x) > std::abs(remainingDisplacement.x)) {
+			thisStepMovement.x = remainingDisplacement.x;
+			remainingDisplacement.x = 0.f;
+		}
+		else {
+			thisStepMovement.x = oneStepDisplacement.x;
+			remainingDisplacement.x -= oneStepDisplacement.x;
+		}
+		if (remainingDisplacement.y != 0.f && std::abs(oneStepDisplacement.y) > std::abs(remainingDisplacement.y)) {
+			thisStepMovement.y = remainingDisplacement.y;
+			remainingDisplacement.y = 0.f;
+		}
+		else {
+			thisStepMovement.y = oneStepDisplacement.y;
+			remainingDisplacement.y -= oneStepDisplacement.y;
+		}
+
+		e->move(thisStepMovement);
 		i_bounds = collider->getGlobalBounds();
 		auto staticCollisions = m_staticColliderTree.search(i_bounds);
+		bool hasCollided = false;
 		for (auto& j_collider : staticCollisions) {
 			const IDtype& j_LAYER = j_collider->getLayer();
 			if (m_collisionLayers.at(i_LAYER).test(j_LAYER) && collider->isColliding(j_collider)) {
-				collider->resolve(measureDisplacement(i_bounds, j_collider->getGlobalBounds()));
-				return;
+				this->enterCollision(e->ID, j_collider->getOwner()->ID);
+				hasCollided = true;
 			}
 		}
-		// No collision detected. proceed to next step
-		if (remainingDisplacement.x != 0 && std::abs(oneStepDisplacement.x) > std::abs(remainingDisplacement.x)) {
-			remainingDisplacement.x = 0;
-		}
-		else {
-			remainingDisplacement.x -= oneStepDisplacement.x;
-		}
-		if (remainingDisplacement.y != 0 && std::abs(oneStepDisplacement.y) > std::abs(remainingDisplacement.y)) {
-			remainingDisplacement.y = 0;
-		}
-		else {
-			remainingDisplacement.y -= oneStepDisplacement.y;
+		if (hasCollided) {
+			return;
 		}
 	}
 }
@@ -158,7 +167,7 @@ void VelocityWithCollisionSystem::update(float deltaTime) {
 			continue;
 		}
 
-		const float maxDistance = getDistance(i_BOUNDS.getPosition(), i_BOUNDS.getArea());
+		const float maxDistance = getDistance(i_BOUNDS.getPosition(), i_BOUNDS.getPosition() + i_BOUNDS.getArea());
 
 		Vector2f projectedTopLeft{
 			i_BOUNDS.l + displacement.x,
@@ -168,7 +177,8 @@ void VelocityWithCollisionSystem::update(float deltaTime) {
 			e->move(displacement);
 		}
 		else {
-
+			std::clog << "Using Continious Collision Detection.\n";
+			this->useContinuousCollisionDetection(i_collider, displacement);
 		}
 	}
 
@@ -353,6 +363,24 @@ void VelocityWithCollisionSystem::enterCollision(IDtype c1, IDtype c2) {
 	if (c2_collidable != nullptr) {
 		c2_collidable->onCollisionEnter(c1);
 	}
+}
+
+void VelocityWithCollisionSystem::remove(IDtype entityID) {
+	auto e = getEntity(entityID);
+	auto collider = e->getCollider();
+	auto velocity = e->getComponent<Velocity>();
+	if (collider != nullptr){
+		if (e->isStatic() || velocity == nullptr) {
+			m_staticColliderTree.remove(collider);
+		}
+		else {
+			m_objectsColliderTree.remove(collider);
+		}
+	}
+	else {
+		m_nonCollidingEntityIDs.erase(entityID);
+	}
+	ComponentSystem::remove(entityID);
 }
 
 } // namespace ba

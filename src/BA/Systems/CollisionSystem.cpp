@@ -35,11 +35,14 @@ void CollisionSystem::add(std::shared_ptr<Entity>& entity) {
 }
 
 void CollisionSystem::remove(IDtype entityID) {
-	if(m_entityIDs.contains(entityID)) {
-		m_entityIDs.erase(entityID);
-		return;
+	auto e = getEntity(entityID);
+	auto collider = e->getCollider();
+
+	if(e->isStatic()) {
+		m_staticColliderTree.remove(collider);
 	}
-	m_staticColliderTree.remove(m_entities->at(entityID)->getCollider());
+
+	ComponentSystem::remove(entityID);
 }
 
 void CollisionSystem::update(float) {

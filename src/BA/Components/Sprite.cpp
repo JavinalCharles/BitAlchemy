@@ -11,12 +11,11 @@ Sprite::Sprite(ba::Entity* owner, IDtype drawLayer, IDtype sortOrder) :
 }
 
 void Sprite::draw(Window& window) {
-	if (m_textureID == 0)
-		return;
+	if (m_textureID != 0) {
+		SDL_Texture* texture = getOwner()->CONTEXT->resources->getTexture(m_textureID);
+		window.draw(texture, m_textureRect, this->getGlobalBounds(), m_owner->getRotation());
+	}
 
-	SDL_Texture* texture = getOwner()->CONTEXT->resources->getTexture(m_textureID);
-	window.draw(texture, m_textureRect, this->getGlobalBounds(), m_owner->getRotation());
-	
 	// window.drawRect(this->getGlobalBounds(), Color::Yellow);
 
 	auto collider = getOwner()->getCollider();
@@ -24,7 +23,7 @@ void Sprite::draw(Window& window) {
 		window.drawRect(collider->getGlobalBounds(), Color::Blue);
 	}
 
-	window.drawPoint(getOwner()->getPosition(), Color::Green);
+	// window.drawPoint(getOwner()->getPosition(), Color::Green);
 }
 
 bool Sprite::hasTexture() const {
