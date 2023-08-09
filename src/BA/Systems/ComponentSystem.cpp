@@ -25,7 +25,9 @@ void ComponentSystem::add(std::vector<std::shared_ptr<Entity>>& entities) {
 }
 
 void ComponentSystem::remove(IDtype entityID) {
-	m_entityIDs.extract(entityID);
+	if (m_entityIDs.contains(entityID)) {
+		m_entityIDs.extract(entityID);
+	}
 }
 
 std::shared_ptr<Entity> ComponentSystem::getEntity(IDtype id) const {

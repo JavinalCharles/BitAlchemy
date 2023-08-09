@@ -23,8 +23,7 @@ public:
 	~CollisionSystem();
 
 	virtual void add(std::shared_ptr<Entity>& entity);
-
-	void remove(IDtype entityID);
+	virtual void remove(IDtype entityID) override;
 
 	virtual void update(float deltaTime) override;
 	virtual void postUpdate(float deltaTime) override;

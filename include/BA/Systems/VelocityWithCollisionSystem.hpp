@@ -28,6 +28,7 @@ public:
 	void setCollision(IDtype layerID, IDtype otherLayer);
 	void unsetCollision(IDtype layerID, IDtype otherLayer);
 
+	virtual void remove(IDtype entityID) override;
 private:
 	// HELPER METHODS
 	void detectCollisions();
