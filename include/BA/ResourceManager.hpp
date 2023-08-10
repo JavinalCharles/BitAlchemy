@@ -10,6 +10,10 @@
 #include <SDL2/SDL_mixer.h>
 #include <SDL2/SDL_ttf.h>
 
+#ifdef _WIN32
+#include <shlobj.h>
+#endif
+
 #include <BA/Types.hpp>
 
 using std::filesystem::path;

@@ -17,12 +17,11 @@ void TimerSystem::update(float deltaTime) {
 		auto& m = t->getTimedActions();
 
 		auto i = m.begin();
-		while (i != m.end()) {
-			i->second.elapsedTime += deltaTime;
+		while (i != m.end()) {	
 			if (i->second.elapsedTime >= i->second.timeToActivate) {
 				i->second.action();
 				if(i->second.isLoop) {
-					i->second.elapsedTime = 0.f;
+					i->second.elapsedTime = 0.f + deltaTime;
 					++i;
 				}
 				else {
@@ -30,6 +29,7 @@ void TimerSystem::update(float deltaTime) {
 				}
 			}
 			else {
+				i->second.elapsedTime += deltaTime;
 				++i;
 			}
 		}

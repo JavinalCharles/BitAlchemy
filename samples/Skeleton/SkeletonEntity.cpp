@@ -125,7 +125,9 @@ SkeletonEntity::SkeletonEntity(SharedContext* context) :
 	anime->add(IdleLeft, idleLeftSequence);
 	anime->set(idleRightID);
 
-	auto setVerticalWalkAnimation = std::bind([anime, WalkLeft, WalkRight, IdleLeft, IdleRight](){
+	auto ki = this->CONTEXT->inputs->getInput<ba::KeyboardInput>();
+
+	auto setVerticalWalkAnimation = std::bind([anime](){
 		switch(anime->getCurrentAnimationID()) {
 			case WalkLeft:
 			case WalkRight:
@@ -139,18 +141,53 @@ SkeletonEntity::SkeletonEntity(SharedContext* context) :
 		}
 	});
 
+	auto stopMoving = std::bind([anime, vel, ki]() {
+		bool hasVelocity = false;
+		if (!ki->isKeyActive(SDLK_a) && !ki->isKeyActive(SDLK_d)) {
+			vel->setX(0.f);
+		}
+		else {
+			hasVelocity = true;
+		}
+		if (!ki->isKeyActive(SDLK_w) && !ki->isKeyActive(SDLK_s)) {
+			vel->setY(0.f);
+		}
+		else {
+			hasVelocity = true;
+		}
+
+		if (hasVelocity) {
+			return;
+		}
+
+		const ba::IDtype CURR = anime->getCurrentAnimationID();
+
+		if (CURR == WalkLeft) {
+			anime->set(IdleLeft);
+		}
+		else if (CURR == WalkRight) {
+			anime->set(IdleRight);
+		}
+		vel->resetVelocity();
+	});
+
 	kc->bindOnKeyActive(SDLK_a, std::bind(&ba::Velocity::moveLeft, vel.get()));
-	kc->bindOnKeyActive(SDLK_a, std::bind([anime, WalkLeft](){
+	kc->bindOnKeyActive(SDLK_a, std::bind([anime](){
 		anime->set(WalkLeft);
 	}));
 	kc->bindOnKeyActive(SDLK_d, std::bind(&ba::Velocity::moveRight, vel.get()));
-	kc->bindOnKeyActive(SDLK_d, std::bind([anime, WalkRight](){
+	kc->bindOnKeyActive(SDLK_d, std::bind([anime](){
 		anime->set(WalkRight);
 	}));
 	kc->bindOnKeyActive(SDLK_w, std::bind(&ba::Velocity::moveUp, vel.get()));
 	kc->bindOnKeyActive(SDLK_w, setVerticalWalkAnimation);
 	kc->bindOnKeyActive(SDLK_s, std::bind(&ba::Velocity::moveDown, vel.get()));
 	kc->bindOnKeyActive(SDLK_s, setVerticalWalkAnimation);
+
+	kc->bindOnKeyReleased(SDLK_w, stopMoving);
+	kc->bindOnKeyReleased(SDLK_a, stopMoving);
+	kc->bindOnKeyReleased(SDLK_s, stopMoving);
+	kc->bindOnKeyReleased(SDLK_d, stopMoving);
 
 	kc->bindOnKeyPressed(SDLK_RIGHT, std::bind([this](){
 		this->rotate(ba::Angle{15.f});
@@ -160,7 +197,7 @@ SkeletonEntity::SkeletonEntity(SharedContext* context) :
 		this->rotate(ba::Angle{-15.f});
 	}));
 
-	auto setIdleAnimation = std::bind([anime, WalkLeft, WalkRight, IdleLeft, IdleRight](){
+	auto setIdleAnimation = std::bind([anime](){
 		std::shared_ptr<ba::KeyboardInput> keyboard = anime->getOwner()->CONTEXT->inputs->getInput<ba::KeyboardInput>();
 
 		if(keyboard->isKeyActive(SDLK_w) || keyboard->isKeyActive(SDLK_a) || keyboard->isKeyActive(SDLK_s) || keyboard->isKeyActive(SDLK_d)) {
