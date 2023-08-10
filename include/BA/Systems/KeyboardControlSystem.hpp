@@ -8,7 +8,7 @@ namespace ba {
 
 class KeyboardControlSystem : public ComponentSystem {
 public:
-	KeyboardControlSystem(EntityManager* entityManager);
+	explicit KeyboardControlSystem(EntityManager* entityManager);
 
 	virtual void update(float deltaTime);
 	// virtual void postUpdate(float deltaTime);

@@ -34,7 +34,7 @@ class Animation : public Component {
 friend class AnimationSystem;
 
 public:
-	Animation(Entity* owner);
+	explicit Animation(Entity* owner);
 
 	virtual void awake() override;
 

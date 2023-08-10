@@ -8,7 +8,7 @@ namespace ba {
 
 class MouseControlSystem : public ComponentSystem {
 public:
-	MouseControlSystem(EntityManager* entityManager);
+	explicit MouseControlSystem(EntityManager* entityManager);
 
 	virtual void update(float deltaTime);
 

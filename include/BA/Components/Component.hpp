@@ -9,13 +9,13 @@ class Entity;
 
 class Component {
 public: // METHODS & CONSTRUCTORS
-	Component(Entity* owner);
+	explicit Component(Entity* owner);
 	virtual ~Component();
 
 	virtual void awake();
 
 	virtual Entity* getOwner() const;
-	
+
 protected: // ATTRIBUTES
 	Entity* m_owner;
 }; // class Component

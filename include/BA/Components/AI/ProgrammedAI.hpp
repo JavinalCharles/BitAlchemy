@@ -14,7 +14,7 @@ using BehavioralBindings = std::map<int, std::pair<Condition, BehaviorList>>;
 
 class ProgrammedAI : public AI {
 public:
-	ProgrammedAI(Entity* owner);
+	explicit ProgrammedAI(Entity* owner);
 
 	virtual void behave(float deltaTime) override;
 

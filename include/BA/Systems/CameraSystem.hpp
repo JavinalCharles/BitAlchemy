@@ -7,7 +7,7 @@ namespace ba {
 
 class CameraSystem : public ComponentSystem {
 public:
-	CameraSystem(EntityManager* entityManager);
+	explicit CameraSystem(EntityManager* entityManager);
 
 	virtual void update(float deltaTime);
 

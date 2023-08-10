@@ -10,7 +10,7 @@ using CollidableFunction = std::function<void(IDtype)>;
 
 class FunctionalCollidable : public Collidable {
 public:
-	FunctionalCollidable(Entity* owner);
+	explicit FunctionalCollidable(Entity* owner);
 
 	virtual void onCollisionEnter(IDtype other);
 	virtual void onCollisionStay(IDtype other);

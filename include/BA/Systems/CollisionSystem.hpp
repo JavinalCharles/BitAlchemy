@@ -1,4 +1,4 @@
-#pragma once 
+#pragma once
 
 #include <bitset>
 #include <cmath>
@@ -18,7 +18,7 @@ namespace ba {
 
 class CollisionSystem : public ComponentSystem {
 public:
-	CollisionSystem(EntityManager* entities);
+	explicit CollisionSystem(EntityManager* entities);
 
 	~CollisionSystem();
 

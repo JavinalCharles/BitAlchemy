@@ -6,7 +6,7 @@ namespace ba {
 
 class Collidable : public Component {
 public:
-	Collidable(Entity* owner);
+	explicit Collidable(Entity* owner);
 
 	virtual void onCollisionEnter(IDtype other) = 0;
 	virtual void onCollisionStay(IDtype other) = 0;

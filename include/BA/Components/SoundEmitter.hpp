@@ -10,10 +10,10 @@ namespace ba {
 class SoundEmitter : public Component {
 	friend class SoundSystem;
 public:
-	SoundEmitter(Entity* owner);
-	
+	explicit SoundEmitter(Entity* owner);
+
 	void emitSound(IDtype soundID);
-	
+
 private:
 	std::queue<IDtype>& getSounds();
 
