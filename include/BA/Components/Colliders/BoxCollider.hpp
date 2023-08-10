@@ -6,7 +6,7 @@ namespace ba {
 
 class BoxCollider : public Collider {
 public:
-	BoxCollider(Entity* owner);
+	explicit BoxCollider(Entity* owner);
 
 	virtual void awake() override;
 

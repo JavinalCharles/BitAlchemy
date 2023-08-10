@@ -11,7 +11,7 @@ namespace ba {
 
 class Drawable : public Component, Boundable {
 public:
-	Drawable(Entity* owner, IDtype drawLayer = 0, IDtype sortOrder = 0);
+	explicit Drawable(Entity* owner, IDtype drawLayer = 0, IDtype sortOrder = 0);
 
 	virtual void draw(Window& window) = 0;
 
@@ -25,7 +25,7 @@ public:
 	virtual FloatRect getGlobalBounds() const = 0;
 
 protected:
-	// Determines at which layer the drawable will be drawn (i.e. Background, Objects, GUI etc.) 
+	// Determines at which layer the drawable will be drawn (i.e. Background, Objects, GUI etc.)
 	IDtype m_drawLayer;
 
 	// Determines how this Drawable will be sorted within its respective layer. Lower sortOrder are drawn first.

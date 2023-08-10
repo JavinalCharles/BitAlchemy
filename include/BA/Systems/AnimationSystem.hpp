@@ -8,7 +8,7 @@ namespace ba {
 
 class AnimationSystem : public ComponentSystem {
 public:
-	AnimationSystem(EntityManager* entityManager);
+	explicit AnimationSystem(EntityManager* entityManager);
 
 	virtual void update(float deltaTime) override;
 	virtual void postUpdate(float deltaTime) override;

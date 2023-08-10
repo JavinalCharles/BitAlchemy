@@ -10,7 +10,7 @@ namespace ba {
 
 class AI : public Component {
 public:
-	AI(Entity* owner);
+	explicit AI(Entity* owner);
 
 	virtual void behave(float deltaTime) = 0;
 public:

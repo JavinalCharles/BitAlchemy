@@ -7,7 +7,7 @@ namespace ba {
 
 class MovementSystem : public ComponentSystem {
 public:
-	MovementSystem(EntityManager* entityManager);
+	explicit MovementSystem(EntityManager* entityManager);
 
 	virtual void update(float deltaTime);
 	virtual void postUpdate(float deltaTime);

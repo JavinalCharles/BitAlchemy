@@ -16,7 +16,7 @@ using MButtonBindings = std::unordered_map<ba::MouseButton, std::vector<MButtonA
 
 class MouseControl : public Component {
 public:
-	MouseControl(Entity* owner);
+	explicit MouseControl(Entity* owner);
 
 	void bindOnMouseButtonActive(MouseButton btn, MButtonAction action);
 	void bindOnMouseButtonReleased(MouseButton btn, MButtonAction action);

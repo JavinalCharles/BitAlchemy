@@ -7,7 +7,7 @@ namespace ba {
 
 class Velocity : public Component {
 public:
-	Velocity(Entity* owner);
+	explicit Velocity(Entity* owner);
 
 	void setMax(const Vector2f& maxVelocity);
 	const Vector2f& getMax() const;
@@ -20,7 +20,7 @@ public:
 	const Vector2f& get() const;
 
 	void resetVelocity();
-	
+
 	void moveUp();
 	void moveRight();
 	void moveDown();

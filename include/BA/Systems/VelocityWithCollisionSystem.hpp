@@ -16,7 +16,7 @@ namespace ba {
 
 class VelocityWithCollisionSystem : public ComponentSystem {
 public:
-	VelocityWithCollisionSystem(EntityManager* entityManager);
+	explicit VelocityWithCollisionSystem(EntityManager* entityManager);
 	virtual ~VelocityWithCollisionSystem();
 
 	virtual void update(float deltaTime) override;
@@ -29,6 +29,9 @@ public:
 	void unsetCollision(IDtype layerID, IDtype otherLayer);
 
 	virtual void remove(IDtype entityID) override;
+
+	std::vector<std::shared_ptr<Collider>> searchStatic(const FloatRect& area) const;
+	std::vector<std::shared_ptr<Collider>> searchNonStatic(const FloatRect& area) const;
 private:
 	// HELPER METHODS
 	void detectCollisions();

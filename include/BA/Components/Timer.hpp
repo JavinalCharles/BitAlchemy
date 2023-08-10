@@ -21,7 +21,7 @@ public:
 	friend class TimerSystem;
 	static const IDtype CID;
 
-	Timer(Entity* owner);
+	explicit Timer(Entity* owner);
 
 	IDtype setTimer(const std::function<void(void)>& action, float time, bool isLooped = false);
 	std::pair<std::function<void(void)>, float> getTimedAction(IDtype actionID) const;

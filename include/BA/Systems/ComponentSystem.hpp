@@ -13,7 +13,7 @@ class Entity;
 
 class ComponentSystem {
 public:
-	ComponentSystem(EntityManager* entityManager);
+	explicit ComponentSystem(EntityManager* entityManager);
 
 	virtual void update(float deltaTime);
 	virtual void postUpdate(float deltaTime);

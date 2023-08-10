@@ -16,7 +16,7 @@ using KeyBindings = std::unordered_map<SDL_KeyCode, std::vector<KeyAction>>;
 
 class KeyboardControl : public Component {
 public:
-	KeyboardControl(Entity* owner);
+	explicit KeyboardControl(Entity* owner);
 
 	void bindOnKeyActive(SDL_KeyCode key, KeyAction action);
 	void bindOnKeyReleased(SDL_KeyCode key, KeyAction action);

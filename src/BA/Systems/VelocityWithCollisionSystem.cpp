@@ -49,7 +49,7 @@ namespace {
 			result.l = std::trunc(rect.l + rect.w + 1);
 		}
 		return result;
-		
+
 	}
 	FloatRect get1PixelYDisplacementRect(const FloatRect& rect, float yDisplacement) {
 		FloatRect result{
@@ -68,6 +68,16 @@ namespace {
 		return std::sqrt(std::pow(A.x - B.x, 2.f) + std::pow(A.y - B.y, 2.f));
 	}
 } // Anonymous namespace
+
+std::vector<std::shared_ptr<Collider>> VelocityWithCollisionSystem::searchStatic(const FloatRect& area) const {
+	return m_staticColliderTree.search(area);
+}
+
+
+std::vector<std::shared_ptr<Collider>> VelocityWithCollisionSystem::searchNonStatic(const FloatRect& area) const {
+	return m_objectsColliderTree.search(area);
+}
+
 
 bool VelocityWithCollisionSystem::checkMostImmediateXRect(const FloatRect& i_BOUNDS, const IDtype& i_LAYER, float xDisplacement) {
 	FloatRect xBound = get1PixelXDisplacementRect(i_BOUNDS, xDisplacement);
@@ -207,11 +217,11 @@ void VelocityWithCollisionSystem::add(std::shared_ptr<Entity>& entity) {
 		if (velocity == nullptr || entity->isStatic()) {
 			// Entity has collider, but no velocity
 			// Treat as static collider
-			// std::clog << "Entity with collider but no velocity, found. ID: #" << entity->ID << std::endl; 
+			// std::clog << "Entity with collider but no velocity, found. ID: #" << entity->ID << std::endl;
 			m_staticColliderTree.insert(collider);
 		}
 		else {
-			// std::clog << "Entity with collider and velocity, found. ID: #" << entity->ID << std::endl; 
+			// std::clog << "Entity with collider and velocity, found. ID: #" << entity->ID << std::endl;
 			m_objectsColliderTree.insert(collider);
 			this->addID(entity->ID);
 		}
@@ -306,7 +316,7 @@ void VelocityWithCollisionSystem::resolveCollisions() {
 				j_collider->resolve(measureDisplacement(j_BOUNDS, i_BOUNDS) * 0.5f);
 			}
 		}
-		
+
 		if (p1_collidable != nullptr) {
 			p1_collidable->onCollisionExit(collisions.second);
 		}

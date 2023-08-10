@@ -18,7 +18,7 @@ using ba::SharedContext;
 
 class SkeletonEntity : public Entity {
 public:
-	SkeletonEntity(SharedContext* context);
+	explicit SkeletonEntity(SharedContext* context);
 
 	void moveUp();
 	void moveLeft();
@@ -30,7 +30,7 @@ private:
 
 	ba::Animation* m_anime = nullptr;
 	ba::Velocity* m_velocity = nullptr;
- 
+
 	static const ba::IDtype rightID;
 	static const ba::IDtype leftID;
 	static const ba::IDtype idleRightID;

@@ -16,7 +16,7 @@ using DrawLayer = unsigned;
 
 class RenderSystem {
 public:
-	RenderSystem(EntityManager* entities);
+	explicit RenderSystem(EntityManager* entities);
 
 	void add(std::vector<std::shared_ptr<Entity>> entities);
 	void add(std::shared_ptr<Entity> entity);

@@ -12,12 +12,12 @@ namespace ba {
 
 class Text : public Drawable {
 public:
-	Text(Entity* owner, IDtype drawLayer = 0, IDtype sortOrder = 0);
+	explicit Text(Entity* owner, IDtype drawLayer = 0, IDtype sortOrder = 0);
 
 	virtual void draw(Window& window) override;
 
 	IDtype loadFontFromFile(const std::string& fileName, int fontSize);
-	
+
 	void setText(const std::string& newText);
 	const std::string& getText() const;
 
@@ -33,10 +33,10 @@ public:
 private:
 	void updateFont();
 	void updateText();
-	
+
 
 	std::string 	m_text{"Text"};
-	
+
 	IDtype			m_fontID{};
 	Color 			m_textColor = Color::White;
 

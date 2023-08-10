@@ -12,7 +12,7 @@ namespace ba {
 
 class Collider : public Component, public Boundable {
 public:
-	Collider(Entity* owner);
+	explicit Collider(Entity* owner);
 
 	void setLayer(unsigned collisionLayer);
 	unsigned getLayer() const;

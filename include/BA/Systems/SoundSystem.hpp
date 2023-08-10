@@ -8,7 +8,7 @@ namespace ba {
 
 class SoundSystem : public ComponentSystem {
 public:
-	SoundSystem(EntityManager* entityManager);
+	explicit SoundSystem(EntityManager* entityManager);
 
 	virtual void postUpdate(float deltaTime) override;
 
