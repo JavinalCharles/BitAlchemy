@@ -5,10 +5,19 @@ namespace ba {
 #ifdef __linux__
 	const path ResourceManager::BASE_DIR{"/usr/local/share/bit-alchemy/assets"};
 #else
-	const path ResourceManager::BASE_DIR{std::filesystem::current_path() / path{"assets"}};
+	#ifdef _WIN32
+		namespace {
+			std::wstring getRoamingFolderPath();
+		} // Anonymous namespace
+
+		const path ResourceManager::BASE_DIR{getRoamingFolderPath()};
+
+	#else
+		const path ResourceManager::BASE_DIR{std::filesystem::current_path() / path{"assets"}};
+	#endif
 #endif
 
-ResourceManager::ResourceManager(SDL_Renderer* rend) : 
+ResourceManager::ResourceManager(SDL_Renderer* rend) :
 	m_renderer(rend),
 	m_paths({
 		BASE_DIR / path{"Textures"},
@@ -35,7 +44,7 @@ IDtype ResourceManager::loadTexture(const std::string& fileName) {
 	SDL_FreeSurface(loadedSurface);
 	IDtype id = ++textureCount;
 	texturesMap.insert_or_assign(id, newTexture);
-	
+
 	return id;
 }
 
@@ -87,6 +96,7 @@ IDtype ResourceManager::loadFont(const std::string& fileName, int fontSize) {
 SDL_Texture* ResourceManager::getTexture(IDtype id) const {
 	if(texturesMap.contains(id))
 		return texturesMap.at(id);
+
 	return NULL;
 }
 
@@ -116,4 +126,18 @@ path ResourceManager::getBaseDirectory() const {
 	return BASE_DIR;
 }
 
+
+#ifdef _WIN32
+
+namespace {
+	std::wstring getRoamingFolderPath() {
+		PWSTR pp2path = NULL;
+		SHGetKnownFolderPath(FOLDERID_RoamingAppData, 0, NULL, &pp2path);
+		std::wstring p(pp2path);
+
+		return p;
+	}
+}
+
+#endif
 } // namespace ba
