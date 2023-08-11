@@ -12,6 +12,9 @@
 
 namespace ba {
 
+template <typename C>
+concept ComponentType = std::is_base_of<ba::Component, C>::value;
+
 class Entity : public Transformable {
 public: // ATTRIBUTES
 	static unsigned count;
@@ -37,7 +40,7 @@ public: // METHODS & CONSTRUCTORS
 	 * addComponent()
 	 * - Creates a Component of Type T and stores it into this entity's Component array. T must be a subclass of ba::Component. Returns a shared_ptr of the created Component.
 	*/
-	template<typename T>
+	template<ComponentType T>
 	std::shared_ptr<T> addComponent();
 
 
@@ -45,7 +48,7 @@ public: // METHODS & CONSTRUCTORS
 	 * getComponent()
 	 * - Searches the Component array for an object of type T and return a smart_ptr to it. Returns nullptr if none exist.
 	*/
-	template<typename T>
+	template<ComponentType T>
 	std::shared_ptr<T> getComponent();
 
 	std::shared_ptr<Drawable> getDrawable() const;
@@ -64,10 +67,11 @@ private: // ATTRIBUTES
 	// std::shared_ptr<Collider> m_collider = nullptr;
 }; // class Entity
 
-template<typename T>
+template<ComponentType T>
 std::shared_ptr<T> Entity::addComponent() {
 	// Prevents this method from continuing if T is not a derivation of ba::Component
-	static_assert(std::is_base_of<ba::Component, T>::value, "Error. T must be a derived type of ba::Component. Assertion returned false");
+	// static_assert(std::is_base_of<ba::Component, T>::value, "Error. T must be a derived type of ba::Component. Assertion returned false");
+	// Previous line being commented out in favor of concept
 
 	if(m_components.contains(T::CID)) {
 		if (std::dynamic_pointer_cast<T>(m_components.at(T::CID))) {
@@ -87,7 +91,7 @@ std::shared_ptr<T> Entity::addComponent() {
 	return std::dynamic_pointer_cast<T>(m_components.at(T::CID));
 }
 
-template <typename T>
+template <ComponentType T>
 std::shared_ptr<T> Entity::getComponent() {
 	if (m_components.contains(T::CID)) {
 		return std::dynamic_pointer_cast<T>(m_components.at(T::CID));
