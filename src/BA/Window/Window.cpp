@@ -12,12 +12,12 @@ Window::Window(const std::string& title, int x, int y, int w, int h, std::uint32
 	m_dimension(x, y, w, h),
 	m_flags(flags),
 	m_defaultView({
-		0.f, 0.f, 
-		static_cast<float>(w), 
+		0.f, 0.f,
+		static_cast<float>(w),
 		static_cast<float>(h)}),
 	m_view(m_defaultView)
 {
-	
+
 }
 
 void Window::init() {
@@ -124,6 +124,50 @@ void Window::drawPoint(const Vector2f& point, Color pc) {
 void Window::drawRect(const IntRect& rect, Color rc) {
 	Color cb; // Color Buffer
 	SDL_Rect r = m_view.mapToView(rect).toSDL_Rect();
+	SDL_GetRenderDrawColor(m_renderer, &cb.r, &cb.g, &cb.b, &cb.a);
+	SDL_SetRenderDrawColor(m_renderer, rc.r, rc.g, rc.b, rc.a);
+	SDL_RenderDrawRect(m_renderer, &r);
+	SDL_SetRenderDrawColor(m_renderer, cb.r, cb.g, cb.b, cb.a);
+}
+
+void Window::drawOnScreen(SDL_Texture* texture, const FloatRect& destRect) {
+	SDL_Rect screenDest = destRect.toSDL_Rect();
+
+	SDL_RenderCopy(m_renderer, texture, NULL, &screenDest);
+}
+
+void Window::drawOnScreen(SDL_Texture* texture, const IntRect& textureRect, const FloatRect& destRect, const Angle& angle) {
+	SDL_RendererFlip flip = getFlip(textureRect);
+
+	SDL_Rect screenCoordsRect = destRect.toSDL_Rect();
+	SDL_Rect textureSDLRect = textureRect.toSDL_Rect();
+
+	SDL_RenderCopyEx(m_renderer, texture, &textureSDLRect, &screenCoordsRect, angle.asDegrees(), NULL, flip);
+}
+
+void Window::drawPointOnScreen(const Vector2f& p, Color pc) {
+	Color cb;
+	SDL_Point points[] = {
+		SDL_Point{static_cast<int>(p.x), 	static_cast<int>(p.y)},
+		SDL_Point{static_cast<int>(p.x)+1, static_cast<int>(p.y)},
+		SDL_Point{static_cast<int>(p.x)-1, static_cast<int>(p.y)},
+		SDL_Point{static_cast<int>(p.x), 	static_cast<int>(p.y)+1},
+		SDL_Point{static_cast<int>(p.x), 	static_cast<int>(p.y)-1}
+	};
+
+	SDL_GetRenderDrawColor(m_renderer, &cb.r, &cb.g, &cb.b, &cb.a);
+
+	SDL_SetRenderDrawColor(m_renderer, pc.r, pc.g, pc.b, pc.a);
+	SDL_RenderDrawPoint(m_renderer, p.x, p.y);
+	SDL_RenderDrawPoints(m_renderer, points, 5);
+
+
+	SDL_SetRenderDrawColor(m_renderer, cb.r, cb.g, cb.b, cb.a);
+}
+
+void Window::drawRectOnScreen(const IntRect& rect, Color rc) {
+	Color cb;
+	SDL_Rect r = rect.toSDL_Rect();
 	SDL_GetRenderDrawColor(m_renderer, &cb.r, &cb.g, &cb.b, &cb.a);
 	SDL_SetRenderDrawColor(m_renderer, rc.r, rc.g, rc.b, rc.a);
 	SDL_RenderDrawRect(m_renderer, &r);

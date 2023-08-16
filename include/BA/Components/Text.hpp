@@ -27,6 +27,8 @@ public:
 	void setFontID(IDtype newFontID);
 	IDtype getFontID() const;
 
+	SDL_Texture* getTexture();
+
 	virtual FloatRect getLocalBounds() const override;
 	virtual FloatRect getGlobalBounds() const override;
 

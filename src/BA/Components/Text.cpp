@@ -48,6 +48,10 @@ IDtype Text::getFontID() const {
 	return m_fontID;
 }
 
+SDL_Texture* Text::getTexture() {
+	return m_textTexture;
+}
+
 void Text::draw(Window& window) {
 	// std::clog << "Drawing Text from entity #:" << m_owner->ID << std::endl;
 	window.draw(m_textTexture, getGlobalBounds());
@@ -68,7 +72,7 @@ void Text::updateText() {
 		SDL_DestroyTexture(m_textTexture);
 		m_textTexture = nullptr;
 	}
-	
+
 	TTF_Font* font = m_owner->CONTEXT->resources->getFont(m_fontID);
 	SDL_Color color = m_textColor.toSDL_Color();
 	SDL_Surface* surface = TTF_RenderText_Solid(font, m_text.c_str(), color);
