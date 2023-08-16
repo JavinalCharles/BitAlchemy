@@ -31,10 +31,14 @@ public:
 
 	void draw(SDL_Texture* texture, const FloatRect& destRect);
 	void draw(SDL_Texture* texture, const IntRect& textureRect, const FloatRect& destRect, const Angle& angle = Angle::Zero);
-
 	void drawPoint(const Vector2f& point, Color pointColor = Color::White);
-
 	void drawRect(const IntRect& rect, Color rectColor = Color::White);
+
+	void drawOnScreen(SDL_Texture* texture, const FloatRect& destRect);
+	void drawOnScreen(SDL_Texture* texture, const IntRect& textureRect, const FloatRect& destRect, const Angle& angle = Angle::Zero);
+	void drawPointOnScreen(const Vector2f& point, Color pointColor = Color::White);
+	void drawRectOnScreen(const IntRect& rect, Color rectColor = Color::White);
+
 
 	void display();
 
