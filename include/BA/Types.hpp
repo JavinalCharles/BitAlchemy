@@ -4,6 +4,8 @@
 
 namespace ba
 {
+	constexpr double PI = 3.14159265359;
+
 	using int8 = 	std::int8_t;
 	using uint8 = 	std::uint8_t;
 	using int16 = 	std::int16_t;
@@ -38,5 +40,3 @@ namespace ba
 		XTRA8
 	};
 } // namespace ba
-
-
