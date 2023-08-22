@@ -1,5 +1,7 @@
 #pragma once
 
+#include <limits>
+
 #include <BA/Components/Animation.hpp>
 #include <BA/Systems/ComponentSystem.hpp>
 
