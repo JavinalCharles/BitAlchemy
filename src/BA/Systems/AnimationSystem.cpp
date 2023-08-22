@@ -21,11 +21,19 @@ void AnimationSystem::postUpdate(float deltaTime) {
 
 		const Sequence& s = a->getCurrentSequence();
 
-		if (s.frames.size() <= 1) {
-			continue;
+		if (s.frames.size() == 1) {
+			a->m_currentFrameTime += deltaTime;
+			if (a->m_currentFrameTime >= s.frames[a->m_currentFrame].displaySeconds) {
+				for (auto& action: s.frames[a->m_currentFrame].actions) {
+					action();
+				}
+				for (auto& action: s.actions) {
+					action();
+				}
+				a->m_currentFrameTime = s.looped? 0.f : std::numeric_limits<float>::min();
+			}
 		}
-
-		if(s.looped || a->m_currentFrame < s.frames.size() - 1) {
+		else if(s.looped || a->m_currentFrame < s.frames.size() - 1) {
 			a->m_currentFrameTime += deltaTime;
 
 			if(a->m_currentFrameTime >= s.frames[a->m_currentFrame].displaySeconds) {
