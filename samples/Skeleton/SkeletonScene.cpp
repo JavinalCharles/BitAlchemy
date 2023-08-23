@@ -49,6 +49,8 @@ void SkeletonScene::onActivate() {
 	m_FPSText->setColor(Color::Blue);
 
 	m_entityManager.add(fpsEntity);
+
+	debug.setColor(Color::Blue);
 }
 
 void SkeletonScene::onDestroy() {
@@ -66,23 +68,33 @@ void SkeletonScene::update(float deltaTime) {
 	m_FPSText->setText(std::to_string(fps) + " FPS");
 
 	m_entityManager.update(deltaTime);
-	
+
 	if (m_mouseInput->isButtonDown(MouseButton::LEFT)) {
 		Vector2i pos = m_mouseInput->getCurrMousePos();
-		std::clog << "Left Mouse Button Clicked: {" << pos.x << ", " << pos.y << " }\n";
+		ba::debug << "Left Mouse Button Clicked: {" << pos.x << ", " << pos.y << " }\n";
 	}
 
 	if (m_mouseInput->isButtonDown(MouseButton::MIDDLE)) {
 		Vector2i pos = m_mouseInput->getCurrMousePos();
-		std::clog << "Middle Mouse Button Clicked: {" << pos.x << ", " << pos.y << " }\n";
+		ba::debug << "Middle Mouse Button Clicked: {" << pos.x << ", " << pos.y << " }\n";
 	}
 
 	if (m_mouseInput->isButtonDown(MouseButton::RIGHT)) {
 		Vector2i pos = m_mouseInput->getCurrMousePos();
-		std::clog << "Right Mouse Button Clicked: {" << pos.x << ", " << pos.y << " }\n";
+		ba::debug << "Right Mouse Button Clicked: {" << pos.x << ", " << pos.y << " }\n";
 	}
 
-	
+	Vector2i pos = m_mouseInput->getCurrMousePos();
+	IntRect rect{
+		64 * (pos.x / 64),
+		64 * (pos.y / 64),
+		64,
+		64
+	};
+	ba::debug << rect << static_cast<Vector2f>(pos);
+
+	// window.drawRect(rect);
+
 }
 
 void SkeletonScene::postUpdate(float deltaTime) {
@@ -92,14 +104,7 @@ void SkeletonScene::postUpdate(float deltaTime) {
 void SkeletonScene::draw(Window& window) {
 	m_entityManager.draw(window);
 	// m_FPSText->draw(window);
-	Vector2i pos = m_mouseInput->getCurrMousePos();
-	IntRect rect{
-		64 * (pos.x / 64),
-		64 * (pos.y / 64),
-		64,
-		64
-	};
-	window.drawRect(rect);
+
 }
 
 void SkeletonScene::createSkeleton() {

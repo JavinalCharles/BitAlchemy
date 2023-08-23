@@ -24,7 +24,7 @@ public:
 	virtual void handleEvents();
 	virtual void update(float deltaTime);
 	virtual void postUpdate(float deltaTime);
-	
+
 	virtual void draw(Window& window) = 0;
 
 	virtual void setWindow(Window* window);

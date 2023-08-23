@@ -11,6 +11,7 @@
 #include "BA/Systems/EntityManager.hpp"
 #include "BA/Entities/Entity.hpp"
 #include "BA/Types.hpp"
+#include "BA/Tools/DebugHelper.hpp"
 
 namespace ba {
 

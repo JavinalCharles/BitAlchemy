@@ -21,7 +21,6 @@ public: // METHODS & CONSTRUCTORS
 	template <typename U>
 	constexpr Rect(const Rect<U>& otherRect);
 
-
 	constexpr Vector2<T> getPosition() const;
 	constexpr Vector2<T> getArea() const;
 	constexpr bool contains(const Vector2<T>& point) const;

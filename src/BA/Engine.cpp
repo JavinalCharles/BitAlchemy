@@ -83,6 +83,9 @@ void Engine::postUpdate(float deltaTime) {
 void Engine::draw() {
 	m_window.clear();
 	m_sceneManager.draw(m_window);
+
+	ba::debug.draw(m_window);
+
 	m_window.display();
 }
 

@@ -100,7 +100,7 @@ void Window::draw(SDL_Texture* texture, const ba::IntRect& textureRect, const Fl
 	SDL_RenderCopyEx(m_renderer, texture, &textureSDLRect, &screenCoordsRect, angle.asDegrees(), NULL, flip);
 }
 
-void Window::drawPoint(const Vector2f& point, Color pc) {
+void Window::drawPoint(const Vector2f& point, const Color& pc) {
 	Color cb; // Color buffer
 	Vector2f sc = m_view.mapToView(point);
 	SDL_Point points[] = {
@@ -121,7 +121,19 @@ void Window::drawPoint(const Vector2f& point, Color pc) {
 	SDL_SetRenderDrawColor(m_renderer, cb.r, cb.g, cb.b, cb.a);
 }
 
-void Window::drawRect(const IntRect& rect, Color rc) {
+void Window::drawLine(const IntLine& l, const Color& lc) {
+	Color cb;
+	SDL_GetRenderDrawColor(m_renderer, &cb.r, &cb.g, &cb.b, &cb.a);
+	SDL_SetRenderDrawColor(m_renderer, lc.r, lc.g, lc.b, lc.a);
+	Vector2i p1 = m_view.mapToView(l.p1);
+	Vector2i p2 = m_view.mapToView(l.p2);
+
+	SDL_RenderDrawLine(m_renderer, p1.x, p1.y, p2.x, p2.y);
+
+	SDL_SetRenderDrawColor(m_renderer, cb.r, cb.g, cb.b, cb.a);
+}
+
+void Window::drawRect(const IntRect& rect, const Color& rc) {
 	Color cb; // Color Buffer
 	SDL_Rect r = m_view.mapToView(rect).toSDL_Rect();
 	SDL_GetRenderDrawColor(m_renderer, &cb.r, &cb.g, &cb.b, &cb.a);
