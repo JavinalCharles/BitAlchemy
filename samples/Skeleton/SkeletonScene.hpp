@@ -11,6 +11,8 @@
 #include <BA/Systems/SoundSystem.hpp>
 #include <BA/Systems/TimerSystem.hpp>
 
+#include <BA/Tools/DebugHelper.hpp>
+
 #include "BlueCharEntity.hpp"
 #include "SkeletonEntity.hpp"
 
@@ -21,8 +23,8 @@ public:
 	SkeletonScene();
 	SkeletonScene(Window* window, ResourceManager* resourceManager, SceneManager* sceneManager);
 
-	virtual void onCreate();
-	virtual void onDestroy();
+	virtual void onCreate() override;
+	virtual void onDestroy() override;
 
 	virtual void onActivate() override;
 

@@ -3,7 +3,7 @@
 
 namespace ba {
 
-Sprite::Sprite(ba::Entity* owner, IDtype drawLayer, IDtype sortOrder) : 
+Sprite::Sprite(ba::Entity* owner, IDtype drawLayer, IDtype sortOrder) :
 	Drawable(owner, drawLayer, sortOrder),
 	m_textureID(0u) // 0 == no texture
 {
@@ -18,10 +18,10 @@ void Sprite::draw(Window& window) {
 
 	// window.drawRect(this->getGlobalBounds(), Color::Yellow);
 
-	auto collider = getOwner()->getCollider();
-	if (collider != nullptr) {
-		window.drawRect(collider->getGlobalBounds(), Color::Blue);
-	}
+	// auto collider = getOwner()->getCollider();
+	// if (collider != nullptr) {
+	// 	window.drawRect(collider->getGlobalBounds(), Color::Blue);
+	// }
 
 	// window.drawPoint(getOwner()->getPosition(), Color::Green);
 }

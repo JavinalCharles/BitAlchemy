@@ -15,7 +15,7 @@ public: // Constructors
 	constexpr Vector2(T X, T Y);
 	constexpr Vector2();
 	template <typename U>
-	constexpr explicit Vector2(const Vector2<U>& other);
+	constexpr Vector2(const Vector2<U>& other);
 
 	constexpr SDL_Point toSDL_Point() const;
 

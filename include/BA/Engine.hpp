@@ -16,6 +16,8 @@
 #include <BA/Utilities/Rect.hpp>
 #include <BA/Window/Window.hpp>
 
+#include <BA/Tools/DebugHelper.hpp>
+
 namespace ba {
 
 class Engine {

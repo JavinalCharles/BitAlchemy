@@ -21,6 +21,8 @@ VelocityWithCollisionSystem::~VelocityWithCollisionSystem() {
 
 namespace {
 	Vector2f measureDisplacement(const FloatRect& r1, const FloatRect& r2) {
+		ba::debug << static_cast<IntRect>(r1) << static_cast<IntRect>(r2);
+
 		float xDiff = (r1.l + (r1.w * 0.5f)) - (r2.l + (r2.w * 0.5f));
 		float yDiff = (r1.t + (r1.h * 0.5f)) - (r2.t + (r2.h * 0.5f));
 
@@ -190,6 +192,8 @@ void VelocityWithCollisionSystem::update(float deltaTime) {
 			std::clog << "Using Continious Collision Detection.\n";
 			this->useContinuousCollisionDetection(i_collider, displacement);
 		}
+
+		ba::debug << static_cast<IntRect>(i_collider->getGlobalBounds());
 	}
 
 	m_objectsColliderTree.clear();
@@ -211,7 +215,6 @@ void VelocityWithCollisionSystem::add(std::shared_ptr<Entity>& entity) {
 	if (collider == nullptr && velocity == nullptr) {
 		return;
 	}
-
 
 	if (collider != nullptr) {
 		if (velocity == nullptr || entity->isStatic()) {

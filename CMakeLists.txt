@@ -1,13 +1,13 @@
 cmake_minimum_required(VERSION 3.15)
 
 project(
-	BitAlchemy 
+	BitAlchemy
 	VERSION 0.1
 	DESCRIPTION "A fast and lightweight C++ Game Engine library built on SDL2."
-	LANGUAGES CXX 
+	LANGUAGES CXX
 )
 
-set(SOURCES 
+set(SOURCES
 	src/BA/Components/AI/AI.cpp
 	src/BA/Components/AI/ProgrammedAI.cpp
 	src/BA/Components/Camera.cpp
@@ -49,6 +49,7 @@ set(SOURCES
 	src/BA/Systems/SoundSystem.cpp
 	src/BA/Systems/TimerSystem.cpp
 	src/BA/Systems/VelocityWithCollisionSystem.cpp
+	src/BA/Tools/DebugHelper.cpp
 	src/BA/Utilities/Transform.cpp
 	src/BA/Window/Window.cpp
 	src/BA/Window/View.cpp
@@ -79,8 +80,8 @@ target_compile_options(compiler_flags INTERFACE
 
 add_library(BA STATIC ${SOURCES})
 
-target_include_directories(BA 
-	PUBLIC 
+target_include_directories(BA
+	PUBLIC
 	${PROJECT_SOURCE_DIR}/include/
 )
 

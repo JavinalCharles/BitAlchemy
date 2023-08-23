@@ -23,7 +23,7 @@ public:
 	// bool remove(IDtype ID);
 
 	void clear();
-	
+
 	std::vector<std::shared_ptr<T>> search(const FloatRect& area) const;
 
 	const FloatRect& getBounds() const;
@@ -49,7 +49,7 @@ private:
 	Quadtree<T>* m_parent;
 
 	std::unique_ptr<Quadtree<T>> m_children[4];
-	
+
 	std::unordered_map<IDtype, std::shared_ptr<T>> m_objects;
 }; // class Quadtree
 
@@ -145,7 +145,7 @@ void Quadtree<T>::remove(std::shared_ptr<T> object) {
 }
 
 template <typename T>
-void Quadtree<T>::clear() {	
+void Quadtree<T>::clear() {
 	for (int i = 0; i < 4; ++i) {
 		if (m_children[i] != nullptr) {
 			m_children[i]->clear();
@@ -176,7 +176,7 @@ void Quadtree<T>::search(const FloatRect& area, std::vector<std::shared_ptr<T>>&
 
 	if(m_children[0] == nullptr)
 		return;
-	
+
 	for(int i = 0; i < 4; ++i) {
 		std::optional<FloatRect> intersection = m_children[i]->getBounds().intersects(area);
 		if (intersection.has_value()) {

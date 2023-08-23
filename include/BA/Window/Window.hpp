@@ -5,6 +5,7 @@
 #include <SDL2/SDL.h>
 #include <BA/Utilities/Angle.hpp>
 #include <BA/Utilities/Color.hpp>
+#include <BA/Utilities/Line.hpp>
 #include <BA/Utilities/Rect.hpp>
 #include <BA/Window/View.hpp>
 
@@ -31,8 +32,9 @@ public:
 
 	void draw(SDL_Texture* texture, const FloatRect& destRect);
 	void draw(SDL_Texture* texture, const IntRect& textureRect, const FloatRect& destRect, const Angle& angle = Angle::Zero);
-	void drawPoint(const Vector2f& point, Color pointColor = Color::White);
-	void drawRect(const IntRect& rect, Color rectColor = Color::White);
+	void drawPoint(const Vector2f& point, const Color& pointColor = Color::White);
+	void drawLine(const IntLine& line, const Color& lineColor = Color::White);
+	void drawRect(const IntRect& rect, const Color& rectColor = Color::White);
 
 	void drawOnScreen(SDL_Texture* texture, const FloatRect& destRect);
 	void drawOnScreen(SDL_Texture* texture, const IntRect& textureRect, const FloatRect& destRect, const Angle& angle = Angle::Zero);
