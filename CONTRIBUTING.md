@@ -62,11 +62,12 @@ First of all, let me thnk you for taking the time to contribute to this little p
      		};
      	```
 * For **member variables** of classes/structs, we use prefixes:
-  	* **s_** for static member vairables: `s_resourcesLoaded = false;`
-  	* **k_** for constants: `float k_PI = 3.1415926535f;`
-  	* **sk_** for static constants: `float sk_SPAM_TO_EGG_RATIO = 2.2321f;`
-  	* **m_** for all other member variables: `int m_eggNumbers = 0;`
+  	* **`s_`** for static member vairables: `s_resourcesLoaded = false;`
+  	* **`k_`** for constants: `float k_PI = 3.1415926535f;`
+  	* **`sk_`** for static constants: `float sk_SPAM_TO_EGG_RATIO = 2.2321f;`
+  	* **`m_`** for all other member variables: `int m_eggNumbers = 0;`
 
 
 That is all. Once again, thank you for your contribution!
+
 JavinalCharles
