@@ -36,11 +36,12 @@ BitAlchemy is a free and open-source 2D game engine built on top of SDL2. BitAlc
 	- ~~Sound Effects System~~
 	- ~~Text and Text display.~~
 	- ~~Map Generator~~
-	- Simple A.I. behavior
+	- ~~Simple A.I. behavior~~
 	- Input Manager*
 		- ~~Keyboard Input~~
 		- ~~Mouse Input~~
 		- Window Events (Focus-in, Focus-out, Minimized, Maximized, Resized)
+  	- A saving system 
 	- A packaging system.
 	- More example games/sample usage programs.*
 
