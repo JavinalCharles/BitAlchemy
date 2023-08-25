@@ -80,6 +80,10 @@ target_compile_options(compiler_flags INTERFACE
 
 add_library(BA STATIC ${SOURCES})
 
+set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE "${CMAKE_COMMAND} -E time")
+
+set_property(TARGET BA PROPERTY RULE_LAUNCH_COMPILE "${CMAKE_COMMAND} -E time")
+
 target_include_directories(BA
 	PUBLIC
 	${PROJECT_SOURCE_DIR}/include/
