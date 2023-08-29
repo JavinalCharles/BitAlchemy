@@ -1,6 +1,5 @@
 #pragma once
 
-#include <iostream>
 #include <map>
 #include <vector>
 #include <memory>
@@ -9,6 +8,9 @@
 #include "BA/Components/Drawable.hpp"
 #include "BA/Entities/SharedContext.hpp"
 #include <BA/Entities/Transformable.hpp>
+
+#include <BA/Tools/DebugHelper.hpp>
+
 
 namespace ba {
 
@@ -113,6 +115,18 @@ public:
 	template<ComponentType T>
 	std::shared_ptr<T> addComponent();
 
+
+	/***********************************************************************
+	 * @brief Creates a ComponentType of type T and stores it in this entity's
+	 * component array and returning a shared pointer to it.
+	 *
+	 * @tparam T  The type of Component.
+	 * @param ... Arguments to be passed to T's constuctor besides owner.
+	 * @return a shared pointer to the created Component.
+	************************************************************************/
+	template<ComponentType T, typename... Args>
+	std::shared_ptr<T> addComponent(Args... args);
+
 	/***********************************************************************
 	 * @brief returns a shared pointer to the requested component. Returns
 	 * nullptr if the component does not exist.
@@ -169,23 +183,41 @@ private:
 
 template<ComponentType T>
 std::shared_ptr<T> Entity::addComponent() {
-	// Prevents this method from continuing if T is not a derivation of ba::Component
-	// static_assert(std::is_base_of<ba::Component, T>::value, "Error. T must be a derived type of ba::Component. Assertion returned false");
-	// Previous line being commented out in favor of concept
-
 	if(m_components.contains(T::CID)) {
 		if (std::dynamic_pointer_cast<T>(m_components.at(T::CID))) {
 			// If T already exists, just return it.
 			return std::dynamic_pointer_cast<T>(m_components.at(T::CID));
 		}
 		else {
-			// Otherwise, if T does not exist but a similar CID is used, replaced the object mapped to that CID.
+			// Otherwise, if T does not exist but a similar CID is used,
+			// replaced the object mapped to that CID.
 			m_components.at(T::CID) = std::make_shared<T>(this);
 		}
 	}
 	else {
 		// T doesn't already exist. create it.
 		m_components.insert(std::make_pair(T::CID, std::make_shared<T>(this)));
+	}
+
+	return std::dynamic_pointer_cast<T>(m_components.at(T::CID));
+}
+
+template<ComponentType T, typename... Args>
+std::shared_ptr<T> Entity::addComponent(Args... args) {
+	if (m_components.contains(T::CID)) {
+		if (std::dynamic_pointer_cast<T>(m_components.at(T::CID))) {
+			// If T already exists, just return it.
+			return std::dynamic_pointer_cast<T>(m_components.at(T::CID));
+		}
+		else {
+			// Otherwise, if T does not exist but a similar CID is used,
+			// replaced the object mapped to that CID.
+			m_components.at(T::CID) = std::make_shared<T>(this, args...);
+		}
+	}
+	else {
+		// T doesn't already exist. create it.
+		m_components.insert(std::make_pair(T::CID, std::make_shared<T>(this, args...)));
 	}
 
 	return std::dynamic_pointer_cast<T>(m_components.at(T::CID));

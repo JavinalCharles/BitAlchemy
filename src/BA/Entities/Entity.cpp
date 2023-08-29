@@ -1,10 +1,10 @@
 #include "BA/Entities/Entity.hpp"
 
-unsigned ba::Entity::count = 0u;
+ba::IDtype ba::Entity::count = 0u;
 
 namespace ba {
 
-Entity::Entity(ba::SharedContext* context) : 
+Entity::Entity(ba::SharedContext* context) :
 	Transformable(),
 	ID(ba::Entity::count++),
 	CONTEXT(context)
