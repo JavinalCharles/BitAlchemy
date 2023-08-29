@@ -1,0 +1,79 @@
+\hypertarget{classba_1_1Window}{}\doxysection{ba\+::Window Class Reference}
+\label{classba_1_1Window}\index{ba::Window@{ba::Window}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classba_1_1Window_a5d1cf2d350a7e17d18d9ad6a8a2e2e05}\label{classba_1_1Window_a5d1cf2d350a7e17d18d9ad6a8a2e2e05}} 
+{\bfseries Window} (const std\+::string \&title, int x, int y, int w, int h, std\+::uint32\+\_\+t flags)
+\item 
+\mbox{\Hypertarget{classba_1_1Window_a1c9c69c5b0ebea3142b5b4486a950945}\label{classba_1_1Window_a1c9c69c5b0ebea3142b5b4486a950945}} 
+void {\bfseries init} ()
+\item 
+\mbox{\Hypertarget{classba_1_1Window_a7591961cb409982acead8a7d8d915733}\label{classba_1_1Window_a7591961cb409982acead8a7d8d915733}} 
+bool {\bfseries is\+Open} () const
+\item 
+\mbox{\Hypertarget{classba_1_1Window_a256c426e757da32f62a8d1a28d12477c}\label{classba_1_1Window_a256c426e757da32f62a8d1a28d12477c}} 
+void {\bfseries close} ()
+\item 
+\mbox{\Hypertarget{classba_1_1Window_a35e1e7a692a3465a39c7db328eba49f1}\label{classba_1_1Window_a35e1e7a692a3465a39c7db328eba49f1}} 
+void \mbox{\hyperlink{classba_1_1Window_a35e1e7a692a3465a39c7db328eba49f1}{handle\+Events}} ()
+\begin{DoxyCompactList}\small\item\em Allows the window to handle window specific events. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classba_1_1Window_acd172005e0f993c4e6b4bd471e6368b4}\label{classba_1_1Window_acd172005e0f993c4e6b4bd471e6368b4}} 
+void {\bfseries clear} (\mbox{\hyperlink{classba_1_1Color}{ba\+::\+Color}} color=ba\+::\+Color\+::\+Black)
+\item 
+\mbox{\Hypertarget{classba_1_1Window_ae9cc9627e6a393a62c8048b55ea30f62}\label{classba_1_1Window_ae9cc9627e6a393a62c8048b55ea30f62}} 
+void {\bfseries draw} (SDL\+\_\+\+Texture $\ast$texture, const \mbox{\hyperlink{classba_1_1Rect}{Float\+Rect}} \&dest\+Rect)
+\item 
+\mbox{\Hypertarget{classba_1_1Window_ae2a94be1cc4d1c0cbd5507c2d5861618}\label{classba_1_1Window_ae2a94be1cc4d1c0cbd5507c2d5861618}} 
+void {\bfseries draw} (SDL\+\_\+\+Texture $\ast$texture, const \mbox{\hyperlink{classba_1_1Rect}{Int\+Rect}} \&texture\+Rect, const \mbox{\hyperlink{classba_1_1Rect}{Float\+Rect}} \&dest\+Rect, const \mbox{\hyperlink{classba_1_1Angle}{Angle}} \&angle=Angle\+::\+Zero)
+\item 
+\mbox{\Hypertarget{classba_1_1Window_a8f8ec1b9c9e245deecca9d0f0b24c1c1}\label{classba_1_1Window_a8f8ec1b9c9e245deecca9d0f0b24c1c1}} 
+void {\bfseries draw\+Point} (const \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}} \&point, const \mbox{\hyperlink{classba_1_1Color}{Color}} \&point\+Color=Color\+::\+White)
+\item 
+\mbox{\Hypertarget{classba_1_1Window_ae167806b03e3160065b09f99c0b5d4eb}\label{classba_1_1Window_ae167806b03e3160065b09f99c0b5d4eb}} 
+void {\bfseries draw\+Line} (const \mbox{\hyperlink{classba_1_1Line}{Int\+Line}} \&line, const \mbox{\hyperlink{classba_1_1Color}{Color}} \&line\+Color=Color\+::\+White)
+\item 
+\mbox{\Hypertarget{classba_1_1Window_a7a6258212d06f96f7368c77b63c607fe}\label{classba_1_1Window_a7a6258212d06f96f7368c77b63c607fe}} 
+void {\bfseries draw\+Rect} (const \mbox{\hyperlink{classba_1_1Rect}{Int\+Rect}} \&rect, const \mbox{\hyperlink{classba_1_1Color}{Color}} \&rect\+Color=Color\+::\+White)
+\item 
+\mbox{\Hypertarget{classba_1_1Window_a4c0efc8095a2328903cf1ce69a11c388}\label{classba_1_1Window_a4c0efc8095a2328903cf1ce69a11c388}} 
+void {\bfseries draw\+On\+Screen} (SDL\+\_\+\+Texture $\ast$texture, const \mbox{\hyperlink{classba_1_1Rect}{Float\+Rect}} \&dest\+Rect)
+\item 
+\mbox{\Hypertarget{classba_1_1Window_adfa4b87b4aca112050663ece78dc300f}\label{classba_1_1Window_adfa4b87b4aca112050663ece78dc300f}} 
+void {\bfseries draw\+On\+Screen} (SDL\+\_\+\+Texture $\ast$texture, const \mbox{\hyperlink{classba_1_1Rect}{Int\+Rect}} \&texture\+Rect, const \mbox{\hyperlink{classba_1_1Rect}{Float\+Rect}} \&dest\+Rect, const \mbox{\hyperlink{classba_1_1Angle}{Angle}} \&angle=Angle\+::\+Zero)
+\item 
+\mbox{\Hypertarget{classba_1_1Window_ae44ceb03f4d3dbacc1fd06e2cc4767cd}\label{classba_1_1Window_ae44ceb03f4d3dbacc1fd06e2cc4767cd}} 
+void {\bfseries draw\+Point\+On\+Screen} (const \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}} \&point, \mbox{\hyperlink{classba_1_1Color}{Color}} point\+Color=Color\+::\+White)
+\item 
+\mbox{\Hypertarget{classba_1_1Window_ac2e02f8cd05f7cd58c3d9daa7fa89c91}\label{classba_1_1Window_ac2e02f8cd05f7cd58c3d9daa7fa89c91}} 
+void {\bfseries draw\+Rect\+On\+Screen} (const \mbox{\hyperlink{classba_1_1Rect}{Int\+Rect}} \&rect, \mbox{\hyperlink{classba_1_1Color}{Color}} rect\+Color=Color\+::\+White)
+\item 
+\mbox{\Hypertarget{classba_1_1Window_adda73b807cdd1aa06dad1d81c93c7c04}\label{classba_1_1Window_adda73b807cdd1aa06dad1d81c93c7c04}} 
+void {\bfseries display} ()
+\item 
+\mbox{\Hypertarget{classba_1_1Window_aa20ada71b121fa3d6aab25fa827630e0}\label{classba_1_1Window_aa20ada71b121fa3d6aab25fa827630e0}} 
+SDL\+\_\+\+Window $\ast$ {\bfseries get\+Window} () const
+\item 
+\mbox{\Hypertarget{classba_1_1Window_af694d98ddfba7f015493beb52b664a27}\label{classba_1_1Window_af694d98ddfba7f015493beb52b664a27}} 
+\mbox{\hyperlink{classba_1_1Vector2}{Vector2i}} {\bfseries get\+Size} () const
+\item 
+\mbox{\Hypertarget{classba_1_1Window_ac3eee5963200b0371df550a4dd9c0693}\label{classba_1_1Window_ac3eee5963200b0371df550a4dd9c0693}} 
+SDL\+\_\+\+Renderer $\ast$ {\bfseries get\+Renderer} () const
+\item 
+\mbox{\Hypertarget{classba_1_1Window_a39ac8e9fd00f0000b87e34cfe311605c}\label{classba_1_1Window_a39ac8e9fd00f0000b87e34cfe311605c}} 
+const \mbox{\hyperlink{classba_1_1View}{View}} \& {\bfseries get\+View} () const
+\item 
+\mbox{\Hypertarget{classba_1_1Window_ab21fe9918b2a874fd1b841911191cfe6}\label{classba_1_1Window_ab21fe9918b2a874fd1b841911191cfe6}} 
+const \mbox{\hyperlink{classba_1_1View}{View}} \& {\bfseries get\+Default\+View} () const
+\item 
+\mbox{\Hypertarget{classba_1_1Window_a662f2c5f054f9d043c92db5235377682}\label{classba_1_1Window_a662f2c5f054f9d043c92db5235377682}} 
+\mbox{\hyperlink{classba_1_1Rect}{Float\+Rect}} {\bfseries get\+View\+Space} () const
+\item 
+\mbox{\Hypertarget{classba_1_1Window_ab0b630d63f801adf8a965b8aa187a337}\label{classba_1_1Window_ab0b630d63f801adf8a965b8aa187a337}} 
+void {\bfseries set\+View} (const \mbox{\hyperlink{classba_1_1View}{View}} \&view)
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+BA/\+Window/Window.\+hpp\end{DoxyCompactItemize}

@@ -1,0 +1,58 @@
+\hypertarget{classba_1_1Timer}{}\doxysection{ba\+::Timer Class Reference}
+\label{classba_1_1Timer}\index{ba::Timer@{ba::Timer}}
+
+
+Inheritance diagram for ba\+::Timer\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=163pt]{classba_1_1Timer__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for ba\+::Timer\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classba_1_1Timer__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classba_1_1Timer_a8e1b645b6863e1ff2e790c1f55fd0566}\label{classba_1_1Timer_a8e1b645b6863e1ff2e790c1f55fd0566}} 
+{\bfseries Timer} (\mbox{\hyperlink{classba_1_1Entity}{Entity}} $\ast$owner)
+\item 
+\mbox{\Hypertarget{classba_1_1Timer_ab47ba68abc9f87548449727235b1cd74}\label{classba_1_1Timer_ab47ba68abc9f87548449727235b1cd74}} 
+IDtype {\bfseries set\+Timer} (const std\+::function$<$ void(void)$>$ \&action, float time, bool is\+Looped=false)
+\item 
+\mbox{\Hypertarget{classba_1_1Timer_a73854b55d86c8144e8db32231fabc76b}\label{classba_1_1Timer_a73854b55d86c8144e8db32231fabc76b}} 
+std\+::pair$<$ std\+::function$<$ void(void)$>$, float $>$ {\bfseries get\+Timed\+Action} (IDtype action\+ID) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classba_1_1Timer_ac26b02d7c1b99bc7f5b542358bd46a5f}\label{classba_1_1Timer_ac26b02d7c1b99bc7f5b542358bd46a5f}} 
+static const IDtype {\bfseries CID}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classba_1_1Timer_a2e51d938c6bfc4e0999aec21e6f103cb}\label{classba_1_1Timer_a2e51d938c6bfc4e0999aec21e6f103cb}} 
+std\+::map$<$ IDtype, \mbox{\hyperlink{structba_1_1TimedAction}{Timed\+Action}} $>$ \& {\bfseries get\+Timed\+Actions} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classba_1_1Timer_a207627437be10c19e188a893191fda3c}\label{classba_1_1Timer_a207627437be10c19e188a893191fda3c}} 
+class {\bfseries Timer\+System}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+BA/\+Components/Timer.\+hpp\end{DoxyCompactItemize}

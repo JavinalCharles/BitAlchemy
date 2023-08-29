@@ -1,0 +1,114 @@
+\hypertarget{classba_1_1Component}{}\doxysection{ba\+::Component Class Reference}
+\label{classba_1_1Component}\index{ba::Component@{ba::Component}}
+
+
+class interface for all Components owned by any Entity.\+Components shall store attributes and data related to their respective owner \mbox{\hyperlink{classba_1_1Entity}{Entity}}. It shall also be the main means by which anything can change the state of the entity. Besides a few exceptions, Components should only hold data and methods that alter and/or accesses those data. The library should provide many different components for most common usage, but if a user needed to create a custom cumponent that could interact with the systems of this library, the user need to define a public static constant of unsigned integer type named CID to ID the component for efficiency reasons.  
+
+
+
+
+{\ttfamily \#include $<$Component.\+hpp$>$}
+
+
+
+Inheritance diagram for ba\+::Component\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classba_1_1Component__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for ba\+::Component\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classba_1_1Component__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classba_1_1Component_a45eb09f349a805cf0a646549ec6c204b}{Component}} (\mbox{\hyperlink{classba_1_1Entity}{Entity}} $\ast$owner)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classba_1_1Component}{Component}} Constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classba_1_1Component_a11b502caa408a0cd49abeda63a65b32a}\label{classba_1_1Component_a11b502caa408a0cd49abeda63a65b32a}} 
+virtual \mbox{\hyperlink{classba_1_1Component_a11b502caa408a0cd49abeda63a65b32a}{$\sim$\+Component}} ()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classba_1_1Component}{Component}} Destructor. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classba_1_1Component_a6f0b77ccea25915379aa4b81bd29e25c}{awake}} ()
+\begin{DoxyCompactList}\small\item\em Called once after the entity owner is added to the main loop. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classba_1_1Component_aeb5d7d8ec1423c87bf5907327221d246}\label{classba_1_1Component_aeb5d7d8ec1423c87bf5907327221d246}} 
+virtual \mbox{\hyperlink{classba_1_1Entity}{Entity}} $\ast$ \mbox{\hyperlink{classba_1_1Component_aeb5d7d8ec1423c87bf5907327221d246}{get\+Owner}} () const
+\begin{DoxyCompactList}\small\item\em Provides a pointer Reference to owner entity. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classba_1_1Component_a93fa7157378fef5947ce19c0a2f21169}\label{classba_1_1Component_a93fa7157378fef5947ce19c0a2f21169}} 
+\mbox{\hyperlink{classba_1_1Entity}{Entity}} $\ast$ {\bfseries m\+\_\+owner}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+class interface for all Components owned by any Entity.\+Components shall store attributes and data related to their respective owner \mbox{\hyperlink{classba_1_1Entity}{Entity}}. It shall also be the main means by which anything can change the state of the entity. Besides a few exceptions, Components should only hold data and methods that alter and/or accesses those data. The library should provide many different components for most common usage, but if a user needed to create a custom cumponent that could interact with the systems of this library, the user need to define a public static constant of unsigned integer type named CID to ID the component for efficiency reasons. 
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{// NewComponent.hpp}}
+\DoxyCodeLine{\textcolor{keyword}{class }NewComponent : \textcolor{keyword}{public} \mbox{\hyperlink{classba_1_1Component_a45eb09f349a805cf0a646549ec6c204b}{Component}} \{}
+\DoxyCodeLine{    \textcolor{keyword}{public}:}
+\DoxyCodeLine{        \textcolor{keyword}{static} *\textcolor{keyword}{const} std::size\_t CID;}
+\DoxyCodeLine{        ...}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{\textcolor{comment}{// NewComponent.cpp const IDtype NewComponent::CID = 17u;}}
+
+\end{DoxyCode}
+ Note that each CID must be unique. For if one were to add a new component with a similar CID as one already added to its components map, then the old \mbox{\hyperlink{classba_1_1Component}{Component}} shall be replaced by the new one. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classba_1_1Component_a45eb09f349a805cf0a646549ec6c204b}\label{classba_1_1Component_a45eb09f349a805cf0a646549ec6c204b}} 
+\index{ba::Component@{ba::Component}!Component@{Component}}
+\index{Component@{Component}!ba::Component@{ba::Component}}
+\doxysubsubsection{\texorpdfstring{Component()}{Component()}}
+{\footnotesize\ttfamily ba\+::\+Component\+::\+Component (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classba_1_1Entity}{Entity}} $\ast$}]{owner }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+\mbox{\hyperlink{classba_1_1Component}{Component}} Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em owner} & pointer to the owning \mbox{\hyperlink{classba_1_1Entity}{Entity}} of this new \mbox{\hyperlink{classba_1_1Component}{Component}}.\\
+\hline
+\end{DoxyParams}
+Note that directly using this constructor (or the constructor of subtype of \mbox{\hyperlink{classba_1_1Component}{Component}}) isn\textquotesingle{}t necessary except for particular uses. \mbox{\hyperlink{classba_1_1Entity}{Entity}} already already has a means of instantiating its own components. You only need to call \mbox{\hyperlink{classba_1_1Entity_a76b6b876c4ebbed9ac0b57d9a19cf1a0}{Entity\+::add\+Component$<$$>$()}} function. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{std::shared\_ptr<Entity> e = std::make\_shared<Entity>(...):}
+\DoxyCodeLine{e-\/>addComponent<Sprite>();}
+\DoxyCodeLine{e-\/>addComponent<Animation>();}
+\DoxyCodeLine{e-\/>addComponent<BoxCollider>();}
+
+\end{DoxyCode}
+ 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classba_1_1Component_a6f0b77ccea25915379aa4b81bd29e25c}\label{classba_1_1Component_a6f0b77ccea25915379aa4b81bd29e25c}} 
+\index{ba::Component@{ba::Component}!awake@{awake}}
+\index{awake@{awake}!ba::Component@{ba::Component}}
+\doxysubsubsection{\texorpdfstring{awake()}{awake()}}
+{\footnotesize\ttfamily virtual void ba\+::\+Component\+::awake (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Called once after the entity owner is added to the main loop. 
+
+This \mbox{\hyperlink{classba_1_1Component_a6f0b77ccea25915379aa4b81bd29e25c}{awake()}} does nothing, but subtypes should override this to ensure data is instantiated properly and the owner entity has the prerequisites needed to use that component. i.\+e. \mbox{\hyperlink{classba_1_1Animation}{Animation}} component needed \mbox{\hyperlink{classba_1_1Sprite}{Sprite}} component to work. 
+
+Reimplemented in \mbox{\hyperlink{classba_1_1BoxCollider_a1febea30247963e739876559c122a6f2}{ba\+::\+Box\+Collider}}, and \mbox{\hyperlink{classba_1_1Animation_a2fe7607f59a29649415802b2866c17c5}{ba\+::\+Animation}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+BA/\+Components/Component.\+hpp\end{DoxyCompactItemize}

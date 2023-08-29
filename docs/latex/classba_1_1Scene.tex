@@ -1,0 +1,81 @@
+\hypertarget{classba_1_1Scene}{}\doxysection{ba\+::Scene Class Reference}
+\label{classba_1_1Scene}\index{ba::Scene@{ba::Scene}}
+
+
+Inheritance diagram for ba\+::Scene\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=193pt]{classba_1_1Scene__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for ba\+::Scene\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classba_1_1Scene__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classba_1_1Scene_a4bae8099f935e048574dffb6733be79e}\label{classba_1_1Scene_a4bae8099f935e048574dffb6733be79e}} 
+{\bfseries Scene} (\mbox{\hyperlink{classba_1_1Window}{Window}} $\ast$window, \mbox{\hyperlink{classba_1_1ResourceManager}{Resource\+Manager}} $\ast$resource\+Manager, \mbox{\hyperlink{classba_1_1SceneManager}{Scene\+Manager}} $\ast$scene\+Manager)
+\item 
+\mbox{\Hypertarget{classba_1_1Scene_a4e8eba932cc89a15b504724827b878a3}\label{classba_1_1Scene_a4e8eba932cc89a15b504724827b878a3}} 
+virtual void {\bfseries on\+Create} ()=0
+\item 
+\mbox{\Hypertarget{classba_1_1Scene_a652aea06cff835a1b7c09352ff4e2a20}\label{classba_1_1Scene_a652aea06cff835a1b7c09352ff4e2a20}} 
+virtual void {\bfseries on\+Destroy} ()=0
+\item 
+\mbox{\Hypertarget{classba_1_1Scene_a766e181c8f6b8bed046fba8fd785a2c9}\label{classba_1_1Scene_a766e181c8f6b8bed046fba8fd785a2c9}} 
+virtual void {\bfseries on\+Activate} ()
+\item 
+\mbox{\Hypertarget{classba_1_1Scene_a05c4277a49ab8ac214a254fabf2b63c7}\label{classba_1_1Scene_a05c4277a49ab8ac214a254fabf2b63c7}} 
+virtual void {\bfseries on\+Deactivate} ()
+\item 
+\mbox{\Hypertarget{classba_1_1Scene_ae1231e10958dc0edb21f5a65a2022cf9}\label{classba_1_1Scene_ae1231e10958dc0edb21f5a65a2022cf9}} 
+virtual void {\bfseries handle\+Events} ()
+\item 
+\mbox{\Hypertarget{classba_1_1Scene_a0293c4cbd6a3190b895e155330e66be8}\label{classba_1_1Scene_a0293c4cbd6a3190b895e155330e66be8}} 
+virtual void {\bfseries update} (float delta\+Time)
+\item 
+\mbox{\Hypertarget{classba_1_1Scene_ad80d2ae3ab8dca03cd8ddf18b17087f3}\label{classba_1_1Scene_ad80d2ae3ab8dca03cd8ddf18b17087f3}} 
+virtual void {\bfseries post\+Update} (float delta\+Time)
+\item 
+\mbox{\Hypertarget{classba_1_1Scene_a15b298cac23750c5573eb7ae654517f5}\label{classba_1_1Scene_a15b298cac23750c5573eb7ae654517f5}} 
+virtual void {\bfseries draw} (\mbox{\hyperlink{classba_1_1Window}{Window}} \&window)=0
+\item 
+\mbox{\Hypertarget{classba_1_1Scene_a0a0a27c24556475838bf17f80daaee2e}\label{classba_1_1Scene_a0a0a27c24556475838bf17f80daaee2e}} 
+virtual void {\bfseries set\+Window} (\mbox{\hyperlink{classba_1_1Window}{Window}} $\ast$window)
+\item 
+\mbox{\Hypertarget{classba_1_1Scene_ad47832e07350026d416a0e982292cca8}\label{classba_1_1Scene_ad47832e07350026d416a0e982292cca8}} 
+virtual void {\bfseries set\+Reesource\+Manager} (\mbox{\hyperlink{classba_1_1ResourceManager}{Resource\+Manager}} $\ast$rm)
+\item 
+\mbox{\Hypertarget{classba_1_1Scene_ab0d8e61f1cd5fd5ca1ff69c5302edc47}\label{classba_1_1Scene_ab0d8e61f1cd5fd5ca1ff69c5302edc47}} 
+virtual void {\bfseries set\+Scene\+Manager} (\mbox{\hyperlink{classba_1_1SceneManager}{Scene\+Manager}} $\ast$sm)
+\item 
+\mbox{\Hypertarget{classba_1_1Scene_a95bb0ff06fe17263aaec4a6261d54519}\label{classba_1_1Scene_a95bb0ff06fe17263aaec4a6261d54519}} 
+virtual void {\bfseries set\+Switch\+To} (IDtype scene\+ID)
+\item 
+\mbox{\Hypertarget{classba_1_1Scene_aac9df92e7b7ec39be5eddd2fd5605920}\label{classba_1_1Scene_aac9df92e7b7ec39be5eddd2fd5605920}} 
+IDtype {\bfseries get\+SWitch\+To} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classba_1_1Scene_a96735bd4d7773b78487926dc077126dd}\label{classba_1_1Scene_a96735bd4d7773b78487926dc077126dd}} 
+\mbox{\hyperlink{structba_1_1SharedContext}{Shared\+Context}} {\bfseries m\+\_\+\+CONTEXT}
+\item 
+\mbox{\Hypertarget{classba_1_1Scene_add5e0bfebac6154ff855afb0545714ce}\label{classba_1_1Scene_add5e0bfebac6154ff855afb0545714ce}} 
+\mbox{\hyperlink{classba_1_1SceneManager}{Scene\+Manager}} $\ast$ {\bfseries m\+\_\+scene\+Manager} = nullptr
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+BA/\+Scenes/Scene.\+hpp\end{DoxyCompactItemize}

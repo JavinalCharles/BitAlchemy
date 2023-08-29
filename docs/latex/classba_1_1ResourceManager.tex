@@ -1,0 +1,166 @@
+\hypertarget{classba_1_1ResourceManager}{}\doxysection{ba\+::Resource\+Manager Class Reference}
+\label{classba_1_1ResourceManager}\index{ba::ResourceManager@{ba::ResourceManager}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classba_1_1ResourceManager_a3b84a86619fe8e8efb39ec682e9dd126}\label{classba_1_1ResourceManager_a3b84a86619fe8e8efb39ec682e9dd126}} 
+{\bfseries Resource\+Manager} (SDL\+\_\+\+Renderer $\ast$rend)
+\item 
+IDtype \mbox{\hyperlink{classba_1_1ResourceManager_ae07527e0adf4f92eed77e895fbf3c535}{load\+Texture}} (const std\+::string \&file\+Name)
+\begin{DoxyCompactList}\small\item\em Creates an SDL\+\_\+\+Texture$\ast$ object from file\+Name and stores it into memory. \end{DoxyCompactList}\item 
+IDtype \mbox{\hyperlink{classba_1_1ResourceManager_ab23632ccaf80026b6a058a204eca727c}{add\+Texture}} (SDL\+\_\+\+Texture $\ast$texture)
+\begin{DoxyCompactList}\small\item\em Adds the given texture and store it into memory. \end{DoxyCompactList}\item 
+IDtype \mbox{\hyperlink{classba_1_1ResourceManager_a7a47c7b5abfd03b44c7d3f6853758dcc}{load\+Sound}} (const std\+::string \&file\+Name)
+\begin{DoxyCompactList}\small\item\em Creats a Mix\+\_\+\+Chunk$\ast$ object from file\+Name and stores it into memory. \end{DoxyCompactList}\item 
+IDtype \mbox{\hyperlink{classba_1_1ResourceManager_a86594addb34ac99591bcdef82cc89bdd}{load\+Music}} (const std\+::string \&file\+Name)
+\begin{DoxyCompactList}\small\item\em Creates an Mix\+\_\+\+Music$\ast$ object from file\+Name and stores it into memory. \end{DoxyCompactList}\item 
+IDtype \mbox{\hyperlink{classba_1_1ResourceManager_a926b233d7cdcfd7b210d856a8f78189c}{load\+Font}} (const std\+::string \&file\+Name, int font\+Size)
+\begin{DoxyCompactList}\small\item\em Creates a TTF\+\_\+\+Font$\ast$ object from file\+Name and stores it into memory. \end{DoxyCompactList}\item 
+SDL\+\_\+\+Texture $\ast$ \mbox{\hyperlink{classba_1_1ResourceManager_a3f5e2fb9247e54bbc46cdb21314387a2}{get\+Texture}} (IDtype id) const
+\item 
+Mix\+\_\+\+Chunk $\ast$ \mbox{\hyperlink{classba_1_1ResourceManager_a43eba9d50190570e9226a0496ff76777}{get\+Sound}} (IDtype id) const
+\item 
+Mix\+\_\+\+Music $\ast$ \mbox{\hyperlink{classba_1_1ResourceManager_a7493012cd13c1f4262172572257fdd1e}{get\+Music}} (IDtype id) const
+\item 
+TTF\+\_\+\+Font $\ast$ \mbox{\hyperlink{classba_1_1ResourceManager_a298ccef149c6a9846899befa2dbbc8b6}{get\+Font}} (IDtype id) const
+\item 
+\mbox{\Hypertarget{classba_1_1ResourceManager_a2efeff13a9391e66a816bfc312cf68fd}\label{classba_1_1ResourceManager_a2efeff13a9391e66a816bfc312cf68fd}} 
+void {\bfseries set\+Renderer} (SDL\+\_\+\+Renderer $\ast$renderer)
+\item 
+\mbox{\Hypertarget{classba_1_1ResourceManager_a286b3efbf80601d69f22286885651cb4}\label{classba_1_1ResourceManager_a286b3efbf80601d69f22286885651cb4}} 
+path {\bfseries get\+Base\+Directory} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classba_1_1ResourceManager_ab23632ccaf80026b6a058a204eca727c}\label{classba_1_1ResourceManager_ab23632ccaf80026b6a058a204eca727c}} 
+\index{ba::ResourceManager@{ba::ResourceManager}!addTexture@{addTexture}}
+\index{addTexture@{addTexture}!ba::ResourceManager@{ba::ResourceManager}}
+\doxysubsubsection{\texorpdfstring{addTexture()}{addTexture()}}
+{\footnotesize\ttfamily IDtype ba\+::\+Resource\+Manager\+::add\+Texture (\begin{DoxyParamCaption}\item[{SDL\+\_\+\+Texture $\ast$}]{texture }\end{DoxyParamCaption})}
+
+
+
+Adds the given texture and store it into memory. 
+
+\mbox{\hyperlink{classba_1_1ResourceManager_ab23632ccaf80026b6a058a204eca727c}{add\+Texture()}} 
+\begin{DoxyParams}{Parameters}
+{\em texture} & The texture to be stored. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the ID of the stored SDL\+\_\+\+Texture for future access. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classba_1_1ResourceManager_a298ccef149c6a9846899befa2dbbc8b6}\label{classba_1_1ResourceManager_a298ccef149c6a9846899befa2dbbc8b6}} 
+\index{ba::ResourceManager@{ba::ResourceManager}!getFont@{getFont}}
+\index{getFont@{getFont}!ba::ResourceManager@{ba::ResourceManager}}
+\doxysubsubsection{\texorpdfstring{getFont()}{getFont()}}
+{\footnotesize\ttfamily TTF\+\_\+\+Font$\ast$ ba\+::\+Resource\+Manager\+::get\+Font (\begin{DoxyParamCaption}\item[{IDtype}]{id }\end{DoxyParamCaption}) const}
+
+\mbox{\hyperlink{classba_1_1ResourceManager_a298ccef149c6a9846899befa2dbbc8b6}{get\+Font()}} \begin{DoxyReturn}{Returns}
+a pointer to an TTF\+\_\+\+Font referred to by the given id. Returns NULL for invalid id. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classba_1_1ResourceManager_a7493012cd13c1f4262172572257fdd1e}\label{classba_1_1ResourceManager_a7493012cd13c1f4262172572257fdd1e}} 
+\index{ba::ResourceManager@{ba::ResourceManager}!getMusic@{getMusic}}
+\index{getMusic@{getMusic}!ba::ResourceManager@{ba::ResourceManager}}
+\doxysubsubsection{\texorpdfstring{getMusic()}{getMusic()}}
+{\footnotesize\ttfamily Mix\+\_\+\+Music$\ast$ ba\+::\+Resource\+Manager\+::get\+Music (\begin{DoxyParamCaption}\item[{IDtype}]{id }\end{DoxyParamCaption}) const}
+
+\mbox{\hyperlink{classba_1_1ResourceManager_a7493012cd13c1f4262172572257fdd1e}{get\+Music()}} \begin{DoxyReturn}{Returns}
+a pointer to a Mix\+\_\+\+Music referred to by the given id. Returns NULL for invalid id. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classba_1_1ResourceManager_a43eba9d50190570e9226a0496ff76777}\label{classba_1_1ResourceManager_a43eba9d50190570e9226a0496ff76777}} 
+\index{ba::ResourceManager@{ba::ResourceManager}!getSound@{getSound}}
+\index{getSound@{getSound}!ba::ResourceManager@{ba::ResourceManager}}
+\doxysubsubsection{\texorpdfstring{getSound()}{getSound()}}
+{\footnotesize\ttfamily Mix\+\_\+\+Chunk$\ast$ ba\+::\+Resource\+Manager\+::get\+Sound (\begin{DoxyParamCaption}\item[{IDtype}]{id }\end{DoxyParamCaption}) const}
+
+\mbox{\hyperlink{classba_1_1ResourceManager_a43eba9d50190570e9226a0496ff76777}{get\+Sound()}} \begin{DoxyReturn}{Returns}
+a pointer to a Mix\+\_\+\+Chunk referred to by the given id. Returns NULL for invalid id. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classba_1_1ResourceManager_a3f5e2fb9247e54bbc46cdb21314387a2}\label{classba_1_1ResourceManager_a3f5e2fb9247e54bbc46cdb21314387a2}} 
+\index{ba::ResourceManager@{ba::ResourceManager}!getTexture@{getTexture}}
+\index{getTexture@{getTexture}!ba::ResourceManager@{ba::ResourceManager}}
+\doxysubsubsection{\texorpdfstring{getTexture()}{getTexture()}}
+{\footnotesize\ttfamily SDL\+\_\+\+Texture$\ast$ ba\+::\+Resource\+Manager\+::get\+Texture (\begin{DoxyParamCaption}\item[{IDtype}]{id }\end{DoxyParamCaption}) const}
+
+\mbox{\hyperlink{classba_1_1ResourceManager_a3f5e2fb9247e54bbc46cdb21314387a2}{get\+Texture()}} \begin{DoxyReturn}{Returns}
+a pointer to an SDL\+\_\+\+Texture referred to by the given id. Returns NULL for invalid id. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classba_1_1ResourceManager_a926b233d7cdcfd7b210d856a8f78189c}\label{classba_1_1ResourceManager_a926b233d7cdcfd7b210d856a8f78189c}} 
+\index{ba::ResourceManager@{ba::ResourceManager}!loadFont@{loadFont}}
+\index{loadFont@{loadFont}!ba::ResourceManager@{ba::ResourceManager}}
+\doxysubsubsection{\texorpdfstring{loadFont()}{loadFont()}}
+{\footnotesize\ttfamily IDtype ba\+::\+Resource\+Manager\+::load\+Font (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{file\+Name,  }\item[{int}]{font\+Size }\end{DoxyParamCaption})}
+
+
+
+Creates a TTF\+\_\+\+Font$\ast$ object from file\+Name and stores it into memory. 
+
+\mbox{\hyperlink{classba_1_1ResourceManager_a926b233d7cdcfd7b210d856a8f78189c}{load\+Font()}} 
+\begin{DoxyParams}{Parameters}
+{\em file\+Name} & The file\textquotesingle{}s name in a path relative to BASE\+\_\+\+DIR and respective subdirectory. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the ID of the loaded TTF\+\_\+\+Font for future access. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classba_1_1ResourceManager_a86594addb34ac99591bcdef82cc89bdd}\label{classba_1_1ResourceManager_a86594addb34ac99591bcdef82cc89bdd}} 
+\index{ba::ResourceManager@{ba::ResourceManager}!loadMusic@{loadMusic}}
+\index{loadMusic@{loadMusic}!ba::ResourceManager@{ba::ResourceManager}}
+\doxysubsubsection{\texorpdfstring{loadMusic()}{loadMusic()}}
+{\footnotesize\ttfamily IDtype ba\+::\+Resource\+Manager\+::load\+Music (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{file\+Name }\end{DoxyParamCaption})}
+
+
+
+Creates an Mix\+\_\+\+Music$\ast$ object from file\+Name and stores it into memory. 
+
+\mbox{\hyperlink{classba_1_1ResourceManager_a86594addb34ac99591bcdef82cc89bdd}{load\+Music()}} 
+\begin{DoxyParams}{Parameters}
+{\em file\+Name} & The file\textquotesingle{}s name in a path relative to BASE\+\_\+\+DIR and respective subdirectory. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the ID of the loaded Mix\+\_\+\+Music for future access. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classba_1_1ResourceManager_a7a47c7b5abfd03b44c7d3f6853758dcc}\label{classba_1_1ResourceManager_a7a47c7b5abfd03b44c7d3f6853758dcc}} 
+\index{ba::ResourceManager@{ba::ResourceManager}!loadSound@{loadSound}}
+\index{loadSound@{loadSound}!ba::ResourceManager@{ba::ResourceManager}}
+\doxysubsubsection{\texorpdfstring{loadSound()}{loadSound()}}
+{\footnotesize\ttfamily IDtype ba\+::\+Resource\+Manager\+::load\+Sound (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{file\+Name }\end{DoxyParamCaption})}
+
+
+
+Creats a Mix\+\_\+\+Chunk$\ast$ object from file\+Name and stores it into memory. 
+
+\mbox{\hyperlink{classba_1_1ResourceManager_a86594addb34ac99591bcdef82cc89bdd}{load\+Music()}} 
+\begin{DoxyParams}{Parameters}
+{\em file\+Name} & The file\textquotesingle{}s name in a path relative to BASE\+\_\+\+DIR and respective subdirectory. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the ID of the loaded Mix\+\_\+\+Chunk for future access. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classba_1_1ResourceManager_ae07527e0adf4f92eed77e895fbf3c535}\label{classba_1_1ResourceManager_ae07527e0adf4f92eed77e895fbf3c535}} 
+\index{ba::ResourceManager@{ba::ResourceManager}!loadTexture@{loadTexture}}
+\index{loadTexture@{loadTexture}!ba::ResourceManager@{ba::ResourceManager}}
+\doxysubsubsection{\texorpdfstring{loadTexture()}{loadTexture()}}
+{\footnotesize\ttfamily IDtype ba\+::\+Resource\+Manager\+::load\+Texture (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{file\+Name }\end{DoxyParamCaption})}
+
+
+
+Creates an SDL\+\_\+\+Texture$\ast$ object from file\+Name and stores it into memory. 
+
+\mbox{\hyperlink{classba_1_1ResourceManager_ae07527e0adf4f92eed77e895fbf3c535}{load\+Texture()}} 
+\begin{DoxyParams}{Parameters}
+{\em file\+Name} & The file\textquotesingle{}s name in a path relative to BASE\+\_\+\+DIR and respective subdirectory. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the ID of the loaded SDL\+\_\+\+Texture for future access. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+BA/Resource\+Manager.\+hpp\end{DoxyCompactItemize}

@@ -1,0 +1,86 @@
+\hypertarget{classba_1_1Transform}{}\doxysection{ba\+::Transform Class Reference}
+\label{classba_1_1Transform}\index{ba::Transform@{ba::Transform}}
+
+
+Define a 3x3 transform matrix.  
+
+
+
+
+{\ttfamily \#include $<$Transform.\+hpp$>$}
+
+
+
+Collaboration diagram for ba\+::Transform\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=211pt]{classba_1_1Transform__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+constexpr \mbox{\hyperlink{classba_1_1Transform_a68a00c8da3dbe42ffcee055becdee7d0}{Transform}} ()
+\begin{DoxyCompactList}\small\item\em Default Constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classba_1_1Transform_a7dc792d47bca987b6572a6295c529fbd}\label{classba_1_1Transform_a7dc792d47bca987b6572a6295c529fbd}} 
+constexpr \mbox{\hyperlink{classba_1_1Transform_a7dc792d47bca987b6572a6295c529fbd}{Transform}} (float a00, float a01, float a02, float a10, float a11, float a12, float a20, float a21, float a22)
+\begin{DoxyCompactList}\small\item\em Construct a transform from a 3x3 matrix. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classba_1_1Transform_a9788c51fdf3def9917dfd6b00ed16815}\label{classba_1_1Transform_a9788c51fdf3def9917dfd6b00ed16815}} 
+constexpr const float $\ast$ {\bfseries get\+Matrix} () const
+\item 
+\mbox{\Hypertarget{classba_1_1Transform_a5b48878da9ed3e49743a3d27cb5372bb}\label{classba_1_1Transform_a5b48878da9ed3e49743a3d27cb5372bb}} 
+constexpr \mbox{\hyperlink{classba_1_1Transform}{Transform}} {\bfseries get\+Inverse} () const
+\item 
+\mbox{\Hypertarget{classba_1_1Transform_a8f0f9b7c03a8008b4cea822f90823cfa}\label{classba_1_1Transform_a8f0f9b7c03a8008b4cea822f90823cfa}} 
+constexpr \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}} {\bfseries transform\+Point} (const \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}} \&point) const
+\item 
+\mbox{\Hypertarget{classba_1_1Transform_a7725758d1682d5451410f6602a39a20f}\label{classba_1_1Transform_a7725758d1682d5451410f6602a39a20f}} 
+constexpr \mbox{\hyperlink{classba_1_1Rect}{Float\+Rect}} {\bfseries transform\+Rect} (const \mbox{\hyperlink{classba_1_1Rect}{Float\+Rect}} \&rectangle) const
+\item 
+\mbox{\Hypertarget{classba_1_1Transform_a14f7bf5922013adccb362ce083dc73a6}\label{classba_1_1Transform_a14f7bf5922013adccb362ce083dc73a6}} 
+constexpr \mbox{\hyperlink{classba_1_1Transform}{Transform}} \& {\bfseries combine} (const \mbox{\hyperlink{classba_1_1Transform}{Transform}} \&transform)
+\item 
+\mbox{\Hypertarget{classba_1_1Transform_ad6993a18174b1407be9095670f0159cb}\label{classba_1_1Transform_ad6993a18174b1407be9095670f0159cb}} 
+constexpr \mbox{\hyperlink{classba_1_1Transform}{Transform}} \& {\bfseries translate} (const \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}} \&offset)
+\item 
+\mbox{\Hypertarget{classba_1_1Transform_abfcb522854c8a091f4878e282a7b06f7}\label{classba_1_1Transform_abfcb522854c8a091f4878e282a7b06f7}} 
+\mbox{\hyperlink{classba_1_1Transform}{Transform}} \& {\bfseries rotate} (\mbox{\hyperlink{classba_1_1Angle}{Angle}} angle)
+\item 
+\mbox{\Hypertarget{classba_1_1Transform_ad8a95653437c80f62347465b88e91901}\label{classba_1_1Transform_ad8a95653437c80f62347465b88e91901}} 
+\mbox{\hyperlink{classba_1_1Transform}{Transform}} \& {\bfseries rotate} (\mbox{\hyperlink{classba_1_1Angle}{Angle}} angle, const \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}} \&center)
+\item 
+\mbox{\Hypertarget{classba_1_1Transform_a45612acb42acb6358de26814c9896cf4}\label{classba_1_1Transform_a45612acb42acb6358de26814c9896cf4}} 
+constexpr \mbox{\hyperlink{classba_1_1Transform}{Transform}} \& {\bfseries scale} (const \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}} \&factors)
+\item 
+\mbox{\Hypertarget{classba_1_1Transform_a6a5786dabd752a1a053b225a3370e12c}\label{classba_1_1Transform_a6a5786dabd752a1a053b225a3370e12c}} 
+constexpr \mbox{\hyperlink{classba_1_1Transform}{Transform}} \& {\bfseries scale} (const \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}} \&factors, const \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}} \&center)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classba_1_1Transform_a1bfb5066eb531d9c880d0d509b243c56}\label{classba_1_1Transform_a1bfb5066eb531d9c880d0d509b243c56}} 
+static const \mbox{\hyperlink{classba_1_1Transform}{Transform}} {\bfseries Identity}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Define a 3x3 transform matrix. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classba_1_1Transform_a68a00c8da3dbe42ffcee055becdee7d0}\label{classba_1_1Transform_a68a00c8da3dbe42ffcee055becdee7d0}} 
+\index{ba::Transform@{ba::Transform}!Transform@{Transform}}
+\index{Transform@{Transform}!ba::Transform@{ba::Transform}}
+\doxysubsubsection{\texorpdfstring{Transform()}{Transform()}}
+{\footnotesize\ttfamily constexpr ba\+::\+Transform\+::\+Transform (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [default]}}
+
+
+
+Default Constructor. 
+
+BELOW ARE METHODS AND FUNCTIONS IMPLEMENTATIONS FOR CLASS \mbox{\hyperlink{classba_1_1Transform}{Transform}}. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+BA/\+Utilities/Transform.\+hpp\end{DoxyCompactItemize}

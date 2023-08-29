@@ -1,0 +1,61 @@
+\hypertarget{classba_1_1ProgrammedAI}{}\doxysection{ba\+::Programmed\+AI Class Reference}
+\label{classba_1_1ProgrammedAI}\index{ba::ProgrammedAI@{ba::ProgrammedAI}}
+
+
+Inheritance diagram for ba\+::Programmed\+AI\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=178pt]{classba_1_1ProgrammedAI__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for ba\+::Programmed\+AI\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classba_1_1ProgrammedAI__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classba_1_1ProgrammedAI_a2d23dbd292098a8e1863414d2720cac1}\label{classba_1_1ProgrammedAI_a2d23dbd292098a8e1863414d2720cac1}} 
+{\bfseries Programmed\+AI} (\mbox{\hyperlink{classba_1_1Entity}{Entity}} $\ast$owner)
+\item 
+\mbox{\Hypertarget{classba_1_1ProgrammedAI_a292a2849e92c1632ae40ce240ec6abc5}\label{classba_1_1ProgrammedAI_a292a2849e92c1632ae40ce240ec6abc5}} 
+virtual void {\bfseries behave} (float delta\+Time) override
+\item 
+\mbox{\Hypertarget{classba_1_1ProgrammedAI_a791ab8491e326036287f4ea2584c4320}\label{classba_1_1ProgrammedAI_a791ab8491e326036287f4ea2584c4320}} 
+bool {\bfseries assign\+Bindings} (int id, const Condition \&condition, const Behavior\+List \&behavior\+List)
+\item 
+\mbox{\Hypertarget{classba_1_1ProgrammedAI_a84c77e192d3d2576cc79c16e78b392f6}\label{classba_1_1ProgrammedAI_a84c77e192d3d2576cc79c16e78b392f6}} 
+bool {\bfseries assign\+Bindings} (int id, const Condition \&condition, const Behavior \&behavior)
+\item 
+\mbox{\Hypertarget{classba_1_1ProgrammedAI_aa476c9b83709659c8b25e3c8aab8c63b}\label{classba_1_1ProgrammedAI_aa476c9b83709659c8b25e3c8aab8c63b}} 
+bool {\bfseries assign\+Bindings} (int id, const std\+::pair$<$ Condition, Behavior\+List $>$ \&bindings)
+\item 
+\mbox{\Hypertarget{classba_1_1ProgrammedAI_a9db778ab22721a607c7b151bab447d63}\label{classba_1_1ProgrammedAI_a9db778ab22721a607c7b151bab447d63}} 
+void {\bfseries add\+Behavior} (int id, const Behavior \&behavior)
+\item 
+\mbox{\Hypertarget{classba_1_1ProgrammedAI_a5b0c46c6abe4ce2d00950a2a33fe29b5}\label{classba_1_1ProgrammedAI_a5b0c46c6abe4ce2d00950a2a33fe29b5}} 
+void {\bfseries change\+Condition} (int id, const Condition \&condition)
+\item 
+\mbox{\Hypertarget{classba_1_1ProgrammedAI_a5efc3a1ed4cf4c7728975f6e4ff6cc5c}\label{classba_1_1ProgrammedAI_a5efc3a1ed4cf4c7728975f6e4ff6cc5c}} 
+const std\+::pair$<$ Condition, Behavior\+List $>$ \& {\bfseries get\+Bindings} (int id) const
+\item 
+\mbox{\Hypertarget{classba_1_1ProgrammedAI_a9785d7e4fee5702379adc45868ae0500}\label{classba_1_1ProgrammedAI_a9785d7e4fee5702379adc45868ae0500}} 
+void {\bfseries remove\+Bindings} (int id)
+\item 
+\mbox{\Hypertarget{classba_1_1ProgrammedAI_a09fec779848003b23629978e6e8ce933}\label{classba_1_1ProgrammedAI_a09fec779848003b23629978e6e8ce933}} 
+const Behavioral\+Bindings \& {\bfseries get\+Behavioral\+Bindings} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+BA/\+Components/\+AI/Programmed\+AI.\+hpp\end{DoxyCompactItemize}

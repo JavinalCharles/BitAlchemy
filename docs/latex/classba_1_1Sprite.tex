@@ -1,0 +1,61 @@
+\hypertarget{classba_1_1Sprite}{}\doxysection{ba\+::Sprite Class Reference}
+\label{classba_1_1Sprite}\index{ba::Sprite@{ba::Sprite}}
+
+
+Inheritance diagram for ba\+::Sprite\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=260pt]{classba_1_1Sprite__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for ba\+::Sprite\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classba_1_1Sprite__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classba_1_1Sprite_a7b45089decdd9f033473127155101370}\label{classba_1_1Sprite_a7b45089decdd9f033473127155101370}} 
+{\bfseries Sprite} (\mbox{\hyperlink{classba_1_1Entity}{ba\+::\+Entity}} $\ast$owner, IDtype draw\+Layer=0, IDtype sort\+Order=0)
+\item 
+\mbox{\Hypertarget{classba_1_1Sprite_a9c0357d21451db2358662a7d0ed85459}\label{classba_1_1Sprite_a9c0357d21451db2358662a7d0ed85459}} 
+virtual void {\bfseries draw} (\mbox{\hyperlink{classba_1_1Window}{ba\+::\+Window}} \&window) override
+\item 
+\mbox{\Hypertarget{classba_1_1Sprite_a9562f86962aa73f611c3572f46b570e9}\label{classba_1_1Sprite_a9562f86962aa73f611c3572f46b570e9}} 
+bool {\bfseries has\+Texture} () const
+\item 
+\mbox{\Hypertarget{classba_1_1Sprite_aa159c535a7a0c9bc80345f40b7d54ae8}\label{classba_1_1Sprite_aa159c535a7a0c9bc80345f40b7d54ae8}} 
+IDtype {\bfseries load\+Texture\+From\+File} (const std\+::string \&file\+Name)
+\item 
+\mbox{\Hypertarget{classba_1_1Sprite_a1731ef52e1eb25d76b810b82f39d0a14}\label{classba_1_1Sprite_a1731ef52e1eb25d76b810b82f39d0a14}} 
+void {\bfseries set\+Texture} (IDtype texture\+ID)
+\item 
+\mbox{\Hypertarget{classba_1_1Sprite_a991b48a54f1994ab769ddac8b3af0f4e}\label{classba_1_1Sprite_a991b48a54f1994ab769ddac8b3af0f4e}} 
+void {\bfseries set\+Texture} (IDtype texture\+ID, const \mbox{\hyperlink{classba_1_1Rect}{Int\+Rect}} \&texture\+Rect)
+\item 
+\mbox{\Hypertarget{classba_1_1Sprite_a429256b0fa2c8b2c96ddc001c00c94c3}\label{classba_1_1Sprite_a429256b0fa2c8b2c96ddc001c00c94c3}} 
+void {\bfseries set\+Texture\+Rect} (const \mbox{\hyperlink{classba_1_1Rect}{Int\+Rect}} \&rect)
+\item 
+\mbox{\Hypertarget{classba_1_1Sprite_ae6529618a738e9bf0c854004d7217271}\label{classba_1_1Sprite_ae6529618a738e9bf0c854004d7217271}} 
+\mbox{\hyperlink{classba_1_1Rect}{Int\+Rect}} {\bfseries get\+Texture\+Rect} () const
+\item 
+\mbox{\Hypertarget{classba_1_1Sprite_aeeea72847a3cddf61f9eec1f2aa225e3}\label{classba_1_1Sprite_aeeea72847a3cddf61f9eec1f2aa225e3}} 
+virtual \mbox{\hyperlink{classba_1_1Rect}{Float\+Rect}} {\bfseries get\+Local\+Bounds} () const override
+\item 
+\mbox{\Hypertarget{classba_1_1Sprite_aa6a62207a4462c57fc07cbda515d7723}\label{classba_1_1Sprite_aa6a62207a4462c57fc07cbda515d7723}} 
+virtual \mbox{\hyperlink{classba_1_1Rect}{Float\+Rect}} {\bfseries get\+Global\+Bounds} () const override
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+BA/\+Components/Sprite.\+hpp\end{DoxyCompactItemize}

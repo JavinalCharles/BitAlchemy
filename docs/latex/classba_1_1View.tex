@@ -1,0 +1,89 @@
+\hypertarget{classba_1_1View}{}\doxysection{ba\+::View Class Reference}
+\label{classba_1_1View}\index{ba::View@{ba::View}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classba_1_1View_a54dd199c3b9e1ef6c98619e82974c578}\label{classba_1_1View_a54dd199c3b9e1ef6c98619e82974c578}} 
+{\bfseries View} (const \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}} \&area, const \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}} \&center)
+\item 
+\mbox{\Hypertarget{classba_1_1View_a52894443f2d80bc611ba4bfdada0d83a}\label{classba_1_1View_a52894443f2d80bc611ba4bfdada0d83a}} 
+{\bfseries View} (const \mbox{\hyperlink{classba_1_1Rect}{Float\+Rect}} \&rectangle)
+\item 
+\mbox{\Hypertarget{classba_1_1View_a2107de899d9d66bb732225921aa16195}\label{classba_1_1View_a2107de899d9d66bb732225921aa16195}} 
+{\bfseries View} (const \mbox{\hyperlink{classba_1_1View}{View}} \&other\+View)
+\item 
+\mbox{\Hypertarget{classba_1_1View_a412e1c6eade631c868812ab09216b615}\label{classba_1_1View_a412e1c6eade631c868812ab09216b615}} 
+constexpr \mbox{\hyperlink{classba_1_1View}{View}} \& {\bfseries operator=} (const \mbox{\hyperlink{classba_1_1View}{View}} \&other\+View)
+\item 
+\mbox{\Hypertarget{classba_1_1View_ac0206f7303ede729c6d58485bdfec204}\label{classba_1_1View_ac0206f7303ede729c6d58485bdfec204}} 
+const \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}} \& {\bfseries get\+Center} () const
+\item 
+\mbox{\Hypertarget{classba_1_1View_a5219599b01e2e088d8f685dd13bc8d23}\label{classba_1_1View_a5219599b01e2e088d8f685dd13bc8d23}} 
+const \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}} \& {\bfseries get\+Area} () const
+\item 
+\mbox{\Hypertarget{classba_1_1View_af088005116fc1213cc4a9587aca94d39}\label{classba_1_1View_af088005116fc1213cc4a9587aca94d39}} 
+const \mbox{\hyperlink{classba_1_1Rect}{Float\+Rect}} \& {\bfseries get\+Viewport} () const
+\item 
+\mbox{\Hypertarget{classba_1_1View_ae6b402dc606f2b95ca131840da68ca5a}\label{classba_1_1View_ae6b402dc606f2b95ca131840da68ca5a}} 
+\mbox{\hyperlink{classba_1_1Rect}{Float\+Rect}} {\bfseries get\+View\+Space} () const
+\item 
+\mbox{\Hypertarget{classba_1_1View_a818db25eba6c63e480b835d8f65153ee}\label{classba_1_1View_a818db25eba6c63e480b835d8f65153ee}} 
+void {\bfseries set\+Center} (const \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}} \&center)
+\item 
+\mbox{\Hypertarget{classba_1_1View_ad4ed81485eead2b37d65dfd064a6137a}\label{classba_1_1View_ad4ed81485eead2b37d65dfd064a6137a}} 
+void {\bfseries set\+Area} (const \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}} \&area)
+\item 
+\mbox{\Hypertarget{classba_1_1View_a96ecbf9ce8c846c8b44c86699b5fe3ba}\label{classba_1_1View_a96ecbf9ce8c846c8b44c86699b5fe3ba}} 
+void {\bfseries set\+Viewport} (const \mbox{\hyperlink{classba_1_1Rect}{Float\+Rect}} \&viewport)
+\item 
+\mbox{\Hypertarget{classba_1_1View_ae4862239459810c6deaf406bd0f0007f}\label{classba_1_1View_ae4862239459810c6deaf406bd0f0007f}} 
+void {\bfseries move} (const \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}} \&offset)
+\item 
+\mbox{\hyperlink{classba_1_1Rect}{Float\+Rect}} \mbox{\hyperlink{classba_1_1View_a96476958b31441f9b8412f82a0ee3f37}{map\+To\+View}} (const \mbox{\hyperlink{classba_1_1Rect}{Float\+Rect}} \&rect)
+\begin{DoxyCompactList}\small\item\em maps the given rect in relation to this view. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classba_1_1Vector2}{Vector2f}} \mbox{\hyperlink{classba_1_1View_a28cf356b580aeba70dcd663cc134a210}{map\+To\+View}} (const \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}} \&coord)
+\begin{DoxyCompactList}\small\item\em maps the given vector in relation to this view \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classba_1_1View_a96476958b31441f9b8412f82a0ee3f37}\label{classba_1_1View_a96476958b31441f9b8412f82a0ee3f37}} 
+\index{ba::View@{ba::View}!mapToView@{mapToView}}
+\index{mapToView@{mapToView}!ba::View@{ba::View}}
+\doxysubsubsection{\texorpdfstring{mapToView()}{mapToView()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classba_1_1Rect}{Float\+Rect}} ba\+::\+View\+::map\+To\+View (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classba_1_1Rect}{Float\+Rect}} \&}]{rect }\end{DoxyParamCaption})}
+
+
+
+maps the given rect in relation to this view. 
+
+This method accepts a rectangle oriented in world coordinates and transform it to a rectangle oriented more towards this view (i.\+e. screen coordinates). 
+\begin{DoxyParams}{Parameters}
+{\em rect} & rectangle to be mapped. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a rectangle mapped relatively to the view. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classba_1_1View_a28cf356b580aeba70dcd663cc134a210}\label{classba_1_1View_a28cf356b580aeba70dcd663cc134a210}} 
+\index{ba::View@{ba::View}!mapToView@{mapToView}}
+\index{mapToView@{mapToView}!ba::View@{ba::View}}
+\doxysubsubsection{\texorpdfstring{mapToView()}{mapToView()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}} ba\+::\+View\+::map\+To\+View (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}} \&}]{coord }\end{DoxyParamCaption})}
+
+
+
+maps the given vector in relation to this view 
+
+
+\begin{DoxyParams}{Parameters}
+{\em coord} & vector to be mapped. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a vector mapped to the view. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+BA/\+Window/View.\+hpp\end{DoxyCompactItemize}

@@ -1,0 +1,31 @@
+\hypertarget{structba_1_1Sequence}{}\doxysection{ba\+::Sequence Struct Reference}
+\label{structba_1_1Sequence}\index{ba::Sequence@{ba::Sequence}}
+
+
+A struct holding information about a single animation sequence.  
+
+
+
+
+{\ttfamily \#include $<$Animation.\+hpp$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structba_1_1Sequence_a061bfaa4abb453ba515f10f2dd96d77a}\label{structba_1_1Sequence_a061bfaa4abb453ba515f10f2dd96d77a}} 
+std\+::vector$<$ \mbox{\hyperlink{structba_1_1Frame}{Frame}} $>$ \mbox{\hyperlink{structba_1_1Sequence_a061bfaa4abb453ba515f10f2dd96d77a}{frames}}
+\begin{DoxyCompactList}\small\item\em containing each frame for this sequence. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structba_1_1Sequence_ae7fda3e550b6607234103c9c9fd590df}\label{structba_1_1Sequence_ae7fda3e550b6607234103c9c9fd590df}} 
+std\+::forward\+\_\+list$<$ Sequence\+Action $>$ \mbox{\hyperlink{structba_1_1Sequence_ae7fda3e550b6607234103c9c9fd590df}{actions}} \{\}
+\begin{DoxyCompactList}\small\item\em to execute after displaying all the frames. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structba_1_1Sequence_ae02ab260bb8d97b19aa8f9fa9baa719f}\label{structba_1_1Sequence_ae02ab260bb8d97b19aa8f9fa9baa719f}} 
+bool \mbox{\hyperlink{structba_1_1Sequence_ae02ab260bb8d97b19aa8f9fa9baa719f}{looped}} = false
+\begin{DoxyCompactList}\small\item\em Whether the sequence should transition to the first frame after display\+Seconds. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A struct holding information about a single animation sequence. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+BA/\+Components/Animation.\+hpp\end{DoxyCompactItemize}

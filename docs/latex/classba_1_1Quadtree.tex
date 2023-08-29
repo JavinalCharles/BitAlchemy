@@ -1,0 +1,31 @@
+\hypertarget{classba_1_1Quadtree}{}\doxysection{ba\+::Quadtree$<$ T $>$ Class Template Reference}
+\label{classba_1_1Quadtree}\index{ba::Quadtree$<$ T $>$@{ba::Quadtree$<$ T $>$}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classba_1_1Quadtree_afe9053c393376c681011d73a0ddc9afd}\label{classba_1_1Quadtree_afe9053c393376c681011d73a0ddc9afd}} 
+{\bfseries Quadtree} (std\+::size\+\_\+t max\+Objects, int max\+Levels, int level=0, \mbox{\hyperlink{classba_1_1Rect}{Float\+Rect}} bounds=\{0, 0, 3200, 3200\}, \mbox{\hyperlink{classba_1_1Quadtree}{Quadtree}} $\ast$parent=nullptr)
+\item 
+\mbox{\Hypertarget{classba_1_1Quadtree_af93b42c4708733dd6729d5bcd1fb5b42}\label{classba_1_1Quadtree_af93b42c4708733dd6729d5bcd1fb5b42}} 
+void {\bfseries insert} (std\+::shared\+\_\+ptr$<$ T $>$ object)
+\item 
+\mbox{\Hypertarget{classba_1_1Quadtree_ab72672479f6d595cc854cd59b4aa0660}\label{classba_1_1Quadtree_ab72672479f6d595cc854cd59b4aa0660}} 
+void {\bfseries remove} (std\+::shared\+\_\+ptr$<$ T $>$ object)
+\item 
+\mbox{\Hypertarget{classba_1_1Quadtree_ad57897fc347f88367edc4b252114e3ee}\label{classba_1_1Quadtree_ad57897fc347f88367edc4b252114e3ee}} 
+void {\bfseries clear} ()
+\item 
+\mbox{\Hypertarget{classba_1_1Quadtree_a355946b629c4bcaca01715bc1d6157d7}\label{classba_1_1Quadtree_a355946b629c4bcaca01715bc1d6157d7}} 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ T $>$ $>$ {\bfseries search} (const \mbox{\hyperlink{classba_1_1Rect}{Float\+Rect}} \&area) const
+\item 
+\mbox{\Hypertarget{classba_1_1Quadtree_a1480426f279b9177b0e317107c0ef6a6}\label{classba_1_1Quadtree_a1480426f279b9177b0e317107c0ef6a6}} 
+const \mbox{\hyperlink{classba_1_1Rect}{Float\+Rect}} \& {\bfseries get\+Bounds} () const
+\item 
+\mbox{\Hypertarget{classba_1_1Quadtree_a25742b43cfef0e0ffff8f6bc81fcf519}\label{classba_1_1Quadtree_a25742b43cfef0e0ffff8f6bc81fcf519}} 
+void {\bfseries draw\+Bounds} (\mbox{\hyperlink{classba_1_1Window}{Window}} \&window)
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+BA/\+Containers/Quadtree.\+hpp\end{DoxyCompactItemize}

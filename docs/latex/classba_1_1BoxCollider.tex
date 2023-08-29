@@ -1,0 +1,71 @@
+\hypertarget{classba_1_1BoxCollider}{}\doxysection{ba\+::Box\+Collider Class Reference}
+\label{classba_1_1BoxCollider}\index{ba::BoxCollider@{ba::BoxCollider}}
+
+
+Inheritance diagram for ba\+::Box\+Collider\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=260pt]{classba_1_1BoxCollider__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for ba\+::Box\+Collider\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classba_1_1BoxCollider__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classba_1_1BoxCollider_a1418c22a6ea74099335e8e0a1fe2c66b}\label{classba_1_1BoxCollider_a1418c22a6ea74099335e8e0a1fe2c66b}} 
+{\bfseries Box\+Collider} (\mbox{\hyperlink{classba_1_1Entity}{Entity}} $\ast$owner)
+\item 
+virtual void \mbox{\hyperlink{classba_1_1BoxCollider_a1febea30247963e739876559c122a6f2}{awake}} () override
+\begin{DoxyCompactList}\small\item\em Called once after the entity owner is added to the main loop. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classba_1_1BoxCollider_a68730f24f93539f74ed4f3a32db0e64e}\label{classba_1_1BoxCollider_a68730f24f93539f74ed4f3a32db0e64e}} 
+void {\bfseries set\+Size} (const \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}} \&dimension)
+\item 
+\mbox{\Hypertarget{classba_1_1BoxCollider_a5dba5c94914f9aa9cbe8c122353300c5}\label{classba_1_1BoxCollider_a5dba5c94914f9aa9cbe8c122353300c5}} 
+const \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}} \& {\bfseries get\+Size} () const
+\item 
+\mbox{\Hypertarget{classba_1_1BoxCollider_acd7ecc423a9d2153565877ca4d748d5b}\label{classba_1_1BoxCollider_acd7ecc423a9d2153565877ca4d748d5b}} 
+virtual bool {\bfseries is\+Colliding} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1Collider}{Collider}} $>$ \&other) override
+\item 
+\mbox{\Hypertarget{classba_1_1BoxCollider_a6414debc7c69b86e0855cf003452406d}\label{classba_1_1BoxCollider_a6414debc7c69b86e0855cf003452406d}} 
+virtual void {\bfseries resolve} (const \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}} \&resolution) override
+\item 
+\mbox{\Hypertarget{classba_1_1BoxCollider_a046696aaef744634a3b7a1077cf0f13e}\label{classba_1_1BoxCollider_a046696aaef744634a3b7a1077cf0f13e}} 
+virtual \mbox{\hyperlink{classba_1_1Rect}{Float\+Rect}} {\bfseries get\+Local\+Bounds} () const override
+\item 
+\mbox{\Hypertarget{classba_1_1BoxCollider_a97f8234d918ce7f7a9ade1cfaf0129e9}\label{classba_1_1BoxCollider_a97f8234d918ce7f7a9ade1cfaf0129e9}} 
+virtual \mbox{\hyperlink{classba_1_1Rect}{Float\+Rect}} {\bfseries get\+Global\+Bounds} () const override
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classba_1_1BoxCollider_a1febea30247963e739876559c122a6f2}\label{classba_1_1BoxCollider_a1febea30247963e739876559c122a6f2}} 
+\index{ba::BoxCollider@{ba::BoxCollider}!awake@{awake}}
+\index{awake@{awake}!ba::BoxCollider@{ba::BoxCollider}}
+\doxysubsubsection{\texorpdfstring{awake()}{awake()}}
+{\footnotesize\ttfamily virtual void ba\+::\+Box\+Collider\+::awake (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Called once after the entity owner is added to the main loop. 
+
+This \mbox{\hyperlink{classba_1_1BoxCollider_a1febea30247963e739876559c122a6f2}{awake()}} does nothing, but subtypes should override this to ensure data is instantiated properly and the owner entity has the prerequisites needed to use that component. i.\+e. \mbox{\hyperlink{classba_1_1Animation}{Animation}} component needed \mbox{\hyperlink{classba_1_1Sprite}{Sprite}} component to work. 
+
+Reimplemented from \mbox{\hyperlink{classba_1_1Component_a6f0b77ccea25915379aa4b81bd29e25c}{ba\+::\+Component}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+BA/\+Components/\+Colliders/Box\+Collider.\+hpp\end{DoxyCompactItemize}

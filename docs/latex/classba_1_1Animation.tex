@@ -1,0 +1,253 @@
+\hypertarget{classba_1_1Animation}{}\doxysection{ba\+::Animation Class Reference}
+\label{classba_1_1Animation}\index{ba::Animation@{ba::Animation}}
+
+
+Holds information about all animations for a single game entity.  
+
+
+
+
+{\ttfamily \#include $<$Animation.\+hpp$>$}
+
+
+
+Inheritance diagram for ba\+::Animation\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=163pt]{classba_1_1Animation__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for ba\+::Animation\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classba_1_1Animation__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classba_1_1Animation_ae722b55eb5613d303a643563bba6c736}{Animation}} (\mbox{\hyperlink{classba_1_1Entity}{Entity}} $\ast$owner)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classba_1_1Animation}{Animation}} Constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classba_1_1Animation_a2fe7607f59a29649415802b2866c17c5}\label{classba_1_1Animation_a2fe7607f59a29649415802b2866c17c5}} 
+virtual void \mbox{\hyperlink{classba_1_1Animation_a2fe7607f59a29649415802b2866c17c5}{awake}} () override
+\begin{DoxyCompactList}\small\item\em Initializes the attributes and ensures owner has proper prerequisite. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classba_1_1Animation_a9a8f153fb9f0b16ffa94a3872ff56fca}{add}} (IDtype animation\+ID, \mbox{\hyperlink{structba_1_1Sequence}{Sequence}} sequence)
+\begin{DoxyCompactList}\small\item\em Adds a single animation sequence to the object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classba_1_1Animation_ac9d6b48c2273f8af1662446fe91aa5ea}{set}} (IDtype animation\+ID)
+\begin{DoxyCompactList}\small\item\em Changes the current animation of this object to the sequence referred to by animation\+ID. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classba_1_1Animation_af10cdd68a7621ed878b7d9aab6b7c6c4}{set\+Loop}} (IDtype animation\+ID, bool is\+Loop=true)
+\begin{DoxyCompactList}\small\item\em Changes whether to loop the animation sequence referred to by animation\+ID. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classba_1_1Animation_a6e18d7786d5c678e0f66b0c5517760c6}{set\+Frame}} (IDtype animation\+ID, std\+::size\+\_\+t frame\+Index, const \mbox{\hyperlink{structba_1_1Frame}{Frame}} \&frame)
+\begin{DoxyCompactList}\small\item\em Changes a single frame for animation sequence referred to by the animation\+ID. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classba_1_1Animation_a77430fb6097918fa0451ff37e78f3673}{add\+Frame}} (IDtype animation\+ID, const \mbox{\hyperlink{structba_1_1Frame}{Frame}} \&frame)
+\begin{DoxyCompactList}\small\item\em Appends a new frame at the end of the animation sequence referred to by animation\+ID. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classba_1_1Animation_a325b09f5ae3a5b0047f724db6e6048b0}{add\+Frame\+Action}} (IDtype animation\+ID, std\+::size\+\_\+t frame\+Index, const Frame\+Action \&frame\+Action)
+\begin{DoxyCompactList}\small\item\em Adds a frame action for a single frame within the animation sequence referred to by animation\+ID. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classba_1_1Animation_a6ba355b6c6c79f724cb891c72f729b1c}{add\+Sequence\+Action}} (IDtype animation\+ID, const Sequence\+Action \&sequence\+Action)
+\begin{DoxyCompactList}\small\item\em Adds an action to the animation sequence referred to by animation\+ID. \end{DoxyCompactList}\item 
+IDtype \mbox{\hyperlink{classba_1_1Animation_af893295b327ad62d713a6b1620e049ca}{get\+Current\+Animation\+ID}} () const
+\begin{DoxyCompactList}\small\item\em returns the ID of the current animation sequence being displayed for this object. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{structba_1_1Sequence}{Sequence}} \& \mbox{\hyperlink{classba_1_1Animation_ae2e9b8b79dff9a7b5a55eb2b7cffb5e0}{get\+Current\+Sequence}} () const
+\begin{DoxyCompactList}\small\item\em returns a const reference to the current animation sequence. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classba_1_1Animation_aeb0ce4fe163d075c05039f6f89f9da07}\label{classba_1_1Animation_aeb0ce4fe163d075c05039f6f89f9da07}} 
+static const IDtype {\bfseries CID}
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classba_1_1Animation_a4c8fb761c777f1a874c5d97e052686ad}\label{classba_1_1Animation_a4c8fb761c777f1a874c5d97e052686ad}} 
+class {\bfseries Animation\+System}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Holds information about all animations for a single game entity. 
+
+Note\+: This component requires \mbox{\hyperlink{classba_1_1Sprite}{Sprite}} component to work alongside. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classba_1_1Animation_ae722b55eb5613d303a643563bba6c736}\label{classba_1_1Animation_ae722b55eb5613d303a643563bba6c736}} 
+\index{ba::Animation@{ba::Animation}!Animation@{Animation}}
+\index{Animation@{Animation}!ba::Animation@{ba::Animation}}
+\doxysubsubsection{\texorpdfstring{Animation()}{Animation()}}
+{\footnotesize\ttfamily ba\+::\+Animation\+::\+Animation (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classba_1_1Entity}{Entity}} $\ast$}]{owner }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+\mbox{\hyperlink{classba_1_1Animation}{Animation}} Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em owner} & Owner of this component. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classba_1_1Animation_a9a8f153fb9f0b16ffa94a3872ff56fca}\label{classba_1_1Animation_a9a8f153fb9f0b16ffa94a3872ff56fca}} 
+\index{ba::Animation@{ba::Animation}!add@{add}}
+\index{add@{add}!ba::Animation@{ba::Animation}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily void ba\+::\+Animation\+::add (\begin{DoxyParamCaption}\item[{IDtype}]{animation\+ID,  }\item[{\mbox{\hyperlink{structba_1_1Sequence}{Sequence}}}]{sequence }\end{DoxyParamCaption})}
+
+
+
+Adds a single animation sequence to the object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em animation\+ID} & the ID that will be used to change the animation of this object. \\
+\hline
+{\em sequence} & the animation sequence. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classba_1_1Animation_a77430fb6097918fa0451ff37e78f3673}\label{classba_1_1Animation_a77430fb6097918fa0451ff37e78f3673}} 
+\index{ba::Animation@{ba::Animation}!addFrame@{addFrame}}
+\index{addFrame@{addFrame}!ba::Animation@{ba::Animation}}
+\doxysubsubsection{\texorpdfstring{addFrame()}{addFrame()}}
+{\footnotesize\ttfamily void ba\+::\+Animation\+::add\+Frame (\begin{DoxyParamCaption}\item[{IDtype}]{animation\+ID,  }\item[{const \mbox{\hyperlink{structba_1_1Frame}{Frame}} \&}]{frame }\end{DoxyParamCaption})}
+
+
+
+Appends a new frame at the end of the animation sequence referred to by animation\+ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em animation\+ID} & the key to the desired animation sequence. \\
+\hline
+{\em frame} & the frame to be appended to the sequence. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classba_1_1Animation_a325b09f5ae3a5b0047f724db6e6048b0}\label{classba_1_1Animation_a325b09f5ae3a5b0047f724db6e6048b0}} 
+\index{ba::Animation@{ba::Animation}!addFrameAction@{addFrameAction}}
+\index{addFrameAction@{addFrameAction}!ba::Animation@{ba::Animation}}
+\doxysubsubsection{\texorpdfstring{addFrameAction()}{addFrameAction()}}
+{\footnotesize\ttfamily void ba\+::\+Animation\+::add\+Frame\+Action (\begin{DoxyParamCaption}\item[{IDtype}]{animation\+ID,  }\item[{std\+::size\+\_\+t}]{frame\+Index,  }\item[{const Frame\+Action \&}]{frame\+Action }\end{DoxyParamCaption})}
+
+
+
+Adds a frame action for a single frame within the animation sequence referred to by animation\+ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em animation\+ID} & the key to the desired animation sequence. \\
+\hline
+{\em frame\+Index} & the index of the frame to add an action to. \\
+\hline
+{\em frame\+Action} & the action to be added. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classba_1_1Animation_a6ba355b6c6c79f724cb891c72f729b1c}\label{classba_1_1Animation_a6ba355b6c6c79f724cb891c72f729b1c}} 
+\index{ba::Animation@{ba::Animation}!addSequenceAction@{addSequenceAction}}
+\index{addSequenceAction@{addSequenceAction}!ba::Animation@{ba::Animation}}
+\doxysubsubsection{\texorpdfstring{addSequenceAction()}{addSequenceAction()}}
+{\footnotesize\ttfamily void ba\+::\+Animation\+::add\+Sequence\+Action (\begin{DoxyParamCaption}\item[{IDtype}]{animation\+ID,  }\item[{const Sequence\+Action \&}]{sequence\+Action }\end{DoxyParamCaption})}
+
+
+
+Adds an action to the animation sequence referred to by animation\+ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em animation\+ID} & the key to the desired animation sequence. \\
+\hline
+{\em sequence\+Action} & the action to be added. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classba_1_1Animation_af893295b327ad62d713a6b1620e049ca}\label{classba_1_1Animation_af893295b327ad62d713a6b1620e049ca}} 
+\index{ba::Animation@{ba::Animation}!getCurrentAnimationID@{getCurrentAnimationID}}
+\index{getCurrentAnimationID@{getCurrentAnimationID}!ba::Animation@{ba::Animation}}
+\doxysubsubsection{\texorpdfstring{getCurrentAnimationID()}{getCurrentAnimationID()}}
+{\footnotesize\ttfamily IDtype ba\+::\+Animation\+::get\+Current\+Animation\+ID (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+returns the ID of the current animation sequence being displayed for this object. 
+
+\begin{DoxyReturn}{Returns}
+An unsigned integer type which is the ID of the currently displayed animation sequence. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classba_1_1Animation_ae2e9b8b79dff9a7b5a55eb2b7cffb5e0}\label{classba_1_1Animation_ae2e9b8b79dff9a7b5a55eb2b7cffb5e0}} 
+\index{ba::Animation@{ba::Animation}!getCurrentSequence@{getCurrentSequence}}
+\index{getCurrentSequence@{getCurrentSequence}!ba::Animation@{ba::Animation}}
+\doxysubsubsection{\texorpdfstring{getCurrentSequence()}{getCurrentSequence()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structba_1_1Sequence}{Sequence}}\& ba\+::\+Animation\+::get\+Current\+Sequence (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+returns a const reference to the current animation sequence. 
+
+\begin{DoxyReturn}{Returns}
+a reference to the current animation sequence. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classba_1_1Animation_ac9d6b48c2273f8af1662446fe91aa5ea}\label{classba_1_1Animation_ac9d6b48c2273f8af1662446fe91aa5ea}} 
+\index{ba::Animation@{ba::Animation}!set@{set}}
+\index{set@{set}!ba::Animation@{ba::Animation}}
+\doxysubsubsection{\texorpdfstring{set()}{set()}}
+{\footnotesize\ttfamily void ba\+::\+Animation\+::set (\begin{DoxyParamCaption}\item[{IDtype}]{animation\+ID }\end{DoxyParamCaption})}
+
+
+
+Changes the current animation of this object to the sequence referred to by animation\+ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em animation\+ID} & the key to the desired animation sequence.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::invalid\+\_\+argument} & if animation\+ID does not exist as a key for for this component\textquotesingle{}s animations map. \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classba_1_1Animation_a6e18d7786d5c678e0f66b0c5517760c6}\label{classba_1_1Animation_a6e18d7786d5c678e0f66b0c5517760c6}} 
+\index{ba::Animation@{ba::Animation}!setFrame@{setFrame}}
+\index{setFrame@{setFrame}!ba::Animation@{ba::Animation}}
+\doxysubsubsection{\texorpdfstring{setFrame()}{setFrame()}}
+{\footnotesize\ttfamily void ba\+::\+Animation\+::set\+Frame (\begin{DoxyParamCaption}\item[{IDtype}]{animation\+ID,  }\item[{std\+::size\+\_\+t}]{frame\+Index,  }\item[{const \mbox{\hyperlink{structba_1_1Frame}{Frame}} \&}]{frame }\end{DoxyParamCaption})}
+
+
+
+Changes a single frame for animation sequence referred to by the animation\+ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em animation\+ID} & the key to the animation sequence to changed. \\
+\hline
+{\em frame\+Index} & the index of the frame to be replaced. \\
+\hline
+{\em frame} & the frame to replace the old one with. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classba_1_1Animation_af10cdd68a7621ed878b7d9aab6b7c6c4}\label{classba_1_1Animation_af10cdd68a7621ed878b7d9aab6b7c6c4}} 
+\index{ba::Animation@{ba::Animation}!setLoop@{setLoop}}
+\index{setLoop@{setLoop}!ba::Animation@{ba::Animation}}
+\doxysubsubsection{\texorpdfstring{setLoop()}{setLoop()}}
+{\footnotesize\ttfamily void ba\+::\+Animation\+::set\+Loop (\begin{DoxyParamCaption}\item[{IDtype}]{animation\+ID,  }\item[{bool}]{is\+Loop = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Changes whether to loop the animation sequence referred to by animation\+ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em animation\+ID} & the key to the desired animation sequence. \\
+\hline
+{\em is\+Loop} & Boolean attribute whether to loop the sequence or not. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+BA/\+Components/Animation.\+hpp\end{DoxyCompactItemize}

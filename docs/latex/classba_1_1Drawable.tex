@@ -1,0 +1,69 @@
+\hypertarget{classba_1_1Drawable}{}\doxysection{ba\+::Drawable Class Reference}
+\label{classba_1_1Drawable}\index{ba::Drawable@{ba::Drawable}}
+
+
+Inheritance diagram for ba\+::Drawable\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=260pt]{classba_1_1Drawable__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for ba\+::Drawable\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classba_1_1Drawable__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classba_1_1Drawable_a2904f07c3b6c76beda0df739623c89a7}\label{classba_1_1Drawable_a2904f07c3b6c76beda0df739623c89a7}} 
+{\bfseries Drawable} (\mbox{\hyperlink{classba_1_1Entity}{Entity}} $\ast$owner, IDtype draw\+Layer=0, IDtype sort\+Order=0)
+\item 
+\mbox{\Hypertarget{classba_1_1Drawable_a463bf092e5b8df875b31cf6c1a522bd1}\label{classba_1_1Drawable_a463bf092e5b8df875b31cf6c1a522bd1}} 
+virtual void {\bfseries draw} (\mbox{\hyperlink{classba_1_1Window}{Window}} \&window)=0
+\item 
+\mbox{\Hypertarget{classba_1_1Drawable_a855e3f26086c3929688ac903f948dc7c}\label{classba_1_1Drawable_a855e3f26086c3929688ac903f948dc7c}} 
+void {\bfseries set\+Draw\+Layer} (IDtype draw\+Layer)
+\item 
+\mbox{\Hypertarget{classba_1_1Drawable_a768a973f6eab342874564df552651869}\label{classba_1_1Drawable_a768a973f6eab342874564df552651869}} 
+IDtype {\bfseries get\+Draw\+Layer} () const
+\item 
+\mbox{\Hypertarget{classba_1_1Drawable_ab985ec2d1f53d8e890128c50f3285e5a}\label{classba_1_1Drawable_ab985ec2d1f53d8e890128c50f3285e5a}} 
+void {\bfseries set\+Sort\+Order} (IDtype sort\+Order)
+\item 
+\mbox{\Hypertarget{classba_1_1Drawable_aab1a46e120d2c1bdf9c6f829966ae801}\label{classba_1_1Drawable_aab1a46e120d2c1bdf9c6f829966ae801}} 
+IDtype {\bfseries get\+Sort\+Order} () const
+\item 
+\mbox{\Hypertarget{classba_1_1Drawable_a93d805c605317310007c9cf98513662e}\label{classba_1_1Drawable_a93d805c605317310007c9cf98513662e}} 
+virtual \mbox{\hyperlink{classba_1_1Rect}{Float\+Rect}} {\bfseries get\+Local\+Bounds} () const =0
+\item 
+\mbox{\Hypertarget{classba_1_1Drawable_a95bde25de9e31a590bb282837f2b1dae}\label{classba_1_1Drawable_a95bde25de9e31a590bb282837f2b1dae}} 
+virtual \mbox{\hyperlink{classba_1_1Rect}{Float\+Rect}} {\bfseries get\+Global\+Bounds} () const =0
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classba_1_1Drawable_a8dbe059815b53a7a40f261cc05a0ed37}\label{classba_1_1Drawable_a8dbe059815b53a7a40f261cc05a0ed37}} 
+static const IDtype {\bfseries CID}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classba_1_1Drawable_a0048fac15445dac14dcc1b10c428e1ee}\label{classba_1_1Drawable_a0048fac15445dac14dcc1b10c428e1ee}} 
+IDtype {\bfseries m\+\_\+draw\+Layer}
+\item 
+\mbox{\Hypertarget{classba_1_1Drawable_aa438de81d97c327b6c4b924451214d33}\label{classba_1_1Drawable_aa438de81d97c327b6c4b924451214d33}} 
+IDtype {\bfseries m\+\_\+sort\+Order}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+BA/\+Components/Drawable.\+hpp\end{DoxyCompactItemize}
