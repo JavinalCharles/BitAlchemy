@@ -25,6 +25,9 @@ public:
     Engine();
     Engine(const std::string& title, IntRect dimension, std::uint32_t winFlags);
 
+    void setFPSLimit(uint16 fps);
+    uint16 getFPSLimit() const;
+
     virtual void init();
 
     void run();
@@ -40,6 +43,9 @@ protected:
     ResourceManager m_resources;
 
     SceneManager m_sceneManager;
+
+private:
+    uint16 m_fpsLimit = 60u;
 }; // class Engine
 
 } // namespace ba

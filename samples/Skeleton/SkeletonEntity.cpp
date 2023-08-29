@@ -1,4 +1,5 @@
 #include "SkeletonEntity.hpp"
+#include <BA/Tools/DebugHelper.hpp>
 
 ba::IDtype SkeletonEntity::IDLE_TEXTURE = 0;
 ba::IDtype SkeletonEntity::WALK_TEXTURE = 0;
@@ -191,10 +192,12 @@ SkeletonEntity::SkeletonEntity(SharedContext* context) :
 
 	kc->bindOnKeyPressed(SDLK_RIGHT, std::bind([this](){
 		this->rotate(ba::Angle{15.f});
+		ba::debug << "Skeleton angle set to: " << this->getRotation().asDegrees() << std::endl;
 	}));
 
 	kc->bindOnKeyPressed(SDLK_LEFT, std::bind([this](){
 		this->rotate(ba::Angle{-15.f});
+		ba::debug << "Skeleton angle set to: " << this->getRotation().asDegrees() << std::endl;
 	}));
 
 	auto setIdleAnimation = std::bind([anime](){
