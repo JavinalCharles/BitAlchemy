@@ -13,7 +13,9 @@
 
 namespace ba {
 
+/// A typefef for actions to be executed each frame, if any.
 using FrameAction = std::function<void(void)>;
+/// A typedef or actions to be executed after each animation sequence.
 using SequenceAction = std::function<void(void)>;
 
 /***********************************************************************

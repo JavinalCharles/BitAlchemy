@@ -46,6 +46,7 @@ void SkeletonSample::init() {
 
 int main() {
 	SkeletonSample engine;
+	engine.setFPSLimit(120u);
 	engine.init();
 
 	engine.run();

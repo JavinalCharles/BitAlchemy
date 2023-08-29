@@ -18,6 +18,14 @@ Engine::Engine(const std::string& title, IntRect dimension, std::uint32_t winFla
 
 }
 
+void Engine::setFPSLimit(uint16 fps) {
+	m_fpsLimit = fps;
+}
+
+uint16 Engine::getFPSLimit() const {
+	return m_fpsLimit;
+}
+
 void Engine::init() {
 	if(SDL_Init(SDL_INIT_EVERYTHING) < 0) {
 		throw std::runtime_error(SDL_GetError());
@@ -40,7 +48,7 @@ void Engine::init() {
 
 void Engine::run() {
 	const std::uint64_t COUNTS_PER_SECOND = SDL_GetPerformanceFrequency();
-	const float COUNTS_PER_FRAME = COUNTS_PER_SECOND / 60.f;
+	const float COUNTS_PER_FRAME = COUNTS_PER_SECOND / static_cast<float>(m_fpsLimit);
 
 	std::uint64_t NOW = SDL_GetPerformanceCounter();
 	std::uint64_t LAST = 0;
