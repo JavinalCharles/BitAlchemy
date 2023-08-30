@@ -6,13 +6,11 @@
 #include <string>
 #include <unordered_map>
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_filesystem.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_mixer.h>
 #include <SDL2/SDL_ttf.h>
 
-#ifdef _WIN32
-#include <shlobj.h>
-#endif
 
 #include <BA/Types.hpp>
 
@@ -28,7 +26,7 @@ public: // Methods and Constructors
 	/*****************************************
 	 * loadTexture()
 	 * @brief Creates an SDL_Texture* object from fileName and stores it into memory.
-	 * @param fileName The file's name in a path relative to BASE_DIR and respective subdirectory. 
+	 * @param fileName The file's name in a path relative to BASE_DIR and respective subdirectory.
 	 * @returns the ID of the loaded SDL_Texture for future access.
 	*****************************************/
 	IDtype loadTexture(const std::string& fileName);
@@ -99,14 +97,14 @@ private:
 	std::unordered_map<IDtype, Mix_Chunk*> soundsMap;
 	std::unordered_map<IDtype, Mix_Music*> musicsMap;
 	std::unordered_map<IDtype, TTF_Font*> fontsMap;
-	
+
 
 	IDtype textureCount = 0;
 	IDtype soundCount = 0;
 	IDtype musicCount = 0;
 	IDtype fontCount = 0;
 
-	SDL_Renderer* m_renderer; 
+	SDL_Renderer* m_renderer;
 
 	std::array<std::filesystem::path, 4>	m_paths;
 	/*********************************

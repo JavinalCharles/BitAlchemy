@@ -5,16 +5,11 @@ namespace ba {
 #ifdef __linux__
 	const path ResourceManager::BASE_DIR{"/usr/local/share/bit-alchemy/assets"};
 #else
-	#ifdef _WIN32
-		namespace {
-			std::wstring getRoamingFolderPath();
-		} // Anonymous namespace
+	namespace {
+		std::string getBasePath();
+	} // Anonymous Namespace
 
-		const path ResourceManager::BASE_DIR{getRoamingFolderPath()};
-
-	#else
-		const path ResourceManager::BASE_DIR{std::filesystem::current_path() / path{"assets"}};
-	#endif
+	const path ResourceManager::BASE_DIR(path(getBasePath()) / path("assets"));
 #endif
 
 ResourceManager::ResourceManager(SDL_Renderer* rend) :
@@ -126,18 +121,18 @@ path ResourceManager::getBaseDirectory() const {
 	return BASE_DIR;
 }
 
-
-#ifdef _WIN32
+#ifndef __linux__
 
 namespace {
-	std::wstring getRoamingFolderPath() {
-		PWSTR pp2path = NULL;
-		SHGetKnownFolderPath(FOLDERID_RoamingAppData, 0, NULL, &pp2path);
-		std::wstring p(pp2path);
-
-		return p;
+	std::string getBasePath() {
+		char* p = SDL_GetBasePath();
+		std::string path(p);
+		SDL_free(p);
+		return path;
 	}
-}
+
+} // Anonymous namespace
 
 #endif
+
 } // namespace ba
