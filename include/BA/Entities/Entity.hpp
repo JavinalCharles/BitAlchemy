@@ -1,8 +1,10 @@
 #pragma once
 
-#include <map>
 #include <vector>
 #include <memory>
+#include <typeinfo>
+#include <typeindex>
+#include <unordered_map>
 #include <BA/Components/Colliders/Collider.hpp>
 #include "BA/Components/Component.hpp"
 #include "BA/Components/Drawable.hpp"
@@ -107,7 +109,9 @@ public:
 
 	/***********************************************************************
 	 * @brief Creates a ComponentType of type T and stores it in this entity's
-	 * component array and returning a shared pointer to it.
+	 * component array and returning a shared pointer to it. If a component of
+	 * type T already exists, then this method will only return that without
+	 * creating a new one.
 	 *
 	 * @tparam T The type of Component.
 	 * @return a shared pointer to the created Component.
@@ -118,7 +122,9 @@ public:
 
 	/***********************************************************************
 	 * @brief Creates a ComponentType of type T and stores it in this entity's
-	 * component array and returning a shared pointer to it.
+	 * component array and returning a shared pointer to it. If a component of
+	 * type T already exists, then this method will only return that without
+	 * creating a new one.
 	 *
 	 * @tparam T  The type of Component.
 	 * @param ... Arguments to be passed to T's constuctor besides owner.
@@ -139,10 +145,8 @@ public:
 
 	/***********************************************************************
 	 * @brief Returns a pointer to the drawable component of this entity, or
-	 *  nullptr if this entity does not have one. Equivalent to
-	 * @code
-	 * entityObject.getComponent<ba::Drawable>();
-	 * @endcode
+	 * nullptr if this entity does not have one. If entity has stored multiple
+	 * Drawable then this method will return the lastes inserted Drawable.
 	 *
 	 * @return a pointer to the drawable component, or nullptr.
 	************************************************************************/
@@ -150,10 +154,8 @@ public:
 
 	/***********************************************************************
 	 * @brief Returns to pointer to the collider component of his entity, or
-	 * nullptr if this entity does not have one. Equivalent to
-	 * @code
-	 * entityObject.getComponent<ba::Collider>();
-	 * @endcode
+	 * nullptr if this entity does not have one. If entity has stored multiple
+	 * Collider then this method will return the latest inserted Collider.
 	 *
 	 * @return a pointer to the collider component, or nullptr.
 	************************************************************************/
@@ -165,7 +167,9 @@ private: // ATTRIBUTES
 
 	bool m_static = false;
 
-	std::map<IDtype, std::shared_ptr<ba::Component>> m_components;
+	std::shared_ptr<Collider> m_collider = nullptr;
+	std::shared_ptr<Drawable> m_drawable = nullptr;
+	std::unordered_map<std::type_index, std::shared_ptr<ba::Component>> m_components;
 
 private:
 	static IDtype count;
@@ -183,50 +187,50 @@ private:
 
 template<ComponentType T>
 std::shared_ptr<T> Entity::addComponent() {
-	if(m_components.contains(T::CID)) {
-		if (std::dynamic_pointer_cast<T>(m_components.at(T::CID))) {
-			// If T already exists, just return it.
-			return std::dynamic_pointer_cast<T>(m_components.at(T::CID));
-		}
-		else {
-			// Otherwise, if T does not exist but a similar CID is used,
-			// replaced the object mapped to that CID.
-			m_components.at(T::CID) = std::make_shared<T>(this);
-		}
-	}
-	else {
-		// T doesn't already exist. create it.
-		m_components.insert(std::make_pair(T::CID, std::make_shared<T>(this)));
+	const std::type_index INDEX(typeid(T));
+	if(m_components.contains(INDEX)) {
+		// If entity already has a component of type T, just return it.
+		return std::dynamic_pointer_cast<T>(m_components.at(INDEX));
 	}
 
-	return std::dynamic_pointer_cast<T>(m_components.at(T::CID));
+	// T doesn't already exist. construct and store one.
+	m_components.insert_or_assign(INDEX, std::make_shared<T>(this));
+
+	if (std::dynamic_pointer_cast<Collider>(m_components.at(INDEX)) != nullptr) {
+		m_collider = std::dynamic_pointer_cast<Collider>(m_components.at(INDEX));
+	}
+	else if (std::dynamic_pointer_cast<Drawable>(m_components.at(INDEX)) != nullptr) {
+		m_drawable = std::dynamic_pointer_cast<Drawable>(m_components.at(INDEX));
+	}
+
+	return std::dynamic_pointer_cast<T>(m_components.at(INDEX));
 }
 
 template<ComponentType T, typename... Args>
 std::shared_ptr<T> Entity::addComponent(Args... args) {
-	if (m_components.contains(T::CID)) {
-		if (std::dynamic_pointer_cast<T>(m_components.at(T::CID))) {
-			// If T already exists, just return it.
-			return std::dynamic_pointer_cast<T>(m_components.at(T::CID));
-		}
-		else {
-			// Otherwise, if T does not exist but a similar CID is used,
-			// replaced the object mapped to that CID.
-			m_components.at(T::CID) = std::make_shared<T>(this, args...);
-		}
+	const std::type_index INDEX(typeid(T));
+	if (m_components.contains(INDEX)) {
+		// If entity already has a component of type T, just return it
+		return std::dynamic_pointer_cast<T>(m_components.at(INDEX));
 	}
-	else {
-		// T doesn't already exist. create it.
-		m_components.insert(std::make_pair(T::CID, std::make_shared<T>(this, args...)));
+	// T doesn't already exist. create it.
+	m_components.insert_or_assign(INDEX, std::make_shared<T>(this, args...));
+
+	if (std::dynamic_pointer_cast<Collider>(m_components.at(INDEX)) != nullptr) {
+		m_collider = std::dynamic_pointer_cast<Collider>(m_components.at(INDEX));
+	}
+	else if (std::dynamic_pointer_cast<Drawable>(m_components.at(INDEX)) != nullptr) {
+		m_drawable = std::dynamic_pointer_cast<Drawable>(m_components.at(INDEX));
 	}
 
-	return std::dynamic_pointer_cast<T>(m_components.at(T::CID));
+	return std::dynamic_pointer_cast<T>(m_components.at(INDEX));
 }
 
 template <ComponentType T>
 std::shared_ptr<T> Entity::getComponent() {
-	if (m_components.contains(T::CID)) {
-		return std::dynamic_pointer_cast<T>(m_components.at(T::CID));
+	const std::type_index INDEX(typeid(T));
+	if (m_components.contains(INDEX)) {
+		return std::dynamic_pointer_cast<T>(m_components.at(INDEX));
 	}
 
 	return nullptr;
