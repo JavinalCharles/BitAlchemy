@@ -35,17 +35,11 @@ void Entity::queueForRemoval(bool remove) {
 }
 
 std::shared_ptr<Drawable> Entity::getDrawable() const {
-	if (m_components.contains(ComponentID::DRAWABLE)) {
-		return std::dynamic_pointer_cast<Drawable>(m_components.at(ComponentID::DRAWABLE));
-	}
-	return nullptr;
+	return m_drawable;
 }
 
 std::shared_ptr<Collider> Entity::getCollider() const {
-	if (m_components.contains(ComponentID::COLLIDER)) {
-		return std::dynamic_pointer_cast<Collider>(m_components.at(ComponentID::COLLIDER));
-	}
-	return nullptr;
+	return m_collider;
 }
 
 } // namespace ba

@@ -13,27 +13,20 @@ class Entity;
 
 
 /***********************************************************************
- * @brief @brief class interface for all Components owned by any
- * Entity.Components shall store attributes and data related to their respective
+ * @brief @brief class interface for all Components owned by an Entity.
+ *
+ * Components shall store attributes and data related to their respective
  * owner Entity. It shall also be the main means by which anything can change
  * the state of the entity. Besides a few exceptions, Components should only
  * hold data and methods that alter and/or accesses those data. The library
  * should provide many different components for most common usage, but if a user
  * needed to create a custom cumponent that could interact with the systems of
- * this library, the user need to define a public static constant of unsigned
- * integer type named CID to ID the component for efficiency reasons.
- * @code
- * // NewComponent.hpp
- * class NewComponent : public Component {
- *     public:
- *         static *const std::size_t CID;
- *         ...
- * };
- * // NewComponent.cpp const IDtype NewComponent::CID = 17u;
- * @endcode
- * Note that each CID must be unique. For if one were to add a new component
- * with a similar CID as one already added to its components map, then the old
- * Component shall be replaced by the new one.
+ * this library, then a class needs to be defined to inherit from this
+ * interface.
+ *
+ * Note: An Entity could only have one component of each component type.
+ *
+ * Note: Defining CID is no longer necessary when inheriting this interface.
 ************************************************************************/
 class Component {
 public:
