@@ -42,4 +42,8 @@ std::shared_ptr<Collider> Entity::getCollider() const {
 	return m_collider;
 }
 
+std::shared_ptr<AI> Entity::getAI() const {
+	return m_ai;
+}
+
 } // namespace ba
