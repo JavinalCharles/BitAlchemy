@@ -5,6 +5,7 @@
 #include <typeinfo>
 #include <typeindex>
 #include <unordered_map>
+#include <BA/Components/AI/AI.hpp>
 #include <BA/Components/Colliders/Collider.hpp>
 #include "BA/Components/Component.hpp"
 #include "BA/Components/Drawable.hpp"
@@ -153,7 +154,7 @@ public:
 	std::shared_ptr<Drawable> getDrawable() const;
 
 	/***********************************************************************
-	 * @brief Returns to pointer to the collider component of his entity, or
+	 * @brief Returns a pointer to the collider component of this entity, or
 	 * nullptr if this entity does not have one. If entity has stored multiple
 	 * Collider then this method will return the latest inserted Collider.
 	 *
@@ -161,6 +162,14 @@ public:
 	************************************************************************/
 	std::shared_ptr<Collider> getCollider() const;
 
+	/***********************************************************************
+	 * @brief Returns a pointer to the AI component of this entity, or nullptr
+	 * if this entity does not have one. If entity has stored multiple AI
+	 * components, then this method will return the lastest inserted AI.
+	 *
+	 * @return a pointer to the AI component, or nullptr.
+	************************************************************************/
+	std::shared_ptr<AI> getAI() const;
 private: // ATTRIBUTES
 
 	bool m_queuedForRemoval = false;
@@ -169,6 +178,8 @@ private: // ATTRIBUTES
 
 	std::shared_ptr<Collider> m_collider = nullptr;
 	std::shared_ptr<Drawable> m_drawable = nullptr;
+	std::shared_ptr<AI> m_ai = nullptr;
+
 	std::unordered_map<std::type_index, std::shared_ptr<ba::Component>> m_components;
 
 private:
@@ -202,6 +213,9 @@ std::shared_ptr<T> Entity::addComponent() {
 	else if (std::dynamic_pointer_cast<Drawable>(m_components.at(INDEX)) != nullptr) {
 		m_drawable = std::dynamic_pointer_cast<Drawable>(m_components.at(INDEX));
 	}
+	else if (std::dynamic_pointer_cast<AI>(m_components.at(INDEX))) {
+		m_ai = std::dynamic_pointer_cast<AI>(m_components.at(INDEX));
+	}
 
 	return std::dynamic_pointer_cast<T>(m_components.at(INDEX));
 }
@@ -221,6 +235,9 @@ std::shared_ptr<T> Entity::addComponent(Args... args) {
 	}
 	else if (std::dynamic_pointer_cast<Drawable>(m_components.at(INDEX)) != nullptr) {
 		m_drawable = std::dynamic_pointer_cast<Drawable>(m_components.at(INDEX));
+	}
+	else if (std::dynamic_pointer_cast<AI>(m_components.at(INDEX))) {
+		m_ai = std::dynamic_pointer_cast<AI>(m_components.at(INDEX));
 	}
 
 	return std::dynamic_pointer_cast<T>(m_components.at(INDEX));
