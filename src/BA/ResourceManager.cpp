@@ -3,41 +3,49 @@
 namespace ba {
 
 #ifdef __linux__
-	const path ResourceManager::BASE_DIR{"/usr/local/share/bit-alchemy/assets"};
-#else
-	namespace {
-		std::string getBasePath();
-	} // Anonymous Namespace
+	const std::array<fs::path, 4> ResourceManager::sk_PATHS({
+		fs::path{"Textures"},
+		fs::path{"Sounds"},
+		fs::path{"Musics"},
+		fs::path{"Fonts"}
+	});
 
-	const path ResourceManager::BASE_DIR(path(getBasePath()) / path("assets"));
+	std::vector<fs::path> ResourceManager::sk_DIRS {
+		path("/usr/local/share/bit-alchemy/assets"),
+	};
+#else
+	// TODO
 #endif
 
 ResourceManager::ResourceManager(SDL_Renderer* rend) :
-	m_renderer(rend),
-	m_paths({
-		BASE_DIR / path{"Textures"},
-		BASE_DIR / path{"Sounds"},
-		BASE_DIR / path{"Musics"},
-		BASE_DIR / path{"Fonts"}
-	})
+	m_renderer(rend)
 {
 
 }
 
 IDtype ResourceManager::loadTexture(const std::string& fileName) {
-	path file(m_paths[TEXTURES_PATH] / path{fileName});
-	SDL_Texture* newTexture = NULL;
+	std::optional<fs::path> opt = getExistingPath(sk_PATHS[TEXTURES] / path(fileName));
+
+	if (!opt.has_value()) {
+		throw std::invalid_argument(fileName + " could not be found in any of the set directory list.");
+	}
+
+	fs::path file = opt.value();
+	SDL_Texture* newTexture = nullptr;
 	SDL_Surface* loadedSurface = IMG_Load(file.c_str());
-	if (loadedSurface == NULL) {
+
+	if (loadedSurface == nullptr) {
 		throw std::invalid_argument(IMG_GetError());
 	}
 
 	newTexture = SDL_CreateTextureFromSurface(m_renderer, loadedSurface);
-	if (newTexture == NULL) {
+	if (newTexture == nullptr) {
 		throw std::runtime_error(SDL_GetError());
 	}
+
 	SDL_FreeSurface(loadedSurface);
 	IDtype id = ++textureCount;
+
 	texturesMap.insert_or_assign(id, newTexture);
 
 	return id;
@@ -51,7 +59,14 @@ IDtype ResourceManager::addTexture(SDL_Texture* texture) {
 }
 
 IDtype ResourceManager::loadSound(const std::string& fileName) {
-	path file(m_paths[SOUNDS_PATH] / path{fileName});
+	std::optional<fs::path> opt = getExistingPath(sk_PATHS[SOUNDS] / fs::path(fileName));
+
+	if (!opt.has_value()) {
+		throw std::invalid_argument(fileName + " could not be found in any of the set directory list.");
+	}
+
+	fs::path file = opt.value();
+
 	Mix_Chunk* newSound = Mix_LoadWAV(file.c_str());
 	if(newSound == NULL) {
 		throw std::invalid_argument(Mix_GetError());
@@ -63,7 +78,13 @@ IDtype ResourceManager::loadSound(const std::string& fileName) {
 }
 
 IDtype ResourceManager::loadMusic(const std::string& fileName) {
-	path file(m_paths[MUSICS_PATH] / path{fileName});
+	std::optional<fs::path> opt = getExistingPath(sk_PATHS[MUSICS] / fs::path(fileName));
+
+	if (!opt.has_value()) {
+		throw std::invalid_argument(fileName + " could not be found in any of the set directory list.");
+	}
+
+	fs::path file = opt.value();
 	Mix_Music* newMusic = Mix_LoadMUS(file.c_str());
 	if(newMusic == NULL) {
 		throw std::invalid_argument(Mix_GetError());
@@ -76,7 +97,13 @@ IDtype ResourceManager::loadMusic(const std::string& fileName) {
 }
 
 IDtype ResourceManager::loadFont(const std::string& fileName, int fontSize) {
-	path file(m_paths[FONTS_PATH] / path{fileName});
+	std::optional<fs::path> opt = getExistingPath(sk_PATHS[FONTS] / fs::path(fileName));
+
+	if (opt.has_value()) {
+		throw std::invalid_argument(fileName + " could not be found in any of the set directory list.");
+	}
+
+	fs::path file = opt.value();
 	TTF_Font* newFont = TTF_OpenFont(file.c_str(), fontSize);
 	if (newFont == NULL) {
 		throw std::invalid_argument(TTF_GetError());
@@ -117,22 +144,31 @@ void ResourceManager::setRenderer(SDL_Renderer* renderer) {
 	m_renderer = renderer;
 }
 
-path ResourceManager::getBaseDirectory() const {
-	return BASE_DIR;
+
+void ResourceManager::addToSearchPaths(const std::string& dir) {
+	ResourceManager::addToSearchPaths(fs::path(dir));
 }
 
-#ifndef __linux__
-
-namespace {
-	std::string getBasePath() {
-		char* p = SDL_GetBasePath();
-		std::string path(p);
-		SDL_free(p);
-		return path;
+void ResourceManager::addToSearchPaths(const fs::path& dir) {
+	if (dir.has_filename() || dir.is_absolute() || !fs::exists(dir)) {
+		throw std::invalid_argument("ResourceManager::addToSearchPaths() requires a directory that exists and is absolute.");
 	}
 
-} // Anonymous namespace
+	sk_DIRS.push_back(dir);
+}
 
-#endif
+const std::vector<fs::path>& ResourceManager::getBaseDirs() {
+	return sk_DIRS;
+}
+
+std::optional<fs::path> ResourceManager::getExistingPath(const fs::path& suffixPath) {
+	for (const fs::path& basePath : sk_DIRS) {
+		fs::path p(basePath / suffixPath);
+		if (fs::exists(p)) {
+			return std::make_optional<fs::path>(p);
+		}
+	}
+	std::nullopt;
+}
 
 } // namespace ba

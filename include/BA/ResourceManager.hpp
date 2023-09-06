@@ -2,9 +2,11 @@
 
 #include <array>
 #include <filesystem>
+#include <optional>
 #include <stdexcept>
 #include <string>
 #include <unordered_map>
+#include <vector>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_filesystem.h>
 #include <SDL2/SDL_image.h>
@@ -14,7 +16,8 @@
 
 #include <BA/Types.hpp>
 
-using std::filesystem::path;
+namespace fs = std::filesystem;
+// using std::filesystem::path;
 
 namespace ba {
 
@@ -68,36 +71,49 @@ public: // Methods and Constructors
 	 * getTexture()
 	 * @returns a pointer to an SDL_Texture referred to by the given id. Returns NULL for invalid id.
 	*****************************************/
-	SDL_Texture* getTexture(IDtype id) const;
+	SDL_Texture* getTexture(IDtype id) const noexcept;
 
 	/****************************************
 	 * getSound()
 	 * @returns a pointer to a Mix_Chunk referred to by the given id. Returns NULL for invalid id.
 	*****************************************/
-	Mix_Chunk* getSound(IDtype id) const;
+	Mix_Chunk* getSound(IDtype id) const noexcept;
 
 	/****************************************
 	 * getMusic()
 	 * @returns a pointer to a Mix_Music referred to by the given id. Returns NULL for invalid id.
 	*****************************************/
-	Mix_Music* getMusic(IDtype id) const;
+	Mix_Music* getMusic(IDtype id) const noexcept;
 
 	/*****************************************
 	 * getFont()
 	 * @returns a pointer to an TTF_Font referred to by the given id. Returns NULL  for invalid id.
 	*****************************************/
-	TTF_Font* getFont(IDtype id) const;
+	TTF_Font* getFont(IDtype id) const noexcept;
 
-
+	/***********************************************************************
+	 * @brief Sets the renderer used by this ResourceManager for creating and
+	 * manipulating Textures.
+	 *
+	 * @param renderer The renderer to use.
+	************************************************************************/
 	void setRenderer(SDL_Renderer* renderer);
 
-	path getBaseDirectory() const;
+
+public:
+	static void addToSearchPaths(const std::string& dir);
+	static void addToSearchPaths(const fs::path& dir);
+
+	static const std::vector<fs::path>& getBaseDirs();
+	static std::vector<fs::path> getTexturePaths();
+private:
+	std::optional<fs::path> getExistingPath(const fs::path& suffixPath);
+
 private:
 	std::unordered_map<IDtype, SDL_Texture*> texturesMap;
 	std::unordered_map<IDtype, Mix_Chunk*> soundsMap;
 	std::unordered_map<IDtype, Mix_Music*> musicsMap;
 	std::unordered_map<IDtype, TTF_Font*> fontsMap;
-
 
 	IDtype textureCount = 0;
 	IDtype soundCount = 0;
@@ -106,18 +122,22 @@ private:
 
 	SDL_Renderer* m_renderer;
 
-	std::array<std::filesystem::path, 4>	m_paths;
+
+	/*********************************
+	 * ARRAY CONSTANT
+	**********************************/
+	static const std::array<fs::path, 4>	sk_PATHS;
 	/*********************************
 	 * CONSTANTS FOR INDEXES
 	**********************************/
-	static const std::size_t TEXTURES_PATH = 0;
-	static const std::size_t SOUNDS_PATH = 1;
-	static const std::size_t MUSICS_PATH = 2;
-	static const std::size_t FONTS_PATH = 3;
+	static const std::size_t TEXTURES = 0;
+	static const std::size_t SOUNDS = 1;
+	static const std::size_t MUSICS = 2;
+	static const std::size_t FONTS = 3;
 	/*********************************
 	 * BASE-DIRECTORY
 	*********************************/
-	static const path BASE_DIR;
+	static std::vector<fs::path> sk_DIRS; // arrays of possible directories to find assets.
 
 }; // class ResourceManager
 
