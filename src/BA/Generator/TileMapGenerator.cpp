@@ -42,15 +42,15 @@ std::vector<std::shared_ptr<Entity>> parseMap(const std::string& tmxFileName, co
 	// GENERATE TILESETS
 	TileSet tilesets;
 	rapidxml::xml_node<>* tilesetNode = tmxNode->first_node("tileset");
-	std::filesystem::path baseDir = context->resources->getBaseDirectory() / path("Textures");
+	// std::filesystem::path baseDir = context->resources->getBaseDirectory() / path("Textures");
 	while(tilesetNode != nullptr) {
 		if (tilesetNode->first_attribute("firstgid") == nullptr ||tilesetNode->first_attribute("source") == nullptr) {
 			throw std::invalid_argument("Error at " + tmxFileName + ": Tileset is missing some attributes.");
 		}
 		int firstgid = std::stoi(tilesetNode->first_attribute("firstgid")->value());
 		std::string tsx{tilesetNode->first_attribute("source")->value()};
-		path p = baseDir / path(tsx);
-		TileSet ts = generator::generateTileSet(firstgid, p.string(), context->resources);
+		// path p = baseDir / path(tsx);
+		TileSet ts = generator::generateTileSet(firstgid, tsx, context->resources);
 		tilesets.merge(ts);
 
 		tilesetNode = tilesetNode->next_sibling("tileset");
@@ -67,7 +67,7 @@ std::vector<std::shared_ptr<Entity>> parseMap(const std::string& tmxFileName, co
 		std::string layerName(layerNode->first_attribute("name")->value());
 
 		std::vector<TileInfo> layerData = getLayerData(layerNode);
-		
+
 		const int LAYER = drawLayer++;
 
 		for(std::size_t i = 0; i < layerData.size(); ++i) {
@@ -152,8 +152,10 @@ TileSet generateTileSet(int firstgid, const std::string& tsxFile, ResourceManage
 	int tilecount;
 	int columns;
 
+	IDtype xmlID = resources->loadXML(tsxFile);
+
 	// Open up the tsx file and get the data.
-	std::string xml(getXMLdata(tsxFile));
+	std::string xml(resources->getString(xmlID));
 	char data[xml.size()+1];
 	strncpy(data, xml.c_str(), xml.size()+1);
 
@@ -163,7 +165,7 @@ TileSet generateTileSet(int firstgid, const std::string& tsxFile, ResourceManage
 
 	// Traverse the xml nodes and collect data
 	rapidxml::xml_node<>* tsxNode = doc.first_node("tileset");
-	
+
 	if(tsxNode->first_attribute("tilewidth") == nullptr || tsxNode->first_attribute("tileheight") == nullptr || tsxNode->first_attribute("tilecount") == nullptr || tsxNode->first_attribute("columns") == nullptr) {
 		// CHECK IF ALL ATTRIBUTES ARE ACCOUNTED FOR.
 		// THROW ERROR IF NOT.
@@ -183,7 +185,7 @@ TileSet generateTileSet(int firstgid, const std::string& tsxFile, ResourceManage
 		// NO "source" ATTRIBUTE. THROW ANOTHER ERROR.
 		throw std::invalid_argument("TSX file: " + tsxFile + " image node is missing it's \"source\" attribute");
 	}
-	
+
 	IDtype textureID = resources->loadTexture(std::string(imgNode->first_attribute("source")->value()));
 
 
@@ -216,7 +218,7 @@ TileSet generateTileSet(int firstgid, const std::string& tsxFile, ResourceManage
 			++row;
 		}
 	}
-	
+
 	return r_tileset;
 }
 
@@ -275,7 +277,7 @@ std::vector<TileInfo> getLayerData(rapidxml::xml_node<>* layerNode) {
 				if (col == WIDTH) {
 					col = 0;
 					++row;
-				}	
+				}
 			}
 		}
 	}
@@ -300,7 +302,7 @@ std::vector<TileInfo> getLayerData(rapidxml::xml_node<>* layerNode) {
 			}
 		}
 	}
-	
+
 	return r_tiles;
 }
 

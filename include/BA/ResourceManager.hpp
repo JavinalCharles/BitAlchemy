@@ -2,8 +2,10 @@
 
 #include <array>
 #include <filesystem>
+#include <fstream>
 #include <optional>
 #include <stdexcept>
+#include <sstream>
 #include <string>
 #include <unordered_map>
 #include <vector>
@@ -22,9 +24,30 @@ namespace fs = std::filesystem;
 namespace ba {
 
 class ResourceManager {
+public:
+	/*********************************
+	 * CONSTANTS FOR INDEXES
+	**********************************/
+	static const std::size_t TEXTURES = 0;
+	static const std::size_t SOUNDS = 1;
+	static const std::size_t MUSICS = 2;
+	static const std::size_t FONTS = 3;
+
 public: // Methods and Constructors
 	ResourceManager() = delete;
 	ResourceManager(SDL_Renderer* rend);
+
+	/***********************************************************************
+	 * @brief Opens a text/xml file and stores the text in memory.
+	 *
+	 * @param fileName The file name of the file to be read.
+	 * @param index Specifies which sub-directory to look for. Defaulted to
+	 * Textures sub-directory as .tsx and .tmx files are assumed to be stored
+	 * within it.
+	 *
+	 * @return the ID of the stored text data.
+	************************************************************************/
+	IDtype loadXML(const std::string& fileName, std::size_t index = TEXTURES);
 
 	/*****************************************
 	 * loadTexture()
@@ -33,7 +56,6 @@ public: // Methods and Constructors
 	 * @returns the ID of the loaded SDL_Texture for future access.
 	*****************************************/
 	IDtype loadTexture(const std::string& fileName);
-
 
 	/****************************************
 	 * addTexture()
@@ -66,6 +88,14 @@ public: // Methods and Constructors
 	 * @returns the ID of the loaded TTF_Font for future access.
 	****************************************/
 	IDtype loadFont(const std::string& fileName, int fontSize);
+
+	/***********************************************************************
+	 * @brief Get the String object
+	 *
+	 * @param id the ID that refers to the string
+	 * @return the string
+	************************************************************************/
+	const std::string& getString(IDtype id) const noexcept;
 
 	/*****************************************
 	 * getTexture()
@@ -105,16 +135,18 @@ public:
 	static void addToSearchPaths(const fs::path& dir);
 
 	static const std::vector<fs::path>& getBaseDirs();
-	static std::vector<fs::path> getTexturePaths();
+
 private:
 	std::optional<fs::path> getExistingPath(const fs::path& suffixPath);
 
 private:
+	std::unordered_map<IDtype, std::string> stringMap;
 	std::unordered_map<IDtype, SDL_Texture*> texturesMap;
 	std::unordered_map<IDtype, Mix_Chunk*> soundsMap;
 	std::unordered_map<IDtype, Mix_Music*> musicsMap;
 	std::unordered_map<IDtype, TTF_Font*> fontsMap;
 
+	IDtype stringCount = 0;
 	IDtype textureCount = 0;
 	IDtype soundCount = 0;
 	IDtype musicCount = 0;
@@ -127,13 +159,7 @@ private:
 	 * ARRAY CONSTANT
 	**********************************/
 	static const std::array<fs::path, 4>	sk_PATHS;
-	/*********************************
-	 * CONSTANTS FOR INDEXES
-	**********************************/
-	static const std::size_t TEXTURES = 0;
-	static const std::size_t SOUNDS = 1;
-	static const std::size_t MUSICS = 2;
-	static const std::size_t FONTS = 3;
+
 	/*********************************
 	 * BASE-DIRECTORY
 	*********************************/
