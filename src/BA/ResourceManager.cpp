@@ -20,11 +20,33 @@ namespace ba {
 ResourceManager::ResourceManager(SDL_Renderer* rend) :
 	m_renderer(rend)
 {
+	stringMap.insert_or_assign(0, ""); //
+}
 
+IDtype ResourceManager::loadXML(const std::string& fileName, std::size_t index) {
+	std::optional<fs::path> opt = getExistingPath(sk_PATHS[index] / fs::path(fileName));
+
+	if (!opt.has_value()) {
+		throw std::invalid_argument(fileName + " could not be found in any of the set directory list.");
+	}
+	fs::path p = opt.value();
+
+	std::ifstream f(p.string());
+	if (f.fail()) {
+		throw std::invalid_argument("Cannot open file: " + p.string());
+	}
+	std::stringstream stream;
+	stream << f.rdbuf();
+	f.close();
+
+	IDtype id = ++stringCount;
+	stringMap.insert_or_assign(id, stream.str());
+
+	return id;
 }
 
 IDtype ResourceManager::loadTexture(const std::string& fileName) {
-	std::optional<fs::path> opt = getExistingPath(sk_PATHS[TEXTURES] / path(fileName));
+	std::optional<fs::path> opt = getExistingPath(sk_PATHS[TEXTURES] / fs::path(fileName));
 
 	if (!opt.has_value()) {
 		throw std::invalid_argument(fileName + " could not be found in any of the set directory list.");
@@ -50,6 +72,8 @@ IDtype ResourceManager::loadTexture(const std::string& fileName) {
 
 	return id;
 }
+
+
 
 IDtype ResourceManager::addTexture(SDL_Texture* texture) {
 	IDtype id = ++textureCount;
@@ -113,6 +137,13 @@ IDtype ResourceManager::loadFont(const std::string& fileName, int fontSize) {
 	fontsMap.insert_or_assign(id,  newFont);
 
 	return id;
+}
+
+const std::string& ResourceManager::getString(IDtype id) const {
+	if (stringMap.contains(id))
+		return stringMap.at(id);
+
+	return stringMap.at(0u);
 }
 
 SDL_Texture* ResourceManager::getTexture(IDtype id) const {
