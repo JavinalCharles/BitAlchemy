@@ -11,7 +11,7 @@ namespace ba {
 	});
 
 	std::vector<fs::path> ResourceManager::sk_DIRS {
-		path("/usr/local/share/bit-alchemy/assets"),
+		fs::path("/usr/local/share/bit-alchemy/assets"),
 	};
 #else
 	// TODO
@@ -123,7 +123,7 @@ IDtype ResourceManager::loadMusic(const std::string& fileName) {
 IDtype ResourceManager::loadFont(const std::string& fileName, int fontSize) {
 	std::optional<fs::path> opt = getExistingPath(sk_PATHS[FONTS] / fs::path(fileName));
 
-	if (opt.has_value()) {
+	if (!opt.has_value()) {
 		throw std::invalid_argument(fileName + " could not be found in any of the set directory list.");
 	}
 
@@ -139,33 +139,33 @@ IDtype ResourceManager::loadFont(const std::string& fileName, int fontSize) {
 	return id;
 }
 
-const std::string& ResourceManager::getString(IDtype id) const {
+const std::string& ResourceManager::getString(IDtype id) const noexcept {
 	if (stringMap.contains(id))
 		return stringMap.at(id);
 
 	return stringMap.at(0u);
 }
 
-SDL_Texture* ResourceManager::getTexture(IDtype id) const {
+SDL_Texture* ResourceManager::getTexture(IDtype id) const noexcept {
 	if(texturesMap.contains(id))
 		return texturesMap.at(id);
 
 	return NULL;
 }
 
-Mix_Chunk* ResourceManager::getSound(IDtype id) const {
+Mix_Chunk* ResourceManager::getSound(IDtype id) const noexcept {
 	if(soundsMap.contains(id))
 		return soundsMap.at(id);
 	return NULL;
 }
 
-Mix_Music* ResourceManager::getMusic(IDtype id) const {
+Mix_Music* ResourceManager::getMusic(IDtype id) const noexcept {
 	if(musicsMap.contains(id))
 		return musicsMap.at(id);
 	return NULL;
 }
 
-TTF_Font* ResourceManager::getFont(IDtype id) const {
+TTF_Font* ResourceManager::getFont(IDtype id) const noexcept {
 	if(fontsMap.contains(id))
 		return fontsMap.at(id);
 	return NULL;
@@ -195,11 +195,16 @@ const std::vector<fs::path>& ResourceManager::getBaseDirs() {
 std::optional<fs::path> ResourceManager::getExistingPath(const fs::path& suffixPath) {
 	for (const fs::path& basePath : sk_DIRS) {
 		fs::path p(basePath / suffixPath);
+		// ba::debug << p.wstring() << ": ";
 		if (fs::exists(p)) {
+			// ba::debug << "exists!\n";
+			// ba::debug.flush();
 			return std::make_optional<fs::path>(p);
 		}
+		// ba::debug << '\n';
+		// ba::debug.flush();
 	}
-	std::nullopt;
+	return std::nullopt;
 }
 
 } // namespace ba

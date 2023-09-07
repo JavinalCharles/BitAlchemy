@@ -28,10 +28,10 @@ void TestMapScene::onDestroy() {
 
 void TestMapScene::onActivate() {
 	const Vector2f SCALE{1.5f, 1.5f};
-	path p = m_CONTEXT.resources->getBaseDirectory() / path("Textures") / path("oak_forest.tmx");
+	std::string fileName = "first-tileset.tmx";
 
-	std::clog << "Generating Map Entities." << std::endl;
-	std::vector<std::shared_ptr<Entity>> entities = ba::generator::parseMap(p.string(), SCALE, &m_CONTEXT);
+	ba::debug << "Generating Map Entities." << std::endl;
+	std::vector<std::shared_ptr<Entity>> entities = ba::generator::parseMap(fileName, SCALE, &m_CONTEXT);
 	std::clog << "Generated total " << entities.size() << " entities." << std::endl;
 
 	std::clog << "Adding new entities to the game." << std::endl;

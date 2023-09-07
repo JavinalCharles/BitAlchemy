@@ -24,11 +24,11 @@ public:
 	void setColor(const Color& color);
 private:
 	std::vector<IntRect>	m_rects;
-	std::vector<IntLine> 		m_lines;
-	std::vector<Vector2f>		m_points;
+	std::vector<IntLine> 	m_lines;
+	std::vector<Vector2f>	m_points;
 
 
-	Color 							m_color = Color::Blue;
+	Color 					m_color = Color::Blue;
 }; // class DebugHelper;
 
 extern DebugHelper debug;

@@ -16,8 +16,9 @@ namespace ba {
 
 namespace generator {
 
-std::vector<std::shared_ptr<Entity>> parseMap(const std::string& tmxFileName, const Vector2f& SCALE, SharedContext* context) {
-	std::string xml{getXMLdata(tmxFileName)};
+std::vector<std::shared_ptr<Entity>> parseMap(const std::string& tmxFileName, const Vector2f& SCALE, SharedContext* const context) {
+	IDtype xmlID = context->resources->loadXML(tmxFileName);
+	const std::string& xml = context->resources->getString(xmlID);
 	char c_data[xml.size()+1];
 	strncpy(c_data, xml.c_str(), xml.size()+1);
 
@@ -27,8 +28,6 @@ std::vector<std::shared_ptr<Entity>> parseMap(const std::string& tmxFileName, co
 	rapidxml::xml_node<>* tmxNode = doc.first_node("map");
 	int tileWidth;
 	int tileHeight;
-	// int mapWidth;
-	// int mapHeight;
 
 	// GATHER MAP DATA
 	if (tmxNode->first_attribute("tilewidth") == nullptr || tmxNode->first_attribute("tileheight") == nullptr || tmxNode->first_attribute("width") == nullptr || tmxNode->first_attribute("height") == nullptr) {
@@ -107,9 +106,11 @@ std::vector<std::shared_ptr<Entity>> parseMap(const std::string& tmxFileName, co
 	return r_entities;
 }
 
-std::vector<std::pair<int, Vector2f>> getObjects(const std::string& tmxFileName) {
+std::vector<std::pair<int, Vector2f>> getObjects(const std::string& tmxFileName, ResourceManager* const resources) {
 	std::vector<std::pair<int, Vector2f>> result;
-	std::string xml{getXMLdata(tmxFileName)};
+
+	IDtype xmlID = resources->loadXML(tmxFileName);
+	const std::string& xml = resources->getString(xmlID);
 	char c_data[xml.size()+1];
 	strncpy(c_data, xml.c_str(), xml.size()+1);
 
@@ -145,7 +146,7 @@ std::vector<std::pair<int, Vector2f>> getObjects(const std::string& tmxFileName)
 	return result;
 }
 
-TileSet generateTileSet(int firstgid, const std::string& tsxFile, ResourceManager* resources) {
+TileSet generateTileSet(int firstgid, const std::string& tsxFile, ResourceManager* const resources) {
 	int gid = firstgid;
 	int tilewidth;
 	int tileheight;
@@ -153,8 +154,6 @@ TileSet generateTileSet(int firstgid, const std::string& tsxFile, ResourceManage
 	int columns;
 
 	IDtype xmlID = resources->loadXML(tsxFile);
-
-	// Open up the tsx file and get the data.
 	std::string xml(resources->getString(xmlID));
 	char data[xml.size()+1];
 	strncpy(data, xml.c_str(), xml.size()+1);
@@ -193,9 +192,6 @@ TileSet generateTileSet(int firstgid, const std::string& tsxFile, ResourceManage
 
 	int row = 0; // first row
 	int col = 0; // first column
-	// const int maxRow = tilecount / columns;
-
-
 
 	while(gid - firstgid < tilecount) {
 		TileData td;
@@ -220,18 +216,6 @@ TileSet generateTileSet(int firstgid, const std::string& tsxFile, ResourceManage
 	}
 
 	return r_tileset;
-}
-
-std::string getXMLdata(const std::string& filePath) {
-	std::ifstream f(filePath);
-	if(f.fail()) {
-		throw std::invalid_argument("Error. Can't open file; \"" + filePath + "\" Either the file does not exist or is corrupted.");
-	}
-	std::stringstream stream;
-	stream << f.rdbuf();
-	f.close();
-
-	return stream.str();
 }
 
 } // namespace generator
