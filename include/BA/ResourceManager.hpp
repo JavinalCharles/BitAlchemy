@@ -3,6 +3,7 @@
 #include <array>
 #include <filesystem>
 #include <fstream>
+#include <iostream>
 #include <optional>
 #include <stdexcept>
 #include <sstream>
@@ -17,6 +18,7 @@
 
 
 #include <BA/Types.hpp>
+#include <BA/Tools/DebugHelper.hpp>
 
 namespace fs = std::filesystem;
 // using std::filesystem::path;

@@ -5,6 +5,8 @@
 #include <BA/Systems/EntityManager.hpp>
 #include <BA/Generator/TileMapGenerator.hpp>
 
+#include <BA/Tools/DebugHelper.hpp>
+
 namespace ba {
 
 class TestMapScene : public Scene {

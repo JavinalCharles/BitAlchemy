@@ -38,12 +38,11 @@ struct TileInfo {
 
 using TileSet = std::unordered_map<IDtype, TileData>;
 
-std::vector<std::shared_ptr<Entity>> parseMap(const std::string& tmxFileName, const Vector2f& SCALE, SharedContext* context);
-std::vector<std::pair<int, Vector2f>> getObjects(const std::string& tmxFileName);
+std::vector<std::shared_ptr<Entity>> parseMap(const std::string& tmxFileName, const Vector2f& SCALE, SharedContext* const context);
 
-TileSet generateTileSet(int firstgid, const std::string& tsxFile, ResourceManager* resources);
+std::vector<std::pair<int, Vector2f>> getObjects(const std::string& tmxFileName, ResourceManager* const resources);
 
-std::string getXMLdata(const std::string& fileName);
+TileSet generateTileSet(int firstgid, const std::string& tsxFile, ResourceManager* const resources);
 
 } // namespace generator
 
