@@ -25,18 +25,25 @@ void LineScene::onCreate() {
 }
 
 void LineScene::onDestroy() {
-
+	m_FPSText.reset();
 }
 
 void LineScene::onActivate() {
-	std::shared_ptr<Entity> fpsEntity= std::make_shared<Entity>(&m_CONTEXT);
+	std::shared_ptr<Entity> fpsEntity = std::make_shared<Entity>(&m_CONTEXT);
 	fpsEntity->setPosition({5.f, 5.f});
-
 	m_FPSText = fpsEntity->addComponent<Text>();
 	m_FPSText->loadFontFromFile("UbuntuMono-Bold.ttf", 16);
 	m_FPSText->setColor(Color::Blue);
 
+	std::shared_ptr<Entity> angleEntity = std::make_shared<Entity>(&m_CONTEXT);
+	angleEntity->setPosition({256.f, 5.f});
+	m_angleText = angleEntity->addComponent<Text>();
+	m_angleText->setFontID(m_FPSText->getFontID());
+	m_angleText->setColor(Color::Yellow);
+
+
 	m_entityManager.add(fpsEntity);
+	m_entityManager.add(angleEntity);
 
 	debug.setColor(Color::White);
 }
@@ -47,8 +54,7 @@ void LineScene::handleEvents() {
 
 void LineScene::update(float deltaTime) {
 	int fps = static_cast<int>(std::round(1.0f / deltaTime));
-	std::string text = std::to_string(fps) + " FPS";
-	m_FPSText->setText(text);
+	m_FPSText->setText(std::to_string(fps) + " FPS");
 
 	m_entityManager.update(deltaTime);
 
@@ -62,8 +68,9 @@ void LineScene::update(float deltaTime) {
 
 	IntLine line(sk_CENTER, mousePos);
 
+	m_angleText->setText(std::to_string(line.angle().wrapUnsigned().asDegrees()) + " Degrees");
+
 	ba::debug << line;
-	ba::debug.flush();
 }
 
 void LineScene::postUpdate(float deltaTime) {

@@ -34,7 +34,7 @@ void LineSample::init() {
 int main() {
 	LineSample engine("Line Sample", {0, 0, 512, 512}, SDL_WINDOW_SHOWN);
 
-	engine.setFPSLimit(120U);
+	engine.setFPSLimit(23);
 	engine.init();
 
 	engine.run();
