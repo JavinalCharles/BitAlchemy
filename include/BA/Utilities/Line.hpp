@@ -1,5 +1,7 @@
 #pragma once
 
+#include <cmath>
+#include "BA/Utilities/Angle.hpp"
 #include "BA/Utilities/Vector2.hpp"
 
 namespace ba {
@@ -16,12 +18,11 @@ public:
 
 public:
 	constexpr float length() const;
+
+	constexpr Angle angle() const;
 	/**********************************
 	 * TODO: methods
 	 * slope() -> float or Vector2 to represent rise/run
-	 * angle() -> ba::Angle with left to right horizontal
-	 * 		line representing 0 degrees/0 radians while
-	 * 		right-to-left represents 180 degrees/PI radians.
 	 *
 	***********************************/
 
@@ -70,6 +71,11 @@ constexpr Line<T>::Line(const Line<U>& other) :
 template <typename T>
 constexpr float Line<T>::length() const {
 	return distance(p1, p2);
+}
+
+template <typename T>
+constexpr Angle Line<T>::angle() const {
+	return Angle(std::atan2(p1.y - p2.y, p1.x - p2.x) * 180 / ba::PI);
 }
 
 } // namespace ba

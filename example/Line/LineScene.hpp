@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cmath>
 #include <memory>
 
 #include "BA/Components/Text.hpp"
@@ -9,6 +10,7 @@
 #include "BA/Scenes/SceneManager.hpp"
 #include "BA/Systems/EntityManager.hpp"
 #include "BA/Systems/MouseControlSystem.hpp"
+#include "BA/Utilities/Angle.hpp"
 #include "BA/Utilities/Line.hpp"
 
 #include "BA/Tools/DebugHelper.hpp"
@@ -34,6 +36,8 @@ public:
 	virtual void draw(Window& window);
 private:
 	std::shared_ptr<Text>	m_FPSText = nullptr;
+	std::shared_ptr<Text>	m_angleText = nullptr;
+
 
 	std::weak_ptr<MouseInput> m_mouseInput;
 
