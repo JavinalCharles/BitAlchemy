@@ -101,7 +101,7 @@ set(SDL_LIBS
 	SDL2_ttf
 )
 
-add_subdirectory(samples)
+add_subdirectory(example)
 
 target_link_libraries(BA compiler_flags)
 

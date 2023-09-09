@@ -1,7 +1,5 @@
 #include "SkeletonScene.hpp"
 
-#include <iostream>
-
 namespace ba {
 
 SkeletonScene::SkeletonScene() :

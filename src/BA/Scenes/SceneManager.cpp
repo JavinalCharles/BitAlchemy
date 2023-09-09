@@ -40,7 +40,8 @@ IDtype SceneManager::add(std::shared_ptr<Scene> scene) {
 
 	inserted.first->second->onCreate();
 	if (m_currentSceneID == 0) {
-		m_currentSceneID = inserted.first->first;
+		this->switchTo(inserted.first->first);
+		// m_currentSceneID = inserted.first->first;
 	}
 
 	return inserted.first->first;
@@ -51,7 +52,7 @@ void SceneManager::remove(IDtype id) {
 		return;
 	}
 	if (m_currentSceneID == id) {
-		m_currentSceneID = 9;
+		m_currentSceneID = 0;
 	}
 	m_scenes.at(id)->onDestroy();
 	m_scenes.erase(id);
