@@ -1,4 +1,5 @@
 add_subdirectory(Line)
+add_subdirectory(RandomTests)
 add_subdirectory(Skeleton)
 add_subdirectory(TestMap)
-add_subdirectory(RandomTests)
+add_subdirectory(Text)
