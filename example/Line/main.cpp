@@ -8,7 +8,7 @@ public:
 	LineSample();
 	LineSample(const std::string& title, ba::IntRect dimension, std::uint32_t winflags);
 
-	void init();
+	virtual void init() override;
 }; // class LineSample
 
 LineSample::LineSample() :
