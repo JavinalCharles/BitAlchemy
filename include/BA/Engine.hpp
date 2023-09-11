@@ -68,6 +68,9 @@ protected:
 	SceneManager m_sceneManager;
 
 private:
+
+
+private:
 	uint16 m_fpsLimit = 60u;
 
 	std::vector<std::function<void()>> m_initFunctions;
