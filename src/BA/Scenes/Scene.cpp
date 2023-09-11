@@ -11,8 +11,51 @@ Scene::Scene(Window* window, ResourceManager* resourceManager, SceneManager* sce
 	setSceneManager(sceneManager);
 }
 
-void Scene::onActivate()
-{
+void Scene::create() {
+	this->onCreate();
+
+	for (auto& createFunc : m_onCreateFunctions) {
+		createFunc();
+	}
+}
+
+void Scene::activate() {
+	this->onActivate();
+
+	for (auto& activateFunc : m_onActivateFunctions) {
+		activateFunc();
+	}
+}
+
+void Scene::destroy() {
+	this->onDestroy();
+}
+
+void Scene::deactivate() {
+	this->onDeactivate();
+}
+
+std::shared_ptr<Entity> Scene::createEntity() {
+	return std::make_shared<Entity>(&m_CONTEXT);
+}
+
+void Scene::onCreate() {
+
+}
+
+void Scene::onCreate(const std::function<void()>& func) {
+	m_onCreateFunctions.push_back(func);
+}
+
+void Scene::onActivate() {
+
+}
+
+void Scene::onActivate(const std::function<void()>& func) {
+	m_onActivateFunctions.push_back(func);
+}
+
+void Scene::onDestroy() {
 
 }
 

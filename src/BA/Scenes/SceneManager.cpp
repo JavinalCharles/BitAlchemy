@@ -38,10 +38,9 @@ IDtype SceneManager::add(std::shared_ptr<Scene> scene) {
 		throw std::runtime_error("Scene cannot be inserted.");
 	}
 
-	inserted.first->second->onCreate();
+	inserted.first->second->create();
 	if (m_currentSceneID == 0) {
 		this->switchTo(inserted.first->first);
-		// m_currentSceneID = inserted.first->first;
 	}
 
 	return inserted.first->first;
@@ -54,7 +53,7 @@ void SceneManager::remove(IDtype id) {
 	if (m_currentSceneID == id) {
 		m_currentSceneID = 0;
 	}
-	m_scenes.at(id)->onDestroy();
+	m_scenes.at(id)->destroy();
 	m_scenes.erase(id);
 }
 
@@ -64,9 +63,9 @@ void SceneManager::switchTo(IDtype id) {
 	}
 
 	if (m_currentSceneID != 0) {
-		m_scenes.at(m_currentSceneID)->onDeactivate();
+		m_scenes.at(m_currentSceneID)->deactivate();
 	}
-	m_scenes.at(id)->onActivate();
+	m_scenes.at(id)->activate();
 	m_currentSceneID = id;
 }
 
