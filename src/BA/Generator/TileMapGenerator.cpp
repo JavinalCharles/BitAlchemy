@@ -132,8 +132,8 @@ std::vector<std::pair<int, Vector2f>> getObjects(const std::string& tmxFileName,
 			result.push_back(std::make_pair(
 				std::atoi(objectNode->first_attribute("id")->value()),
 				Vector2f {
-					std::atof(objectNode->first_attribute("x")->value()),
-					std::atof(objectNode->first_attribute("y")->value())
+					static_cast<float>(std::atof(objectNode->first_attribute("x")->value())),
+					static_cast<float>(std::atof(objectNode->first_attribute("y")->value()))
 				}
 			));
 

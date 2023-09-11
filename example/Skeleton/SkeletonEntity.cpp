@@ -28,7 +28,7 @@ SkeletonEntity::SkeletonEntity(SharedContext* context) :
 	auto kc = this->addComponent<ba::KeyboardControl>();
 	auto vel = this->addComponent<ba::Velocity>();
 	auto se = this->addComponent<ba::SoundEmitter>();
-	auto timer = this->addComponent<ba::Timer>();
+	// auto timer = this->addComponent<ba::Timer>();
 
 	vel->setMax({64.f, 64.f});
 
@@ -224,9 +224,9 @@ SkeletonEntity::SkeletonEntity(SharedContext* context) :
 	kc->bindOnKeyReleased(SDLK_d, setIdleAnimation);
 
 	// TEST OUT TIMER
-	timer->setTimer(std::bind([this](){
-		this->setPosition({64.f, 64.f});
-	}), 8.f, true);
+	// timer->setTimer(std::bind([this](){
+	// 	this->setPosition({64.f, 64.f});
+	// }), 8.f, true);
 
 }
 

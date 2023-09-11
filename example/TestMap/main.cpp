@@ -11,43 +11,16 @@
 
 using namespace ba;
 
-class TestMap : public Engine {
-public:
-	TestMap();
-
-	TestMap(const std::string& title, IntRect dimension, std::uint32_t winFlags);
-
-	void init() override;
-};
-
-TestMap::TestMap() :
-	Engine::Engine()
-{
-
-}
-
-TestMap::TestMap(const std::string& title, IntRect dimension, std::uint32_t winFlags) :
-	Engine::Engine(title, dimension, winFlags)
-{
-}
-
-void TestMap::init() {
-	Engine::init();
-
-	std::shared_ptr<BitAlchemySplash> bitAlchemySplash = std::make_shared<BitAlchemySplash>(&m_window, &m_resources, &m_sceneManager);
-
-	std::shared_ptr<TestMapScene> testMapScene = std::make_shared<TestMapScene>(&m_window, &m_resources, &m_sceneManager);
-
-	m_sceneManager.add(bitAlchemySplash);
-	IDtype testMapSceneID = m_sceneManager.add(testMapScene);
-
-	bitAlchemySplash->setSwitchTo(testMapSceneID);
-}
-
-
 int main() {
-	TestMap engine;
+	ba::Engine engine;
 	engine.init();
+
+	std::shared_ptr<BitAlchemySplash> splashScene = engine.createScene<BitAlchemySplash>();
+	std::shared_ptr<TestMapScene> mapScene = engine.createScene<TestMapScene>();
+	engine.addScene(splashScene);
+	IDtype mapSceneID = engine.addScene(mapScene);
+
+	splashScene->setSwitchTo(mapSceneID);
 
 	engine.run();
 

@@ -50,7 +50,7 @@ public:
 	 *
 	 * @param context sets the public attribute Entity::CONTEXT.
 	************************************************************************/
-	explicit Entity(SharedContext* context);
+	Entity(const SharedContext* context);
 
 	/**
 	 * awake()

@@ -44,6 +44,24 @@ void Engine::init() {
 
 	m_window.init();
 	m_resources.setRenderer(m_window.getRenderer());
+
+	this->onInit();
+
+	for (auto& initFunc : m_initFunctions) {
+		initFunc();
+	}
+}
+
+void Engine::onInit() {
+
+}
+
+void Engine::onInit(const std::function<void()>& initFunc) {
+	m_initFunctions.push_back(initFunc);
+}
+
+IDtype Engine::addScene(std::shared_ptr<Scene> scene) {
+	return m_sceneManager.add(scene);
 }
 
 void Engine::run() {

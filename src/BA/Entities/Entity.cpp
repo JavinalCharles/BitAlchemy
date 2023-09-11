@@ -4,7 +4,7 @@ ba::IDtype ba::Entity::count = 0u;
 
 namespace ba {
 
-Entity::Entity(ba::SharedContext* context) :
+Entity::Entity(const ba::SharedContext* context) :
 	Transformable(),
 	ID(ba::Entity::count++),
 	CONTEXT(context)

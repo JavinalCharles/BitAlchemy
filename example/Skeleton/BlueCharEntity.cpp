@@ -25,7 +25,7 @@ BlueCharEntity::BlueCharEntity(SharedContext* context) :
 	auto anime = this->addComponent<Animation>();
 	auto vel = this->addComponent<Velocity>();
 	auto ai = this->addComponent<ProgrammedAI>();
-	auto timer = this->addComponent<Timer>();
+	// auto timer = this->addComponent<Timer>();
 
 	vel-> setMax({64.f, 64.f});
 
@@ -37,7 +37,7 @@ BlueCharEntity::BlueCharEntity(SharedContext* context) :
 	***********************************/
 	// IDLE ANIMATION
 	IntRect frameRect {
-		0, 0, 56, 56 
+		0, 0, 56, 56
 	};
 	const float time = 1.f / 8.f;
 	Sequence IdleSequence;
@@ -91,7 +91,7 @@ BlueCharEntity::BlueCharEntity(SharedContext* context) :
 	anime->set(rightID);
 
 	// START ANIMATION
-	this->setPosition({256.f, 256.f});
+	this->setPosition({32.f, 32.f});
 	m_velocity->moveRight();
 
 	Condition goingRight = std::bind([this](float)-> bool {
@@ -100,6 +100,7 @@ BlueCharEntity::BlueCharEntity(SharedContext* context) :
 
 	Behavior walkRightUntil = std::bind([vel, this](float){
 		if (this->getPosition().x >= 512) {
+			vel->resetVelocity();
 			this->setDirection(south);
 			vel->moveDown();
 		}
@@ -117,6 +118,7 @@ BlueCharEntity::BlueCharEntity(SharedContext* context) :
 	IDtype left = leftID;
 	Behavior walkDownUntil = std::bind([vel, anime, left, this](float){
 		if (this->getPosition().y >= 256) {
+			vel->resetVelocity();
 			this->setDirection(west);
 			vel->moveLeft();
 			anime->set(left);
@@ -133,6 +135,7 @@ BlueCharEntity::BlueCharEntity(SharedContext* context) :
 
 	Behavior walkLeftUntil = std::bind([vel, this](float){
 		if (this->getPosition().x <= 64) {
+			vel->resetVelocity();
 			this->setDirection(north);
 			vel->moveUp();
 		}
@@ -149,6 +152,7 @@ BlueCharEntity::BlueCharEntity(SharedContext* context) :
 	IDtype right = rightID;
 	Behavior walkUpUntil = std::bind([vel, anime, right, this](float){
 		if (this->getPosition().y <= 64) {
+			vel->resetVelocity();
 			this->setDirection(east);
 			vel->moveRight();
 			anime->set(right);
@@ -164,15 +168,16 @@ BlueCharEntity::BlueCharEntity(SharedContext* context) :
 	}, std::placeholders::_1);
 
 	Behavior startWalkingRight = std::bind([vel, anime, right, this](float){
+		vel->resetVelocity();
 		this->setDirection(east);
 		vel->moveRight();
 		anime->set(right);
 	}, std::placeholders::_1);
 	ai->assignBindings(5, idling, startWalkingRight);
 
-	timer->setTimer(std::bind([this](){
-		this->queueForRemoval();
-	}), 16.f, false);
+	// timer->setTimer(std::bind([this](){
+	// 	this->queueForRemoval();
+	// }), 16.f, false);
 
 }
 
