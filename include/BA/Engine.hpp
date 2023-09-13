@@ -16,11 +16,13 @@
 #include <BA/Scenes/SceneManager.hpp>
 #include <BA/Scenes/Scene.hpp>
 #include <BA/Systems/EntityManager.hpp>
+#include <BA/Tools/ConfigLoader.hpp>
+#include <BA/Tools/DebugHelper.hpp>
 #include <BA/Utilities/Vector2.hpp>
 #include <BA/Utilities/Rect.hpp>
 #include <BA/Window/Window.hpp>
 
-#include <BA/Tools/DebugHelper.hpp>
+
 
 namespace ba {
 
@@ -30,12 +32,27 @@ concept SceneType = std::is_base_of<Scene, S>::value;
 class Engine {
 public:
 	Engine();
-	Engine(const std::string& title, IntRect dimension, std::uint32_t winFlags);
+	Engine(const std::string& title, const std::string& organization, const IntRect& windowDimension, ba::uint32 windowFlags);
+	Engine(const std::string& title, const IntRect& dimension, ba::uint32 winFlags);
 
+	Engine(Engine& other) = delete;
+	Engine& operator=(Engine& other) = delete;
+
+	///////////////////////////////////////////////////////////////////////////
+	// ENGINE CONFIGURATION
+	///////////////////////////////////////////////////////////////////////////
 	void setFPSLimit(uint16 fps);
-	uint16 getFPSLimit() const;
 
-	virtual void init();
+	void setWindowSize(int width, int height);
+	void setWindowSize(const Vector2i& windowArea);
+	void setWindowDimension(int x, int y, int w, int h);
+	void setWindowDimension(const Vector2i& pos, const Vector2i& size);
+	void setWindowDimension(const IntRect& dimension);
+
+	void setWindowFlags(uint32 flags);
+	void addWindowFlags(uint32 flags);
+
+
 
 	virtual void onInit();
 	virtual void onInit(const std::function<void()>& initFunc);
@@ -45,14 +62,21 @@ public:
 
 	IDtype addScene(std::shared_ptr<Scene> scene);
 
-	/***********************************************************************
-	 * GAME LOOP METHODS
-	************************************************************************/
+	///////////////////////////////////////////////////////////////////////////
+	// ENGINE DATA EXTRACTION
+	///////////////////////////////////////////////////////////////////////////
+	uint16 getFPSLimit() const;
+
+	///////////////////////////////////////////////////////////////////////////
+	// GAME LOOP METHODS
+	///////////////////////////////////////////////////////////////////////////
 
 	/***********************************************************************
 	 * @brief Starts the game loop. Only returns when the loop ends.
 	 *
 	************************************************************************/
+	void init();
+
 	void run();
 
 	void handleEvents();
@@ -61,6 +85,9 @@ public:
 	void draw();
 
 	void cleanUp();
+private:
+	void loadConfig();
+
 protected:
 	Window m_window;
 	ResourceManager m_resources;
@@ -68,9 +95,8 @@ protected:
 	SceneManager m_sceneManager;
 
 private:
+	ConfigMap m_configs;
 
-
-private:
 	uint16 m_fpsLimit = 60u;
 
 	std::vector<std::function<void()>> m_initFunctions;

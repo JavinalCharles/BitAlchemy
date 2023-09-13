@@ -75,7 +75,7 @@ constexpr float Line<T>::length() const {
 
 template <typename T>
 constexpr Angle Line<T>::angle() const {
-	return Angle(std::atan2(p1.y - p2.y, p1.x - p2.x) * 180 / ba::PI);
+	return Angle(std::atan2(p2.y - p1.y, p2.x - p1.x) * 180 / ba::PI);
 }
 
 } // namespace ba

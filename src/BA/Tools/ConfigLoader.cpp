@@ -2,34 +2,33 @@
 
 namespace ba {
 
-ConfigMap loadDefaultConfigurations(const std::u16string& orgName, const std::u16string& gameName) {
+ConfigMap loadDefaultConfigurations() {
 	ConfigMap defaultConfig = {
-		{ORGANIZATION_NAME, orgName},
-		{GAME_NAME, gameName},
+		{WINDOW_WIDTH, 768u},
+		{WINDOW_HEIGHT, 768u},
+		{WINDOW_FULLSCREEN, 0u},
+		{WINDOW_BORDERLESS, 0u},
+		{WINDOW_RESIZABLE, 0u},
+		{WINDOW_TITLE, ""},
 
-		{WINDOW_WIDTH, u"768"},
-		{WINDOW_HEIGHT, u"768"},
-		{WINDOW_FULLSCREEN, u"0"},
-		{WINDOW_BORDERLESS, u"0"},
-		{WINDOW_RESIZABLE, u"0"},
-		{WINDOW_TITLE, orgName + u" | " + gameName},
+		{MOUSE_ENABLED, true},
+		{KEYBOARD_ENABLED, true},
+		{CONTROLLER_ENABLED, false},
 
-		{MOUSE_ENABLED, u"1"},
-		{KEYBOARD_ENABLED, u"1"},
-		{CONTROLLER_ENABLED, u"0"},
+		{MOUSE_SCROLL_SPEED, 50u},
 
-		{MOUSE_SCROLL_SPEED, u"50"},
+		{GENERAL_VOLUME, 75u},
+		{MUSIC_VOLUME, 75u},
+		{SFX_VOLUME, 75u},
+		{VOICE_VOLUME, 75u},
+		{AUDIO_TYPE, 1u},
 
-		{GENERAL_VOLUME, u"75"},
-		{MUSIC_VOLUME, u"75"},
-		{SFX_VOLUME, u"75"},
-		{VOICE_VOLUME, u"75"},
-		{AUDIO_TYPE, u"Stereo"},
+		{BRIGHTNESS_LEVEL, 75u},
+		{GAMMA_LEVEL, 75u},
+		{CONTRAST_LEVEL, 75u},
+		{VSYNC_ENABLED, 0u},
 
-		{BRIGHTNESS_LEVEL, u"75"},
-		{GAMMA_LEVEL, u"75"},
-		{CONTRAST_LEVEL, u"75"},
-		{VSYNC_ENABLED, u"0"}
+		{FPS_CAP_LIMIT, 120u}
 	};
 
 	return defaultConfig;

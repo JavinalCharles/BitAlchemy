@@ -15,21 +15,86 @@ const int DEFAULT_SCREEN_HEIGHT = 480;
 namespace ba {
 class Window {
 public:
+	////////////////////////////////////////////////////////////////////////
+	// CONSTRUCTORS and DESTRUCTORS
+	////////////////////////////////////////////////////////////////////////
 	Window();
-	Window(const std::string& title, int x, int y, int w, int h, std::uint32_t flags);
 
+	Window(const std::string& title, const IntRect& dimension, ba::uint32 flags = SDL_WINDOW_SHOWN);
+	Window(const std::string& title, int x, int y, int w, int h, ba::uint32 flags = SDL_WINDOW_SHOWN);
+	~Window();
+
+	Window(Window& other) = delete;
+	Window& operator=(Window& window) = delete;
+
+	////////////////////////////////////////////////////////////////////////
+	// LOOP METHODS
+	////////////////////////////////////////////////////////////////////////
+
+	/***********************************************************************
+	 * @brief Initializes the window with the flags and states set by the
+	 * user through Window::set*() methods.
+	************************************************************************/
 	void init();
 
+	/***********************************************************************
+	 * @brief Checks if the window is still open.
+	 *
+	 * @return true if the window is still open, otherwise false.
+	************************************************************************/
 	bool isOpen() const;
+
+	/***********************************************************************
+	 * @brief Closes the window and deallocates memory used for its
+	 * initialization and usage.
+	************************************************************************/
 	void close();
 
-	/**
-	 * @brief Allows the window to handle window specific events.
-	*/
-	void handleEvents();
-
+	/***********************************************************************
+	 * @brief fills the window's content with the specified color.
+	 *
+	 * @param color the color to fill the canvas with.
+	************************************************************************/
 	void clear(ba::Color color = ba::Color::Black);
 
+	/***********************************************************************
+	 * @brief Displays on window's content the textures/objects given to the
+	 * various Window::draw*() methods.
+	************************************************************************/
+	void display();
+
+
+
+	/***********************************************************************
+	 * @brief Handles window specific events.
+	************************************************************************/
+	void handleEvents();
+
+	////////////////////////////////////////////////////////////////////////
+	// MODIFIERS
+	////////////////////////////////////////////////////////////////////////
+	void setFlags(uint32 flags);
+	void addFlags(uint32 flags);
+
+	void setSize(const Vector2i& newSize);
+	void setSize(int w, int h);
+
+	void setDimension(int x, int y, int w, int h);
+	void setDimension(const Vector2i& pos, const Vector2i& size);
+	void setDimension(const IntRect& newDimension);
+
+	////////////////////////////////////////////////////////////////////////
+	// MODIFIERS
+	////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+	///////////////////////////////////////////////////////////////////////////
+	// DRAWING METHODS
+	///////////////////////////////////////////////////////////////////////////
 	void draw(SDL_Texture* texture, const FloatRect& destRect);
 	void draw(SDL_Texture* texture, const IntRect& textureRect, const FloatRect& destRect, const Angle& angle = Angle::Zero);
 	void drawPoint(const Vector2f& point, const Color& pointColor = Color::White);
@@ -42,7 +107,7 @@ public:
 	void drawRectOnScreen(const IntRect& rect, Color rectColor = Color::White);
 
 
-	void display();
+
 
 	SDL_Window* getWindow() const;
 	Vector2i getSize() const;

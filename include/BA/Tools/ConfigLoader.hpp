@@ -1,5 +1,6 @@
 #pragma once
 
+#include <any>
 #include <map>
 #include <string>
 
@@ -42,15 +43,16 @@ namespace ba {
 		GAMMA_LEVEL,
 		CONTRAST_LEVEL,
 		VSYNC_ENABLED,
+
+		// Game Play Settings
+		FPS_CAP_LIMIT,
 	};
 
-	using ConfigMap = std::map<ConfigID, std::u16string>;
+	using ConfigMap = std::map<ConfigID, std::any>;
 
 	ConfigMap loadDefaultConfigurations(const std::u16string& orgName = u"", const std::u16string& gameName = u"");
 
-	ConfigMap loadConfigurationsFromFile(const std::u16string& fileName, ResourceManager* resources);
+	// ConfigMap loadConfigurationsFromFile(const std::u16string& fileName, ResourceManager* resources);
 
-	void saveConfiguration(const ConfigMap& configMap, const std::u16string& fileName);
-
-	extern ConfigMap configs;
+	// void saveConfiguration(const ConfigMap& configMap, const std::u16string& fileName);
 } // namespace ba
