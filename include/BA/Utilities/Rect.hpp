@@ -21,6 +21,9 @@ public: // METHODS & CONSTRUCTORS
 	template <typename U>
 	constexpr Rect(const Rect<U>& otherRect);
 
+	constexpr void setPosition(const Vector2<T>& pos);
+	constexpr void setArea(const Vector2<T>& size);
+
 	constexpr Vector2<T> getPosition() const;
 	constexpr Vector2<T> getArea() const;
 	constexpr bool contains(const Vector2<T>& point) const;
@@ -89,6 +92,18 @@ constexpr Rect<T>::Rect(const Rect<U>& otherRect) :
 	h(static_cast<T>(otherRect.h))
 {
 
+}
+
+template <typename T>
+constexpr void Rect<T>::setPosition(const Vector2<T>& pos) {
+	this->l = pos.x;
+	this->t = pos.y;
+}
+
+template<typename T>
+constexpr void Rect<T>::setArea(const Vector2<T>& size) {
+	this->w = size.x;
+	this->h = size.y;
 }
 
 template <typename T>

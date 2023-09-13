@@ -16,7 +16,6 @@
 #include <SDL2/SDL_mixer.h>
 #include <SDL2/SDL_ttf.h>
 
-
 #include <BA/Types.hpp>
 #include <BA/Tools/DebugHelper.hpp>
 
@@ -36,7 +35,7 @@ public:
 	static const std::size_t FONTS = 3;
 
 public: // Methods and Constructors
-	ResourceManager() = delete;
+	ResourceManager();
 	ResourceManager(SDL_Renderer* rend);
 
 	/***********************************************************************
@@ -154,16 +153,15 @@ private:
 	IDtype musicCount = 0;
 	IDtype fontCount = 0;
 
-	SDL_Renderer* m_renderer;
-
+	SDL_Renderer* m_renderer = nullptr;
 
 	/*********************************
-	 * ARRAY CONSTANT
+	 * STATIC CONSTANT ARRAY
 	**********************************/
 	static const std::array<fs::path, 4>	sk_PATHS;
 
 	/*********************************
-	 * BASE-DIRECTORY
+	 * BASE-DIRECTORIES
 	*********************************/
 	static std::vector<fs::path> sk_DIRS; // arrays of possible directories to find assets.
 

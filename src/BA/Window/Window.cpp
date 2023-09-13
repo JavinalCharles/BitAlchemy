@@ -7,7 +7,21 @@ namespace ba {
 
 Window::Window() = default;
 
-Window::Window(const std::string& title, int x, int y, int w, int h, std::uint32_t flags) :
+Window::Window(const std::string& title, const ba::IntRect& dimension, ba::uint32 flags) :
+	m_title(title),
+	m_dimension(dimension),
+	m_flags(flags),
+	m_defaultView({
+		0.f, 0.f,
+		static_cast<float>(dimension.w),
+		static_cast<float>(dimension.h)}),
+	m_view(m_defaultView)
+{
+
+}
+
+
+Window::Window(const std::string& title, int x, int y, int w, int h, ba::uint32 flags) :
 	m_title(title),
 	m_dimension(x, y, w, h),
 	m_flags(flags),
@@ -20,11 +34,58 @@ Window::Window(const std::string& title, int x, int y, int w, int h, std::uint32
 
 }
 
+Window::~Window() {
+	if (m_renderer != nullptr) {
+		SDL_DestroyRenderer(m_renderer);
+	}
+	m_renderer = nullptr;
+	if (m_window != nullptr) {
+		SDL_DestroyWindow(m_window);
+	}
+	m_window = nullptr;
+	m_open = false;
+}
+
+void Window::setFlags(uint32 flags) {
+	m_flags = flags;
+}
+
+void Window::addFlags(uint32 flags) {
+	m_flags |= flags;
+}
+
+void Window::setSize(const Vector2i& newSize) {
+	m_dimension.w = newSize.x;
+	m_dimension.h = newSize.y;
+}
+
+void Window::setSize(int w, int h) {
+	m_dimension.w = w;
+	m_dimension.h = h;
+}
+
+void Window::setDimension(int x, int y, int w, int h) {
+	m_dimension.t = x;
+	m_dimension.l = y;
+	m_dimension.w = w;
+	m_dimension.h = h;
+}
+
+void Window::setDimension(const Vector2i& pos, const Vector2i& size) {
+	m_dimension.setPosition(pos);
+	m_dimension.setArea(size);
+}
+
+void Window::setDimension(const IntRect& newDimension) {
+	m_dimension = newDimension;
+}
+
 void Window::init() {
 	m_window = SDL_CreateWindow(m_title.c_str(), m_dimension.l, m_dimension.t, m_dimension.w, m_dimension.h, m_flags);
 	if (m_window == nullptr) {
 		throw std::runtime_error(SDL_GetError());
 	}
+
 	m_renderer = SDL_CreateRenderer(m_window, -1, SDL_RENDERER_ACCELERATED);
 	if (m_renderer == NULL) {
 		throw std::runtime_error(SDL_GetError());
@@ -42,8 +103,8 @@ void Window::close() {
 	SDL_DestroyRenderer(m_renderer);
 	SDL_DestroyWindow(m_window);
 	m_open = false;
-	m_renderer = NULL;
-	m_window = NULL;
+	m_renderer = nullptr;
+	m_window = nullptr;
 }
 
 void Window::handleEvents() {
@@ -70,6 +131,10 @@ void Window::handleEvents() {
 void Window::clear(ba::Color color) {
 	SDL_SetRenderDrawColor( m_renderer, color.r, color.g, color.b, color.a);
 	SDL_RenderClear(m_renderer);
+}
+
+void Window::display() {
+	SDL_RenderPresent(m_renderer);
 }
 
 namespace {
@@ -186,9 +251,7 @@ void Window::drawRectOnScreen(const IntRect& rect, Color rc) {
 	SDL_SetRenderDrawColor(m_renderer, cb.r, cb.g, cb.b, cb.a);
 }
 
-void Window::display() {
-	SDL_RenderPresent(m_renderer);
-}
+
 
 SDL_Window* Window::getWindow() const {
 	return m_window;

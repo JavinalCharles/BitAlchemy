@@ -74,15 +74,15 @@ endif()
 endif()
 
 target_compile_options(compiler_flags INTERFACE
-  "$<${gcc_like_cxx}:$<BUILD_INTERFACE:-Wall;-Wextra;-Wshadow;-Wformat=2;-Wunused;-O3>>"
+  "$<${gcc_like_cxx}:$<BUILD_INTERFACE:-Wall;-Wextra;-Wshadow;-Wformat=2;-Wunused;-O2>>"
   "$<${msvc_cxx}:$<BUILD_INTERFACE:-W3>>"
 )
 
 add_library(BA STATIC ${SOURCES})
 
-set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE "${CMAKE_COMMAND} -E time")
+# set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE "${CMAKE_COMMAND} -E time")
 
-set_property(TARGET BA PROPERTY RULE_LAUNCH_COMPILE "${CMAKE_COMMAND} -E time")
+# set_property(TARGET BA PROPERTY RULE_LAUNCH_COMPILE "${CMAKE_COMMAND} -E time")
 
 target_include_directories(BA
 	PUBLIC

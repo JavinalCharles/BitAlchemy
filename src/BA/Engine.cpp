@@ -11,9 +11,18 @@ Engine::Engine() :
 
 }
 
-Engine::Engine(const std::string& title, IntRect dimension, std::uint32_t winFlags) :
-	m_window(title, dimension.l, dimension.t, dimension.w, dimension.h, winFlags),
-	m_resources(nullptr)
+Engine::Engine(const std::string& title, const std::string& organization, const IntRect& dimension, ba::uint32 windowFlags) :
+	m_window(organization + "|" + title, dimension, windowFlags),
+	m_resources(nullptr),
+	m_configs({{GAME_NAME, title}, {ORGANIZATION_NAME, organization}})
+{
+
+}
+
+Engine::Engine(const std::string& title, const IntRect& dimension, ba::uint32 winFlags) :
+	m_window(title, dimension, winFlags),
+	m_resources(nullptr),
+	m_configs({{GAME_NAME, title}})
 {
 
 }
@@ -21,6 +30,40 @@ Engine::Engine(const std::string& title, IntRect dimension, std::uint32_t winFla
 void Engine::setFPSLimit(uint16 fps) {
 	m_fpsLimit = fps;
 }
+
+// void Engine::setWindowPos(int x, int y) {
+// 	m_window.sEt
+// }
+
+void Engine::setWindowSize(int w, int h) {
+	m_window.setSize(w, h);
+}
+
+void Engine::setWindowSize(const Vector2i& size) {
+	m_window.setSize(size);
+}
+
+void Engine::setWindowDimension(int x, int y, int w, int h) {
+	m_window.setDimension(x, y, w, h);
+}
+
+void Engine::setWindowDimension(const Vector2i& pos, const Vector2i& size) {
+	m_window.setDimension(pos, size);
+}
+
+void Engine::setWindowDimension(const IntRect& dimension) {
+	m_window.setDimension(dimension);
+}
+
+void Engine::setWindowFlags(uint32 flags) {
+	m_window.setFlags(flags);
+}
+
+void Engine::addWindowFlags(uint32 flags) {
+	m_window.addFlags(flags);
+}
+
+
 
 uint16 Engine::getFPSLimit() const {
 	return m_fpsLimit;
