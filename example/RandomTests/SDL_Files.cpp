@@ -19,9 +19,20 @@ int main() {
 	}
 	std::string base(basePath);
 
+	char* pref2Path = SDL_GetPrefPath(nullptr, "2ND PREF PATH");
+	if (pref2Path == nullptr) {
+		std::cout << SDL_GetError() << std::endl;
+		return 3;
+	}
+	std::string pref2(pref2Path);
+
 	SDL_free(basePath);
 	SDL_free(prefPath);
+	SDL_free(pref2Path);
 
 	std::cout << "Pref Path: " << pref << std::endl;
 	std::cout << "Base Path: " << base << std::endl;
+	std::cout << "Pref w/o org path: " << pref2 << std::endl;
+
+	return 0;
 }
