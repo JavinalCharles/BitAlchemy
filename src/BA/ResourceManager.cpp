@@ -2,14 +2,15 @@
 
 namespace ba {
 
-#ifdef __linux__
-	const std::array<fs::path, 4> ResourceManager::sk_PATHS({
-		fs::path{"Textures"},
-		fs::path{"Sounds"},
-		fs::path{"Musics"},
-		fs::path{"Fonts"}
-	});
+const std::array<fs::path, 5> ResourceManager::sk_PATHS({
+	fs::path{"Textures"},
+	fs::path{"Sounds"},
+	fs::path{"Musics"},
+	fs::path{"Fonts"},
+	fs::path{"Strings"},
+});
 
+#ifdef __linux__
 	std::vector<fs::path> ResourceManager::sk_DIRS {
 		fs::path("/usr/local/share/bit-alchemy/assets"),
 	};
@@ -17,10 +18,12 @@ namespace ba {
 	// TODO
 #endif
 
+ResourceManager::ResourceManager() = default;
+
 ResourceManager::ResourceManager(SDL_Renderer* rend) :
 	m_renderer(rend)
 {
-	stringMap.insert_or_assign(0, ""); //
+
 }
 
 IDtype ResourceManager::loadXML(const std::string& fileName, std::size_t index) {
@@ -181,8 +184,8 @@ void ResourceManager::addToSearchPaths(const std::string& dir) {
 }
 
 void ResourceManager::addToSearchPaths(const fs::path& dir) {
-	if (dir.has_filename() || dir.is_absolute() || !fs::exists(dir)) {
-		throw std::invalid_argument("ResourceManager::addToSearchPaths() requires a directory that exists and is absolute.");
+	if (dir.has_filename() || !dir.is_absolute() || !fs::exists(dir)) {
+		throw std::invalid_argument("ResourceManager::addToSearchPaths() provided argument: \"" + dir.string() + "\" is not a valid path");
 	}
 
 	sk_DIRS.push_back(dir);
@@ -195,14 +198,9 @@ const std::vector<fs::path>& ResourceManager::getBaseDirs() {
 std::optional<fs::path> ResourceManager::getExistingPath(const fs::path& suffixPath) {
 	for (const fs::path& basePath : sk_DIRS) {
 		fs::path p(basePath / suffixPath);
-		// ba::debug << p.wstring() << ": ";
 		if (fs::exists(p)) {
-			// ba::debug << "exists!\n";
-			// ba::debug.flush();
 			return std::make_optional<fs::path>(p);
 		}
-		// ba::debug << '\n';
-		// ba::debug.flush();
 	}
 	return std::nullopt;
 }

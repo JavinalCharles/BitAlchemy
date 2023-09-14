@@ -11,12 +11,17 @@ Engine::Engine() :
 
 }
 
-Engine::Engine(const std::string& title, const std::string& organization, const IntRect& dimension, ba::uint32 windowFlags) :
+Engine::Engine(const std::string& organization, const std::string& title, const IntRect& dimension, ba::uint32 windowFlags) :
 	m_window(organization + "|" + title, dimension, windowFlags),
 	m_resources(nullptr),
 	m_configs({{GAME_NAME, title}, {ORGANIZATION_NAME, organization}})
 {
-
+	char* prefPath = SDL_GetPrefPath(organization.c_str(), title.c_str());
+	if (prefPath != nullptr) {
+		std::string p(prefPath);
+		m_resources.addToSearchPaths(p);
+		SDL_free(prefPath);
+	}
 }
 
 Engine::Engine(const std::string& title, const IntRect& dimension, ba::uint32 winFlags) :
@@ -24,16 +29,17 @@ Engine::Engine(const std::string& title, const IntRect& dimension, ba::uint32 wi
 	m_resources(nullptr),
 	m_configs({{GAME_NAME, title}})
 {
-
+	char* prefPath = SDL_GetPrefPath(nullptr, title.c_str());
+	if (prefPath != nullptr) {
+		std::string p(prefPath);
+		m_resources.addToSearchPaths(p);
+		SDL_free(prefPath);
+	}
 }
 
 void Engine::setFPSLimit(uint16 fps) {
 	m_fpsLimit = fps;
 }
-
-// void Engine::setWindowPos(int x, int y) {
-// 	m_window.sEt
-// }
 
 void Engine::setWindowSize(int w, int h) {
 	m_window.setSize(w, h);
@@ -63,13 +69,13 @@ void Engine::addWindowFlags(uint32 flags) {
 	m_window.addFlags(flags);
 }
 
-
-
 uint16 Engine::getFPSLimit() const {
 	return m_fpsLimit;
 }
 
 void Engine::init() {
+	loadConfig();
+
 	if(SDL_Init(SDL_INIT_EVERYTHING) < 0) {
 		throw std::runtime_error(SDL_GetError());
 	}
@@ -163,6 +169,10 @@ void Engine::cleanUp() {
 	Mix_Quit();
 	IMG_Quit();
 	SDL_Quit();
+}
+
+void Engine::loadConfig() {
+
 }
 
 }; // namespace ba

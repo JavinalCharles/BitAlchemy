@@ -32,15 +32,15 @@ concept SceneType = std::is_base_of<Scene, S>::value;
 class Engine {
 public:
 	Engine();
-	Engine(const std::string& title, const std::string& organization, const IntRect& windowDimension, ba::uint32 windowFlags);
+	Engine(const std::string& organization, const std::string& title, const IntRect& windowDimension, ba::uint32 windowFlags);
 	Engine(const std::string& title, const IntRect& dimension, ba::uint32 winFlags);
 
 	Engine(Engine& other) = delete;
 	Engine& operator=(Engine& other) = delete;
 
-	///////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////
 	// ENGINE CONFIGURATION
-	///////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////
 	void setFPSLimit(uint16 fps);
 
 	void setWindowSize(int width, int height);
@@ -51,8 +51,6 @@ public:
 
 	void setWindowFlags(uint32 flags);
 	void addWindowFlags(uint32 flags);
-
-
 
 	virtual void onInit();
 	virtual void onInit(const std::function<void()>& initFunc);
@@ -73,7 +71,6 @@ public:
 
 	/***********************************************************************
 	 * @brief Starts the game loop. Only returns when the loop ends.
-	 *
 	************************************************************************/
 	void init();
 

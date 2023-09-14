@@ -33,10 +33,18 @@ public:
 	static const std::size_t SOUNDS = 1;
 	static const std::size_t MUSICS = 2;
 	static const std::size_t FONTS = 3;
+	static const std::size_t STRINGS = 4;
 
 public: // Methods and Constructors
 	ResourceManager();
 	ResourceManager(SDL_Renderer* rend);
+
+	ResourceManager(ResourceManager& other) = delete;
+	ResourceManager& operator=(ResourceManager& other) = delete;
+
+	////////////////////////////////////////////////////////////////////////
+	// RESOURCES LOADING
+	////////////////////////////////////////////////////////////////////////
 
 	/***********************************************************************
 	 * @brief Opens a text/xml file and stores the text in memory.
@@ -90,6 +98,11 @@ public: // Methods and Constructors
 	****************************************/
 	IDtype loadFont(const std::string& fileName, int fontSize);
 
+
+	////////////////////////////////////////////////////////////////////////
+	// RESOURCES EXTRACTION
+	////////////////////////////////////////////////////////////////////////
+
 	/***********************************************************************
 	 * @brief Get the String object
 	 *
@@ -122,6 +135,10 @@ public: // Methods and Constructors
 	*****************************************/
 	TTF_Font* getFont(IDtype id) const noexcept;
 
+	////////////////////////////////////////////////////////////////////////
+	// MODIFIERS
+	////////////////////////////////////////////////////////////////////////
+
 	/***********************************************************************
 	 * @brief Sets the renderer used by this ResourceManager for creating and
 	 * manipulating Textures.
@@ -130,8 +147,10 @@ public: // Methods and Constructors
 	************************************************************************/
 	void setRenderer(SDL_Renderer* renderer);
 
-
 public:
+	////////////////////////////////////////////////////////////////////////
+	// STATIC MODIFIERS
+	////////////////////////////////////////////////////////////////////////
 	static void addToSearchPaths(const std::string& dir);
 	static void addToSearchPaths(const fs::path& dir);
 
@@ -141,7 +160,7 @@ private:
 	std::optional<fs::path> getExistingPath(const fs::path& suffixPath);
 
 private:
-	std::unordered_map<IDtype, std::string> stringMap;
+	std::unordered_map<IDtype, std::string> stringMap = {{0u, ""}};
 	std::unordered_map<IDtype, SDL_Texture*> texturesMap;
 	std::unordered_map<IDtype, Mix_Chunk*> soundsMap;
 	std::unordered_map<IDtype, Mix_Music*> musicsMap;
@@ -158,7 +177,7 @@ private:
 	/*********************************
 	 * STATIC CONSTANT ARRAY
 	**********************************/
-	static const std::array<fs::path, 4>	sk_PATHS;
+	static const std::array<fs::path, 5>	sk_PATHS;
 
 	/*********************************
 	 * BASE-DIRECTORIES
