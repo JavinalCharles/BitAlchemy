@@ -29,11 +29,12 @@ public:
 	/*********************************
 	 * CONSTANTS FOR INDEXES
 	**********************************/
-	static const std::size_t TEXTURES = 0;
-	static const std::size_t SOUNDS = 1;
-	static const std::size_t MUSICS = 2;
-	static const std::size_t FONTS = 3;
-	static const std::size_t STRINGS = 4;
+	static const std::size_t NO_SUBDIR = 0;
+	static const std::size_t TEXTURES = 1;
+	static const std::size_t SOUNDS = 2;
+	static const std::size_t MUSICS = 3;
+	static const std::size_t FONTS = 4;
+	static const std::size_t STRINGS = 5;
 
 public: // Methods and Constructors
 	ResourceManager();
@@ -177,7 +178,7 @@ private:
 	/*********************************
 	 * STATIC CONSTANT ARRAY
 	**********************************/
-	static const std::array<fs::path, 5>	sk_PATHS;
+	static const std::array<fs::path, 6>	sk_PATHS;
 
 	/*********************************
 	 * BASE-DIRECTORIES

@@ -2,7 +2,8 @@
 
 namespace ba {
 
-const std::array<fs::path, 5> ResourceManager::sk_PATHS({
+const std::array<fs::path, 6> ResourceManager::sk_PATHS({
+	fs::path("."),
 	fs::path{"Textures"},
 	fs::path{"Sounds"},
 	fs::path{"Musics"},
