@@ -11,6 +11,48 @@ BitAlchemy is a free and open-source 2D game engine built on top of SDL2. BitAlc
 - **CMAKE `3.15+`** - For building and installing this library.
 - **RapidXML `1.13`** - Used for reading .tmx and .tsx files created by Tiled.
 
+## Example
+
+### Displaying a sprite
+```
+// display_sprite.cpp
+#include <BA/BitAlchemy.hpp>
+
+int main() {
+	ba::Engine engine();
+
+	// Define engine behavior upon game initialization.
+	engine.onInit([&engine]() {
+		// Create a Scene. Almost everything in BA is within a scene.
+		std::shared_ptr<ba::GenericLevelScene> scene = engine.createScene<ba::GenericLevelScene>();
+		
+		// Create an entity using the scene.
+		std::shared_ptr<Entity> e = scene.createEntity();
+		e->setPosition(32, 32); // (x, y) coordinates
+		// Add a component
+		auto sprite = e->addComponent<ba::Sprite>();
+		sprite->loadFromFile("sprite.png");
+
+		// Add the entity to the scene.
+		scene->addEntity(e);
+
+		// adds the scene to the engine and load it.
+		engine.addScene(scene);
+	});
+
+	// Initialize the engine.
+	engine.init();
+
+	// Start the game loop.
+	engine.run();
+
+	// After game loop ends, clean up resources.
+	engine.cleanUp();
+
+	return 0;
+}
+```
+
 ## Building and Installing
 
 #### STEP 1
