@@ -13,32 +13,42 @@ Engine::Engine() :
 
 Engine::Engine(const std::string& organization, const std::string& title, const IntRect& dimension, ba::uint32 windowFlags) :
 	m_window(organization + "|" + title, dimension, windowFlags),
-	m_resources(nullptr),
-	m_configs({{GAME_NAME, title}, {ORGANIZATION_NAME, organization}})
+	m_resources(nullptr)
 {
+	m_configs[ORG_NAME] = organization;
+	m_configs[APP_NAME] = title;
 	char* prefPath = SDL_GetPrefPath(organization.c_str(), title.c_str());
-	if (prefPath != nullptr) {
-		std::string p(prefPath);
-		m_resources.addToSearchPaths(p);
-		SDL_free(prefPath);
+
+	if (prefPath == nullptr) {
+		return;
 	}
+	std::string p(prefPath);
+	m_resources.addToSearchPaths(p);
+	SDL_free(prefPath);
+
 }
 
 Engine::Engine(const std::string& title, const IntRect& dimension, ba::uint32 winFlags) :
 	m_window(title, dimension, winFlags),
-	m_resources(nullptr),
-	m_configs({{GAME_NAME, title}})
+	m_resources(nullptr)
 {
+	m_configs[APP_NAME] = title;
 	char* prefPath = SDL_GetPrefPath(nullptr, title.c_str());
-	if (prefPath != nullptr) {
-		std::string p(prefPath);
-		m_resources.addToSearchPaths(p);
-		SDL_free(prefPath);
+
+	if (prefPath == nullptr) {
+		return;
 	}
+	std::string p(prefPath);
+	m_resources.addToSearchPaths(p);
+	SDL_free(prefPath);
 }
 
 void Engine::setFPSLimit(uint16 fps) {
 	m_fpsLimit = fps;
+}
+
+Window& Engine::getWindow() {
+	return m_window;
 }
 
 void Engine::setWindowSize(int w, int h) {
@@ -171,8 +181,8 @@ void Engine::cleanUp() {
 	SDL_Quit();
 }
 
-void Engine::loadConfig() {
-
+void Engine::loadConfig(const std::string& configFileName) {
+	// TODO
 }
 
 }; // namespace ba

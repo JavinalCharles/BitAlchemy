@@ -4,6 +4,7 @@ namespace ba {
 
 ConfigMap loadDefaultConfigurations() {
 	ConfigMap defaultConfig = {
+		{CONFIG_NEEDS_REWRITE, true},
 		{WINDOW_WIDTH, 768u},
 		{WINDOW_HEIGHT, 768u},
 		{WINDOW_FULLSCREEN, 0u},

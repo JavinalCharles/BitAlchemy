@@ -2,8 +2,9 @@
 
 namespace ba {
 
-const std::array<fs::path, 6> ResourceManager::sk_PATHS({
+const std::array<fs::path, 7> ResourceManager::sk_PATHS({
 	fs::path("."),
+	fs::path("Configs"),
 	fs::path{"Textures"},
 	fs::path{"Sounds"},
 	fs::path{"Musics"},
@@ -16,7 +17,7 @@ const std::array<fs::path, 6> ResourceManager::sk_PATHS({
 		fs::path("/usr/local/share/bit-alchemy/assets"),
 	};
 #else
-	// TODO
+	// TODO Path for windows and/or MAC OS
 #endif
 
 ResourceManager::ResourceManager() = default;
@@ -27,8 +28,8 @@ ResourceManager::ResourceManager(SDL_Renderer* rend) :
 
 }
 
-IDtype ResourceManager::loadXML(const std::string& fileName, std::size_t index) {
-	std::optional<fs::path> opt = getExistingPath(sk_PATHS[index] / fs::path(fileName));
+IDtype ResourceManager::loadXML(const std::string& fileName, ResourceType type) {
+	std::optional<fs::path> opt = getExistingPath(sk_PATHS[type] / fs::path(fileName));
 
 	if (!opt.has_value()) {
 		throw std::invalid_argument(fileName + " could not be found in any of the set directory list.");
