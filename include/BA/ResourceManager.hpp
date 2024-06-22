@@ -16,8 +16,9 @@
 #include <SDL2/SDL_mixer.h>
 #include <SDL2/SDL_ttf.h>
 
-#include <BA/Types.hpp>
-#include <BA/Tools/DebugHelper.hpp>
+#include "BA/Types.hpp"
+#include "BA/Tools/ConfigMap.hpp"
+#include "BA/Tools/DebugHelper.hpp"
 
 namespace fs = std::filesystem;
 // using std::filesystem::path;
@@ -29,12 +30,15 @@ public:
 	/*********************************
 	 * CONSTANTS FOR INDEXES
 	**********************************/
-	static const std::size_t NO_SUBDIR = 0;
-	static const std::size_t TEXTURES = 1;
-	static const std::size_t SOUNDS = 2;
-	static const std::size_t MUSICS = 3;
-	static const std::size_t FONTS = 4;
-	static const std::size_t STRINGS = 5;
+	enum ResourceType: IDtype {
+		NO_RESTYPE = 0,
+		CONFIGS,
+		TEXTURES,
+		SOUNDS,
+		MUSICS,
+		FONTS,
+		STRINGS,
+	};
 
 public: // Methods and Constructors
 	ResourceManager();
@@ -47,17 +51,16 @@ public: // Methods and Constructors
 	// RESOURCES LOADING
 	////////////////////////////////////////////////////////////////////////
 
+
+
 	/***********************************************************************
 	 * @brief Opens a text/xml file and stores the text in memory.
 	 *
 	 * @param fileName The file name of the file to be read.
-	 * @param index Specifies which sub-directory to look for. Defaulted to
-	 * Textures sub-directory as .tsx and .tmx files are assumed to be stored
-	 * within it.
 	 *
 	 * @return the ID of the stored text data.
 	************************************************************************/
-	IDtype loadXML(const std::string& fileName, std::size_t index = TEXTURES);
+	IDtype loadXML(const std::string& fileName, ResourceType type = ResourceType::STRINGS);
 
 	/*****************************************
 	 * loadTexture()
@@ -161,6 +164,7 @@ private:
 	std::optional<fs::path> getExistingPath(const fs::path& suffixPath);
 
 private:
+	ConfigMap 	configMap;
 	std::unordered_map<IDtype, std::string> stringMap = {{0u, ""}};
 	std::unordered_map<IDtype, SDL_Texture*> texturesMap;
 	std::unordered_map<IDtype, Mix_Chunk*> soundsMap;
@@ -178,7 +182,7 @@ private:
 	/*********************************
 	 * STATIC CONSTANT ARRAY
 	**********************************/
-	static const std::array<fs::path, 6>	sk_PATHS;
+	static const std::array<fs::path, 7>	sk_PATHS;
 
 	/*********************************
 	 * BASE-DIRECTORIES

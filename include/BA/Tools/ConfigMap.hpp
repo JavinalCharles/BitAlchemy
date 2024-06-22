@@ -10,10 +10,14 @@
 namespace ba {
 	enum ConfigID : ba::uint32 {
 		CONFIG_ROOT = 0,
+		CONFIG_NEEDS_REWRITE,
 
-		// meta-data
-		ORGANIZATION_NAME,
-		GAME_NAME,
+		// Application Information
+		ORG_NAME,
+		APP_NAME,
+
+		// User Information
+		PROFILE_NAME,
 
 		// window configuration
 		WINDOW_WIDTH,

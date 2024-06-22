@@ -16,7 +16,7 @@
 #include <BA/Scenes/SceneManager.hpp>
 #include <BA/Scenes/Scene.hpp>
 #include <BA/Systems/EntityManager.hpp>
-#include <BA/Tools/ConfigLoader.hpp>
+#include <BA/Tools/ConfigMap.hpp>
 #include <BA/Tools/DebugHelper.hpp>
 #include <BA/Utilities/Vector2.hpp>
 #include <BA/Utilities/Rect.hpp>
@@ -42,6 +42,8 @@ public:
 	// ENGINE CONFIGURATION
 	//////////////////////////////////////////////////////////////////////////
 	void setFPSLimit(uint16 fps);
+
+	Window& getWindow();
 
 	void setWindowSize(int width, int height);
 	void setWindowSize(const Vector2i& windowArea);
@@ -83,7 +85,7 @@ public:
 
 	void cleanUp();
 private:
-	void loadConfig();
+	void loadConfig(const std::string& configFileName = "configs.xml");
 
 protected:
 	Window m_window;
@@ -92,7 +94,7 @@ protected:
 	SceneManager m_sceneManager;
 
 private:
-	ConfigMap m_configs;
+	ConfigMap m_configs = {{CONFIG_NEEDS_REWRITE, false}, {ORG_NAME, ""}, {APP_NAME, ""}};
 
 	uint16 m_fpsLimit = 60u;
 
