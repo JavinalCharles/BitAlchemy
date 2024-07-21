@@ -22,8 +22,7 @@ Engine::Engine(const std::string& organization, const std::string& title, const 
 	m_window(organization + "|" + title, dimension, windowFlags),
 	m_resources(nullptr)
 {
-	m_configs[ORG_NAME] = organization;
-	m_configs[APP_NAME] = title;
+	// TODO: Add organization and title to Resources configs
 	char* prefPath = SDL_GetPrefPath(organization.c_str(), title.c_str());
 
 	if (prefPath == nullptr) {
@@ -39,7 +38,6 @@ Engine::Engine(const std::string& title, const IntRect& dimension, ba::uint32 wi
 	m_window(title, dimension, winFlags),
 	m_resources(nullptr)
 {
-	m_configs[APP_NAME] = title;
 	char* prefPath = SDL_GetPrefPath(nullptr, title.c_str());
 
 	if (prefPath == nullptr) {
@@ -91,7 +89,6 @@ uint16 Engine::getFPSLimit() const {
 }
 
 void Engine::init() {
-	loadConfig();
 
 	if(SDL_Init(SDL_INIT_EVERYTHING) < 0) {
 		throw std::runtime_error(SDL_GetError());
@@ -186,10 +183,6 @@ void Engine::cleanUp() {
 	Mix_Quit();
 	IMG_Quit();
 	SDL_Quit();
-}
-
-void Engine::loadConfig(const std::string& configFileName) {
-	// TODO
 }
 
 }; // namespace ba

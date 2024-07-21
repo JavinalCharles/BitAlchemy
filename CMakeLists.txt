@@ -27,6 +27,7 @@ set(SOURCES
 	src/BA/Components/Text.cpp
 	src/BA/Entities/Entity.cpp
 	src/BA/Entities/Transformable.cpp
+	src/BA/Exceptions/Inaccessible.cpp
 	src/BA/Generator/TileMapGenerator.cpp
 	src/BA/Inputs/Input.cpp
 	src/BA/Inputs/InputManager.cpp
