@@ -3,12 +3,19 @@
 
 namespace ba {
 
-Engine::Engine() :
-	m_window(),
-	m_resources(nullptr)
-
+Engine::Engine()
 {
 
+}
+
+Engine::Engine(const std::string& orgName, const std::string& appName)
+{
+	char* prefPath = SDL_GetPrefPath(orgName.c_str(), appName.c_str());
+	if (prefPath == nullptr) {
+		throw ba::Inaccessible(SDL_GetError());
+	}
+
+	m_resources.addToSearchPaths(std::string(prefPath));
 }
 
 Engine::Engine(const std::string& organization, const std::string& title, const IntRect& dimension, ba::uint32 windowFlags) :

@@ -1,62 +1,97 @@
 #pragma once
 
-#include <any>
-#include <map>
-#include <string>
-
-#include "BA/ResourceManager.hpp"
 #include "BA/Types.hpp"
 
 namespace ba {
-	enum ConfigID : ba::uint32 {
-		CONFIG_ROOT = 0,
-		CONFIG_NEEDS_REWRITE,
 
-		// Application Information
-		ORG_NAME,
-		APP_NAME,
+enum ConfigID : IDtype {
+	CONFIG_ROOT = 0,
+	CONFIG_NEEDS_REWRITE,
 
-		// User Information
-		PROFILE_NAME,
+	// Application Information
+	ORG_NAME,
+	APP_NAME,
+	PREF_PATH,
 
-		// window configuration
-		WINDOW_WIDTH,
-		WINDOW_HEIGHT,
-		WINDOW_FULLSCREEN,
-		WINDOW_BORDERLESS,
-		WINDOW_RESIZABLE,
-		WINDOW_TITLE,
+	// User Information
+	PROFILE_NAME,
 
-		// input configuraions
-		MOUSE_ENABLED,
-		KEYBOARD_ENABLED,
-		CONTROLLER_ENABLED,
+	// window configuration
+	WINDOW_WIDTH,
+	WINDOW_HEIGHT,
+	WINDOW_FULLSCREEN,
+	WINDOW_BORDERLESS,
+	WINDOW_RESIZABLE,
+	WINDOW_TITLE,
 
-		// mouse input configuration
-		MOUSE_SCROLL_SPEED,
+	// input configuraions
+	MOUSE_ENABLED,
+	KEYBOARD_ENABLED,
+	CONTROLLER_ENABLED,
 
-		// volume configuration
-		GENERAL_VOLUME,
-		MUSIC_VOLUME,
-		SFX_VOLUME,
-		VOICE_VOLUME,
-		AUDIO_TYPE,
+	// mouse input configuration
+	MOUSE_SCROLL_SPEED,
 
-		// display configurations
-		BRIGHTNESS_LEVEL,
-		GAMMA_LEVEL,
-		CONTRAST_LEVEL,
-		VSYNC_ENABLED,
+	// volume configuration
+	GENERAL_VOLUME,
+	MUSIC_VOLUME,
+	SFX_VOLUME,
+	VOICE_VOLUME,
+	AUDIO_TYPE,
 
-		// Game Play Settings
-		FPS_CAP_LIMIT,
-	};
+	// display configurations
+	BRIGHTNESS_LEVEL,
+	GAMMA_LEVEL,
+	CONTRAST_LEVEL,
+	VSYNC_ENABLED,
 
-	using ConfigMap = std::map<ConfigID, std::any>;
+	// Game Play Settings
+	FPS_CAP_LIMIT,
+};
 
-	ConfigMap loadDefaultConfigurations(const std::u16string& orgName = u"", const std::u16string& gameName = u"");
+class ConfigMap {
+public:
+	ConfigMap();
+	ConfigMap(ConfigMap&) = delete;
+	ConfigMap(ConfigMap&&) = delete;
 
-	// ConfigMap loadConfigurationsFromFile(const std::u16string& fileName, ResourceManager* resources);
+	ConfigMap(const std::string& organization, const std::string& application);
 
-	// void saveConfiguration(const ConfigMap& configMap, const std::u16string& fileName);
+	//////////////////////////////////////////////////////////////////////////
+	// GAME CONFIGURATION
+	//////////////////////////////////////////////////////////////////////////
+	/**
+	 * Sets the selected configuration with a value.
+	 * @param id the ID of the configuration to set
+	 * @param value the new value of the selected configuration.
+	 */
+	void setConfig(ConfigID id, std::any value);
+
+	/**
+	 * Gets the value of the selected configuration. 
+	 * @returns A reference to the configuration value.
+	 * @{
+	 */
+	const std::any& at(ConfigID) const;
+	const std::any& at(const ConfigID) const;
+	std::any& operator[](ConfigID);
+	std::any& operator[](const ConfigID);
+	/** @} */
+private:
+	void loadDefaultConfigurations();
+
+	/**
+	 * Loads Configuration File (if any) and parses the data to the map.
+	 * 	If no configuration file is found, it will attempt to create one with
+	 * default configuration
+	 */
+	void loadConfigFile();
+
+private:
+	bool m_appIsUsingConfigFile = false;
+
+	std::map<ConfigID, std::any> m_configMap;
+};
+
+
 } // namespace ba
