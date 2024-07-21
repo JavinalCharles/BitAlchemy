@@ -149,3 +149,5 @@ ipch/
 .clang-format
 .clang-tidy
 .editorconfig
+
+dirs/bit-alchemy/assets/assets_installer.cpp

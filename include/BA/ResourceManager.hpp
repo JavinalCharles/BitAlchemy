@@ -64,11 +64,19 @@ public: // Methods and Constructors
 	/**
 	 * @brief Loads the applications configuration file.
 	 * 
-	 * @param configFileName the name of the configFile.
+	 * @param fileName the name of the configFile.
 	 * 
-	 * @returns true if the configurations has been successfully loaded.
+	 * @return true if the configurations has been successfully loaded. false
+	 * otherwise.
 	 */
 	bool loadConfig(const std::string& fileName);
+
+	/*********************************************************************
+	 * @brief sets a specific config to a certain value.
+	 * 
+	 * @return true if object is successfully inserted.
+	 **********************************************************************/
+	bool setConfig(ConfigID id, std::any value);
 
 
 	/***********************************************************************
@@ -124,6 +132,17 @@ public: // Methods and Constructors
 	////////////////////////////////////////////////////////////////////////
 	// RESOURCES EXTRACTION
 	////////////////////////////////////////////////////////////////////////
+
+
+	/***********************************************************************
+	 * @brief Get the config data
+	 * 
+	 * @param id the ID of the config.
+	 * @return an std::any object that can be casted into either std::string or
+	 * int, depending on the config. If id is non-existent in the map, then
+	 * the method returns an empty std::any. Use std::any::has_value() to check.
+	 **********************************************************************/
+	std::any getConfig(ConfigID id) const noexcept;
 
 	/***********************************************************************
 	 * @brief Get the String object

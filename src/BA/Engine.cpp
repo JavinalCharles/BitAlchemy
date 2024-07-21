@@ -5,47 +5,55 @@ namespace ba {
 
 Engine::Engine()
 {
-
+	__construct();
 }
 
 Engine::Engine(const std::string& orgName, const std::string& appName)
 {
-	char* prefPath = SDL_GetPrefPath(orgName.c_str(), appName.c_str());
-	if (prefPath == nullptr) {
-		throw ba::Inaccessible(SDL_GetError());
-	}
-
-	m_resources.addToSearchPaths(std::string(prefPath));
+	__construct(orgName, appName);
 }
 
 Engine::Engine(const std::string& organization, const std::string& title, const IntRect& dimension, ba::uint32 windowFlags) :
-	m_window(organization + "|" + title, dimension, windowFlags),
-	m_resources(nullptr)
+	m_window(organization + "|" + title, dimension, windowFlags)
 {
-	// TODO: Add organization and title to Resources configs
-	char* prefPath = SDL_GetPrefPath(organization.c_str(), title.c_str());
+	__construct(organization, title);
+}
 
-	if (prefPath == nullptr) {
-		return;
-	}
-	std::string p(prefPath);
-	m_resources.addToSearchPaths(p);
-	SDL_free(prefPath);
+Engine::Engine(const std::string& orgName, const std::string& appName, const std::string& configFileName) {
+	__construct(orgName, appName);
 
+	m_resources.loadConfig(configFileName);
 }
 
 Engine::Engine(const std::string& title, const IntRect& dimension, ba::uint32 winFlags) :
-	m_window(title, dimension, winFlags),
-	m_resources(nullptr)
+	m_window(title, dimension, winFlags)
 {
-	char* prefPath = SDL_GetPrefPath(nullptr, title.c_str());
+	__construct("", title);
+}
 
-	if (prefPath == nullptr) {
-		return;
+void Engine::__construct(const std::string& org, const std::string& app) {
+	m_resources.setConfig(ORG_NAME, org);
+	m_resources.setConfig(APP_NAME, app);
+
+	char* prefPath = SDL_GetPrefPath(org.c_str(), app.c_str());
+	if (prefPath != nullptr) {
+		debug << "Adding " << prefPath << " to search paths." << std::endl;
+		m_resources.addToSearchPaths(fs::path(prefPath));
 	}
-	std::string p(prefPath);
-	m_resources.addToSearchPaths(p);
+	else {
+		debug << "Prefered Path could not be determined." << std::endl;
+	}
+	char* basePath = SDL_GetBasePath();
+	if (basePath != nullptr) {
+		debug << "Adding " << basePath << " to search paths." << std::endl;
+		m_resources.addToSearchPaths(fs::path(basePath));
+	}
+	else {
+		debug << "Base Path could not be determined." << std::endl;
+	}
+
 	SDL_free(prefPath);
+	SDL_free(basePath);
 }
 
 void Engine::setFPSLimit(uint16 fps) {
@@ -54,6 +62,10 @@ void Engine::setFPSLimit(uint16 fps) {
 
 Window& Engine::getWindow() {
 	return m_window;
+}
+
+ResourceManager& Engine::getResourceManager() {
+	return m_resources;
 }
 
 void Engine::setWindowSize(int w, int h) {

@@ -113,6 +113,12 @@ bool ResourceManager::loadConfig(const std::string& configFilename) {
 	}
 }
 
+bool ResourceManager::setConfig(ConfigID id, std::any v) {
+	configMap.insert_or_assign(id, v);
+
+	return true;
+}
+
 IDtype ResourceManager::loadXML(const std::string& fileName, ResourceType type) {
 	std::optional<fs::path> opt = getExistingPath(sk_PATHS[type] / fs::path(fileName));
 
@@ -233,6 +239,14 @@ IDtype ResourceManager::loadFont(const std::string& fileName, int fontSize) {
 	return id;
 }
 
+std::any ResourceManager::getConfig(ConfigID id) const noexcept {
+	if (configMap.contains(id)) {
+		return configMap.at(id);
+	}
+
+	return std::any();
+}
+
 const std::string& ResourceManager::getString(IDtype id) const noexcept {
 	if (stringMap.contains(id))
 		return stringMap.at(id);
@@ -244,7 +258,7 @@ SDL_Texture* ResourceManager::getTexture(IDtype id) const noexcept {
 	if(texturesMap.contains(id))
 		return texturesMap.at(id);
 
-	return NULL;
+	return nullptr;
 }
 
 Mix_Chunk* ResourceManager::getSound(IDtype id) const noexcept {

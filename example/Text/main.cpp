@@ -5,6 +5,10 @@
 
 int main() {
 	ba::Engine engine("Text Sample", {0, 0, 968, 605}, SDL_WINDOW_SHOWN);
+
+	fs::path prefPath(SDL_GetPrefPath("bit-alchemy", "assets"));
+	engine.getResourceManager().addToSearchPaths(prefPath);
+
 	engine.init();
 	engine.setFPSLimit(23);
 

@@ -109,7 +109,7 @@ target_link_libraries(BA compiler_flags)
 # INSTALLATION
 if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
 message("${CMAKE_SYSTEM_PREFIX_PATH}")
-install(DIRECTORY ${PROJECT_SOURCE_DIR}/dirs/ DESTINATION share)
+# install(DIRECTORY ${PROJECT_SOURCE_DIR}/dirs/ DESTINATION share)
 
 install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/ DESTINATION include)
 
