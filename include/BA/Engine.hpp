@@ -42,8 +42,7 @@ public:
 
 	//////////////////////////////////////////////////////////////////////////
 	// SYSTEMS CONFIGURATION
-	//////////////////////////////////////////////////////////////////////////
-	
+	/////////////////////////////////////////////////////////////////////////
 
 
 	//////////////////////////////////////////////////////////////////////////
@@ -52,6 +51,7 @@ public:
 	void setFPSLimit(uint16 fps);
 
 	Window& getWindow();
+	ResourceManager& getResourceManager();
 
 	void setWindowSize(int width, int height);
 	void setWindowSize(const Vector2i& windowArea);
@@ -78,12 +78,11 @@ public:
 	///////////////////////////////////////////////////////////////////////////
 	// GAME LOOP METHODS
 	///////////////////////////////////////////////////////////////////////////
+	void init();
 
 	/***********************************************************************
 	 * @brief Starts the game loop. Only returns when the loop ends.
 	************************************************************************/
-	void init();
-
 	void run();
 
 	void handleEvents();
@@ -92,6 +91,10 @@ public:
 	void draw();
 
 	void cleanUp();
+
+private:
+	void __construct(const std::string& org = "", const std::string& appName = "");
+
 protected:
 	Window m_window;
 	ResourceManager m_resources;
@@ -99,7 +102,6 @@ protected:
 	SceneManager m_sceneManager;
 
 private:
-
 	uint16 m_fpsLimit = 60u;
 
 	std::vector<std::function<void()>> m_initFunctions;

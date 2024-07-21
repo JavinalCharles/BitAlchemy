@@ -12,6 +12,10 @@ using namespace ba;
 
 int main() {
 	ba::Engine engine;
+
+	fs::path prefPath(SDL_GetPrefPath("bit-alchemy", "assets"));
+	engine.getResourceManager().addToSearchPaths(prefPath);
+
 	engine.init();
 	engine.setFPSLimit(30u);
 
