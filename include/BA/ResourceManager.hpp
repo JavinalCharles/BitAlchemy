@@ -1,23 +1,32 @@
 #pragma once
 
+#include <any>
 #include <array>
 #include <filesystem>
 #include <fstream>
 #include <iostream>
+#include <map>
 #include <optional>
 #include <stdexcept>
 #include <sstream>
 #include <string>
 #include <unordered_map>
 #include <vector>
+
+#include <rapidxml/rapidxml.hpp>
+#include <rapidxml/rapidxml_iterators.hpp>
+#include <rapidxml/rapidxml_print.hpp>
+#include <rapidxml/rapidxml_utils.hpp>
+
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_filesystem.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_mixer.h>
 #include <SDL2/SDL_ttf.h>
 
+#include <BA/Exceptions/Inaccessible.hpp>
 #include "BA/Types.hpp"
-#include "BA/Tools/ConfigMap.hpp"
+// #include "BA/Tools/ConfigMap.hpp"
 #include "BA/Tools/DebugHelper.hpp"
 
 namespace fs = std::filesystem;
@@ -50,7 +59,14 @@ public: // Methods and Constructors
 	////////////////////////////////////////////////////////////////////////
 	// RESOURCES LOADING
 	////////////////////////////////////////////////////////////////////////
-
+	/**
+	 * @brief Loads the applications configuration file.
+	 * 
+	 * @param configFileName the name of the configFile.
+	 * 
+	 * @returns true if the configurations has been successfully loaded.
+	 */
+	bool loadConfig(const std::string& fileName);
 
 
 	/***********************************************************************
@@ -163,8 +179,12 @@ public:
 private:
 	std::optional<fs::path> getExistingPath(const fs::path& suffixPath);
 
+	// void writeDefaultConfiguration(rapidxml::xml_document<> doc);
+	void loadConfiguration(rapidxml::xml_node<>* rootNode);
+	void saveCurrentConfiguration();
+
 private:
-	ConfigMap 	configMap;
+	std::unordered_map<IDtype, std::any> configMap;
 	std::unordered_map<IDtype, std::string> stringMap = {{0u, ""}};
 	std::unordered_map<IDtype, SDL_Texture*> texturesMap;
 	std::unordered_map<IDtype, Mix_Chunk*> soundsMap;
@@ -178,7 +198,8 @@ private:
 	IDtype fontCount = 0;
 
 	SDL_Renderer* m_renderer = nullptr;
-
+	std::string m_configFile = "";
+private:
 	/*********************************
 	 * STATIC CONSTANT ARRAY
 	**********************************/
@@ -187,8 +208,14 @@ private:
 	/*********************************
 	 * BASE-DIRECTORIES
 	*********************************/
-	static std::vector<fs::path> sk_DIRS; // arrays of possible directories to find assets.
+	static std::vector<fs::path> s_DIRS;// arrays of possible directories to find assets.
 
+	/********************************
+	 * 
+	 ********************************/
+	static const std::map<std::string, ConfigID> sk_configStringMap;
+	
+	static const std::unordered_map<ConfigID, std::pair<std::string, const std::type_info&>> sk_configIDMap;
 }; // class ResourceManager
 
 } // namespace ba

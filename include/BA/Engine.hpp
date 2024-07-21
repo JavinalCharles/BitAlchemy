@@ -13,6 +13,7 @@
 #include <SDL2/SDL_ttf.h>
 
 #include <BA/Entities/SharedContext.hpp>
+#include <BA/Exceptions/Inaccessible.hpp>
 #include <BA/Scenes/SceneManager.hpp>
 #include <BA/Scenes/Scene.hpp>
 #include <BA/Systems/EntityManager.hpp>
@@ -32,14 +33,22 @@ concept SceneType = std::is_base_of<Scene, S>::value;
 class Engine {
 public:
 	Engine();
-	Engine(const std::string& organization, const std::string& title, const IntRect& windowDimension, ba::uint32 windowFlags);
+	Engine(const std::string& orgName, const std::string& appName);
+	Engine(const std::string& orgName, const std::string& appName, const std::string& configFileName);
+	Engine(const std::string& orgName, const std::string& appName, const IntRect& windowDimension, ba::uint32 windowFlags);
 	Engine(const std::string& title, const IntRect& dimension, ba::uint32 winFlags);
 
 	Engine(Engine& other) = delete;
 	Engine& operator=(Engine& other) = delete;
 
 	//////////////////////////////////////////////////////////////////////////
-	// ENGINE CONFIGURATION
+	// SYSTEMS CONFIGURATION
+	//////////////////////////////////////////////////////////////////////////
+	
+
+
+	//////////////////////////////////////////////////////////////////////////
+	// GAME CONFIGURATION
 	//////////////////////////////////////////////////////////////////////////
 	void setFPSLimit(uint16 fps);
 
@@ -94,7 +103,7 @@ protected:
 	SceneManager m_sceneManager;
 
 private:
-	ConfigMap m_configs = {{CONFIG_NEEDS_REWRITE, false}, {ORG_NAME, ""}, {APP_NAME, ""}};
+	ConfigMap m_configs;
 
 	uint16 m_fpsLimit = 60u;
 

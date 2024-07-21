@@ -39,4 +39,48 @@ namespace ba
 		XTRA7,
 		XTRA8
 	};
+
+	enum ConfigID : IDtype {
+		CONFIG_ROOT = 0,
+		CONFIG_NEEDS_REWRITE,
+
+		// Application Information
+		ORG_NAME,
+		APP_NAME,
+
+		// User Information
+		PROFILE_NAME,
+
+		// window configuration
+		WINDOW_WIDTH,
+		WINDOW_HEIGHT,
+		WINDOW_FULLSCREEN,
+		WINDOW_BORDERLESS,
+		WINDOW_RESIZABLE,
+		WINDOW_TITLE,
+
+		// input configuraions
+		MOUSE_ENABLED,
+		KEYBOARD_ENABLED,
+		CONTROLLER_ENABLED,
+
+		// mouse input configuration
+		MOUSE_SCROLL_SPEED,
+
+		// volume configuration
+		GENERAL_VOLUME,
+		MUSIC_VOLUME,
+		SFX_VOLUME,
+		VOICE_VOLUME,
+		AUDIO_TYPE,
+
+		// display configurations
+		BRIGHTNESS_LEVEL,
+		GAMMA_LEVEL,
+		CONTRAST_LEVEL,
+		VSYNC_ENABLED,
+
+		// Game Play Settings
+		FPS_CAP_LIMIT,
+	};
 } // namespace ba
