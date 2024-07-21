@@ -70,6 +70,10 @@ ResourceManager::ResourceManager(SDL_Renderer* rend) :
 
 }
 
+ResourceManager::~ResourceManager() {
+	saveCurrentConfiguration();
+}
+
 bool ResourceManager::loadConfig(const std::string& configFilename) {
 	fs::path file(configFilename);
 	std::optional<fs::path> opt = getExistingPath(sk_PATHS[CONFIGS] / file);
@@ -101,6 +105,7 @@ bool ResourceManager::loadConfig(const std::string& configFilename) {
 		}
 		rapidxml::xml_node<>* configNode = rootNode->first_node();
 		loadConfiguration(configNode);
+		return true;
 	}
 	catch(const rapidxml::parse_error& e) {
 		debug << "Parse Error. Some Configurations might not have been loaded." << std::endl;

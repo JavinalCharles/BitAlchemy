@@ -17,7 +17,6 @@
 #include <BA/Scenes/SceneManager.hpp>
 #include <BA/Scenes/Scene.hpp>
 #include <BA/Systems/EntityManager.hpp>
-#include <BA/Tools/ConfigMap.hpp>
 #include <BA/Tools/DebugHelper.hpp>
 #include <BA/Utilities/Vector2.hpp>
 #include <BA/Utilities/Rect.hpp>
@@ -93,9 +92,6 @@ public:
 	void draw();
 
 	void cleanUp();
-private:
-	void loadConfig(const std::string& configFileName = "configs.xml");
-
 protected:
 	Window m_window;
 	ResourceManager m_resources;
@@ -103,7 +99,6 @@ protected:
 	SceneManager m_sceneManager;
 
 private:
-	ConfigMap m_configs;
 
 	uint16 m_fpsLimit = 60u;
 
