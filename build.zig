@@ -1,8 +1,16 @@
 const std = @import("std");
 
+const ExampleExecutableParameters = struct {
+    name: []const u8,
+    srcDir: []const u8,
+    srcFiles: []const []const u8,
+};
+
 pub fn build(b: *std.Build) void {
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
+
+    const buildExamples = b.option(bool, "buildExamples", "an option to compile, link and build the provided example programs.");
 
     const libBA = b.addStaticLibrary(.{
         .name = "BA",
@@ -71,9 +79,86 @@ pub fn build(b: *std.Build) void {
     };
 
     libBA.addCSourceFiles(.{ .files = &sourceFiles, .flags = &flags });
-    libBA.linkLibC();
     libBA.linkLibCpp();
     libBA.addIncludePath(.{ .cwd_relative = "include/" });
 
     b.installArtifact(libBA);
+    b.installDirectory(.{ .source_dir = .{ .cwd_relative = "include/BA/" }, .install_dir = .header, .install_subdir = "BA/" });
+
+    if (buildExamples != true) {
+        // Everything beyond this point is about building the
+        // example programs. If user goals is merely to nuild the
+        // library, function execution should end here.
+        return;
+    }
+
+    const executables = &[_]ExampleExecutableParameters{ 
+		.{ 
+			.name = "Line", 
+			.srcDir = "example/Line", 
+			.srcFiles = &.{ 
+				"LineScene.cpp", 
+				"main.cpp" 
+			} 
+		}, 
+		.{ 
+			.name = "SDL_Files", 
+			.srcDir = "example/RandomTests", 
+			.srcFiles = &.{
+				"SDL_Files.cpp"
+			} 
+		}, 
+		.{ 
+			.name = "Skeleton", 
+			.srcDir = "example/Skeleton", .srcFiles = &.{ 
+				"BlueCharEntity.cpp", 
+				"SkeletonEntity.cpp", 
+				"SkeletonScene.cpp", 
+				"main.cpp" 
+			} 
+		}, 
+		.{ 
+			.name = "TestMap", 
+			.srcDir = "example/TestMap", 
+			.srcFiles = &.{ 
+				"TestMapScene.cpp", 
+				"main.cpp" 
+			} 
+		}, 
+		.{ 
+			.name = "Text", 
+			.srcDir = "example/Text", 
+			.srcFiles = &.{ 
+				"TextScene.cpp", 
+				"main.cpp" 
+			} 
+		} 
+	};
+
+	for (executables) |exeParam| {
+		const exe = b.addExecutable(.{
+			.name = exeParam.name,
+			.target = target,
+			.optimize = optimize
+		});
+
+		exe.addCSourceFiles(.{
+			.root = .{
+				.cwd_relative = exeParam.srcDir
+			},
+			.files = exeParam.srcFiles,
+			.flags = &flags
+		});
+		exe.addIncludePath(.{.cwd_relative = "include/"});
+		exe.addIncludePath(.{ .cwd_relative = exeParam.srcDir });
+
+		exe.linkLibCpp();
+		exe.linkLibrary(libBA);
+		exe.linkSystemLibrary("SDL2");
+		exe.linkSystemLibrary("SDL2_image");
+		exe.linkSystemLibrary("SDL2_mixer");
+		exe.linkSystemLibrary("SDL2_ttf");
+
+		b.installArtifact(exe);
+	}
 }

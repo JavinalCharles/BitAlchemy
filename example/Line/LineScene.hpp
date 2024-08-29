@@ -33,7 +33,7 @@ public:
 	virtual void update(float deltaTime) override;
 	virtual void postUpdate(float deltaTime) override;
 
-	virtual void draw(Window& window);
+	virtual void draw(Window& window) override;
 private:
 	std::shared_ptr<Text>	m_FPSText = nullptr;
 	std::shared_ptr<Text>	m_angleText = nullptr;
@@ -43,6 +43,8 @@ private:
 
 	EntityManager 	m_entityManager;
 	InputManager	m_inputManager;
+	ba::IntLine		m_line;
+	ba::Color		m_color = Color::White;
 
 	static const Vector2i sk_CENTER;
 }; // class LineScene

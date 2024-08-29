@@ -11,7 +11,7 @@ int main() {
 
 	engine.init();
 
-	engine.setFPSLimit(23);
+	engine.setFPSLimit(30);
 
 	std::shared_ptr<ba::LineScene> lineScne = engine.createScene<ba::LineScene>();
 	engine.addScene(lineScne);
