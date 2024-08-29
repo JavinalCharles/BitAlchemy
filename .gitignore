@@ -151,3 +151,7 @@ ipch/
 .editorconfig
 
 dirs/bit-alchemy/assets/assets_installer.cpp
+.zig-cache/
+.zig-cache/*
+zig-out/
+zig-out/*
