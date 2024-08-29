@@ -45,7 +45,8 @@ void LineScene::onActivate() {
 	m_entityManager.add(fpsEntity);
 	m_entityManager.add(angleEntity);
 
-	debug.setColor(Color::White);
+	m_line.p1 = sk_CENTER;
+	// debug.setColor(Color::White);
 }
 
 void LineScene::handleEvents() {
@@ -66,11 +67,13 @@ void LineScene::update(float deltaTime) {
 	std::shared_ptr<MouseInput> mi = m_mouseInput.lock();
 	const Vector2i mousePos(mi->getCurrMousePos());
 
-	IntLine line(sk_CENTER, mousePos);
+	// IntLine line(sk_CENTER, mousePos);
+	m_line.p2 = mousePos;
 
-	m_angleText->setText(std::to_string(line.angle().wrapUnsigned().asDegrees()) + " Degrees");
+	m_angleText->setText(std::to_string(m_line.angle().wrapUnsigned().asDegrees()) + " Degrees");
 
-	ba::debug << line;
+	
+	// ba::debug << line;
 }
 
 void LineScene::postUpdate(float deltaTime) {
@@ -79,6 +82,8 @@ void LineScene::postUpdate(float deltaTime) {
 
 void LineScene::draw(Window& window) {
 	m_entityManager.draw(window);
+	window.drawLine(m_line, m_color);
+	// m_CONTEXT.window->drawLine(line, Color::Yellow);
 }
 
 
