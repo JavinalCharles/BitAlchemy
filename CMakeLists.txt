@@ -19,6 +19,7 @@ endif()
 endif()
 
 set(SOURCES
+	src/tinyxml2/tinyxml2.cpp
 	src/BA/Components/AI/AI.cpp
 	src/BA/Components/AI/ProgrammedAI.cpp
 	src/BA/Components/Camera.cpp
