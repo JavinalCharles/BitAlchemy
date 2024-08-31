@@ -13,11 +13,9 @@
 #include <unordered_map>
 #include <vector>
 
-#include <rapidxml/rapidxml.hpp>
-#include <rapidxml/rapidxml_iterators.hpp>
-#include <rapidxml/rapidxml_print.hpp>
-#include <rapidxml/rapidxml_utils.hpp>
-
+// #include <rapidxml/rapidxml.hpp>
+// #include <rapidxml/rapidxml_iterators.hpp>
+// #include <rapidxml/rapidxml_utils.hpp>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_filesystem.h>
 #include <SDL2/SDL_image.h>
@@ -201,7 +199,7 @@ private:
 	std::optional<fs::path> getExistingPath(const fs::path& suffixPath);
 
 	// void writeDefaultConfiguration(rapidxml::xml_document<> doc);
-	void loadConfiguration(rapidxml::xml_node<>* rootNode);
+	// void loadConfiguration(rapidxml::xml_node<>* rootNode);
 	void saveCurrentConfiguration();
 
 private:
