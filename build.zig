@@ -12,13 +12,19 @@ pub fn build(b: *std.Build) void {
 
     const buildExamples = b.option(bool, "buildExamples", "an option to compile, link and build the provided example programs.");
 
+	// const libBA = b.addSharedLibrary(.{
+	// 	.name = "BA",
+	// 	.target = target,
+	// 	.optimize = optimize
+	// });
+
     const libBA = b.addStaticLibrary(.{
         .name = "BA",
         .target = target,
         .optimize = optimize,
     });
 
-    const sourceFiles: [48][]const u8 = [_][]const u8{
+    const sourceFiles: [47][]const u8 = [_][]const u8{
         "src/BA/Components/AI/AI.cpp",
         "src/BA/Components/AI/ProgrammedAI.cpp",
         "src/BA/Components/Camera.cpp",
@@ -39,7 +45,7 @@ pub fn build(b: *std.Build) void {
         "src/BA/Entities/Entity.cpp",
         "src/BA/Entities/Transformable.cpp",
         "src/BA/Exceptions/Inaccessible.cpp",
-        "src/BA/Generator/TileMapGenerator.cpp",
+        // "src/BA/Generator/TileMapGenerator.cpp",
         "src/BA/Inputs/Input.cpp",
         "src/BA/Inputs/InputManager.cpp",
         "src/BA/Inputs/KeyboardInput.cpp",
@@ -92,16 +98,13 @@ pub fn build(b: *std.Build) void {
 		libBA.linkSystemLibrary("SDL2");
 	}
 	else {
-		libBA.addIncludePath(.{.cwd_relative = "deps/SDL2-2.30.6/i686-w64-mingw32/include"});
-		libBA.addIncludePath(.{.cwd_relative = "deps/SDL2_image-2.8.2/i686-w64-mingw32/include"});
-		libBA.addIncludePath(.{.cwd_relative = "deps/SDL2_mixer-2.8.0/i686-w64-mingw32/include"});
-		libBA.addIncludePath(.{.cwd_relative = "deps/SDL2_ttf-2.22.0/i686-w64-mingw32//include"});
-		libBA.addIncludePath(.{.cwd_relative = "deps/rapidxml"});
+		libBA.addIncludePath(.{.cwd_relative = "deps/include"});
+		libBA.addLibraryPath(.{.cwd_relative = "deps/lib"});
 
-		b.installBinFile("deps/SDL2-2.30.6/i686-w64-mingw32/lib/libSDL2.a", "libSDL2.a");
-		b.installBinFile("deps/SDL2_image-2.8.2/i686-w64-mingw32/lib/libSDL2_image.a", "libSDL2_image.a");
-		b.installBinFile("deps/SDL2_mixer-2.8.0/i686-w64-mingw32/lib/libSDL2_mixer.a", "libSDL2_mixer.a");
-		b.installBinFile("deps/SDL2_ttf-2.22.0/i686-w64-mingw32/lib/libSDL2_ttf.a", "libSDL2_ttf.a");
+		b.installBinFile("deps/lib/SDL2.dll", "SDL2.dll");
+		b.installBinFile("deps/lib/SDL2_image.dll", "SDL2_image.dll");
+		b.installBinFile("deps/lib/SDL2_mixer.dll", "SDL2_mixer.dll");
+		b.installBinFile("deps/lib/SDL2_ttf.dll", "SDL2_ttf.dll");
 	}
 
     b.installArtifact(libBA);
@@ -139,14 +142,14 @@ pub fn build(b: *std.Build) void {
 				"main.cpp" 
 			} 
 		}, 
-		.{ 
-			.name = "TestMap", 
-			.srcDir = "example/TestMap", 
-			.srcFiles = &.{ 
-				"TestMapScene.cpp", 
-				"main.cpp" 
-			} 
-		}, 
+		// .{ 
+		// 	.name = "TestMap", 
+		// 	.srcDir = "example/TestMap", 
+		// 	.srcFiles = &.{ 
+		// 		"TestMapScene.cpp", 
+		// 		"main.cpp" 
+		// 	} 
+		// }, 
 		.{ 
 			.name = "Text", 
 			.srcDir = "example/Text", 
@@ -175,11 +178,22 @@ pub fn build(b: *std.Build) void {
 		exe.addIncludePath(.{ .cwd_relative = exeParam.srcDir });
 
 		exe.linkLibCpp();
-		exe.linkLibrary(libBA);
 		exe.linkSystemLibrary("SDL2");
+		if (target.result.os.tag == .windows) {
+			exe.linkSystemLibrary("SDL2main");
+		}
 		exe.linkSystemLibrary("SDL2_image");
 		exe.linkSystemLibrary("SDL2_mixer");
 		exe.linkSystemLibrary("SDL2_ttf");
+		if (target.result.os.tag == .windows) {
+			exe.linkSystemLibrary("kernel32");
+			exe.linkSystemLibrary("user32");
+			exe.linkSystemLibrary("gdi32");
+			exe.linkSystemLibrary("opengl32");
+			exe.linkSystemLibrary("winmm");
+			exe.linkSystemLibrary("dxguid");
+		}
+		exe.linkLibrary(libBA);
 
 		b.installArtifact(exe);
 	}
