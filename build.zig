@@ -69,18 +69,40 @@ pub fn build(b: *std.Build) void {
         "src/BA/Engine.cpp",
     };
 
-    const flags: [6][]const u8 = [6][]const u8{
+    const flags: [5][]const u8 = [6][]const u8{
         "-std=c++20",
         "-Wall",
         "-Wextra",
         "-Wshadow",
-        "-Wformat=2",
         "-Wunused",
     };
 
-    libBA.addCSourceFiles(.{ .files = &sourceFiles, .flags = &flags });
+    libBA.addCSourceFiles(.{ 
+		.files = &sourceFiles, 
+		.flags = &flags 
+	});
+
     libBA.linkLibCpp();
-    libBA.addIncludePath(.{ .cwd_relative = "include/" });
+
+	libBA.addIncludePath(.{ 
+		.cwd_relative = "include" 
+	});
+
+	if (target.result.os.tag == .linux) {
+		libBA.linkSystemLibrary("SDL2");
+	}
+	else {
+		libBA.addIncludePath(.{.cwd_relative = "deps/SDL2-2.30.6/i686-w64-mingw32/include"});
+		libBA.addIncludePath(.{.cwd_relative = "deps/SDL2_image-2.8.2/i686-w64-mingw32/include"});
+		libBA.addIncludePath(.{.cwd_relative = "deps/SDL2_mixer-2.8.0/i686-w64-mingw32/include"});
+		libBA.addIncludePath(.{.cwd_relative = "deps/SDL2_ttf-2.22.0/i686-w64-mingw32//include"});
+		libBA.addIncludePath(.{.cwd_relative = "deps/rapidxml"});
+
+		b.installBinFile("deps/SDL2-2.30.6/i686-w64-mingw32/lib/libSDL2.a", "libSDL2.a");
+		b.installBinFile("deps/SDL2_image-2.8.2/i686-w64-mingw32/lib/libSDL2_image.a", "libSDL2_image.a");
+		b.installBinFile("deps/SDL2_mixer-2.8.0/i686-w64-mingw32/lib/libSDL2_mixer.a", "libSDL2_mixer.a");
+		b.installBinFile("deps/SDL2_ttf-2.22.0/i686-w64-mingw32/lib/libSDL2_ttf.a", "libSDL2_ttf.a");
+	}
 
     b.installArtifact(libBA);
     b.installDirectory(.{ .source_dir = .{ .cwd_relative = "include/BA/" }, .install_dir = .header, .install_subdir = "BA/" });
