@@ -74,9 +74,10 @@ ResourceManager::~ResourceManager() {
 	saveCurrentConfiguration();
 }
 
-bool ResourceManager::loadConfig(const std::string& configFilename) {
+void ResourceManager::loadConfig(const std::string& configFilename) {
 	fs::path file(configFilename);
 	std::optional<fs::path> opt = getExistingPath(sk_PATHS[CONFIGS] / file);
+
 	if (!opt.has_value()) {
 		opt = getExistingPath(sk_PATHS[NO_RESTYPE] / file);
 		if (!opt.has_value()) {
@@ -85,36 +86,34 @@ bool ResourceManager::loadConfig(const std::string& configFilename) {
 	}
 	m_configFile = opt.value().string();
 
-	std::ifstream f(m_configFile);
-	if (f.fail()) {
-		throw Inaccessible("Cannot open file: " + m_configFile);
+	tinyxml2::XMLDocument doc;
+	if(doc.LoadFile(m_configFile.c_str()) != 0) {
+		throw Inaccessible(m_configFile + " could not be loaded properly.");
 	}
-	// std::stringstream stream;
-	// stream << f.rdbuf();
-	// std::string content(stream.str());
-	// char* data = const_cast<char*>(content.c_str());
-	f.close();
 
-	// TODO: Replace this whole mess with other xml library than
-	return true;
-	// rapidxml.
-	// rapidxml::xml_document<> doc;
-	// doc.parse<0>(data);
+	tinyxml2::XMLElement* root = doc.FirstChildElement("config");
+	if (root == nullptr) {
+		// File is assumed empty.
+		// TODO: Provide a means to generate default configuration.
+		return;
+	}
+	debug << root->GetText();
+	
+	for (tinyxml2::XMLElement* node = root->FirstChildElement(); node != nullptr; node = node->NextSiblingElement()) {
+		const std::string name(node->Value());
 
-	// try {
-	// 	rapidxml::xml_node<>* rootNode = doc.first_node("configuration");
-	// 	if (rootNode == nullptr) {
-	// 		debug << "Configuration file read, but no contents found." << std::endl;
-	// 		return false; // Assumes the xml file is empty.
-	// 	}
-	// 	rapidxml::xml_node<>* configNode = rootNode->first_node();
-	// 	loadConfiguration(configNode);
-	// 	return true;
-	// }
-	// catch(const rapidxml::parse_error& e) {
-	// 	debug << "Parse Error. Some Configurations might not have been loaded." << std::endl;
-	// 	return false;
-	// }
+		if (sk_configStringMap.contains(name)) {
+			const ConfigID ID = sk_configStringMap.at(name);
+			const std::type_info& type = sk_configIDMap.at(ID).second;
+			
+			if (type == typeid(int)) {
+				configMap.insert_or_assign(ID, std::stoi(std::string(node->GetText())));
+			}
+			else if (type == typeid(std::string)) {
+				configMap.insert_or_assign(ID, std::string(node->GetText()));
+			}
+		}
+	}
 }
 
 bool ResourceManager::setConfig(ConfigID id, std::any v) {
@@ -313,29 +312,6 @@ std::optional<fs::path> ResourceManager::getExistingPath(const fs::path& suffixP
 	}
 	return std::nullopt;
 }
-
-// TODO: Replace this to use other xml lib than rapidxml
-// void ResourceManager::loadConfiguration(rapidxml::xml_node<>* rootNode) {
-// 	rapidxml::xml_node<>* node = rootNode->first_node();
-
-// 	while (node != nullptr) {
-// 		std::string configName(node->name());
-// 		if (sk_configStringMap.contains(configName)) {
-// 			const ConfigID& ID = sk_configStringMap.at(configName);
-
-// 			const std::pair<std::string, const std::type_info&>& INFO = sk_configIDMap.at(ID);
-
-// 			if (INFO.second == typeid(int)) {
-// 				configMap.insert_or_assign(ID, std::stoi(node->value()));
-// 			}
-// 			else {
-// 				configMap.insert_or_assign(ID, std::string(node->value()));
-// 			}
-// 			configMap.insert_or_assign(ID, std::any());
-// 		}
-// 		node = node->next_sibling();
-// 	}
-// }
 
 void ResourceManager::saveCurrentConfiguration() {
 	if (m_configFile.empty()) {
