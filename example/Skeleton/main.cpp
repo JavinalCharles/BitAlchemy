@@ -10,7 +10,7 @@
 
 using namespace ba;
 
-int main() {
+int main(int argc, char* argv[]) {
 	ba::Engine engine;
 
 	fs::path prefPath(SDL_GetPrefPath("bit-alchemy", "assets"));

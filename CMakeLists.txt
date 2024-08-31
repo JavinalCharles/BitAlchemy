@@ -7,6 +7,17 @@ project(
 	LANGUAGES CXX
 )
 
+option(DEBUG "Enables DEBUG_MODE_ON Macro." ON)
+option(DEBUG_VERBOSE "Enables DEBUG_VERBOSE_ENABLED" OFF)
+option(BUILD_EXAMPLES "Instructs cmake to build the example programs as well, after building the library" OFF)
+
+if(DEBUG)
+add_compile_definitions(DEBUG_MODE_ON)
+if(DEBUG_VERBOSE)
+add_compile_definitions(DEBUG_VERBOSE_ENABLED)
+endif()
+endif()
+
 set(SOURCES
 	src/BA/Components/AI/AI.cpp
 	src/BA/Components/AI/ProgrammedAI.cpp
@@ -28,7 +39,6 @@ set(SOURCES
 	src/BA/Entities/Entity.cpp
 	src/BA/Entities/Transformable.cpp
 	src/BA/Exceptions/Inaccessible.cpp
-	src/BA/Generator/TileMapGenerator.cpp
 	src/BA/Inputs/Input.cpp
 	src/BA/Inputs/InputManager.cpp
 	src/BA/Inputs/KeyboardInput.cpp
@@ -60,61 +70,70 @@ set(SOURCES
 
 add_library(compiler_flags INTERFACE)
 target_compile_features(compiler_flags INTERFACE cxx_std_20)
-
-set(gcc_like_cxx "$<COMPILE_LANG_AND_ID:CXX,ARMClang,AppleClang,Clang,GNU,LCC>")
-set(msvc_cxx "$<COMPILE_LANG_AND_ID:CXX,MSVC>")
-
-option(DEBUG "Enables DEBUG_MODE_ON Macro." ON)
-option(DEBUG_VERBOSE "Enables DEBUG_VERBOSE_ENABLED" OFF)
-
-if(DEBUG)
-add_compile_definitions(DEBUG_MODE_ON)
-if(DEBUG_VERBOSE)
-add_compile_definitions(DEBUG_VERBOSE_ENABLED)
-endif()
-endif()
-
-target_compile_options(compiler_flags INTERFACE
-  "$<${gcc_like_cxx}:$<BUILD_INTERFACE:-Wall;-Wextra;-Wshadow;-Wformat=2;-Wunused;-O2>>"
-  "$<${msvc_cxx}:$<BUILD_INTERFACE:-W3>>"
+target_compile_options(compiler_flags INTERFACE 
+	"$<BUILD_INTERFACE:-Wall;-Wextra;-Wshadow;-Wunused;-Wno-unused-parameter;-O2>"
 )
 
 add_library(BA STATIC ${SOURCES})
 
 # set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE "${CMAKE_COMMAND} -E time")
 
-# set_property(TARGET BA PROPERTY RULE_LAUNCH_COMPILE "${CMAKE_COMMAND} -E time")
-
 target_include_directories(BA
 	PUBLIC
 	${PROJECT_SOURCE_DIR}/include/
 )
+
+set(SDL_LIBS
+	-lSDL2
+	-lSDL2_image
+	-lSDL2_mixer
+	-lSDL2_ttf
+)
+
+if (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
+	set(SDL_LIBS
+		-lSDL2main
+		${SDL_LIBS}
+		-lwinmm -limm32 -lversion -lsetupapi
+	)
+	set(SDL_INCLUDE_DIRS
+		${PROJECT_SOURCE_DIR}/deps/include
+	)
+
+	set(SDL_LIBRARY_DIRS
+		${PROJECT_SOURCE_DIR}/deps/lib
+	)
+	include_directories(${SDL_INCLUDE_DIRS})
+	link_directories(${SDL_LIBRARY_DIRS})
+endif()
+target_link_libraries(BA compiler_flags)
+
 
 set(SAMPLES_INCLUDE_DIRS
 	${PROJECT_SOURCE_DIR}/include/
 	${PROJECT_BINARY_DIR}
 )
 
-set(SDL_LIBS
-	SDL2
-	SDL2_image
-	SDL2_mixer
-	SDL2_ttf
-)
 
-add_subdirectory(example)
 
-target_link_libraries(BA compiler_flags)
+
+
+if (BUILD_EXAMPLES)
+	if (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
+		add_compile_definitions(SDL_MAIN_HANDLED)
+	endif()
+	add_subdirectory(example)
+endif()
 
 # INSTALLATION
-if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
-message("${CMAKE_SYSTEM_PREFIX_PATH}")
-# install(DIRECTORY ${PROJECT_SOURCE_DIR}/dirs/ DESTINATION share)
+# if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
+# message("${CMAKE_SYSTEM_PREFIX_PATH}")
+# # install(DIRECTORY ${PROJECT_SOURCE_DIR}/dirs/ DESTINATION share)
 
-install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/ DESTINATION include)
+# install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/ DESTINATION include)
 
-install(TARGETS BA DESTINATION lib)
+# install(TARGETS BA DESTINATION lib)
 
-elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
+# elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
 
-endif()
+# endif()

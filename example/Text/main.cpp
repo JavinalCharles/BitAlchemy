@@ -3,7 +3,7 @@
 #include <BA/Engine.hpp>
 #include <BA/Scenes/BitAlchemySplash.hpp>
 
-int main() {
+int main(int argc, char* argv[]) {
 	ba::Engine engine("Text Sample", {0, 0, 968, 605}, SDL_WINDOW_SHOWN);
 
 	fs::path prefPath(SDL_GetPrefPath("bit-alchemy", "assets"));

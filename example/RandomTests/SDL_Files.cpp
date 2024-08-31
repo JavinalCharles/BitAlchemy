@@ -4,8 +4,8 @@
 #include <SDL2/SDL_error.h>
 #include <SDL2/SDL_filesystem.h>
 
-int main() {
-	char* prefPath = SDL_GetPrefPath("Bit-Labs", "SDL_Files_Test");
+int main(int argc, char* argv[]) {
+	char* prefPath = SDL_GetPrefPath("bit-alchemy", "assets");
 	if (prefPath == nullptr) {
 		std::cout << SDL_GetError() << std::endl;
 		return 1;
@@ -19,7 +19,7 @@ int main() {
 	}
 	std::string base(basePath);
 
-	char* pref2Path = SDL_GetPrefPath(nullptr, "2ND PREF PATH");
+	char* pref2Path = SDL_GetPrefPath(nullptr, "bit-alchemy");
 	if (pref2Path == nullptr) {
 		std::cout << SDL_GetError() << std::endl;
 		return 3;

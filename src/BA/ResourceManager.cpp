@@ -89,28 +89,32 @@ bool ResourceManager::loadConfig(const std::string& configFilename) {
 	if (f.fail()) {
 		throw Inaccessible("Cannot open file: " + m_configFile);
 	}
-	std::stringstream stream;
-	stream << f.rdbuf();
-	std::string content(stream.str());
-	char* data = const_cast<char*>(content.c_str());
+	// std::stringstream stream;
+	// stream << f.rdbuf();
+	// std::string content(stream.str());
+	// char* data = const_cast<char*>(content.c_str());
 	f.close();
-	rapidxml::xml_document<> doc;
-	doc.parse<0>(data);
 
-	try {
-		rapidxml::xml_node<>* rootNode = doc.first_node("configuration");
-		if (rootNode == nullptr) {
-			debug << "Configuration file read, but no contents found." << std::endl;
-			return false; // Assumes the xml file is empty.
-		}
-		rapidxml::xml_node<>* configNode = rootNode->first_node();
-		loadConfiguration(configNode);
-		return true;
-	}
-	catch(const rapidxml::parse_error& e) {
-		debug << "Parse Error. Some Configurations might not have been loaded." << std::endl;
-		return false;
-	}
+	// TODO: Replace this whole mess with other xml library than
+	return true;
+	// rapidxml.
+	// rapidxml::xml_document<> doc;
+	// doc.parse<0>(data);
+
+	// try {
+	// 	rapidxml::xml_node<>* rootNode = doc.first_node("configuration");
+	// 	if (rootNode == nullptr) {
+	// 		debug << "Configuration file read, but no contents found." << std::endl;
+	// 		return false; // Assumes the xml file is empty.
+	// 	}
+	// 	rapidxml::xml_node<>* configNode = rootNode->first_node();
+	// 	loadConfiguration(configNode);
+	// 	return true;
+	// }
+	// catch(const rapidxml::parse_error& e) {
+	// 	debug << "Parse Error. Some Configurations might not have been loaded." << std::endl;
+	// 	return false;
+	// }
 }
 
 bool ResourceManager::setConfig(ConfigID id, std::any v) {
@@ -150,7 +154,7 @@ IDtype ResourceManager::loadTexture(const std::string& fileName) {
 
 	fs::path file = opt.value();
 	SDL_Texture* newTexture = nullptr;
-	SDL_Surface* loadedSurface = IMG_Load(file.c_str());
+	SDL_Surface* loadedSurface = IMG_Load(file.string().c_str());
 
 	if (loadedSurface == nullptr) {
 		throw std::invalid_argument(IMG_GetError());
@@ -191,7 +195,7 @@ IDtype ResourceManager::loadSound(const std::string& fileName) {
 
 	fs::path file = opt.value();
 
-	Mix_Chunk* newSound = Mix_LoadWAV(file.c_str());
+	Mix_Chunk* newSound = Mix_LoadWAV(file.string().c_str());
 	if(newSound == NULL) {
 		throw std::invalid_argument(Mix_GetError());
 	}
@@ -209,7 +213,7 @@ IDtype ResourceManager::loadMusic(const std::string& fileName) {
 	}
 
 	fs::path file = opt.value();
-	Mix_Music* newMusic = Mix_LoadMUS(file.c_str());
+	Mix_Music* newMusic = Mix_LoadMUS(file.string().c_str());
 	if(newMusic == NULL) {
 		throw std::invalid_argument(Mix_GetError());
 	}
@@ -228,7 +232,7 @@ IDtype ResourceManager::loadFont(const std::string& fileName, int fontSize) {
 	}
 
 	fs::path file = opt.value();
-	TTF_Font* newFont = TTF_OpenFont(file.c_str(), fontSize);
+	TTF_Font* newFont = TTF_OpenFont(file.string().c_str(), fontSize);
 	if (newFont == NULL) {
 		throw std::invalid_argument(TTF_GetError());
 	}
@@ -310,27 +314,28 @@ std::optional<fs::path> ResourceManager::getExistingPath(const fs::path& suffixP
 	return std::nullopt;
 }
 
-void ResourceManager::loadConfiguration(rapidxml::xml_node<>* rootNode) {
-	rapidxml::xml_node<>* node = rootNode->first_node();
+// TODO: Replace this to use other xml lib than rapidxml
+// void ResourceManager::loadConfiguration(rapidxml::xml_node<>* rootNode) {
+// 	rapidxml::xml_node<>* node = rootNode->first_node();
 
-	while (node != nullptr) {
-		std::string configName(node->name());
-		if (sk_configStringMap.contains(configName)) {
-			const ConfigID& ID = sk_configStringMap.at(configName);
+// 	while (node != nullptr) {
+// 		std::string configName(node->name());
+// 		if (sk_configStringMap.contains(configName)) {
+// 			const ConfigID& ID = sk_configStringMap.at(configName);
 
-			const std::pair<std::string, const std::type_info&>& INFO = sk_configIDMap.at(ID);
+// 			const std::pair<std::string, const std::type_info&>& INFO = sk_configIDMap.at(ID);
 
-			if (INFO.second == typeid(int)) {
-				configMap.insert_or_assign(ID, std::stoi(node->value()));
-			}
-			else {
-				configMap.insert_or_assign(ID, std::string(node->value()));
-			}
-			configMap.insert_or_assign(ID, std::any());
-		}
-		node = node->next_sibling();
-	}
-}
+// 			if (INFO.second == typeid(int)) {
+// 				configMap.insert_or_assign(ID, std::stoi(node->value()));
+// 			}
+// 			else {
+// 				configMap.insert_or_assign(ID, std::string(node->value()));
+// 			}
+// 			configMap.insert_or_assign(ID, std::any());
+// 		}
+// 		node = node->next_sibling();
+// 	}
+// }
 
 void ResourceManager::saveCurrentConfiguration() {
 	if (m_configFile.empty()) {
@@ -341,33 +346,34 @@ void ResourceManager::saveCurrentConfiguration() {
 	stream << file.rdbuf();
 	std::string contents = stream.str();
 
-	rapidxml::xml_document<> doc;
-	doc.parse<0>(const_cast<char*>(contents.c_str()));
-	rapidxml::xml_node<>* rootNode = doc.first_node("configuration");
-	if (rootNode == nullptr) {
-		rootNode = doc.allocate_node(rapidxml::node_element, "configuration");
-	}
-	rapidxml::xml_node<>* node = rootNode->first_node();
-	while(node != nullptr) {
-		std::string name(node->name());
-		if (sk_configStringMap.contains(name)) {
-			const ConfigID ID = sk_configStringMap.at(node->name());
-			auto iter = configMap.find(ID);
+	// TODO replace rapidxml with anything else.
+	// rapidxml::xml_document<> doc;
+	// doc.parse<0>(const_cast<char*>(contents.c_str()));
+	// rapidxml::xml_node<>* rootNode = doc.first_node("configuration");
+	// if (rootNode == nullptr) {
+	// 	rootNode = doc.allocate_node(rapidxml::node_element, "configuration");
+	// }
+	// rapidxml::xml_node<>* node = rootNode->first_node();
+	// while(node != nullptr) {
+	// 	std::string name(node->name());
+	// 	if (sk_configStringMap.contains(name)) {
+	// 		const ConfigID ID = sk_configStringMap.at(node->name());
+	// 		auto iter = configMap.find(ID);
 
-			if (iter->second.type() == typeid(int)) {
-				node->value(std::to_string(std::any_cast<int>(iter->second)).c_str());
-			}
-			else {
-				node->value(std::any_cast<std::string>(iter->second).c_str());
-			}
-			// TODO: Account for possibility of additional configurations after
-			// the loadConfig() method is called (i.e. after the config file is
-			// first read.) and write the new configs to the file.
-		}
-		node = node->next_sibling();
-	}
+	// 		if (iter->second.type() == typeid(int)) {
+	// 			node->value(std::to_string(std::any_cast<int>(iter->second)).c_str());
+	// 		}
+	// 		else {
+	// 			node->value(std::any_cast<std::string>(iter->second).c_str());
+	// 		}
+	// 		// TODO: Account for possibility of additional configurations after
+	// 		// the loadConfig() method is called (i.e. after the config file is
+	// 		// first read.) and write the new configs to the file.
+	// 	}
+	// 	node = node->next_sibling();
+	// }
 
-	file << doc;
+	// file << doc;
 	file.close();
 }
 
