@@ -69,7 +69,7 @@ pub fn build(b: *std.Build) void {
         "src/BA/Engine.cpp",
     };
 
-    const flags: [5][]const u8 = [6][]const u8{
+    const flags: [5][]const u8 = [_][]const u8{
         "-std=c++20",
         "-Wall",
         "-Wextra",
