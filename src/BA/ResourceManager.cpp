@@ -2,7 +2,7 @@
 
 namespace ba {
 
-const std::array<fs::path, 7> ResourceManager::sk_PATHS({
+const std::array<fs::path, 8> ResourceManager::sk_PATHS({
 	fs::path("."),
 	fs::path("Configs"),
 	fs::path{"Textures"},
@@ -10,6 +10,7 @@ const std::array<fs::path, 7> ResourceManager::sk_PATHS({
 	fs::path{"Musics"},
 	fs::path{"Fonts"},
 	fs::path{"Strings"},
+	fs::path("XML")
 });
 
 std::vector<fs::path> ResourceManager::s_DIRS;
@@ -122,24 +123,21 @@ bool ResourceManager::setConfig(ConfigID id, std::any v) {
 	return true;
 }
 
-IDtype ResourceManager::loadXML(const std::string& fileName, ResourceType type) {
-	std::optional<fs::path> opt = getExistingPath(sk_PATHS[type] / fs::path(fileName));
+IDtype ResourceManager::loadXML(const std::string& fileName) {
+	std::optional<fs::path> opt = getExistingPath(sk_PATHS[ResourceType::XMLDOC] / fs::path(fileName));
 
 	if (!opt.has_value()) {
-		throw std::invalid_argument(fileName + " could not be found in any of the search paths");
+		throw std::invalid_argument(fileName + "could not be found in any of the set directory list.");
 	}
-	fs::path p = opt.value();
 
-	std::ifstream f(p.string());
-	if (f.fail()) {
-		throw std::invalid_argument("Cannot open file: " + p.string());
+	std::string file = opt.value().string();
+	std::unique_ptr<tinyxml2::XMLDocument> doc = std::make_unique<tinyxml2::XMLDocument>();
+	if (doc->LoadFile(file.c_str()) != 0) {
+		throw ba::Inaccessible(file + " could not be accessed. Please ensure to have the correct permissions.");
 	}
-	std::stringstream stream;
-	stream << f.rdbuf();
-	f.close();
-
-	IDtype id = ++stringCount;
-	stringMap.insert_or_assign(id, stream.str());
+	
+	IDtype id = ++xmlDocCount;
+	xmlMap[id] = std::move(doc);
 
 	return id;
 }
@@ -277,9 +275,16 @@ Mix_Music* ResourceManager::getMusic(IDtype id) const noexcept {
 }
 
 TTF_Font* ResourceManager::getFont(IDtype id) const noexcept {
-	if(fontsMap.contains(id))
+	if (fontsMap.contains(id))
 		return fontsMap.at(id);
 	return NULL;
+}
+
+const tinyxml2::XMLDocument* ResourceManager::getXML(IDtype id) const noexcept {
+	if (xmlMap.contains(id)) {
+		return xmlMap.at(id).get();
+	}
+	return nullptr;
 }
 
 void ResourceManager::setRenderer(SDL_Renderer* renderer) {

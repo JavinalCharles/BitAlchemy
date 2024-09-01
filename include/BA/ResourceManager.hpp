@@ -44,6 +44,7 @@ public:
 		MUSICS,
 		FONTS,
 		STRINGS,
+		XMLDOC,
 	};
 
 public: // Methods and Constructors
@@ -74,16 +75,6 @@ public: // Methods and Constructors
 	 * @return true if object is successfully inserted.
 	 **/
 	bool setConfig(ConfigID id, std::any value);
-
-
-	/**
-	 * @brief Opens a text/xml file and stores the text in memory.
-	 *
-	 * @param fileName The file name of the file to be read.
-	 *
-	 * @return the ID of the stored text data.
-	**/
-	IDtype loadXML(const std::string& fileName, ResourceType type = ResourceType::STRINGS);
 
 	/**
 	 * loadTexture()
@@ -125,6 +116,15 @@ public: // Methods and Constructors
 	**/
 	IDtype loadFont(const std::string& fileName, int fontSize);
 
+	/**
+	 * @brief Opens a text/xml file and stores the text in memory.
+	 *
+	 * @param fileName The file name of the file to be read.
+	 *
+	 * @return the ID of the stored text data.
+	**/
+	IDtype loadXML(const std::string& fileName);
+
 
 	////////////////////////////////////////////////////////////////////////
 	// RESOURCES EXTRACTION
@@ -145,7 +145,7 @@ public: // Methods and Constructors
 	 * @brief Get the String object
 	 *
 	 * @param id the ID that refers to the string
-	 * @return the string
+	 * @return the string, if the id exist. An empty string otherwise.
 	**/
 	const std::string& getString(IDtype id) const noexcept;
 
@@ -172,6 +172,12 @@ public: // Methods and Constructors
 	 * @returns a pointer to an TTF_Font referred to by the given id. Returns NULL  for invalid id.
 	**/
 	TTF_Font* getFont(IDtype id) const noexcept;
+
+	/**
+	 * getXML()
+	 * @returns a const reference to the XMLDocument referred to by id.
+	 */
+	const tinyxml2::XMLDocument* getXML(IDtype id) const noexcept;
 
 	////////////////////////////////////////////////////////////////////////
 	// MODIFIERS
@@ -206,12 +212,14 @@ private:
 	std::unordered_map<IDtype, Mix_Chunk*> soundsMap;
 	std::unordered_map<IDtype, Mix_Music*> musicsMap;
 	std::unordered_map<IDtype, TTF_Font*> fontsMap;
+	std::unordered_map<IDtype, std::unique_ptr<tinyxml2::XMLDocument>> xmlMap;
 
 	IDtype stringCount = 0;
 	IDtype textureCount = 0;
 	IDtype soundCount = 0;
 	IDtype musicCount = 0;
 	IDtype fontCount = 0;
+	IDtype xmlDocCount = 0;
 
 	SDL_Renderer* m_renderer = nullptr;
 	std::string m_configFile = "";
@@ -219,7 +227,7 @@ private:
 	/**
 	 * STATIC CONSTANT ARRAY
 	**/
-	static const std::array<fs::path, 7>	sk_PATHS;
+	static const std::array<fs::path, 8>	sk_PATHS;
 
 	/**
 	 * BASE-DIRECTORIES
