@@ -9,6 +9,7 @@
 ################################
 build/
 mingw-build/
+build-mingw/
 html/
 .zig-cache/
 zig-out/
