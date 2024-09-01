@@ -80,10 +80,10 @@ constexpr float positiveRemainder(float a, float b) {
 }
 
 
-/********************************************
+/**
  * BELOW ARE METHODS AND FUNCTIONS
  * IMPLEMENTATIONS FOR CLASS Angle.
-*********************************************/
+**/
 constexpr Angle::Angle() = default;
 
 constexpr float Angle::asDegrees() const {

@@ -20,11 +20,11 @@ public:
 	constexpr float length() const;
 
 	constexpr Angle angle() const;
-	/**********************************
+	/**
 	 * TODO: methods
 	 * slope() -> float or Vector2 to represent rise/run
 	 *
-	***********************************/
+	**/
 
 
 public:
@@ -36,10 +36,10 @@ public:
 using IntLine 		= Line<int>;
 using FloatLine		= Line<float>;
 
-/********************************************
+/**
  * BELOW ARE METHODS AND FUNCTIONS
  * IMPLEMENTATIONS FOR CLASS Line<T>
-*********************************************/
+**/
 template <typename T>
 constexpr Line<T>::Line() = default;
 

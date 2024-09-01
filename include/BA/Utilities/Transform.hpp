@@ -57,10 +57,10 @@ constexpr bool operator==(const Transform& left, const Transform& right);
 constexpr bool operator!=(const Transform& left, const Transform& right);
 
 
-/********************************************
+/**
  * BELOW ARE METHODS AND FUNCTIONS
  * IMPLEMENTATIONS FOR CLASS Transform.
-*********************************************/
+**/
 constexpr Transform::Transform() = default;
 
 constexpr Transform::Transform(float a00, float a01, float a02, float a10, float a11, float a12, float a20, float a21, float a22) :

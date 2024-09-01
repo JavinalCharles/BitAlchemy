@@ -33,9 +33,9 @@ namespace ba {
 
 class ResourceManager {
 public:
-	/*********************************
+	/**
 	 * CONSTANTS FOR INDEXES
-	**********************************/
+	**/
 	enum ResourceType: IDtype {
 		NO_RESTYPE = 0,
 		CONFIGS,
@@ -68,61 +68,61 @@ public: // Methods and Constructors
 	 */
 	void loadConfig(const std::string& fileName);
 
-	/*********************************************************************
+	/**
 	 * @brief sets a specific config to a certain value.
 	 * 
 	 * @return true if object is successfully inserted.
-	 **********************************************************************/
+	 **/
 	bool setConfig(ConfigID id, std::any value);
 
 
-	/***********************************************************************
+	/**
 	 * @brief Opens a text/xml file and stores the text in memory.
 	 *
 	 * @param fileName The file name of the file to be read.
 	 *
 	 * @return the ID of the stored text data.
-	************************************************************************/
+	**/
 	IDtype loadXML(const std::string& fileName, ResourceType type = ResourceType::STRINGS);
 
-	/*****************************************
+	/**
 	 * loadTexture()
 	 * @brief Creates an SDL_Texture* object from fileName and stores it into memory.
 	 * @param fileName The file's name in a path relative to BASE_DIR and respective subdirectory.
 	 * @returns the ID of the loaded SDL_Texture for future access.
-	*****************************************/
+	**/
 	IDtype loadTexture(const std::string& fileName);
 
-	/****************************************
+	/**
 	 * addTexture()
 	 * @brief Adds the given texture and store it into memory.
 	 * @param texture The texture to be stored.
 	 * @returns the ID of the stored SDL_Texture for future access.
-	*****************************************/
+	**/
 	IDtype addTexture(SDL_Texture* texture);
 
-	/****************************************
+	/**
 	 * loadMusic()
 	 * @brief Creats a Mix_Chunk* object from fileName and stores it into memory.
 	 * @param fileName The file's name in a path relative to BASE_DIR and respective subdirectory.
 	 * @returns the ID of the loaded Mix_Chunk for future access.
-	*****************************************/
+	**/
 	IDtype loadSound(const std::string& fileName);
 
-	/****************************************
+	/**
 	 * loadMusic()
 	 * @brief Creates an Mix_Music* object from fileName and stores it into memory.
 	 * @param fileName The file's name in a path relative to BASE_DIR and respective subdirectory.
 	 * @returns the ID of the loaded Mix_Music for future access.
-	*****************************************/
+	**/
 	IDtype loadMusic(const std::string& fileName);
 
-	/****************************************
+	/**
 	 * loadFont()
 	 * @brief Creates a TTF_Font* object from fileName and stores it into memory.
 	 * @param fileName The file's name in a path relative to BASE_DIR and respective subdirectory.
 	 * @returns the ID of the loaded TTF_Font for future access.
-	****************************************/
+	**/
 	IDtype loadFont(const std::string& fileName, int fontSize);
 
 
@@ -131,58 +131,58 @@ public: // Methods and Constructors
 	////////////////////////////////////////////////////////////////////////
 
 
-	/***********************************************************************
+	/**
 	 * @brief Get the config data
 	 * 
 	 * @param id the ID of the config.
 	 * @return an std::any object that can be casted into either std::string or
 	 * int, depending on the config. If id is non-existent in the map, then
 	 * the method returns an empty std::any. Use std::any::has_value() to check.
-	 **********************************************************************/
+	 **/
 	std::any getConfig(ConfigID id) const noexcept;
 
-	/***********************************************************************
+	/**
 	 * @brief Get the String object
 	 *
 	 * @param id the ID that refers to the string
 	 * @return the string
-	************************************************************************/
+	**/
 	const std::string& getString(IDtype id) const noexcept;
 
-	/*****************************************
+	/**
 	 * getTexture()
 	 * @returns a pointer to an SDL_Texture referred to by the given id. Returns NULL for invalid id.
-	*****************************************/
+	**/
 	SDL_Texture* getTexture(IDtype id) const noexcept;
 
-	/****************************************
+	/**
 	 * getSound()
 	 * @returns a pointer to a Mix_Chunk referred to by the given id. Returns NULL for invalid id.
-	*****************************************/
+	**/
 	Mix_Chunk* getSound(IDtype id) const noexcept;
 
-	/****************************************
+	/**
 	 * getMusic()
 	 * @returns a pointer to a Mix_Music referred to by the given id. Returns NULL for invalid id.
-	*****************************************/
+	**/
 	Mix_Music* getMusic(IDtype id) const noexcept;
 
-	/*****************************************
+	/**
 	 * getFont()
 	 * @returns a pointer to an TTF_Font referred to by the given id. Returns NULL  for invalid id.
-	*****************************************/
+	**/
 	TTF_Font* getFont(IDtype id) const noexcept;
 
 	////////////////////////////////////////////////////////////////////////
 	// MODIFIERS
 	////////////////////////////////////////////////////////////////////////
 
-	/***********************************************************************
+	/**
 	 * @brief Sets the renderer used by this ResourceManager for creating and
 	 * manipulating Textures.
 	 *
 	 * @param renderer The renderer to use.
-	************************************************************************/
+	**/
 	void setRenderer(SDL_Renderer* renderer);
 
 public:
@@ -216,19 +216,19 @@ private:
 	SDL_Renderer* m_renderer = nullptr;
 	std::string m_configFile = "";
 private:
-	/*********************************
+	/**
 	 * STATIC CONSTANT ARRAY
-	**********************************/
+	**/
 	static const std::array<fs::path, 7>	sk_PATHS;
 
-	/*********************************
+	/**
 	 * BASE-DIRECTORIES
-	*********************************/
+	**/
 	static std::vector<fs::path> s_DIRS;// arrays of possible directories to find assets.
 
-	/********************************
+	/**
 	 * 
-	 ********************************/
+	 **/
 	static const std::map<std::string, ConfigID> sk_configStringMap;
 	
 	static const std::unordered_map<ConfigID, std::pair<std::string, const std::type_info&>> sk_configIDMap;

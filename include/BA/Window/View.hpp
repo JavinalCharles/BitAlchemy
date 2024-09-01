@@ -33,21 +33,21 @@ public:
 	// void rotate(Angle angle);
 	// void zoom(float factor);
 
-	/*******************************************
+	/**
 	 * @brief maps the given rect in relation to this view.
 	 * 
 	 * This method accepts a rectangle oriented in world coordinates and transform it to a rectangle oriented more towards this view (i.e. screen coordinates).
 	 * @param rect rectangle to be mapped.
 	 * @return a rectangle mapped relatively to the view.
-	*******************************************/
+	**/
 	FloatRect mapToView(const FloatRect& rect);
 
-	/******************************************
+	/**
 	 * @brief maps the given vector in relation to this view
 	 * 
 	 * @param coord vector to be mapped.
 	 * @return a vector mapped to the view.
-	******************************************/
+	**/
 	Vector2f mapToView(const Vector2f& coord);
 
 private:

@@ -80,9 +80,9 @@ public:
 	///////////////////////////////////////////////////////////////////////////
 	void init();
 
-	/***********************************************************************
+	/**
 	 * @brief Starts the game loop. Only returns when the loop ends.
-	************************************************************************/
+	**/
 	void run();
 
 	void handleEvents();
@@ -108,9 +108,9 @@ private:
 }; // class Engine
 
 
-/***********************************************************************
+/**
  * METHOD IMPLEMENTATIONS
-************************************************************************/
+**/
 template <SceneType T>
 std::shared_ptr<T> Engine::createScene() {
 	return std::make_shared<T>(&m_window, &m_resources, &m_sceneManager);

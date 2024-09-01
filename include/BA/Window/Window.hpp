@@ -31,43 +31,43 @@ public:
 	// LOOP METHODS
 	////////////////////////////////////////////////////////////////////////
 
-	/***********************************************************************
+	/**
 	 * @brief Initializes the window with the flags and states set by the
 	 * user through Window::set*() methods.
-	************************************************************************/
+	**/
 	void init();
 
-	/***********************************************************************
+	/**
 	 * @brief Checks if the window is still open.
 	 *
 	 * @return true if the window is still open, otherwise false.
-	************************************************************************/
+	**/
 	bool isOpen() const;
 
-	/***********************************************************************
+	/**
 	 * @brief Closes the window and deallocates memory used for its
 	 * initialization and usage.
-	************************************************************************/
+	**/
 	void close();
 
-	/***********************************************************************
+	/**
 	 * @brief fills the window's content with the specified color.
 	 *
 	 * @param color the color to fill the canvas with.
-	************************************************************************/
+	**/
 	void clear(ba::Color color = ba::Color::Black);
 
-	/***********************************************************************
+	/**
 	 * @brief Displays on window's content the textures/objects given to the
 	 * various Window::draw*() methods.
-	************************************************************************/
+	**/
 	void display();
 
 
 
-	/***********************************************************************
+	/**
 	 * @brief Handles window specific events.
-	************************************************************************/
+	**/
 	void handleEvents();
 
 	////////////////////////////////////////////////////////////////////////
