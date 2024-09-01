@@ -1,3 +1,0 @@
-/usr/bin/cmake -E rm -f CMakeFiles/Text.dir/objects.a
-/usr/bin/x86_64-w64-mingw32-ar qc CMakeFiles/Text.dir/objects.a @CMakeFiles/Text.dir/objects1.rsp
-/usr/bin/x86_64-w64-mingw32-g++ -Wl,--whole-archive CMakeFiles/Text.dir/objects.a -Wl,--no-whole-archive -o Text.exe -Wl,--out-implib,libText.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/Text.dir/linklibs.rsp
