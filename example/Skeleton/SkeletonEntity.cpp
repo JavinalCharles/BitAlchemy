@@ -36,9 +36,9 @@ SkeletonEntity::SkeletonEntity(SharedContext* context) :
 	m_velocity = vel.get();
 
 
-	/************************************************
+	/**
 	 * Setting up Animations
-	*************************************************/
+	**/
 	const ba::IDtype WalkLeft = leftID;
 	const ba::IDtype WalkRight = rightID;
 	const ba::IDtype IdleLeft = idleLeftID;

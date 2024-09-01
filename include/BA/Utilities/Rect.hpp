@@ -41,14 +41,14 @@ using FloatRect = ba::Rect<float>;
 using IntRect = ba::Rect<int>;
 
 
-/********************************************
+/**
  * BELOW ARE METHODS AND FUNCTIONS
  * IMPLEMENTATIONS FOR CLASS Rect<T>
-*********************************************/
+**/
 namespace {
-	/********************************************
+	/**
 	 * functions just to avoid adding cmath
-	*********************************************/
+	**/
 	template <typename T>
 	constexpr T min(const T& a, const T& b) {
 		return a < b ? a : b;

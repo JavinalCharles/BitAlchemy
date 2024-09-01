@@ -33,10 +33,10 @@ public:
 
 }; // class Color
 
-/********************************************
+/**
  * BELOW ARE METHODS AND FUNCTIONS
  * IMPLEMENTATIONS FOR CLASS Color.
-*********************************************/
+**/
 constexpr Color::Color() = default;
 
 constexpr Color::Color(std::uint8_t red, std::uint8_t green, std::uint8_t blue, std::uint8_t alpha)

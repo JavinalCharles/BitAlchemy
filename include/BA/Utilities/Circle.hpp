@@ -27,10 +27,10 @@ public:
 using IntCircle = Circle<int>;
 using FloatCircle = Circle<float>;
 
-/********************************************
+/**
  * BELOW ARE METHODS AND FUNCTIONS
  * IMPLEMENTATIONS FOR CLASS Circle<T>.
-*********************************************/
+**/
 template <typename T>
 constexpr Circle<T>::Circle() = default;
 

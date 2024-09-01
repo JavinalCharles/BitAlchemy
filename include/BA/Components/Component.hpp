@@ -4,15 +4,15 @@
 
 namespace ba {
 
-/***********************************************************************
+/**
  * @brief Forward Declaration. Every non-virtual subclass of ba::Component
  * should nclude <BA/Entities/Entity.hpp> within their header file or thier
  * respective implentation/source file.
-************************************************************************/
+**/
 class Entity;
 
 
-/***********************************************************************
+/**
  * @brief @brief class interface for all Components owned by an Entity.
  *
  * Components shall store attributes and data related to their respective
@@ -27,10 +27,10 @@ class Entity;
  * Note: An Entity could only have one component of each component type.
  *
  * Note: Defining CID is no longer necessary when inheriting this interface.
-************************************************************************/
+**/
 class Component {
 public:
-	/***********************************************************************
+	/**
 	 * @brief Component Constructor
 	 * @param owner pointer to the owning Entity of this new Component.
 	 *
@@ -44,29 +44,29 @@ public:
 	 * e->addComponent<Animation>();
 	 * e->addComponent<BoxCollider>();
 	 * @endcode
-	************************************************************************/
+	**/
 	explicit Component(Entity* owner);
 
-	/***********************************************************************
+	/**
 	 * @brief Component Destructor
 	 *
-	************************************************************************/
+	**/
 	virtual ~Component();
 
-	/***********************************************************************
+	/**
 	 * @brief Called once after the entity owner is added to the main loop.
 	 *
 	 * This awake() does nothing, but subtypes should override this to ensure
 	 * data is instantiated properly and the owner entity has the prerequisites
 	 * needed to use that component. i.e. Animation component needed Sprite
 	 * component to work.
-	************************************************************************/
+	**/
 	virtual void awake();
 
-	/***********************************************************************
+	/**
 	 * @brief Provides a pointer Reference to owner entity.
 	 *
-	************************************************************************/
+	**/
 	virtual Entity* getOwner() const;
 
 protected:

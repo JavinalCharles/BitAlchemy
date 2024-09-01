@@ -69,10 +69,10 @@ using Vector2f = 	Vector2<float>;
 using Vector2u = 	Vector2<unsigned int>;
 using Vector2d =	Vector2<double>;
 
-/********************************************
+/**
  * BELOW ARE METHODS AND FUNCTIONS
  * IMPLEMENTATIONS FOR CLASS Vector2<T>
-*********************************************/
+**/
 template <typename T>
 constexpr Vector2<T>::Vector2() = default;
 
@@ -107,9 +107,9 @@ constexpr float Vector2<T>::distance(const Vector2<T>& other) const {
 }
 
 
-/************************************
+/**
  * Vector2 OPERATORS
-************************************/
+**/
 template<typename T>
 constexpr Vector2<T> operator-(const Vector2<T>& rhs) {
 	return Vector2<T>(-rhs.x, -rhs.y);

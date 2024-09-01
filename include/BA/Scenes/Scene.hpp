@@ -60,9 +60,9 @@ private:
 	std::vector<std::function<void()>> m_onActivateFunctions;
 }; // class Scene
 
-/***********************************************************************
+/**
  * BELOW ARE METHOD IMPLEMETATIONS
-************************************************************************/
+**/
 template <EntityType T>
 std::shared_ptr<T> Scene::createCustomEntity() {
 	return std::make_shared<T>(&m_CONTEXT);

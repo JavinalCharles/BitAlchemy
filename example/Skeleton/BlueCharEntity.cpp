@@ -32,9 +32,9 @@ BlueCharEntity::BlueCharEntity(SharedContext* context) :
 	m_anime = anime.get();
 	m_velocity = vel.get();
 
-	/**********************************
+	/**
 	 * SET UP ANIMATION
-	***********************************/
+	**/
 	// IDLE ANIMATION
 	IntRect frameRect {
 		0, 0, 56, 56
