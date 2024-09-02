@@ -73,6 +73,29 @@ ResourceManager::ResourceManager(SDL_Renderer* rend) :
 
 ResourceManager::~ResourceManager() {
 	saveCurrentConfiguration();
+	for (auto& [id , texture] : texturesMap) {
+		SDL_DestroyTexture(texture);
+		texture = nullptr;
+	}
+	for (auto& [id, sounds] : soundsMap) {
+		Mix_FreeChunk(sounds);
+		sounds = nullptr;
+	}
+	for (auto& [id, music] : musicsMap) {
+		Mix_FreeMusic(music);
+		music = nullptr;
+	}
+	for (auto& [id, font] : fontsMap) {
+		TTF_CloseFont(font);
+		font = nullptr;
+	}
+	configMap.clear();
+	stringMap.clear();
+	texturesMap.clear();
+	soundsMap.clear();
+	musicsMap.clear();
+	fontsMap.clear();
+	xmlMap.clear();
 }
 
 void ResourceManager::loadConfig(const std::string& configFilename) {

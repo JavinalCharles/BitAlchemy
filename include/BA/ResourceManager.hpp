@@ -206,6 +206,19 @@ private:
 	void saveCurrentConfiguration();
 
 private:
+	// TODO: Considering the tediousness of having to maintain quite a numerous number resource maps
+	// And that the number of different resources just keeps growing, prompting me to make more load, get, and free methods for each type of resources 
+	// and that there is no certainty for a game needing to maintain this much variety in resources,
+	// It is probably better to create a separate class to abstract all of the common functionalities
+	// of loading, storing, getting, updating, and freeing all these resources
+	// and have ResourceManager provide a means to include only the resource it needs.
+	// i.e
+	// ```
+	// ResourceManager res;
+	// res->includeResourceHandler<TextureHandler>();
+	// auto& textures = res->getResourceHandler<TextureHandler>();
+	// ... //  do something.
+	// ```
 	std::unordered_map<IDtype, std::any> configMap;
 	std::unordered_map<IDtype, std::string> stringMap = {{0u, ""}};
 	std::unordered_map<IDtype, SDL_Texture*> texturesMap;
