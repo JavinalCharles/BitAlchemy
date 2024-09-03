@@ -16,6 +16,7 @@ int main() {
 
 	fs::path prefPath(SDL_GetPrefPath("bit-alchemy", "assets"));
 	engine.getResourceManager().addToSearchPaths(prefPath);
+	engine.setWindowDimension(IntRect(0, 0, 780, 648));
 
 	engine.init();
 

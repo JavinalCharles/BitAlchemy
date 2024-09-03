@@ -23,6 +23,8 @@ public:
 	virtual void postUpdate(float deltaTime) override;
 	virtual void draw(Window& window);
 private:
+	generator::TileMapGenerator m_mapGenerator; 
+
 	EntityManager m_entityManager;
 }; // class TestMapScene
 
