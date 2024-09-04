@@ -62,7 +62,7 @@ std::vector<std::shared_ptr<Entity>> TileMapGenerator::generate(const std::strin
 		throw INVALID_TMX(tmxFilename);
 	}
 
-	const Vector2i MAP_SIZE = {
+	[[maybe_unused]] const Vector2i MAP_SIZE = {
 		std::atoi(wAttr), std::atoi(hAttr)
 	};
 	const Vector2i TILE_SIZE = {
@@ -80,15 +80,17 @@ std::vector<std::shared_ptr<Entity>> TileMapGenerator::generate(const std::strin
 
 	std::vector<std::shared_ptr<Entity>> tileMapEntities;
 
-	IDtype drawLayer = 0;
+	// IDtype drawLayer = 0;
 	for(XMLElement* layerNode = const_cast<XMLElement*>(node->FirstChildElement("layer")); layerNode != nullptr; layerNode = layerNode->NextSiblingElement("layer")) {
 		const char* W = layerNode->Attribute("width");
 		const char* H = layerNode->Attribute("height");
+		const char* LID = layerNode->Attribute("id");
 		XMLElement* dataNode = layerNode->FirstChildElement("data");
-		if ((W && H && dataNode) == false) {
+		if ((W && H && LID && dataNode) == false) {
 			throw INVALID_TMX(tmxFilename);
 		}
 		const Vector2i& LAYER_AREA{std::atoi(W), std::atoi(H)};
+		const IDtype LAYER_ID = std::atoi(LID);
 
 		std::vector<TileInfo> layerInfo = getLayerInfo(dataNode, LAYER_AREA);
 
@@ -106,7 +108,7 @@ std::vector<std::shared_ptr<Entity>> TileMapGenerator::generate(const std::strin
 			auto sprite = tileEntity->addComponent<Sprite>();
 
 			sprite->setTexture(TILEDATA.textureID, TILEDATA.textureRect);
-			sprite->setDrawLayer(drawLayer);
+			sprite->setDrawLayer(LAYER_ID);
 			sprite->setSortOrder(tileEntity->getPosition().y);
 			
 			tileMapEntities.push_back(tileEntity);
@@ -144,7 +146,7 @@ void TileMapGenerator::generateTilesets(long firstgid, const std::string& source
 
 	const int COLUMNS = std::atoi(columnAttr);
 	const Vector2i TILE_AREA(std::atoi(twAttr), std::atoi(thAttr));
-	const int TILECOUNT = std::atoi(tcAttr);
+	const IDtype TILECOUNT = static_cast<IDtype>(std::atol(tcAttr));
 
 	const Vector2i TEXTURE_AREA(std::atoi(imgHAttr), std::atoi(imgHAttr));
 

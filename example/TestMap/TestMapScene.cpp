@@ -26,7 +26,7 @@ void TestMapScene::onDestroy() {
 }
 
 void TestMapScene::onActivate() {
-	const Vector2f SCALE{2.f, 2.f};
+	const Vector2f SCALE{1.5f, 1.5f};
 	std::string fileName = "classroom.tmx";
 
 	ba::debug << "Generating Map Entities." << std::endl;
