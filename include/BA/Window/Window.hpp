@@ -60,14 +60,14 @@ public:
 	/**
 	 * @brief Displays on window's content the textures/objects given to the
 	 * various Window::draw*() methods.
-	**/
+	 */
 	void display();
 
 
 
 	/**
 	 * @brief Handles window specific events.
-	**/
+	 */
 	void handleEvents();
 
 	////////////////////////////////////////////////////////////////////////
@@ -105,9 +105,6 @@ public:
 	void drawOnScreen(SDL_Texture* texture, const IntRect& textureRect, const FloatRect& destRect, const Angle& angle = Angle::Zero);
 	void drawPointOnScreen(const Vector2f& point, Color pointColor = Color::White);
 	void drawRectOnScreen(const IntRect& rect, Color rectColor = Color::White);
-
-
-
 
 	SDL_Window* getWindow() const;
 	Vector2i getSize() const;

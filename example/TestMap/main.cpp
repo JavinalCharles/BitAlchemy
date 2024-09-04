@@ -16,8 +16,10 @@ int main() {
 
 	fs::path prefPath(SDL_GetPrefPath("bit-alchemy", "assets"));
 	engine.getResourceManager().addToSearchPaths(prefPath);
-	engine.setWindowDimension(IntRect(0, 0, 780, 648));
-
+	const IntRect WINDOW_DIMENSION(0, 0, 768, 640);
+	engine.getWindow().setDimension(WINDOW_DIMENSION);
+	engine.getWindow().setView(ba::View(WINDOW_DIMENSION));
+	
 	engine.init();
 
 	std::shared_ptr<BitAlchemySplash> splashScene = engine.createScene<BitAlchemySplash>();
