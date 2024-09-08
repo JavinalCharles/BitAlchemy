@@ -10,6 +10,11 @@ Text::Text(Entity* owner, IDtype layer, IDtype order) :
 {
 }
 
+Text::~Text() {
+	SDL_DestroyTexture(m_textTexture);
+	m_textTexture = nullptr;
+}
+
 IDtype Text::loadFontFromFile(const std::string& fileName, int fontSize) {
 	m_fontID = m_owner->CONTEXT->resources->loadFont(fileName, fontSize);
 	m_updatedText = false;

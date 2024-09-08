@@ -191,6 +191,7 @@ void Engine::draw() {
 }
 
 void Engine::cleanUp() {
+	m_resources.freeAllResources();
 	TTF_Quit();
 	Mix_Quit();
 	IMG_Quit();

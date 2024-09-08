@@ -14,6 +14,8 @@ class Text : public Drawable {
 public:
 	explicit Text(Entity* owner, IDtype drawLayer = 0, IDtype sortOrder = 0);
 
+	virtual ~Text();
+
 	virtual void draw(Window& window) override;
 
 	/**
