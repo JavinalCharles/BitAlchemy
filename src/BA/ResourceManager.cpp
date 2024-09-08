@@ -72,21 +72,30 @@ ResourceManager::ResourceManager(SDL_Renderer* rend) :
 }
 
 ResourceManager::~ResourceManager() {
+	// freeAllResources(); // Engine will call this function.
+}
+
+void ResourceManager::freeAllResources() {
 	saveCurrentConfiguration();
 	for (auto& [id , texture] : texturesMap) {
-		SDL_DestroyTexture(texture);
+		if (texture != nullptr)
+			SDL_DestroyTexture(texture);
 		texture = nullptr;
 	}
 	for (auto& [id, sounds] : soundsMap) {
-		Mix_FreeChunk(sounds);
+		if (sounds != nullptr)
+			Mix_FreeChunk(sounds);
 		sounds = nullptr;
 	}
 	for (auto& [id, music] : musicsMap) {
-		Mix_FreeMusic(music);
+		if (music != nullptr)
+			Mix_FreeMusic(music);
 		music = nullptr;
 	}
 	for (auto& [id, font] : fontsMap) {
-		TTF_CloseFont(font);
+		if (font != nullptr) {
+			TTF_CloseFont(font);
+		}
 		font = nullptr;
 	}
 	configMap.clear();
