@@ -114,6 +114,7 @@ public:
 	FloatRect getViewSpace() const;
 
 	void setView(const View& view);
+	void useDefaultView();
 
 private: // Attributes
 	std::string 	m_title = "BitAlchemy";

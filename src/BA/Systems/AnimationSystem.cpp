@@ -70,7 +70,6 @@ void AnimationSystem::add(std::shared_ptr<Entity>& entity) {
 	if (a != nullptr) {
 		m_entityIDs.insert(entity->ID);
 	}
-
 }
 
 } // namespace ba
