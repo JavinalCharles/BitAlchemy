@@ -279,6 +279,13 @@ const View& Window::getView() const {
 
 void Window::setView(const View& view) {
 	m_view = view;
+	SDL_Rect rect = m_view.getViewport().toSDL_Rect();
+	SDL_RenderSetViewport(m_renderer, &rect);
+}
+
+void Window::useDefaultView() {
+	m_view = m_defaultView;
+	SDL_RenderSetViewport(m_renderer, nullptr);
 }
 
 FloatRect Window::getViewSpace() const {
