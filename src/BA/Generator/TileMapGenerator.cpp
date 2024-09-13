@@ -109,7 +109,7 @@ std::vector<std::shared_ptr<Entity>> TileMapGenerator::generate(const std::strin
 
 			sprite->setTexture(TILEDATA.textureID, TILEDATA.textureRect);
 			sprite->setDrawLayer(LAYER_ID);
-			sprite->setSortOrder(tileEntity->getPosition().y);
+			// sprite->setSortOrder(tileEntity->getPosition().y);
 			
 			tileMapEntities.push_back(tileEntity);
 		}

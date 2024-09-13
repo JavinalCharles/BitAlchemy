@@ -9,17 +9,21 @@
 
 namespace ba {
 
+// TODO: Provide a more modularized/functional means of determining the order of drawables for use by Drawable::getSortOrder()
 class Drawable : public Component, Boundable {
 public:
-	explicit Drawable(Entity* owner, IDtype drawLayer = 0, IDtype sortOrder = 0);
+	explicit Drawable(Entity* owner, IDtype drawLayer = DEFAULT_RENDER_LAYER);
 
 	virtual void draw(Window& window) = 0;
 
 	void setDrawLayer(IDtype drawLayer);
 	IDtype getDrawLayer() const;
 
-	void setSortOrder(IDtype sortOrder);
-	IDtype getSortOrder() const;
+	/**
+	 * Determines the order of how this drawable will ne sorted
+	 * in comparison to other entities within its own DrawLayer.
+	 */
+	int32 getSortOrder() const;
 
 	virtual FloatRect getLocalBounds() const = 0;
 	virtual FloatRect getGlobalBounds() const = 0;
@@ -28,10 +32,8 @@ protected:
 	// Determines at which layer the drawable will be drawn (i.e. Background, Objects, GUI etc.)
 	IDtype m_drawLayer;
 
-	// Determines how this Drawable will be sorted within its respective layer. Lower sortOrder are drawn first.
-	IDtype m_sortOrder;
 public:
-	static const IDtype CID;
+	static const IDtype CID; // This number should no longer be in use.
 
 }; // class Drawable
 

@@ -3,8 +3,8 @@
 
 namespace ba {
 
-Sprite::Sprite(ba::Entity* owner, IDtype drawLayer, IDtype sortOrder) :
-	Drawable(owner, drawLayer, sortOrder),
+Sprite::Sprite(ba::Entity* owner, IDtype drawLayer) :
+	Drawable(owner, drawLayer),
 	m_textureID(0u) // 0 == no texture
 {
 

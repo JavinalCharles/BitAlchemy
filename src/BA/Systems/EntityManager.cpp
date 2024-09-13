@@ -42,7 +42,7 @@ void EntityManager::draw(ba::Window& window) {
 }
 
 void EntityManager::processNewObjects() {
-	if (m_newEntities.size() <= 0) {
+	if (m_newEntities.empty()) {
 		// No new objects. terminate function.
 		return;
 	}

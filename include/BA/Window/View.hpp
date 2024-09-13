@@ -68,19 +68,19 @@ public:
 	/**
 	 * Moves the focus of the view relative to its current position in the world map. Should be used for side-scrolling effect.
 	 */
-	void move(const Vector2f& offset);
+	void move(const Vector2f& offset) const;
 
 	/**
 	 * Jumps the focus of the View to be centered on an specific coordinate relative to the world map.
 	 * @param newCenter the new center coordinate of the view relative to the world map.
 	 */
-	void setCenter(const Vector2f& newCenter);
+	void setCenter(const Vector2f& newCenter) const;
 
 	/**
 	 * Jumps the focus of the View so its top-left point is in a specific coordinate relative to the world map.
 	 * @param newTL the new top-left coordinates of the view relative to the world map.
 	 */
-	void setTopLeft(const Vector2f& newTL);
+	void setTopLeft(const Vector2f& newTL) const;
 
 	/**
 	 * @brief maps the given rect in relation to this view.
@@ -100,8 +100,8 @@ public:
 	constexpr Vector2f mapToView(const Vector2f& coord) const;
 
 private:
-	Vector2f	m_viewTL{0.f, 0.f};
-	FloatRect 	m_viewport{{0.f, 0.f}, {640.f, 480.f}};
+	mutable Vector2f	m_viewTL{0.f, 0.f};
+	FloatRect 			m_viewport{{0.f, 0.f}, {640.f, 480.f}};
 
 }; // class View
 

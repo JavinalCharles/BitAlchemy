@@ -20,9 +20,8 @@ void TextScene::handleEvents() {
 		switch(event.type) {
 			case SDL_MOUSEWHEEL:
 				if (event.wheel.y != 0) {
-					ba::View v = m_CONTEXT.window->getView();
-					v.move({0.f, -event.wheel.preciseY * 8.f});
-					m_CONTEXT.window->setView(v);
+					const ba::View& v = m_CONTEXT.window->getLayerView();
+					v.move({0.f, -event.wheel.preciseY * 16.f});
 				}
 		}
 	}

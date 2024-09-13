@@ -23,7 +23,7 @@ SkeletonEntity::SkeletonEntity(SharedContext* context) :
 	// this->setOrigin({22/2.f, 33/2.f});
 	this->setScale({2.5f, 2.5f});
 
-	auto sprite = this->addComponent<ba::Sprite>(5u, 32u);
+	auto sprite = this->addComponent<ba::Sprite>(5u);
 	auto anime = this->addComponent<ba::Animation>();
 	auto kc = this->addComponent<ba::KeyboardControl>();
 	auto vel = this->addComponent<ba::Velocity>();

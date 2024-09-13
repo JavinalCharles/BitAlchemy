@@ -5,19 +5,20 @@
 
 namespace ba {
 
-Window::Window() = default;
+Window::Window() {
+	auto iter = m_views.insert_or_assign(DEFAULT_RENDER_LAYER, View(m_dimension));
+	setView(iter.first->second);
+}
 
 Window::Window(const std::string& title, const ba::IntRect& dimension, ba::uint32 flags) :
 	m_title(title),
 	m_dimension(dimension),
 	m_flags(flags),
-	m_defaultView({
-		0.f, 0.f,
-		static_cast<float>(dimension.w),
-		static_cast<float>(dimension.h)}),
-	m_view(m_defaultView)
+	m_views(),
+	m_currentView()
 {
-
+	auto iter = m_views.insert_or_assign(DEFAULT_RENDER_LAYER, View(m_dimension));
+	setView(iter.first->second);
 }
 
 
@@ -25,13 +26,11 @@ Window::Window(const std::string& title, int x, int y, int w, int h, ba::uint32 
 	m_title(title),
 	m_dimension(x, y, w, h),
 	m_flags(flags),
-	m_defaultView({
-		0.f, 0.f,
-		static_cast<float>(w),
-		static_cast<float>(h)}),
-	m_view(m_defaultView)
+	m_views(),
+	m_currentView()
 {
-
+	auto iter = m_views.insert_or_assign(DEFAULT_RENDER_LAYER, View(m_dimension));
+	setView(iter.first->second);
 }
 
 Window::~Window() {
@@ -79,6 +78,24 @@ void Window::setDimension(const Vector2i& pos, const Vector2i& size) {
 void Window::setDimension(const IntRect& newDimension) {
 	m_dimension = newDimension;
 }
+
+void Window::useViewFromLayer(IDtype renderLayer) {
+	if (!m_views.contains(renderLayer)) {
+		renderLayer = DEFAULT_RENDER_LAYER;
+	}
+	setView(m_views.at(renderLayer));
+}
+
+void Window::setView(const View& view) {
+	m_currentView = view;
+	SDL_Rect rect = m_currentView.getViewport().toSDL_Rect();
+	int err = SDL_RenderSetViewport(m_renderer, &rect);
+}
+
+void Window::setLayerView(IDtype LAYER, const View& newView) {
+	m_views.insert_or_assign(LAYER, newView);
+}
+
 
 void Window::init() {
 	m_window = SDL_CreateWindow(m_title.c_str(), m_dimension.l, m_dimension.t, m_dimension.w, m_dimension.h, m_flags);
@@ -151,7 +168,7 @@ namespace {
 } // anonymous namespace
 
 void Window::draw(SDL_Texture* texture, const FloatRect& destRect) {
-	SDL_Rect screenDest = m_view.mapToView(destRect).toSDL_Rect();
+	SDL_Rect screenDest = m_currentView.mapToView(destRect).toSDL_Rect();
 
 	SDL_RenderCopy(m_renderer, texture, NULL, &screenDest);
 }
@@ -159,7 +176,7 @@ void Window::draw(SDL_Texture* texture, const FloatRect& destRect) {
 void Window::draw(SDL_Texture* texture, const ba::IntRect& textureRect, const FloatRect& destRect, const Angle& angle) {
 	SDL_RendererFlip flip = getFlip(textureRect);
 
-	SDL_Rect screenCoordsRect = m_view.mapToView(destRect).toSDL_Rect();
+	SDL_Rect screenCoordsRect = m_currentView.mapToView(destRect).toSDL_Rect();
 	SDL_Rect textureSDLRect = textureRect.toSDL_Rect();
 
 	SDL_RenderCopyEx(m_renderer, texture, &textureSDLRect, &screenCoordsRect, angle.asDegrees(), NULL, flip);
@@ -167,7 +184,7 @@ void Window::draw(SDL_Texture* texture, const ba::IntRect& textureRect, const Fl
 
 void Window::drawPoint(const Vector2f& point, const Color& pc) {
 	Color cb; // Color buffer
-	Vector2f sc = m_view.mapToView(point);
+	Vector2f sc = m_currentView.mapToView(point);
 	SDL_Point points[] = {
 		SDL_Point{static_cast<int>(sc.x), 	static_cast<int>(sc.y)},
 		SDL_Point{static_cast<int>(sc.x)+1, static_cast<int>(sc.y)},
@@ -190,8 +207,8 @@ void Window::drawLine(const IntLine& l, const Color& lc) {
 	Color cb;
 	SDL_GetRenderDrawColor(m_renderer, &cb.r, &cb.g, &cb.b, &cb.a);
 	SDL_SetRenderDrawColor(m_renderer, lc.r, lc.g, lc.b, lc.a);
-	Vector2i p1 = m_view.mapToView(l.p1);
-	Vector2i p2 = m_view.mapToView(l.p2);
+	Vector2i p1 = m_currentView.mapToView(l.p1);
+	Vector2i p2 = m_currentView.mapToView(l.p2);
 
 	SDL_RenderDrawLine(m_renderer, p1.x, p1.y, p2.x, p2.y);
 
@@ -200,7 +217,7 @@ void Window::drawLine(const IntLine& l, const Color& lc) {
 
 void Window::drawRect(const IntRect& rect, const Color& rc) {
 	Color cb; // Color Buffer
-	SDL_Rect r = m_view.mapToView(rect).toSDL_Rect();
+	SDL_Rect r = m_currentView.mapToView(rect).toSDL_Rect();
 	SDL_GetRenderDrawColor(m_renderer, &cb.r, &cb.g, &cb.b, &cb.a);
 	SDL_SetRenderDrawColor(m_renderer, rc.r, rc.g, rc.b, rc.a);
 	SDL_RenderDrawRect(m_renderer, &r);
@@ -269,27 +286,35 @@ SDL_Renderer* Window::getRenderer() const {
 	return m_renderer;
 }
 
-const View& Window::getDefaultView() const {
-	return m_defaultView;
+View Window::getDefaultView() const {
+// 	return m_defaultView;
+	return View(m_dimension);
 }
 
-const View& Window::getView() const {
-	return m_view;
+const View& Window::getCurrentView() const {
+	return m_currentView;
 }
 
-void Window::setView(const View& view) {
-	m_view = view;
-	SDL_Rect rect = m_view.getViewport().toSDL_Rect();
-	SDL_RenderSetViewport(m_renderer, &rect);
+const View& Window::getLayerView(IDtype LAYER) const {
+	if (!m_views.contains(LAYER)) {
+		LAYER = DEFAULT_RENDER_LAYER;
+	}
+	return m_views.at(LAYER);
 }
 
-void Window::useDefaultView() {
-	m_view = m_defaultView;
-	SDL_RenderSetViewport(m_renderer, nullptr);
-}
+// void Window::setView(const View& view) {
+// 	m_view = view;
+// 	SDL_Rect rect = m_view.getViewport().toSDL_Rect();
+// 	SDL_RenderSetViewport(m_renderer, &rect);
+// }
+
+// void Window::useDefaultView() {
+// 	m_view = m_defaultView;
+// 	SDL_RenderSetViewport(m_renderer, nullptr);
+// }
 
 FloatRect Window::getViewSpace() const {
-	return m_view.getViewSpace();
+	return m_currentView.getViewSpace();
 }
 
 } // namespace ba

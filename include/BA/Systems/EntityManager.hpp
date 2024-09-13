@@ -45,19 +45,17 @@ public: // METHODS
 	std::shared_ptr<Entity>& at(IDtype entityID);
 
 private:
-	std::map<unsigned, std::shared_ptr<ba::Entity>> m_entities;
+	std::map<IDtype, std::shared_ptr<ba::Entity>> m_entities;
 	std::vector<std::shared_ptr<ba::Entity>> m_newEntities;
 
 	std::vector<std::shared_ptr<ba::ComponentSystem>> m_componentSystems;
+
 	RenderSystem m_drawables;
 }; // class EntityManager
 
 
 template <SystemType T>
 std::shared_ptr<T> EntityManager::includeSystem() {
-	// static_assert(std::is_base_of<ba::ComponentSystem, System>::value, "Error. EntityManager::includeSystem<T>(). T must be a derived type of ba::ComponentSystem. Assertion returned false.");
-	// Assertion may be unnecessary in the face of concepts.
-
 	for (auto& existingSystem : m_componentSystems) {
 		if (std::dynamic_pointer_cast<T>(existingSystem)) {
 			return std::dynamic_pointer_cast<T>(existingSystem);
@@ -72,9 +70,6 @@ std::shared_ptr<T> EntityManager::includeSystem() {
 
 template <SystemType T>
 std::shared_ptr<T> EntityManager::getSystem() const {
-	// static_assert(std::is_base_of<ba::ComponentSystem, System>::value, "Error. EntityManager::getSystem<T>(). T must be a derived type of ba::ComponentSystem. Assertion returned false.");
-	// Assertion may be unnecessary in face of concepts.
-
 	for (auto& existingSystem : m_componentSystems) {
 		if (std::dynamic_pointer_cast<T>(existingSystem)) {
 			return std::dynamic_pointer_cast<T>(existingSystem);
