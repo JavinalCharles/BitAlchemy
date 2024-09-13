@@ -17,7 +17,7 @@ int main(int argc, char* argv[]) {
 	engine.getResourceManager().addToSearchPaths(prefPath);
 
 	engine.init();
-	engine.setFPSLimit(30u);
+	engine.setFPSLimit(60u);
 
 	std::shared_ptr<BitAlchemySplash> splashScene = engine.createScene<BitAlchemySplash>();
 	std::shared_ptr<SkeletonScene> skeletonScene = engine.createScene<SkeletonScene>();

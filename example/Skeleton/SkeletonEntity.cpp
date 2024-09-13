@@ -200,33 +200,27 @@ SkeletonEntity::SkeletonEntity(SharedContext* context) :
 		ba::debug << "Skeleton angle set to: " << this->getRotation().asDegrees() << std::endl;
 	}));
 
-	auto setIdleAnimation = std::bind([anime](){
-		std::shared_ptr<ba::KeyboardInput> keyboard = anime->getOwner()->CONTEXT->inputs->getInput<ba::KeyboardInput>();
+	// auto setIdleAnimation = std::bind([anime](){
+	// 	std::shared_ptr<ba::KeyboardInput> keyboard = anime->getOwner()->CONTEXT->inputs->getInput<ba::KeyboardInput>();
 
-		if(keyboard->isKeyActive(SDLK_w) || keyboard->isKeyActive(SDLK_a) || keyboard->isKeyActive(SDLK_s) || keyboard->isKeyActive(SDLK_d)) {
-			return;
-		}
+	// 	if(keyboard->isKeyActive(SDLK_w) || keyboard->isKeyActive(SDLK_a) || keyboard->isKeyActive(SDLK_s) || keyboard->isKeyActive(SDLK_d)) {
+	// 		return;
+	// 	}
 
-		switch(anime->getCurrentAnimationID()) {
-			case WalkLeft:
-				anime->set(IdleLeft);
-				break;
-			case WalkRight:
-			default:
-				anime->set(IdleRight);
-				break;
-		}
-	});
+	// 	switch(anime->getCurrentAnimationID()) {
+	// 		case WalkLeft:
+	// 			anime->set(IdleLeft);
+	// 			break;
+	// 		case WalkRight:
+	// 			anime->set(IdleRight);
+	// 			break;
+	// 	}
+	// });
 
-	kc->bindOnKeyReleased(SDLK_w, setIdleAnimation);
-	kc->bindOnKeyReleased(SDLK_a, setIdleAnimation);
-	kc->bindOnKeyReleased(SDLK_s, setIdleAnimation);
-	kc->bindOnKeyReleased(SDLK_d, setIdleAnimation);
-
-	// TEST OUT TIMER
-	// timer->setTimer(std::bind([this](){
-	// 	this->setPosition({64.f, 64.f});
-	// }), 8.f, true);
+	// kc->bindOnKeyReleased(SDLK_w, setIdleAnimation);
+	// kc->bindOnKeyReleased(SDLK_a, setIdleAnimation);
+	// kc->bindOnKeyReleased(SDLK_s, setIdleAnimation);
+	// kc->bindOnKeyReleased(SDLK_d, setIdleAnimation);
 
 }
 
