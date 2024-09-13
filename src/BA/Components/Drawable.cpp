@@ -5,10 +5,9 @@ namespace ba {
 
 const IDtype Drawable::CID = ComponentID::DRAWABLE;
 
-Drawable::Drawable(ba::Entity* owner, IDtype drawLayer, IDtype sortOrder)
+Drawable::Drawable(ba::Entity* owner, IDtype drawLayer)
 	: Component(owner),
-	m_drawLayer(drawLayer),
-	m_sortOrder(sortOrder)
+	m_drawLayer(drawLayer)
 {
 
 }
@@ -21,12 +20,12 @@ IDtype Drawable::getDrawLayer() const {
 	return m_drawLayer;
 }
 
-void Drawable::setSortOrder(IDtype sortOrder) {
-	m_sortOrder = sortOrder;
-}
+// void Drawable::setSortOrder(IDtype sortOrder) {
+// 	m_sortOrder = sortOrder;
+// }
 
-IDtype Drawable::getSortOrder() const {
-	return m_sortOrder;
+int32 Drawable::getSortOrder() const {
+	return static_cast<int32>(m_owner->getPosition().y);
 }
 
 } // namespace

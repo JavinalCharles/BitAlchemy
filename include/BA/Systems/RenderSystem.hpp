@@ -12,7 +12,9 @@ namespace ba {
 
 class EntityManager;
 
-using DrawLayer = unsigned;
+using DrawLayer = IDtype;
+
+// const IDtype DEFAULT_RENDER_LAYER = 0;
 
 class RenderSystem {
 public:
@@ -29,7 +31,15 @@ public:
 private:
 	void sort();
 
-	std::map<DrawLayer, std::vector<IDtype>> m_drawables;
+	void sortStaticEntities();
+private:
+	bool m_staticEntitiesAdded = false;
+	std::map<IDtype, ba::View> m_viewMap;
+
+	// For each layer in m_drawables:
+	// .first = static entities
+	// .second = non-static entities
+	std::map<DrawLayer, std::pair<std::vector<IDtype>,std::vector<IDtype>>> m_drawables;
 
 	EntityManager* m_entities;
 }; // class RenderSystem

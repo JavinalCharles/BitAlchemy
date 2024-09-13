@@ -1,5 +1,6 @@
 #pragma once
 
+#include <map>
 #include <string>
 #include <stdexcept>
 #include <SDL2/SDL.h>
@@ -9,10 +10,14 @@
 #include <BA/Utilities/Rect.hpp>
 #include <BA/Window/View.hpp>
 
-const int DEFAULT_SCREEN_WIDTH = 640;
-const int DEFAULT_SCREEN_HEIGHT = 480;
-
 namespace ba {
+
+constexpr const int DEFAULT_SCREEN_WIDTH = 640;
+constexpr const int DEFAULT_SCREEN_HEIGHT = 480;
+
+constexpr const IDtype DEFAULT_RENDER_LAYER = 0u;
+constexpr const IDtype GUI_RENDER_LAYER = 0u - 1; // max value
+
 class Window {
 public:
 	////////////////////////////////////////////////////////////////////////
@@ -73,6 +78,7 @@ public:
 	////////////////////////////////////////////////////////////////////////
 	// MODIFIERS
 	////////////////////////////////////////////////////////////////////////
+public:
 	void setFlags(uint32 flags);
 	void addFlags(uint32 flags);
 
@@ -86,9 +92,22 @@ public:
 	////////////////////////////////////////////////////////////////////////
 	// MODIFIERS
 	////////////////////////////////////////////////////////////////////////
+public:
+	/**
+	 * Instructs the window to use the view mapped to the given renderLayer key. The window will be using this view as target for the draw**() methods, until after this method, or setView() is called again.
+	 * @param renderLayer the ID of the view used.
+	 * 
+	 * @note If RenderLayer does not exists, the window will revert to using DEFAULT_RENDER_LAYER
+	 */
+	void useViewFromLayer(IDtype renderLayer = DEFAULT_RENDER_LAYER);
 
+	/**
+	 * Instructs the Window to use the given view for until this method and useViewFromLayer() has been called.
+	 * @param view The View object to be used.
+	 */
+	void setView(const View& view);
 
-
+	void setLayerView(IDtype LAYER, const View& newView);
 
 
 
@@ -109,12 +128,15 @@ public:
 	SDL_Window* getWindow() const;
 	Vector2i getSize() const;
 	SDL_Renderer* getRenderer() const;
-	const View& getView() const;
-	const View& getDefaultView() const;
+	const View& getCurrentView() const;
+	View getDefaultView() const;
 	FloatRect getViewSpace() const;
 
-	void setView(const View& view);
-	void useDefaultView();
+	const View& getLayerView(IDtype LAYER = DEFAULT_RENDER_LAYER) const;
+
+	// void setView(const View& view, IDtype RenderLayer = DEFAULT_RENDER_LAYER);
+
+	// void useDefaultView();
 
 private: // Attributes
 	std::string 	m_title = "BitAlchemy";
@@ -124,10 +146,13 @@ private: // Attributes
 	SDL_Window* 	m_window = nullptr;
 	SDL_Renderer* 	m_renderer = nullptr;
 
-	View			m_defaultView{{0.f, 0.f, DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT}};
-	View 			m_view{{0.f, 0.f, DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT}};
+	// View			m_defaultView{{0.f, 0.f, DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT}};
+	// View 			m_view{{0.f, 0.f, DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT}};
 
-	bool 			m_open{false};
+	std::map<IDtype, View> m_views{{DEFAULT_RENDER_LAYER, View(m_dimension)}};
+	View m_currentView = m_views.at(DEFAULT_RENDER_LAYER);
+
+	bool 			m_open = false;
 }; // class Window
 
 } // namespace ba

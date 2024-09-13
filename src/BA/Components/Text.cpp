@@ -5,8 +5,8 @@
 
 namespace ba {
 
-Text::Text(Entity* owner, IDtype layer, IDtype order) :
-	Drawable(owner, layer, order)
+Text::Text(Entity* owner, IDtype layer) :
+	Drawable(owner, layer)
 {
 }
 

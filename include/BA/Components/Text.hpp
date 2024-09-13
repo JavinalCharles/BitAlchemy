@@ -12,7 +12,7 @@ namespace ba {
 
 class Text : public Drawable {
 public:
-	explicit Text(Entity* owner, IDtype drawLayer = 0, IDtype sortOrder = 0);
+	explicit Text(Entity* owner, IDtype drawLayer = DEFAULT_RENDER_LAYER);
 
 	virtual ~Text();
 

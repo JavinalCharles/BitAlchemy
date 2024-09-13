@@ -12,7 +12,7 @@ namespace ba {
 
 class Sprite : public Drawable {
 public:
-	explicit Sprite(ba::Entity* owner, IDtype drawLayer = 0, IDtype sortOrder = 0);
+	explicit Sprite(ba::Entity* owner, IDtype drawLayer = DEFAULT_RENDER_LAYER);
 
 	virtual void draw(ba::Window& window) override;
 
