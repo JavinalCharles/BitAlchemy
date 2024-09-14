@@ -1,5 +1,5 @@
-\hypertarget{classba_1_1AnimationSystem}{}\doxysection{ba\+::Animation\+System Class Reference}
-\label{classba_1_1AnimationSystem}\index{ba::AnimationSystem@{ba::AnimationSystem}}
+\doxysection{ba\+::Animation\+System Class Reference}
+\hypertarget{classba_1_1AnimationSystem}{}\label{classba_1_1AnimationSystem}\index{ba::AnimationSystem@{ba::AnimationSystem}}
 
 
 Inheritance diagram for ba\+::Animation\+System\+:
@@ -7,7 +7,7 @@ Inheritance diagram for ba\+::Animation\+System\+:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=197pt]{classba_1_1AnimationSystem__inherit__graph}
+\includegraphics[width=208pt]{classba_1_1AnimationSystem__inherit__graph}
 \end{center}
 \end{figure}
 
@@ -17,25 +17,80 @@ Collaboration diagram for ba\+::Animation\+System\+:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=197pt]{classba_1_1AnimationSystem__coll__graph}
+\includegraphics[width=208pt]{classba_1_1AnimationSystem__coll__graph}
 \end{center}
 \end{figure}
-\doxysubsection*{Public Member Functions}
+\doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classba_1_1AnimationSystem_ac1d786a98c04c340f61f319f4a9a735a}\label{classba_1_1AnimationSystem_ac1d786a98c04c340f61f319f4a9a735a}} 
-{\bfseries Animation\+System} (\mbox{\hyperlink{classba_1_1EntityManager}{Entity\+Manager}} $\ast$entity\+Manager)
+\Hypertarget{classba_1_1AnimationSystem_ac1d786a98c04c340f61f319f4a9a735a}\label{classba_1_1AnimationSystem_ac1d786a98c04c340f61f319f4a9a735a} 
+{\bfseries Animation\+System} (\mbox{\hyperlink{classba_1_1EntityManager}{Entity\+Manager}} \texorpdfstring{$\ast$}{*}entity\+Manager)
 \item 
-\mbox{\Hypertarget{classba_1_1AnimationSystem_a4262b80826c075293b8f52b5ea37f1e1}\label{classba_1_1AnimationSystem_a4262b80826c075293b8f52b5ea37f1e1}} 
-virtual void {\bfseries update} (float delta\+Time) override
+virtual void \mbox{\hyperlink{classba_1_1AnimationSystem_a4262b80826c075293b8f52b5ea37f1e1}{update}} (float delta\+Time) override
 \item 
-\mbox{\Hypertarget{classba_1_1AnimationSystem_a3feb607f0b6f4478a7a544762d8a78f0}\label{classba_1_1AnimationSystem_a3feb607f0b6f4478a7a544762d8a78f0}} 
-virtual void {\bfseries post\+Update} (float delta\+Time) override
+virtual void \mbox{\hyperlink{classba_1_1AnimationSystem_a3feb607f0b6f4478a7a544762d8a78f0}{post\+Update}} (float delta\+Time) override
 \item 
-\mbox{\Hypertarget{classba_1_1AnimationSystem_aa3d18fb2ac90745afbe7b0db619d2321}\label{classba_1_1AnimationSystem_aa3d18fb2ac90745afbe7b0db619d2321}} 
-virtual void {\bfseries add} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1Entity}{Entity}} $>$ \&entity) override
+virtual void \mbox{\hyperlink{classba_1_1AnimationSystem_aa3d18fb2ac90745afbe7b0db619d2321}{add}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1Entity}{Entity}} $>$ \&entity) override
 \end{DoxyCompactItemize}
-\doxysubsection*{Additional Inherited Members}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classba_1_1ComponentSystem}{ba\+::\+Component\+System}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Component\+System} (\mbox{\hyperlink{classba_1_1EntityManager}{Entity\+Manager}} \texorpdfstring{$\ast$}{*}entity\+Manager)
+\item 
+virtual void {\bfseries add} (std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1Entity}{Entity}} $>$ $>$ \&entities)
+\item 
+virtual void {\bfseries remove} (IDtype entity\+ID)
+\item 
+const std\+::set$<$ IDtype $>$ \& {\bfseries get\+IDs} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{classba_1_1ComponentSystem}{ba\+::\+Component\+System}}}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries add\+ID} (IDtype entity\+ID)
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1Entity}{Entity}} $>$ {\bfseries get\+Entity} (IDtype id) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classba_1_1ComponentSystem}{ba\+::\+Component\+System}}}
+\begin{DoxyCompactItemize}
+\item 
+std\+::set$<$ IDtype $>$ {\bfseries m\+\_\+entity\+IDs}
+\item 
+\mbox{\hyperlink{classba_1_1EntityManager}{ba\+::\+Entity\+Manager}} \texorpdfstring{$\ast$}{*} {\bfseries m\+\_\+entities}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classba_1_1AnimationSystem_aa3d18fb2ac90745afbe7b0db619d2321}\label{classba_1_1AnimationSystem_aa3d18fb2ac90745afbe7b0db619d2321} 
+\index{ba::AnimationSystem@{ba::AnimationSystem}!add@{add}}
+\index{add@{add}!ba::AnimationSystem@{ba::AnimationSystem}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily virtual void ba\+::\+Animation\+System\+::add (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1Entity}{Entity}} $>$ \&}]{entity }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classba_1_1ComponentSystem}{ba\+::\+Component\+System}}.
+
+\Hypertarget{classba_1_1AnimationSystem_a3feb607f0b6f4478a7a544762d8a78f0}\label{classba_1_1AnimationSystem_a3feb607f0b6f4478a7a544762d8a78f0} 
+\index{ba::AnimationSystem@{ba::AnimationSystem}!postUpdate@{postUpdate}}
+\index{postUpdate@{postUpdate}!ba::AnimationSystem@{ba::AnimationSystem}}
+\doxysubsubsection{\texorpdfstring{postUpdate()}{postUpdate()}}
+{\footnotesize\ttfamily virtual void ba\+::\+Animation\+System\+::post\+Update (\begin{DoxyParamCaption}\item[{float}]{delta\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classba_1_1ComponentSystem}{ba\+::\+Component\+System}}.
+
+\Hypertarget{classba_1_1AnimationSystem_a4262b80826c075293b8f52b5ea37f1e1}\label{classba_1_1AnimationSystem_a4262b80826c075293b8f52b5ea37f1e1} 
+\index{ba::AnimationSystem@{ba::AnimationSystem}!update@{update}}
+\index{update@{update}!ba::AnimationSystem@{ba::AnimationSystem}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily virtual void ba\+::\+Animation\+System\+::update (\begin{DoxyParamCaption}\item[{float}]{delta\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classba_1_1ComponentSystem}{ba\+::\+Component\+System}}.
+
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

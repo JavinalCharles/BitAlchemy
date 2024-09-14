@@ -1,0 +1,473 @@
+\doxysection{tinyxml2\+::XMLDocument Class Reference}
+\hypertarget{classtinyxml2_1_1XMLDocument}{}\label{classtinyxml2_1_1XMLDocument}\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+
+
+{\ttfamily \#include $<$tinyxml2.\+h$>$}
+
+
+
+Inheritance diagram for tinyxml2\+::XMLDocument\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=217pt]{classtinyxml2_1_1XMLDocument__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for tinyxml2\+::XMLDocument\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=348pt]{classtinyxml2_1_1XMLDocument__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classtinyxml2_1_1XMLDocument_a57ddf17b6e054dda10af98991b1b8f70}\label{classtinyxml2_1_1XMLDocument_a57ddf17b6e054dda10af98991b1b8f70} 
+{\bfseries XMLDocument} (bool process\+Entities=true, Whitespace whitespace\+Mode=PRESERVE\+\_\+\+WHITESPACE)
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{XMLDocument}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classtinyxml2_1_1XMLDocument_a290ad241e05e6aeeccbc78a4f3454f55}{To\+Document}} () override
+\begin{DoxyCompactList}\small\item\em Safely cast to a Document, or null. \end{DoxyCompactList}\item 
+virtual const \mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{XMLDocument}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classtinyxml2_1_1XMLDocument_a680fae342b442e75aaef972d7370e15a}{To\+Document}} () const override
+\item 
+XMLError \mbox{\hyperlink{classtinyxml2_1_1XMLDocument_af2b616169e6517182f6725f2498e9a01}{Parse}} (const char \texorpdfstring{$\ast$}{*}xml, size\+\_\+t n\+Bytes=static\+\_\+cast$<$ size\+\_\+t $>$(-\/1))
+\item 
+XMLError \mbox{\hyperlink{classtinyxml2_1_1XMLDocument_a2ebd4647a8af5fc6831b294ac26a150a}{Load\+File}} (const char \texorpdfstring{$\ast$}{*}filename)
+\item 
+XMLError \mbox{\hyperlink{classtinyxml2_1_1XMLDocument_a5f1d330fad44c52f3d265338dd2a6dc2}{Load\+File}} (FILE \texorpdfstring{$\ast$}{*})
+\item 
+XMLError \mbox{\hyperlink{classtinyxml2_1_1XMLDocument_a73ac416b4a2aa0952e841220eb3da18f}{Save\+File}} (const char \texorpdfstring{$\ast$}{*}filename, bool compact=false)
+\item 
+XMLError \mbox{\hyperlink{classtinyxml2_1_1XMLDocument_a8b95779479a0035acc67b3a61dfe1b74}{Save\+File}} (FILE \texorpdfstring{$\ast$}{*}fp, bool compact=false)
+\item 
+\Hypertarget{classtinyxml2_1_1XMLDocument_a53e6c035b1b539563fef8c817fb30469}\label{classtinyxml2_1_1XMLDocument_a53e6c035b1b539563fef8c817fb30469} 
+bool {\bfseries Process\+Entities} () const
+\item 
+\Hypertarget{classtinyxml2_1_1XMLDocument_a810ce508e6e0365497c2a9deb83c9ca7}\label{classtinyxml2_1_1XMLDocument_a810ce508e6e0365497c2a9deb83c9ca7} 
+Whitespace {\bfseries Whitespace\+Mode} () const
+\item 
+bool \mbox{\hyperlink{classtinyxml2_1_1XMLDocument_a33fc5d159db873a179fa26338adb05bd}{Has\+BOM}} () const
+\item 
+void \mbox{\hyperlink{classtinyxml2_1_1XMLDocument_a14419b698f7c4b140df4e80f3f0c93b0}{Set\+BOM}} (bool use\+BOM)
+\item 
+\mbox{\hyperlink{classtinyxml2_1_1XMLElement}{XMLElement}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classtinyxml2_1_1XMLDocument_a0e6855771cbe87d839fb301d3646f5b8}{Root\+Element}} ()
+\item 
+\Hypertarget{classtinyxml2_1_1XMLDocument_a52ea1ace64749d97cf61bf9537fb99ec}\label{classtinyxml2_1_1XMLDocument_a52ea1ace64749d97cf61bf9537fb99ec} 
+const \mbox{\hyperlink{classtinyxml2_1_1XMLElement}{XMLElement}} \texorpdfstring{$\ast$}{*} {\bfseries Root\+Element} () const
+\item 
+void \mbox{\hyperlink{classtinyxml2_1_1XMLDocument_a867cf5fa3e3ff6ae4847a8b7ee8ec083}{Print}} (\mbox{\hyperlink{classtinyxml2_1_1XMLPrinter}{XMLPrinter}} \texorpdfstring{$\ast$}{*}streamer=0) const
+\item 
+virtual bool \mbox{\hyperlink{classtinyxml2_1_1XMLDocument_a853f05e2f7f51eb598e32ec61d8bc53c}{Accept}} (\mbox{\hyperlink{classtinyxml2_1_1XMLVisitor}{XMLVisitor}} \texorpdfstring{$\ast$}{*}visitor) const override
+\item 
+\mbox{\hyperlink{classtinyxml2_1_1XMLElement}{XMLElement}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classtinyxml2_1_1XMLDocument_a3c335a700a43d7c363a393142a23f234}{New\+Element}} (const char \texorpdfstring{$\ast$}{*}name)
+\item 
+\mbox{\hyperlink{classtinyxml2_1_1XMLComment}{XMLComment}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classtinyxml2_1_1XMLDocument_a386df0befd06aadb5e0cd21381aa955a}{New\+Comment}} (const char \texorpdfstring{$\ast$}{*}comment)
+\item 
+\mbox{\hyperlink{classtinyxml2_1_1XMLText}{XMLText}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classtinyxml2_1_1XMLDocument_acece5de77a0819f2341b08c1e1ed9987}{New\+Text}} (const char \texorpdfstring{$\ast$}{*}text)
+\item 
+\mbox{\hyperlink{classtinyxml2_1_1XMLDeclaration}{XMLDeclaration}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classtinyxml2_1_1XMLDocument_ae519030c0262fa2daff8993681990e16}{New\+Declaration}} (const char \texorpdfstring{$\ast$}{*}text=0)
+\item 
+\mbox{\hyperlink{classtinyxml2_1_1XMLUnknown}{XMLUnknown}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classtinyxml2_1_1XMLDocument_a4954f502c5fd7f49de54c3c0c99bb73d}{New\+Unknown}} (const char \texorpdfstring{$\ast$}{*}text)
+\item 
+void \mbox{\hyperlink{classtinyxml2_1_1XMLDocument_ac1d6e2c7fcc1a660624ac4f68e96380d}{Delete\+Node}} (\mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}} \texorpdfstring{$\ast$}{*}node)
+\item 
+\Hypertarget{classtinyxml2_1_1XMLDocument_a4085d9c52f1d93214311459d6d1fcf17}\label{classtinyxml2_1_1XMLDocument_a4085d9c52f1d93214311459d6d1fcf17} 
+void {\bfseries Clear\+Error} ()
+\begin{DoxyCompactList}\small\item\em Clears the error flags. \end{DoxyCompactList}\item 
+\Hypertarget{classtinyxml2_1_1XMLDocument_a34e6318e182e40e3cc4f4ba5d59ed9ed}\label{classtinyxml2_1_1XMLDocument_a34e6318e182e40e3cc4f4ba5d59ed9ed} 
+bool {\bfseries Error} () const
+\begin{DoxyCompactList}\small\item\em Return true if there was an error parsing the document. \end{DoxyCompactList}\item 
+\Hypertarget{classtinyxml2_1_1XMLDocument_afa3ed33b3107f920ec2b301f805ac17d}\label{classtinyxml2_1_1XMLDocument_afa3ed33b3107f920ec2b301f805ac17d} 
+XMLError {\bfseries Error\+ID} () const
+\begin{DoxyCompactList}\small\item\em Return the error\+ID. \end{DoxyCompactList}\item 
+\Hypertarget{classtinyxml2_1_1XMLDocument_a1a5f2b63427caffd4cde15781d9d11f9}\label{classtinyxml2_1_1XMLDocument_a1a5f2b63427caffd4cde15781d9d11f9} 
+const char \texorpdfstring{$\ast$}{*} {\bfseries Error\+Name} () const
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classtinyxml2_1_1XMLDocument_ae97fff2402a0d01e0509c430b37996b3}{Error\+Str}} () const
+\item 
+\Hypertarget{classtinyxml2_1_1XMLDocument_a1d033945b42e125d933d6231e4571552}\label{classtinyxml2_1_1XMLDocument_a1d033945b42e125d933d6231e4571552} 
+void {\bfseries Print\+Error} () const
+\begin{DoxyCompactList}\small\item\em A (trivial) utility function that prints the \doxylink{classtinyxml2_1_1XMLDocument_ae97fff2402a0d01e0509c430b37996b3}{Error\+Str()} to stdout. \end{DoxyCompactList}\item 
+\Hypertarget{classtinyxml2_1_1XMLDocument_a57400f816dbe7799ece33615ead9ab76}\label{classtinyxml2_1_1XMLDocument_a57400f816dbe7799ece33615ead9ab76} 
+int {\bfseries Error\+Line\+Num} () const
+\begin{DoxyCompactList}\small\item\em Return the line where the error occurred, or zero if unknown. \end{DoxyCompactList}\item 
+\Hypertarget{classtinyxml2_1_1XMLDocument_a65656b0b2cbc822708eb351504178aaf}\label{classtinyxml2_1_1XMLDocument_a65656b0b2cbc822708eb351504178aaf} 
+void {\bfseries Clear} ()
+\begin{DoxyCompactList}\small\item\em Clear the document, resetting it to the initial state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classtinyxml2_1_1XMLDocument_af592ffc91514e25a39664521ac83db45}{Deep\+Copy}} (\mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{XMLDocument}} \texorpdfstring{$\ast$}{*}target) const
+\item 
+\Hypertarget{classtinyxml2_1_1XMLDocument_ac2446e4e85647e2122e0d156391ff4a3}\label{classtinyxml2_1_1XMLDocument_ac2446e4e85647e2122e0d156391ff4a3} 
+char \texorpdfstring{$\ast$}{*} {\bfseries Identify} (char \texorpdfstring{$\ast$}{*}p, \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}node, bool first)
+\item 
+\Hypertarget{classtinyxml2_1_1XMLDocument_a64dadb2de12e52538d0ff8ba38f323ec}\label{classtinyxml2_1_1XMLDocument_a64dadb2de12e52538d0ff8ba38f323ec} 
+void {\bfseries Mark\+In\+Use} (const \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}} \texorpdfstring{$\ast$}{*}const)
+\item 
+virtual \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classtinyxml2_1_1XMLDocument_a01ab2fc16fbce5f4456d67d24090e70b}{Shallow\+Clone}} (\mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{XMLDocument}} \texorpdfstring{$\ast$}{*}) const override
+\item 
+virtual bool \mbox{\hyperlink{classtinyxml2_1_1XMLDocument_ac538345c44f521e418ff86b4bdc20ca8}{Shallow\+Equal}} (const \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}} \texorpdfstring{$\ast$}{*}) const override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{tinyxml2\+::\+XMLNode}}}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{XMLDocument}} \texorpdfstring{$\ast$}{*} {\bfseries Get\+Document} () const
+\begin{DoxyCompactList}\small\item\em Get the \doxylink{classtinyxml2_1_1XMLDocument}{XMLDocument} that owns this \doxylink{classtinyxml2_1_1XMLNode}{XMLNode}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{XMLDocument}} \texorpdfstring{$\ast$}{*} {\bfseries Get\+Document} ()
+\begin{DoxyCompactList}\small\item\em Get the \doxylink{classtinyxml2_1_1XMLDocument}{XMLDocument} that owns this \doxylink{classtinyxml2_1_1XMLNode}{XMLNode}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classtinyxml2_1_1XMLElement}{XMLElement}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classtinyxml2_1_1XMLNode_a9417e1f8a9787ae27741605493514b18}{To\+Element}} ()
+\begin{DoxyCompactList}\small\item\em Safely cast to an Element, or null. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classtinyxml2_1_1XMLText}{XMLText}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classtinyxml2_1_1XMLNode_a0aea8c9c5853c35a06da1988486abc60}{To\+Text}} ()
+\begin{DoxyCompactList}\small\item\em Safely cast to Text, or null. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classtinyxml2_1_1XMLComment}{XMLComment}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classtinyxml2_1_1XMLNode_a5dc13f02ae49e3fa609e426f47c8466d}{To\+Comment}} ()
+\begin{DoxyCompactList}\small\item\em Safely cast to a Comment, or null. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classtinyxml2_1_1XMLDeclaration}{XMLDeclaration}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classtinyxml2_1_1XMLNode_a12aa783a3a4445ad5557c7d56cd8dc4a}{To\+Declaration}} ()
+\begin{DoxyCompactList}\small\item\em Safely cast to a Declaration, or null. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classtinyxml2_1_1XMLUnknown}{XMLUnknown}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classtinyxml2_1_1XMLNode_aa8a2dd38b786c3b8d406c2047753cbfd}{To\+Unknown}} ()
+\begin{DoxyCompactList}\small\item\em Safely cast to an Unknown, or null. \end{DoxyCompactList}\item 
+virtual const \mbox{\hyperlink{classtinyxml2_1_1XMLElement}{XMLElement}} \texorpdfstring{$\ast$}{*} {\bfseries To\+Element} () const
+\item 
+virtual const \mbox{\hyperlink{classtinyxml2_1_1XMLText}{XMLText}} \texorpdfstring{$\ast$}{*} {\bfseries To\+Text} () const
+\item 
+virtual const \mbox{\hyperlink{classtinyxml2_1_1XMLComment}{XMLComment}} \texorpdfstring{$\ast$}{*} {\bfseries To\+Comment} () const
+\item 
+virtual const \mbox{\hyperlink{classtinyxml2_1_1XMLDeclaration}{XMLDeclaration}} \texorpdfstring{$\ast$}{*} {\bfseries To\+Declaration} () const
+\item 
+virtual const \mbox{\hyperlink{classtinyxml2_1_1XMLUnknown}{XMLUnknown}} \texorpdfstring{$\ast$}{*} {\bfseries To\+Unknown} () const
+\item 
+int {\bfseries Child\+Element\+Count} (const char \texorpdfstring{$\ast$}{*}value) const
+\item 
+int {\bfseries Child\+Element\+Count} () const
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classtinyxml2_1_1XMLNode_a0485e51c670e741884cfd8362274d680}{Value}} () const
+\item 
+void \mbox{\hyperlink{classtinyxml2_1_1XMLNode_a09dd68cf9eae137579f6e50f36487513}{Set\+Value}} (const char \texorpdfstring{$\ast$}{*}val, bool static\+Mem=false)
+\item 
+int {\bfseries Get\+Line\+Num} () const
+\begin{DoxyCompactList}\small\item\em Gets the line number the node is in, if the document was parsed from a file. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}} \texorpdfstring{$\ast$}{*} {\bfseries Parent} () const
+\begin{DoxyCompactList}\small\item\em Get the parent of this node on the DOM. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}} \texorpdfstring{$\ast$}{*} {\bfseries Parent} ()
+\item 
+bool {\bfseries No\+Children} () const
+\begin{DoxyCompactList}\small\item\em Returns true if this node has no children. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}} \texorpdfstring{$\ast$}{*} {\bfseries First\+Child} () const
+\begin{DoxyCompactList}\small\item\em Get the first child node, or null if none exists. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}} \texorpdfstring{$\ast$}{*} {\bfseries First\+Child} ()
+\item 
+const \mbox{\hyperlink{classtinyxml2_1_1XMLElement}{XMLElement}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classtinyxml2_1_1XMLNode_a1bec132dcf085284e0a10755f2cf0d57}{First\+Child\+Element}} (const char \texorpdfstring{$\ast$}{*}name=0) const
+\item 
+\mbox{\hyperlink{classtinyxml2_1_1XMLElement}{XMLElement}} \texorpdfstring{$\ast$}{*} {\bfseries First\+Child\+Element} (const char \texorpdfstring{$\ast$}{*}name=0)
+\item 
+const \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}} \texorpdfstring{$\ast$}{*} {\bfseries Last\+Child} () const
+\begin{DoxyCompactList}\small\item\em Get the last child node, or null if none exists. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}} \texorpdfstring{$\ast$}{*} {\bfseries Last\+Child} ()
+\item 
+const \mbox{\hyperlink{classtinyxml2_1_1XMLElement}{XMLElement}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classtinyxml2_1_1XMLNode_a609e02f02044f39b928d1a3e0de9f532}{Last\+Child\+Element}} (const char \texorpdfstring{$\ast$}{*}name=0) const
+\item 
+\mbox{\hyperlink{classtinyxml2_1_1XMLElement}{XMLElement}} \texorpdfstring{$\ast$}{*} {\bfseries Last\+Child\+Element} (const char \texorpdfstring{$\ast$}{*}name=0)
+\item 
+const \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}} \texorpdfstring{$\ast$}{*} {\bfseries Previous\+Sibling} () const
+\begin{DoxyCompactList}\small\item\em Get the previous (left) sibling node of this node. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}} \texorpdfstring{$\ast$}{*} {\bfseries Previous\+Sibling} ()
+\item 
+const \mbox{\hyperlink{classtinyxml2_1_1XMLElement}{XMLElement}} \texorpdfstring{$\ast$}{*} {\bfseries Previous\+Sibling\+Element} (const char \texorpdfstring{$\ast$}{*}name=0) const
+\begin{DoxyCompactList}\small\item\em Get the previous (left) sibling element of this node, with an optionally supplied name. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classtinyxml2_1_1XMLElement}{XMLElement}} \texorpdfstring{$\ast$}{*} {\bfseries Previous\+Sibling\+Element} (const char \texorpdfstring{$\ast$}{*}name=0)
+\item 
+const \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}} \texorpdfstring{$\ast$}{*} {\bfseries Next\+Sibling} () const
+\begin{DoxyCompactList}\small\item\em Get the next (right) sibling node of this node. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}} \texorpdfstring{$\ast$}{*} {\bfseries Next\+Sibling} ()
+\item 
+const \mbox{\hyperlink{classtinyxml2_1_1XMLElement}{XMLElement}} \texorpdfstring{$\ast$}{*} {\bfseries Next\+Sibling\+Element} (const char \texorpdfstring{$\ast$}{*}name=0) const
+\begin{DoxyCompactList}\small\item\em Get the next (right) sibling element of this node, with an optionally supplied name. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classtinyxml2_1_1XMLElement}{XMLElement}} \texorpdfstring{$\ast$}{*} {\bfseries Next\+Sibling\+Element} (const char \texorpdfstring{$\ast$}{*}name=0)
+\item 
+\mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classtinyxml2_1_1XMLNode_ae3b422e98914d6002ca99bb1d2837103}{Insert\+End\+Child}} (\mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}} \texorpdfstring{$\ast$}{*}add\+This)
+\item 
+\mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}} \texorpdfstring{$\ast$}{*} {\bfseries Link\+End\+Child} (\mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}} \texorpdfstring{$\ast$}{*}add\+This)
+\item 
+\mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classtinyxml2_1_1XMLNode_ac609a8f3ea949027f439280c640bbaf2}{Insert\+First\+Child}} (\mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}} \texorpdfstring{$\ast$}{*}add\+This)
+\item 
+\mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classtinyxml2_1_1XMLNode_a9275138a1b8dd5d8e2c26789bdc23ac8}{Insert\+After\+Child}} (\mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}} \texorpdfstring{$\ast$}{*}after\+This, \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}} \texorpdfstring{$\ast$}{*}add\+This)
+\item 
+void \mbox{\hyperlink{classtinyxml2_1_1XMLNode_a0360085cc54df5bff85d5c5da13afdce}{Delete\+Children}} ()
+\item 
+void \mbox{\hyperlink{classtinyxml2_1_1XMLNode_a363b6edbd6ebd55f8387d2b89f2b0921}{Delete\+Child}} (\mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}} \texorpdfstring{$\ast$}{*}node)
+\item 
+\mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classtinyxml2_1_1XMLNode_a3bb369fd733f1989b751d99a9417adab}{Deep\+Clone}} (\mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{XMLDocument}} \texorpdfstring{$\ast$}{*}target) const
+\item 
+void \mbox{\hyperlink{classtinyxml2_1_1XMLNode_a002978fc889cc011d143185f2377eca2}{Set\+User\+Data}} (void \texorpdfstring{$\ast$}{*}user\+Data)
+\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classtinyxml2_1_1XMLNode_a18cc02ebd0b06f6bf5db7ef87653e00e}{Get\+User\+Data}} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classtinyxml2_1_1XMLDocument_a0c8b137be9711ce4831e15f30486154c}\label{classtinyxml2_1_1XMLDocument_a0c8b137be9711ce4831e15f30486154c} 
+static const char \texorpdfstring{$\ast$}{*} {\bfseries Error\+IDTo\+Name} (XMLError error\+ID)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classtinyxml2_1_1XMLDocument_ac2fba9b6e452829dd892f7392c24e0eb}\label{classtinyxml2_1_1XMLDocument_ac2fba9b6e452829dd892f7392c24e0eb} 
+class {\bfseries XMLElement}
+\item 
+\Hypertarget{classtinyxml2_1_1XMLDocument_a8233f9dc4d61d90e93be2a3647c6d957}\label{classtinyxml2_1_1XMLDocument_a8233f9dc4d61d90e93be2a3647c6d957} 
+class {\bfseries XMLNode}
+\item 
+\Hypertarget{classtinyxml2_1_1XMLDocument_ae50b59416e98bbe7e4bc87df40092109}\label{classtinyxml2_1_1XMLDocument_ae50b59416e98bbe7e4bc87df40092109} 
+class {\bfseries XMLText}
+\item 
+\Hypertarget{classtinyxml2_1_1XMLDocument_acee9e261162d4236fb2c30312c54cd4c}\label{classtinyxml2_1_1XMLDocument_acee9e261162d4236fb2c30312c54cd4c} 
+class {\bfseries XMLComment}
+\item 
+\Hypertarget{classtinyxml2_1_1XMLDocument_a93d2c2c2db3973083b7d6e7f6f358160}\label{classtinyxml2_1_1XMLDocument_a93d2c2c2db3973083b7d6e7f6f358160} 
+class {\bfseries XMLDeclaration}
+\item 
+\Hypertarget{classtinyxml2_1_1XMLDocument_a6946948274f7a02f5e69b5dbeaea9b35}\label{classtinyxml2_1_1XMLDocument_a6946948274f7a02f5e69b5dbeaea9b35} 
+class {\bfseries XMLUnknown}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{tinyxml2\+::\+XMLNode}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries XMLNode} (\mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{XMLDocument}} \texorpdfstring{$\ast$}{*})
+\item 
+virtual char \texorpdfstring{$\ast$}{*} {\bfseries Parse\+Deep} (char \texorpdfstring{$\ast$}{*}p, \mbox{\hyperlink{classtinyxml2_1_1StrPair}{Str\+Pair}} \texorpdfstring{$\ast$}{*}parent\+End\+Tag, int \texorpdfstring{$\ast$}{*}cur\+Line\+Num\+Ptr)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{tinyxml2\+::\+XMLNode}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{XMLDocument}} \texorpdfstring{$\ast$}{*} {\bfseries \+\_\+document}
+\item 
+\mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}} \texorpdfstring{$\ast$}{*} {\bfseries \+\_\+parent}
+\item 
+\mbox{\hyperlink{classtinyxml2_1_1StrPair}{Str\+Pair}} {\bfseries \+\_\+value}
+\item 
+int {\bfseries \+\_\+parse\+Line\+Num}
+\item 
+\mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}} \texorpdfstring{$\ast$}{*} {\bfseries \+\_\+first\+Child}
+\item 
+\mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}} \texorpdfstring{$\ast$}{*} {\bfseries \+\_\+last\+Child}
+\item 
+\mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}} \texorpdfstring{$\ast$}{*} {\bfseries \+\_\+prev}
+\item 
+\mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}} \texorpdfstring{$\ast$}{*} {\bfseries \+\_\+next}
+\item 
+void \texorpdfstring{$\ast$}{*} {\bfseries \+\_\+user\+Data}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A Document binds together all the functionality. It can be saved, loaded, and printed to the screen. All Nodes are connected and allocated to a Document. If the Document is deleted, all its Nodes are also deleted. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classtinyxml2_1_1XMLDocument_a853f05e2f7f51eb598e32ec61d8bc53c}\label{classtinyxml2_1_1XMLDocument_a853f05e2f7f51eb598e32ec61d8bc53c} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!Accept@{Accept}}
+\index{Accept@{Accept}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\doxysubsubsection{\texorpdfstring{Accept()}{Accept()}}
+{\footnotesize\ttfamily virtual bool tinyxml2\+::\+XMLDocument\+::\+Accept (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classtinyxml2_1_1XMLVisitor}{XMLVisitor}} \texorpdfstring{$\ast$}{*}}]{visitor }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Accept a hierarchical visit of the nodes in the Tiny\+XML-\/2 DOM. Every node in the XML tree will be conditionally visited and the host will be called back via the \doxylink{classtinyxml2_1_1XMLVisitor}{XMLVisitor} interface.
+
+This is essentially a SAX interface for Tiny\+XML-\/2. (Note however it doesn\textquotesingle{}t re-\/parse the XML for the callbacks, so the performance of Tiny\+XML-\/2 is unchanged by using this interface versus any other.)
+
+The interface has been based on ideas from\+:
+
+
+\begin{DoxyItemize}
+\item \href{http://www.saxproject.org/}{\texttt{ http\+://www.\+saxproject.\+org/}}
+\item \href{http://c2.com/cgi/wiki?HierarchicalVisitorPattern}{\texttt{ http\+://c2.\+com/cgi/wiki?\+Hierarchical\+Visitor\+Pattern}}
+\end{DoxyItemize}
+
+Which are both good references for "{}visiting"{}.
+
+An example of using \doxylink{classtinyxml2_1_1XMLDocument_a853f05e2f7f51eb598e32ec61d8bc53c}{Accept()}\+: \begin{DoxyVerb}XMLPrinter printer;
+tinyxmlDoc.Accept( &printer );
+const char* xmlcstr = printer.CStr();
+\end{DoxyVerb}
+ 
+
+Implements \mbox{\hyperlink{classtinyxml2_1_1XMLNode_a81e66df0a44c67a7af17f3b77a152785}{tinyxml2\+::\+XMLNode}}.
+
+\Hypertarget{classtinyxml2_1_1XMLDocument_af592ffc91514e25a39664521ac83db45}\label{classtinyxml2_1_1XMLDocument_af592ffc91514e25a39664521ac83db45} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!DeepCopy@{DeepCopy}}
+\index{DeepCopy@{DeepCopy}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\doxysubsubsection{\texorpdfstring{DeepCopy()}{DeepCopy()}}
+{\footnotesize\ttfamily void tinyxml2\+::\+XMLDocument\+::\+Deep\+Copy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{XMLDocument}} \texorpdfstring{$\ast$}{*}}]{target }\end{DoxyParamCaption}) const}
+
+Copies this document to a target document. The target will be completely cleared before the copy. If you want to copy a sub-\/tree, see \doxylink{classtinyxml2_1_1XMLNode_a3bb369fd733f1989b751d99a9417adab}{XMLNode\+::\+Deep\+Clone()}.
+
+NOTE\+: that the \textquotesingle{}target\textquotesingle{} must be non-\/null. \Hypertarget{classtinyxml2_1_1XMLDocument_ac1d6e2c7fcc1a660624ac4f68e96380d}\label{classtinyxml2_1_1XMLDocument_ac1d6e2c7fcc1a660624ac4f68e96380d} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!DeleteNode@{DeleteNode}}
+\index{DeleteNode@{DeleteNode}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\doxysubsubsection{\texorpdfstring{DeleteNode()}{DeleteNode()}}
+{\footnotesize\ttfamily void tinyxml2\+::\+XMLDocument\+::\+Delete\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}} \texorpdfstring{$\ast$}{*}}]{node }\end{DoxyParamCaption})}
+
+Delete a node associated with this document. It will be unlinked from the DOM. \Hypertarget{classtinyxml2_1_1XMLDocument_ae97fff2402a0d01e0509c430b37996b3}\label{classtinyxml2_1_1XMLDocument_ae97fff2402a0d01e0509c430b37996b3} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!ErrorStr@{ErrorStr}}
+\index{ErrorStr@{ErrorStr}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\doxysubsubsection{\texorpdfstring{ErrorStr()}{ErrorStr()}}
+{\footnotesize\ttfamily const char \texorpdfstring{$\ast$}{*} tinyxml2\+::\+XMLDocument\+::\+Error\+Str (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Returns a "{}long form"{} error description. A hopefully helpful diagnostic with location, line number, and/or additional info. \Hypertarget{classtinyxml2_1_1XMLDocument_a33fc5d159db873a179fa26338adb05bd}\label{classtinyxml2_1_1XMLDocument_a33fc5d159db873a179fa26338adb05bd} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!HasBOM@{HasBOM}}
+\index{HasBOM@{HasBOM}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\doxysubsubsection{\texorpdfstring{HasBOM()}{HasBOM()}}
+{\footnotesize\ttfamily bool tinyxml2\+::\+XMLDocument\+::\+Has\+BOM (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns true if this document has a leading Byte Order Mark of UTF8. \Hypertarget{classtinyxml2_1_1XMLDocument_a2ebd4647a8af5fc6831b294ac26a150a}\label{classtinyxml2_1_1XMLDocument_a2ebd4647a8af5fc6831b294ac26a150a} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!LoadFile@{LoadFile}}
+\index{LoadFile@{LoadFile}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\doxysubsubsection{\texorpdfstring{LoadFile()}{LoadFile()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily XMLError tinyxml2\+::\+XMLDocument\+::\+Load\+File (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{filename }\end{DoxyParamCaption})}
+
+Load an XML file from disk. Returns XML\+\_\+\+SUCCESS (0) on success, or an error\+ID. \Hypertarget{classtinyxml2_1_1XMLDocument_a5f1d330fad44c52f3d265338dd2a6dc2}\label{classtinyxml2_1_1XMLDocument_a5f1d330fad44c52f3d265338dd2a6dc2} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!LoadFile@{LoadFile}}
+\index{LoadFile@{LoadFile}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\doxysubsubsection{\texorpdfstring{LoadFile()}{LoadFile()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily XMLError tinyxml2\+::\+XMLDocument\+::\+Load\+File (\begin{DoxyParamCaption}\item[{FILE \texorpdfstring{$\ast$}{*}}]{ }\end{DoxyParamCaption})}
+
+Load an XML file from disk. You are responsible for providing and closing the FILE\texorpdfstring{$\ast$}{*}.
+
+NOTE\+: The file should be opened as binary ("{}rb"{}) not text in order for Tiny\+XML-\/2 to correctly do newline normalization.
+
+Returns XML\+\_\+\+SUCCESS (0) on success, or an error\+ID. \Hypertarget{classtinyxml2_1_1XMLDocument_a386df0befd06aadb5e0cd21381aa955a}\label{classtinyxml2_1_1XMLDocument_a386df0befd06aadb5e0cd21381aa955a} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!NewComment@{NewComment}}
+\index{NewComment@{NewComment}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\doxysubsubsection{\texorpdfstring{NewComment()}{NewComment()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classtinyxml2_1_1XMLComment}{XMLComment}} \texorpdfstring{$\ast$}{*} tinyxml2\+::\+XMLDocument\+::\+New\+Comment (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{comment }\end{DoxyParamCaption})}
+
+Create a new Comment associated with this Document. The memory for the Comment is managed by the Document. \Hypertarget{classtinyxml2_1_1XMLDocument_ae519030c0262fa2daff8993681990e16}\label{classtinyxml2_1_1XMLDocument_ae519030c0262fa2daff8993681990e16} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!NewDeclaration@{NewDeclaration}}
+\index{NewDeclaration@{NewDeclaration}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\doxysubsubsection{\texorpdfstring{NewDeclaration()}{NewDeclaration()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classtinyxml2_1_1XMLDeclaration}{XMLDeclaration}} \texorpdfstring{$\ast$}{*} tinyxml2\+::\+XMLDocument\+::\+New\+Declaration (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{text = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+Create a new Declaration associated with this Document. The memory for the object is managed by the Document.
+
+If the \textquotesingle{}text\textquotesingle{} param is null, the standard declaration is used.\+: \begin{DoxyVerb}    <?xml version="1.0" encoding="UTF-8"?>
+\end{DoxyVerb}
+ \Hypertarget{classtinyxml2_1_1XMLDocument_a3c335a700a43d7c363a393142a23f234}\label{classtinyxml2_1_1XMLDocument_a3c335a700a43d7c363a393142a23f234} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!NewElement@{NewElement}}
+\index{NewElement@{NewElement}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\doxysubsubsection{\texorpdfstring{NewElement()}{NewElement()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classtinyxml2_1_1XMLElement}{XMLElement}} \texorpdfstring{$\ast$}{*} tinyxml2\+::\+XMLDocument\+::\+New\+Element (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{name }\end{DoxyParamCaption})}
+
+Create a new Element associated with this Document. The memory for the Element is managed by the Document. \Hypertarget{classtinyxml2_1_1XMLDocument_acece5de77a0819f2341b08c1e1ed9987}\label{classtinyxml2_1_1XMLDocument_acece5de77a0819f2341b08c1e1ed9987} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!NewText@{NewText}}
+\index{NewText@{NewText}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\doxysubsubsection{\texorpdfstring{NewText()}{NewText()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classtinyxml2_1_1XMLText}{XMLText}} \texorpdfstring{$\ast$}{*} tinyxml2\+::\+XMLDocument\+::\+New\+Text (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{text }\end{DoxyParamCaption})}
+
+Create a new Text associated with this Document. The memory for the Text is managed by the Document. \Hypertarget{classtinyxml2_1_1XMLDocument_a4954f502c5fd7f49de54c3c0c99bb73d}\label{classtinyxml2_1_1XMLDocument_a4954f502c5fd7f49de54c3c0c99bb73d} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!NewUnknown@{NewUnknown}}
+\index{NewUnknown@{NewUnknown}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\doxysubsubsection{\texorpdfstring{NewUnknown()}{NewUnknown()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classtinyxml2_1_1XMLUnknown}{XMLUnknown}} \texorpdfstring{$\ast$}{*} tinyxml2\+::\+XMLDocument\+::\+New\+Unknown (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{text }\end{DoxyParamCaption})}
+
+Create a new Unknown associated with this Document. The memory for the object is managed by the Document. \Hypertarget{classtinyxml2_1_1XMLDocument_af2b616169e6517182f6725f2498e9a01}\label{classtinyxml2_1_1XMLDocument_af2b616169e6517182f6725f2498e9a01} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!Parse@{Parse}}
+\index{Parse@{Parse}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\doxysubsubsection{\texorpdfstring{Parse()}{Parse()}}
+{\footnotesize\ttfamily XMLError tinyxml2\+::\+XMLDocument\+::\+Parse (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{xml,  }\item[{size\+\_\+t}]{n\+Bytes = {\ttfamily static\+\_\+cast$<$~size\+\_\+t~$>$(-\/1)} }\end{DoxyParamCaption})}
+
+Parse an XML file from a character string. Returns XML\+\_\+\+SUCCESS (0) on success, or an error\+ID.
+
+You may optionally pass in the \textquotesingle{}n\+Bytes\textquotesingle{}, which is the number of bytes which will be parsed. If not specified, Tiny\+XML-\/2 will assume \textquotesingle{}xml\textquotesingle{} points to a null terminated string. \Hypertarget{classtinyxml2_1_1XMLDocument_a867cf5fa3e3ff6ae4847a8b7ee8ec083}\label{classtinyxml2_1_1XMLDocument_a867cf5fa3e3ff6ae4847a8b7ee8ec083} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!Print@{Print}}
+\index{Print@{Print}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\doxysubsubsection{\texorpdfstring{Print()}{Print()}}
+{\footnotesize\ttfamily void tinyxml2\+::\+XMLDocument\+::\+Print (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classtinyxml2_1_1XMLPrinter}{XMLPrinter}} \texorpdfstring{$\ast$}{*}}]{streamer = {\ttfamily 0} }\end{DoxyParamCaption}) const}
+
+Print the Document. If the Printer is not provided, it will print to stdout. If you provide Printer, this can print to a file\+: \begin{DoxyVerb}XMLPrinter printer( fp );
+doc.Print( &printer );
+\end{DoxyVerb}
+
+
+Or you can use a printer to print to memory\+: \begin{DoxyVerb}XMLPrinter printer;
+doc.Print( &printer );
+// printer.CStr() has a const char* to the XML
+\end{DoxyVerb}
+ \Hypertarget{classtinyxml2_1_1XMLDocument_a0e6855771cbe87d839fb301d3646f5b8}\label{classtinyxml2_1_1XMLDocument_a0e6855771cbe87d839fb301d3646f5b8} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!RootElement@{RootElement}}
+\index{RootElement@{RootElement}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\doxysubsubsection{\texorpdfstring{RootElement()}{RootElement()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classtinyxml2_1_1XMLElement}{XMLElement}} \texorpdfstring{$\ast$}{*} tinyxml2\+::\+XMLDocument\+::\+Root\+Element (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Return the root element of DOM. Equivalent to \doxylink{classtinyxml2_1_1XMLNode_a1bec132dcf085284e0a10755f2cf0d57}{First\+Child\+Element()}. To get the first node, use First\+Child(). \Hypertarget{classtinyxml2_1_1XMLDocument_a73ac416b4a2aa0952e841220eb3da18f}\label{classtinyxml2_1_1XMLDocument_a73ac416b4a2aa0952e841220eb3da18f} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!SaveFile@{SaveFile}}
+\index{SaveFile@{SaveFile}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\doxysubsubsection{\texorpdfstring{SaveFile()}{SaveFile()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily XMLError tinyxml2\+::\+XMLDocument\+::\+Save\+File (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{filename,  }\item[{bool}]{compact = {\ttfamily false} }\end{DoxyParamCaption})}
+
+Save the XML file to disk. Returns XML\+\_\+\+SUCCESS (0) on success, or an error\+ID. \Hypertarget{classtinyxml2_1_1XMLDocument_a8b95779479a0035acc67b3a61dfe1b74}\label{classtinyxml2_1_1XMLDocument_a8b95779479a0035acc67b3a61dfe1b74} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!SaveFile@{SaveFile}}
+\index{SaveFile@{SaveFile}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\doxysubsubsection{\texorpdfstring{SaveFile()}{SaveFile()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily XMLError tinyxml2\+::\+XMLDocument\+::\+Save\+File (\begin{DoxyParamCaption}\item[{FILE \texorpdfstring{$\ast$}{*}}]{fp,  }\item[{bool}]{compact = {\ttfamily false} }\end{DoxyParamCaption})}
+
+Save the XML file to disk. You are responsible for providing and closing the FILE\texorpdfstring{$\ast$}{*}.
+
+Returns XML\+\_\+\+SUCCESS (0) on success, or an error\+ID. \Hypertarget{classtinyxml2_1_1XMLDocument_a14419b698f7c4b140df4e80f3f0c93b0}\label{classtinyxml2_1_1XMLDocument_a14419b698f7c4b140df4e80f3f0c93b0} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!SetBOM@{SetBOM}}
+\index{SetBOM@{SetBOM}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\doxysubsubsection{\texorpdfstring{SetBOM()}{SetBOM()}}
+{\footnotesize\ttfamily void tinyxml2\+::\+XMLDocument\+::\+Set\+BOM (\begin{DoxyParamCaption}\item[{bool}]{use\+BOM }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets whether to write the BOM when writing the file. \Hypertarget{classtinyxml2_1_1XMLDocument_a01ab2fc16fbce5f4456d67d24090e70b}\label{classtinyxml2_1_1XMLDocument_a01ab2fc16fbce5f4456d67d24090e70b} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!ShallowClone@{ShallowClone}}
+\index{ShallowClone@{ShallowClone}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\doxysubsubsection{\texorpdfstring{ShallowClone()}{ShallowClone()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}} \texorpdfstring{$\ast$}{*} tinyxml2\+::\+XMLDocument\+::\+Shallow\+Clone (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{XMLDocument}} \texorpdfstring{$\ast$}{*}}]{document }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Make a copy of this node, but not its children. You may pass in a Document pointer that will be the owner of the new Node. If the \textquotesingle{}document\textquotesingle{} is null, then the node returned will be allocated from the current Document. (this-\/\texorpdfstring{$>$}{>}\doxylink{classtinyxml2_1_1XMLNode_a48d1695f7c834129e072548957a50501}{Get\+Document()})
+
+Note\+: if called on a \doxylink{classtinyxml2_1_1XMLDocument}{XMLDocument}, this will return null. 
+
+Implements \mbox{\hyperlink{classtinyxml2_1_1XMLNode_a9046880c05b81ad99ee645f4b2a53ecd}{tinyxml2\+::\+XMLNode}}.
+
+\Hypertarget{classtinyxml2_1_1XMLDocument_ac538345c44f521e418ff86b4bdc20ca8}\label{classtinyxml2_1_1XMLDocument_ac538345c44f521e418ff86b4bdc20ca8} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!ShallowEqual@{ShallowEqual}}
+\index{ShallowEqual@{ShallowEqual}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\doxysubsubsection{\texorpdfstring{ShallowEqual()}{ShallowEqual()}}
+{\footnotesize\ttfamily virtual bool tinyxml2\+::\+XMLDocument\+::\+Shallow\+Equal (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}} \texorpdfstring{$\ast$}{*}}]{compare }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Test if 2 nodes are the same, but don\textquotesingle{}t test children. The 2 nodes do not need to be in the same Document.
+
+Note\+: if called on a \doxylink{classtinyxml2_1_1XMLDocument}{XMLDocument}, this will return false. 
+
+Implements \mbox{\hyperlink{classtinyxml2_1_1XMLNode_a7ce18b751c3ea09eac292dca264f9226}{tinyxml2\+::\+XMLNode}}.
+
+\Hypertarget{classtinyxml2_1_1XMLDocument_a680fae342b442e75aaef972d7370e15a}\label{classtinyxml2_1_1XMLDocument_a680fae342b442e75aaef972d7370e15a} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!ToDocument@{ToDocument}}
+\index{ToDocument@{ToDocument}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\doxysubsubsection{\texorpdfstring{ToDocument()}{ToDocument()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual const \mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{XMLDocument}} \texorpdfstring{$\ast$}{*} tinyxml2\+::\+XMLDocument\+::\+To\+Document (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{tinyxml2\+::\+XMLNode}}.
+
+\Hypertarget{classtinyxml2_1_1XMLDocument_a290ad241e05e6aeeccbc78a4f3454f55}\label{classtinyxml2_1_1XMLDocument_a290ad241e05e6aeeccbc78a4f3454f55} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!ToDocument@{ToDocument}}
+\index{ToDocument@{ToDocument}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\doxysubsubsection{\texorpdfstring{ToDocument()}{ToDocument()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{XMLDocument}} \texorpdfstring{$\ast$}{*} tinyxml2\+::\+XMLDocument\+::\+To\+Document (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Safely cast to a Document, or null. 
+
+
+
+Reimplemented from \mbox{\hyperlink{classtinyxml2_1_1XMLNode_a6107c3f57ab6e0755959947762953652}{tinyxml2\+::\+XMLNode}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/tinyxml2/tinyxml2.\+h\end{DoxyCompactItemize}

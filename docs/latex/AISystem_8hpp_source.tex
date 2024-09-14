@@ -1,0 +1,25 @@
+\doxysection{AISystem.\+hpp}
+\hypertarget{AISystem_8hpp_source}{}\label{AISystem_8hpp_source}\index{include/BA/Systems/AISystem.hpp@{include/BA/Systems/AISystem.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}BA/Components/AI/AI.hpp"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}BA/Systems/ComponentSystem.hpp"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }ba\ \{}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classba_1_1AISystem}{AISystem}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classba_1_1ComponentSystem}{ComponentSystem}}\{}
+\DoxyCodeLine{00009\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classba_1_1AISystem}{AISystem}}(\mbox{\hyperlink{classba_1_1EntityManager}{EntityManager}}*\ entityManager);}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ update(\textcolor{keywordtype}{float}\ deltaTime);}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ add(std::shared\_ptr<Entity>\&\ entity);}
+\DoxyCodeLine{00015\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \};\ \textcolor{comment}{//\ class\ AISystem}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \}\ \textcolor{comment}{//\ namespace\ ba}}
+
+\end{DoxyCode}

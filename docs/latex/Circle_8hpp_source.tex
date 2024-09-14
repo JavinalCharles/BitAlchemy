@@ -1,0 +1,71 @@
+\doxysection{Circle.\+hpp}
+\hypertarget{Circle_8hpp_source}{}\label{Circle_8hpp_source}\index{include/BA/Utilities/Circle.hpp@{include/BA/Utilities/Circle.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}BA/Utilities/Vector2.hpp"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}BA/Types.hpp"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{namespace\ }ba\ \{}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classba_1_1Circle}{Circle}}\ \{}
+\DoxyCodeLine{00011\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00012\ \ \ \ \ \mbox{\hyperlink{classba_1_1Vector2}{Vector2<T>}}\ \ \ \ \ \ \ \ origin\{\};}
+\DoxyCodeLine{00013\ \ \ \ \ T\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ radius\{\};}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classba_1_1Circle_a1e68adcf83768164c9540b19671b44f4}{Circle}}();}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classba_1_1Circle_a1e68adcf83768164c9540b19671b44f4}{Circle}}(\mbox{\hyperlink{classba_1_1Vector2}{Vector2<T>}}\ o,\ T\ r);}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ U>}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classba_1_1Circle_a1e68adcf83768164c9540b19671b44f4}{Circle}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Circle}{Circle<U>}}\&\ other);}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{double}\ getArea()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{double}\ circumference()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ intersects(\textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Circle}{Circle}}\&\ other)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \};\ \textcolor{comment}{//\ class\ Circle}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classba_1_1Circle}{IntCircle}}\ =\ \mbox{\hyperlink{classba_1_1Circle}{Circle<int>}};}
+\DoxyCodeLine{00028\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classba_1_1Circle}{FloatCircle}}\ =\ \mbox{\hyperlink{classba_1_1Circle}{Circle<float>}};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00035\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classba_1_1Circle_a1e68adcf83768164c9540b19671b44f4}{Circle<T>::Circle}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00038\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classba_1_1Circle_a1e68adcf83768164c9540b19671b44f4}{Circle<T>::Circle}}(\mbox{\hyperlink{classba_1_1Vector2}{Vector2<T>}}\ o,\ T\ r)\ :}
+\DoxyCodeLine{00039\ \ \ \ \ origin(o),}
+\DoxyCodeLine{00040\ \ \ \ \ radius(r)}
+\DoxyCodeLine{00041\ \{}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00046\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ U>}
+\DoxyCodeLine{00047\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classba_1_1Circle_a1e68adcf83768164c9540b19671b44f4}{Circle<T>::Circle}}(\textcolor{keyword}{const}\ Circle<U>\&\ other)\ :}
+\DoxyCodeLine{00048\ \ \ \ \ origin(other.origin),}
+\DoxyCodeLine{00049\ \ \ \ \ radius(static\_cast<T>(other.radius))}
+\DoxyCodeLine{00050\ \{}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00055\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{double}\ Circle<T>::getArea()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordflow}{return}\ PI\ *\ (radius\ *\ radius);}
+\DoxyCodeLine{00057\ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00060\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{double}\ Circle<T>::circumference()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordflow}{return}\ 2\ *\ radius\ *\ PI;}
+\DoxyCodeLine{00062\ \}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00065\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ Circle<T>::intersects(\textcolor{keyword}{const}\ Circle<T>\&\ other)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordflow}{return}\ origin.distance(other.origin)\ <=\ (this-\/>radius\ +\ other.radius);}
+\DoxyCodeLine{00067\ \}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \}\ \textcolor{comment}{//\ namespace\ ba}}
+
+\end{DoxyCode}

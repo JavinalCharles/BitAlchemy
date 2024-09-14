@@ -1,0 +1,28 @@
+\doxysection{ba\+::Component\+Type Concept Reference}
+\hypertarget{conceptba_1_1ComponentType}{}\label{conceptba_1_1ComponentType}\index{ba::ComponentType@{ba::ComponentType}}
+
+
+A concept ensuring C is a subtype of \doxylink{classba_1_1Component}{ba\+::\+Component}.  
+
+
+
+
+{\ttfamily \#include $<$Entity.\+hpp$>$}
+
+\doxysubsection{Concept definition}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename}\ C>}
+\DoxyCodeLine{\textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptba_1_1ComponentType}{ba::ComponentType}}\ =\ \ std::is\_base\_of<ba::Component,\ C>::value}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Detailed Description}
+A concept ensuring C is a subtype of \doxylink{classba_1_1Component}{ba\+::\+Component}. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em C} & A class name that should be subtype of Component. \\
+\hline
+\end{DoxyTemplParams}

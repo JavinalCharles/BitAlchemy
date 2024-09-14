@@ -1,0 +1,67 @@
+\doxysection{Input\+Manager.\+hpp}
+\hypertarget{InputManager_8hpp_source}{}\label{InputManager_8hpp_source}\index{include/BA/Inputs/InputManager.hpp@{include/BA/Inputs/InputManager.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <SDL2/SDL\_events.h>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <BA/Inputs/Input.hpp>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <BA/Types.hpp>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{namespace\ }ba\ \{}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classba_1_1InputManager}{InputManager}}\ \{}
+\DoxyCodeLine{00013\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classba_1_1InputManager}{\string~InputManager}}();}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordtype}{void}\ handleEvents();}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00018\ \ \ \ \ std::shared\_ptr<T>\ addInput();}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00021\ \ \ \ \ std::shared\_ptr<T>\ getInput();}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00024\ \ \ \ \ std::unordered\_map<IDtype,\ std::shared\_ptr<Input>>\ m\_inputs;}
+\DoxyCodeLine{00025\ \};\ \textcolor{comment}{//\ class\ InputManager}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00029\ std::shared\_ptr<T>\ InputManager::addInput()\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{comment}{//\ ensure\ T\ is\ derived\ of\ ba::Input}}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_base\_of<ba::Input,\ T>::value,\ \textcolor{stringliteral}{"{}Error.\ T\ must\ be\ a\ derived\ type\ of\ ba::Input.\ Assertion\ returned\ false."{}});}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_inputs.contains(T::IID))\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (std::dynamic\_pointer\_cast<T>(m\_inputs.at(T::IID)))\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ T\ already\ exists.\ just\ rerturn\ it.}}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::dynamic\_pointer\_cast<T>(m\_inputs.at(T::IID));}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ if\ T\ does\ not\ exist\ yet,\ but\ a\ similar\ IID\ is\ being\ used.\ replace\ the\ object\ mapped\ to\ that\ IID.}}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ m\_inputs.at(T::IID)\ =\ std::make\_shared<T>(\textcolor{keyword}{this});}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00042\ \ \ \ \ \}}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ m\_inputs.insert(std::make\_pair(T::IID,\ std::make\_shared<T>(\textcolor{keyword}{this})));}
+\DoxyCodeLine{00045\ \ \ \ \ \}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordflow}{return}\ std::dynamic\_pointer\_cast<T>(m\_inputs.at(T::IID));}
+\DoxyCodeLine{00048\ \}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00051\ std::shared\_ptr<T>\ InputManager::getInput()\ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{comment}{//\ ensure\ T\ is\ derived\ of\ ba::Input}}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_base\_of<ba::Input,\ T>::value,\ \textcolor{stringliteral}{"{}Error.\ T\ must\ be\ a\ derived\ type\ of\ ba::Input.\ Assertion\ returned\ false."{}});}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_inputs.contains(T::IID))\ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::dynamic\_pointer\_cast<T>(m\_inputs.at(T::IID));}
+\DoxyCodeLine{00057\ \ \ \ \ \}}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00059\ \}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \}\ \textcolor{comment}{//\ namespace\ ba}}
+
+\end{DoxyCode}

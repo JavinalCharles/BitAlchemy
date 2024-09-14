@@ -1,5 +1,5 @@
-\hypertarget{classba_1_1SoundEmitter}{}\doxysection{ba\+::Sound\+Emitter Class Reference}
-\label{classba_1_1SoundEmitter}\index{ba::SoundEmitter@{ba::SoundEmitter}}
+\doxysection{ba\+::Sound\+Emitter Class Reference}
+\hypertarget{classba_1_1SoundEmitter}{}\label{classba_1_1SoundEmitter}\index{ba::SoundEmitter@{ba::SoundEmitter}}
 
 
 Inheritance diagram for ba\+::Sound\+Emitter\+:
@@ -7,7 +7,7 @@ Inheritance diagram for ba\+::Sound\+Emitter\+:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=172pt]{classba_1_1SoundEmitter__inherit__graph}
+\includegraphics[width=181pt]{classba_1_1SoundEmitter__inherit__graph}
 \end{center}
 \end{figure}
 
@@ -20,28 +20,44 @@ Collaboration diagram for ba\+::Sound\+Emitter\+:
 \includegraphics[width=350pt]{classba_1_1SoundEmitter__coll__graph}
 \end{center}
 \end{figure}
-\doxysubsection*{Public Member Functions}
+\doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classba_1_1SoundEmitter_a008ff5c30f279f38335ed5bd204c9cc5}\label{classba_1_1SoundEmitter_a008ff5c30f279f38335ed5bd204c9cc5}} 
-{\bfseries Sound\+Emitter} (\mbox{\hyperlink{classba_1_1Entity}{Entity}} $\ast$owner)
+\Hypertarget{classba_1_1SoundEmitter_a008ff5c30f279f38335ed5bd204c9cc5}\label{classba_1_1SoundEmitter_a008ff5c30f279f38335ed5bd204c9cc5} 
+{\bfseries Sound\+Emitter} (\mbox{\hyperlink{classba_1_1Entity}{Entity}} \texorpdfstring{$\ast$}{*}owner)
 \item 
-\mbox{\Hypertarget{classba_1_1SoundEmitter_ae9fd4c0fd44d965fa51080e902a2ca02}\label{classba_1_1SoundEmitter_ae9fd4c0fd44d965fa51080e902a2ca02}} 
+\Hypertarget{classba_1_1SoundEmitter_ae9fd4c0fd44d965fa51080e902a2ca02}\label{classba_1_1SoundEmitter_ae9fd4c0fd44d965fa51080e902a2ca02} 
 void {\bfseries emit\+Sound} (IDtype sound\+ID)
 \end{DoxyCompactItemize}
-\doxysubsection*{Static Public Attributes}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classba_1_1Component}{ba\+::\+Component}}}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classba_1_1SoundEmitter_ad6384baab8f4a8d852c03c5449712c19}\label{classba_1_1SoundEmitter_ad6384baab8f4a8d852c03c5449712c19}} 
+\mbox{\hyperlink{classba_1_1Component_a45eb09f349a805cf0a646549ec6c204b}{Component}} (\mbox{\hyperlink{classba_1_1Entity}{Entity}} \texorpdfstring{$\ast$}{*}owner)
+\begin{DoxyCompactList}\small\item\em \doxylink{classba_1_1Component}{Component} Constructor. \end{DoxyCompactList}\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Component} ()
+\begin{DoxyCompactList}\small\item\em \doxylink{classba_1_1Component}{Component} Destructor. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classba_1_1Component_a6f0b77ccea25915379aa4b81bd29e25c}{awake}} ()
+\begin{DoxyCompactList}\small\item\em Called once after the entity owner is added to the main loop. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classba_1_1Entity}{Entity}} \texorpdfstring{$\ast$}{*} {\bfseries get\+Owner} () const
+\begin{DoxyCompactList}\small\item\em Provides a pointer Reference to owner entity. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classba_1_1SoundEmitter_ad6384baab8f4a8d852c03c5449712c19}\label{classba_1_1SoundEmitter_ad6384baab8f4a8d852c03c5449712c19} 
 static const IDtype {\bfseries CID}
 \end{DoxyCompactItemize}
-\doxysubsection*{Friends}
+\doxysubsubsection*{Friends}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classba_1_1SoundEmitter_a37549e72794cd0629773298b8456a570}\label{classba_1_1SoundEmitter_a37549e72794cd0629773298b8456a570}} 
+\Hypertarget{classba_1_1SoundEmitter_a37549e72794cd0629773298b8456a570}\label{classba_1_1SoundEmitter_a37549e72794cd0629773298b8456a570} 
 class {\bfseries Sound\+System}
 \end{DoxyCompactItemize}
-\doxysubsection*{Additional Inherited Members}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classba_1_1Component}{ba\+::\+Component}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classba_1_1Entity}{Entity}} \texorpdfstring{$\ast$}{*} {\bfseries m\+\_\+owner}
+\end{DoxyCompactItemize}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

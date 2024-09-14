@@ -1,0 +1,27 @@
+\doxysection{Collidable.\+hpp}
+\hypertarget{Collidable_8hpp_source}{}\label{Collidable_8hpp_source}\index{include/BA/Components/Collidable.hpp@{include/BA/Components/Collidable.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}BA/Components/Component.hpp"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{keyword}{namespace\ }ba\ \{}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classba_1_1Collidable}{Collidable}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classba_1_1Component}{Component}}\ \{}
+\DoxyCodeLine{00008\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classba_1_1Collidable}{Collidable}}(\mbox{\hyperlink{classba_1_1Entity}{Entity}}*\ owner);}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ onCollisionEnter(IDtype\ other)\ =\ 0;}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ onCollisionStay(IDtype\ other)\ =\ 0;}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ onCollisionExit(IDtype\ other)\ =\ 0;}
+\DoxyCodeLine{00014\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ IDtype\ CID;}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \};\ \textcolor{comment}{//\ class\ Collidable}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \}\ \textcolor{comment}{//\ namespace\ ba}}
+
+\end{DoxyCode}

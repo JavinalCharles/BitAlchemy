@@ -1,0 +1,250 @@
+\doxysection{Quadtree.\+hpp}
+\hypertarget{Quadtree_8hpp_source}{}\label{Quadtree_8hpp_source}\index{include/BA/Containers/Quadtree.hpp@{include/BA/Containers/Quadtree.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <BA/Components/Component.hpp>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <BA/Entities/Entity.hpp>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <BA/Utilities/Rect.hpp>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <BA/Types.hpp>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }ba\ \{}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classba_1_1Quadtree}{Quadtree}}\ \{}
+\DoxyCodeLine{00017\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00018\ \ \ \ \ \mbox{\hyperlink{classba_1_1Quadtree}{Quadtree}}();}
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{classba_1_1Quadtree}{Quadtree}}(std::size\_t\ maxObjects,\ \textcolor{keywordtype}{int}\ maxLevels,\ \textcolor{keywordtype}{int}\ level\ =\ 0,\ \mbox{\hyperlink{classba_1_1Rect}{FloatRect}}\ bounds\ =\ \{0,\ 0,\ 3200,\ 3200\},\ \mbox{\hyperlink{classba_1_1Quadtree}{Quadtree}}*\ parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{void}\ insert(std::shared\_ptr<T>\ \textcolor{keywordtype}{object});}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{void}\ remove(std::shared\_ptr<T>\ \textcolor{keywordtype}{object});}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{comment}{//\ bool\ remove(IDtype\ ID);}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{void}\ clear();}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ std::vector<std::shared\_ptr<T>>\ search(\textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Rect}{FloatRect}}\&\ area)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Rect}{FloatRect}}\&\ getBounds()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{void}\ drawBounds(\mbox{\hyperlink{classba_1_1Window}{Window}}\&\ window);}
+\DoxyCodeLine{00032\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{void}\ split();}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{int}\ getChildIndexForObject(\textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Rect}{FloatRect}}\&\ objectBounds);}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{void}\ search(\textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Rect}{FloatRect}}\&\ area,\ std::vector<std::shared\_ptr<T>>\&\ returnList)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ thisTree\ =\ -\/1;}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ childNE\ =\ 0;}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ childNW\ =\ 1;}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ childSW\ =\ 2;}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ childSE\ =\ 3;}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ std::size\_t\ m\_maxObjects;}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{int}\ m\_maxLevels;}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{int}\ m\_level;}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{classba_1_1Rect}{FloatRect}}\ m\_bounds;}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \mbox{\hyperlink{classba_1_1Quadtree}{Quadtree<T>}}*\ m\_parent;}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ std::unique\_ptr<Quadtree<T>>\ m\_children[4];}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ std::unordered\_map<IDtype,\ std::shared\_ptr<T>>\ m\_objects;}
+\DoxyCodeLine{00054\ \};\ \textcolor{comment}{//\ class\ Quadtree}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00057\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classba_1_1Quadtree}{Quadtree<T>::drawBounds}}(\mbox{\hyperlink{classba_1_1Window}{Window}}\&\ window)\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ window.drawRect(m\_bounds,\ Color::Red);}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_children[0]\ ==\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00062\ \ \ \ \ \}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordflow}{for}\ (std::size\_t\ i\ =\ 0;\ i\ <\ 4;\ ++i)\ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ m\_children[i]-\/>drawBounds(window);}
+\DoxyCodeLine{00066\ \ \ \ \ \}}
+\DoxyCodeLine{00067\ \}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00070\ Quadtree<T>::Quadtree()\ :}
+\DoxyCodeLine{00071\ \ \ \ \ Quadtree(5,\ 5)}
+\DoxyCodeLine{00072\ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_base\_of<Component,\ T>::value,\ \textcolor{stringliteral}{"{}Assertion\ Error:\ T\ must\ be\ a\ sub-\/type\ of\ Component."{}});}
+\DoxyCodeLine{00074\ \}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00077\ Quadtree<T>::Quadtree(std::size\_t\ maxObjects,\ \textcolor{keywordtype}{int}\ maxLevels,\ \textcolor{keywordtype}{int}\ level,\ FloatRect\ bounds,\ Quadtree*\ parent)\ :}
+\DoxyCodeLine{00078\ \ \ \ \ m\_maxObjects(maxObjects),}
+\DoxyCodeLine{00079\ \ \ \ \ m\_maxLevels(maxLevels),}
+\DoxyCodeLine{00080\ \ \ \ \ m\_level(level),}
+\DoxyCodeLine{00081\ \ \ \ \ m\_bounds(bounds),}
+\DoxyCodeLine{00082\ \ \ \ \ m\_parent(parent)}
+\DoxyCodeLine{00083\ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_base\_of<Component,\ T>::value,\ \textcolor{stringliteral}{"{}Assertion\ Error:\ T\ must\ be\ a\ sub-\/type\ of\ Component."{}});}
+\DoxyCodeLine{00085\ \}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00089\ \textcolor{keywordtype}{void}\ Quadtree<T>::insert(std::shared\_ptr<T>\ \textcolor{keywordtype}{object})\ \{}
+\DoxyCodeLine{00090\ \ \ \ \ FloatRect\ bounds\ =\ \textcolor{keywordtype}{object}-\/>getGlobalBounds();}
+\DoxyCodeLine{00091\ \ \ \ \ std::optional<FloatRect>\ intersection\ =\ m\_bounds.intersects(bounds);}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{comment}{//\ Terminate\ function\ if\ the\ given\ object\ does\ not\ intersect\ with\ the\ bounds\ of\ this\ quadtree}}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordflow}{if}\ (!intersection.has\_value())\ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00097\ \ \ \ \ \}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_children[0]\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ index\ =\ getChildIndexForObject(bounds);}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (index\ !=\ thisTree)\ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ m\_children[index]-\/>insert(\textcolor{keywordtype}{object});}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ m\_objects.insert\_or\_assign(object-\/>getOwner()-\/>ID,\ \textcolor{keywordtype}{object});}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00108\ \ \ \ \ \}}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ m\_objects.insert\_or\_assign(object-\/>getOwner()-\/>ID,\ \textcolor{keywordtype}{object});}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(m\_objects.size()\ >\ m\_maxObjects\ \&\&\ m\_level\ <\ m\_maxLevels\ \&\&\ m\_children[0]\ ==\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>split();}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ objIterator\ =\ m\_objects.begin();}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}(objIterator\ !=\ m\_objects.end())\ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ obj\ =\ *objIterator;}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ index\ =\ this-\/>getChildIndexForObject(obj.second-\/>getGlobalBounds());}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (index\ !=\ thisTree)\ \{}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_children[index]-\/>insert(obj.second);}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ objIterator\ =\ m\_objects.erase(objIterator);}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ no\ need\ to\ insert\ since\ the\ object\ is\ already\ in\ this\ tree.}}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ++objIterator;}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00129\ \ \ \ \ \}}
+\DoxyCodeLine{00130\ \}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00133\ \textcolor{keywordtype}{void}\ Quadtree<T>::remove(std::shared\_ptr<T>\ \textcolor{keywordtype}{object})\ \{}
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ ID\ =\ \textcolor{keywordtype}{object}-\/>getOwner()-\/>ID;}
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keywordflow}{if}(m\_objects.contains(ID))\ \{}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ m\_objects.erase(ID);}
+\DoxyCodeLine{00137\ \ \ \ \ \}}
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ FloatRect\ bounds\ =\ \textcolor{keywordtype}{object}-\/>getGlobalBounds();}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ i\ =\ this-\/>getChildIndexForObject(bounds);}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(m\_children[i]\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ m\_children[i]-\/>remove(\textcolor{keywordtype}{object});}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00144\ \ \ \ \ \}}
+\DoxyCodeLine{00145\ \}}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00148\ \textcolor{keywordtype}{void}\ Quadtree<T>::clear()\ \{}
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4;\ ++i)\ \{}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_children[i]\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ m\_children[i]-\/>clear();}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ m\_children[i]\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00154\ \ \ \ \ \}}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \ \ \ \ m\_objects.clear();}
+\DoxyCodeLine{00157\ \}}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00160\ std::vector<std::shared\_ptr<T>>\ Quadtree<T>::search(\textcolor{keyword}{const}\ FloatRect\&\ area)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00161\ \ \ \ \ std::vector<std::shared\_ptr<T>>\ res;}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ \ \ search(area,\ res);}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{00166\ \}}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00169\ \textcolor{keywordtype}{void}\ Quadtree<T>::search(\textcolor{keyword}{const}\ FloatRect\&\ area,\ std::vector<std::shared\_ptr<T>>\&\ returnList)\textcolor{keyword}{\ const}\{}
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\&\ [key,\ \textcolor{keywordtype}{object}]\ :\ m\_objects)\ \{}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ std::optional<FloatRect>\ intersection(object-\/>getGlobalBounds().intersects(area));}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (intersection.has\_value())\ \{}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ returnList.emplace\_back(\textcolor{keywordtype}{object});}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00175\ \ \ \ \ \}}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{keywordflow}{if}(m\_children[0]\ ==\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4;\ ++i)\ \{}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ std::optional<FloatRect>\ intersection\ =\ m\_children[i]-\/>getBounds().intersects(area);}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (intersection.has\_value())\ \{}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ m\_children[i]-\/>search(area,\ returnList);}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00185\ \ \ \ \ \}}
+\DoxyCodeLine{00186\ \}}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00189\ \textcolor{keyword}{const}\ FloatRect\&\ Quadtree<T>::getBounds()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_bounds;}
+\DoxyCodeLine{00191\ \}}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00193\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00194\ \textcolor{keywordtype}{int}\ Quadtree<T>::getChildIndexForObject(\textcolor{keyword}{const}\ FloatRect\&\ objectBounds)\ \{}
+\DoxyCodeLine{00195\ \ \ \ \ \textcolor{keywordtype}{int}\ index\ =\ thisTree;}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{keywordtype}{double}\ verticalDividingLine\ =\ m\_bounds.l\ +\ m\_bounds.w\ *\ 0.5f;}
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{keywordtype}{double}\ horizontalDividingLine\ =\ m\_bounds.t\ +\ m\_bounds.h\ *\ 0.5f;}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keywordtype}{bool}\ north\ =\ objectBounds.t\ <\ horizontalDividingLine\ \&\&\ (objectBounds.h\ +\ objectBounds.t\ <\ horizontalDividingLine);}
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keywordtype}{bool}\ south\ =\ objectBounds.t\ >\ horizontalDividingLine;}
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keywordtype}{bool}\ west\ =\ objectBounds.l\ <\ verticalDividingLine\ \&\&\ (objectBounds.l\ +\ objectBounds.w\ <\ verticalDividingLine);}
+\DoxyCodeLine{00203\ \ \ \ \ \textcolor{keywordtype}{bool}\ east\ =\ objectBounds.l\ >\ verticalDividingLine;}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00205\ \ \ \ \ \textcolor{keywordflow}{if}(east)}
+\DoxyCodeLine{00206\ \ \ \ \ \{}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(north)}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ index\ =\ childNE;}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(south)}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ index\ =\ childSE;}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00215\ \ \ \ \ \}}
+\DoxyCodeLine{00216\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(west)}
+\DoxyCodeLine{00217\ \ \ \ \ \{}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(north)}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ index\ =\ childNW;}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(south)}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ index\ =\ childSW;}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00226\ \ \ \ \ \}}
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00228\ \ \ \ \ \textcolor{keywordflow}{return}\ index;}
+\DoxyCodeLine{00229\ \}}
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00231\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00232\ \textcolor{keywordtype}{void}\ Quadtree<T>::split()\ \{}
+\DoxyCodeLine{00233\ \ \ \ \ \textcolor{keyword}{const}\ Vector2f\ size\{}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ m\_bounds.w\ /\ 2,}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ m\_bounds.h\ /\ 2}
+\DoxyCodeLine{00236\ \ \ \ \ \};}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00238\ \ \ \ \ m\_children[childNE]\ =\ std::make\_unique<Quadtree<T>>(m\_maxObjects,\ m\_maxLevels,\ m\_level\ +\ 1,\ FloatRect(\{m\_bounds.l\ +\ size.x,\ m\_bounds.t\},\ size),\ \textcolor{keyword}{this});}
+\DoxyCodeLine{00239\ \ \ \ \ m\_children[childNW]\ =\ std::make\_unique<Quadtree<T>>(m\_maxObjects,\ m\_maxLevels,\ m\_level\ +\ 1,\ FloatRect(\{m\_bounds.l,\ m\_bounds.t\},\ size),\ \textcolor{keyword}{this});}
+\DoxyCodeLine{00240\ \ \ \ \ m\_children[childSW]\ =\ std::make\_unique<Quadtree<T>>(m\_maxObjects,\ m\_maxLevels,\ m\_level\ +\ 1,\ FloatRect(\{m\_bounds.l,\ m\_bounds.t\ +\ size.y\},\ size),\ \textcolor{keyword}{this});}
+\DoxyCodeLine{00241\ \ \ \ \ m\_children[childSE]\ =\ std::make\_unique<Quadtree<T>>(m\_maxObjects,\ m\_maxLevels,\ m\_level\ +\ 1,\ FloatRect(\{m\_bounds.l\ +\ size.x,\ m\_bounds.t\ +\ size.y\},\ size),\ \textcolor{keyword}{this});}
+\DoxyCodeLine{00242\ \}}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00244\ \}\ \textcolor{comment}{//\ namespace\ ba}}
+
+\end{DoxyCode}

@@ -1,0 +1,26 @@
+\doxysection{AI.\+hpp}
+\hypertarget{AI_8hpp_source}{}\label{AI_8hpp_source}\index{include/BA/Components/AI/AI.hpp@{include/BA/Components/AI/AI.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}BA/Components/Component.hpp"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }ba\ \{}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classba_1_1AI}{AI}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classba_1_1Component}{Component}}\ \{}
+\DoxyCodeLine{00012\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classba_1_1AI}{AI}}(\mbox{\hyperlink{classba_1_1Entity}{Entity}}*\ owner);}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ behave(\textcolor{keywordtype}{float}\ deltaTime)\ =\ 0;}
+\DoxyCodeLine{00016\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ IDtype\ CID;}
+\DoxyCodeLine{00018\ \};\ \textcolor{comment}{//\ class\ AI}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \}\ \textcolor{comment}{//\ namespace\ ba}}
+
+\end{DoxyCode}

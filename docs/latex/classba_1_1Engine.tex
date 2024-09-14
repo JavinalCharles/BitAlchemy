@@ -1,5 +1,5 @@
-\hypertarget{classba_1_1Engine}{}\doxysection{ba\+::Engine Class Reference}
-\label{classba_1_1Engine}\index{ba::Engine@{ba::Engine}}
+\doxysection{ba\+::Engine Class Reference}
+\hypertarget{classba_1_1Engine}{}\label{classba_1_1Engine}\index{ba::Engine@{ba::Engine}}
 
 
 Collaboration diagram for ba\+::Engine\+:
@@ -10,52 +10,115 @@ Collaboration diagram for ba\+::Engine\+:
 \includegraphics[width=350pt]{classba_1_1Engine__coll__graph}
 \end{center}
 \end{figure}
-\doxysubsection*{Public Member Functions}
+\doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classba_1_1Engine_af47afaad97da27604cf4c9971b60bcf1}\label{classba_1_1Engine_af47afaad97da27604cf4c9971b60bcf1}} 
-{\bfseries Engine} (const std\+::string \&title, \mbox{\hyperlink{classba_1_1Rect}{Int\+Rect}} dimension, std\+::uint32\+\_\+t win\+Flags)
+\Hypertarget{classba_1_1Engine_a802fccfa8a8ff36ae76077a683c2a807}\label{classba_1_1Engine_a802fccfa8a8ff36ae76077a683c2a807} 
+{\bfseries Engine} (const std\+::string \&org\+Name, const std\+::string \&app\+Name)
 \item 
-\mbox{\Hypertarget{classba_1_1Engine_a7cac739227f86ba42f824ccc18e8a8ba}\label{classba_1_1Engine_a7cac739227f86ba42f824ccc18e8a8ba}} 
+\Hypertarget{classba_1_1Engine_a749279b4e8517210cac963399ea44386}\label{classba_1_1Engine_a749279b4e8517210cac963399ea44386} 
+{\bfseries Engine} (const std\+::string \&org\+Name, const std\+::string \&app\+Name, const std\+::string \&config\+File\+Name)
+\item 
+\Hypertarget{classba_1_1Engine_af1dd8d55cfb52d55a1da99d9f36f0c59}\label{classba_1_1Engine_af1dd8d55cfb52d55a1da99d9f36f0c59} 
+{\bfseries Engine} (const std\+::string \&org\+Name, const std\+::string \&app\+Name, const \mbox{\hyperlink{classba_1_1Rect}{Int\+Rect}} \&window\+Dimension, ba\+::uint32 window\+Flags)
+\item 
+\Hypertarget{classba_1_1Engine_a3424774bf7eb4664def12ab2bd47fb08}\label{classba_1_1Engine_a3424774bf7eb4664def12ab2bd47fb08} 
+{\bfseries Engine} (const std\+::string \&title, const \mbox{\hyperlink{classba_1_1Rect}{Int\+Rect}} \&dimension, ba\+::uint32 win\+Flags)
+\item 
+\Hypertarget{classba_1_1Engine_a8e2f4c6ed80cf3fc52024c3b11987772}\label{classba_1_1Engine_a8e2f4c6ed80cf3fc52024c3b11987772} 
+{\bfseries Engine} (\mbox{\hyperlink{classba_1_1Engine}{Engine}} \&other)=delete
+\item 
+\Hypertarget{classba_1_1Engine_a43c1d388d158587e234e3a283920db8a}\label{classba_1_1Engine_a43c1d388d158587e234e3a283920db8a} 
+\mbox{\hyperlink{classba_1_1Engine}{Engine}} \& {\bfseries operator=} (\mbox{\hyperlink{classba_1_1Engine}{Engine}} \&other)=delete
+\item 
+\Hypertarget{classba_1_1Engine_a7cac739227f86ba42f824ccc18e8a8ba}\label{classba_1_1Engine_a7cac739227f86ba42f824ccc18e8a8ba} 
 void {\bfseries set\+FPSLimit} (uint16 fps)
 \item 
-\mbox{\Hypertarget{classba_1_1Engine_adf44910b0f4ca231bcecd15aafa79d1e}\label{classba_1_1Engine_adf44910b0f4ca231bcecd15aafa79d1e}} 
+\Hypertarget{classba_1_1Engine_a93d573baaa6fac9a2dd9d72bb6660701}\label{classba_1_1Engine_a93d573baaa6fac9a2dd9d72bb6660701} 
+\mbox{\hyperlink{classba_1_1Window}{Window}} \& {\bfseries get\+Window} ()
+\item 
+\Hypertarget{classba_1_1Engine_abe5ec0cfb28566e142df1f0c90162ade}\label{classba_1_1Engine_abe5ec0cfb28566e142df1f0c90162ade} 
+\mbox{\hyperlink{classba_1_1ResourceManager}{Resource\+Manager}} \& {\bfseries get\+Resource\+Manager} ()
+\item 
+\Hypertarget{classba_1_1Engine_a9fbfc956db7f3e7245d3f0fd789d5ed3}\label{classba_1_1Engine_a9fbfc956db7f3e7245d3f0fd789d5ed3} 
+void {\bfseries set\+Window\+Size} (int width, int height)
+\item 
+\Hypertarget{classba_1_1Engine_af92b36408c99554c4c6f05bd3d1c0fa8}\label{classba_1_1Engine_af92b36408c99554c4c6f05bd3d1c0fa8} 
+void {\bfseries set\+Window\+Size} (const \mbox{\hyperlink{classba_1_1Vector2}{Vector2i}} \&window\+Area)
+\item 
+\Hypertarget{classba_1_1Engine_a3df90f08feac0c6e7c4c3dd37209a6a3}\label{classba_1_1Engine_a3df90f08feac0c6e7c4c3dd37209a6a3} 
+void {\bfseries set\+Window\+Dimension} (int x, int y, int w, int h)
+\item 
+\Hypertarget{classba_1_1Engine_a93bf3821376f30f5fbcd357ebfdad228}\label{classba_1_1Engine_a93bf3821376f30f5fbcd357ebfdad228} 
+void {\bfseries set\+Window\+Dimension} (const \mbox{\hyperlink{classba_1_1Vector2}{Vector2i}} \&pos, const \mbox{\hyperlink{classba_1_1Vector2}{Vector2i}} \&size)
+\item 
+\Hypertarget{classba_1_1Engine_ae21d066afc2a05e25dd3c011932360f7}\label{classba_1_1Engine_ae21d066afc2a05e25dd3c011932360f7} 
+void {\bfseries set\+Window\+Dimension} (const \mbox{\hyperlink{classba_1_1Rect}{Int\+Rect}} \&dimension)
+\item 
+\Hypertarget{classba_1_1Engine_add6fda9767afde4591394c08f8ce6a84}\label{classba_1_1Engine_add6fda9767afde4591394c08f8ce6a84} 
+void {\bfseries set\+Window\+Flags} (uint32 flags)
+\item 
+\Hypertarget{classba_1_1Engine_ae80defdc45aa695ef3ec87934bcaf0c1}\label{classba_1_1Engine_ae80defdc45aa695ef3ec87934bcaf0c1} 
+void {\bfseries add\+Window\+Flags} (uint32 flags)
+\item 
+\Hypertarget{classba_1_1Engine_a3d5149ec3564a6ce5a1ad25a3d008ec8}\label{classba_1_1Engine_a3d5149ec3564a6ce5a1ad25a3d008ec8} 
+virtual void {\bfseries on\+Init} ()
+\item 
+\Hypertarget{classba_1_1Engine_a9909b651a9aedc0bf61e4b084e43c0d6}\label{classba_1_1Engine_a9909b651a9aedc0bf61e4b084e43c0d6} 
+virtual void {\bfseries on\+Init} (const std\+::function$<$ void()$>$ \&init\+Func)
+\item 
+{\footnotesize template$<$Scene\+Type T$>$ }\\std\+::shared\+\_\+ptr$<$ T $>$ \mbox{\hyperlink{classba_1_1Engine_acc109069f070a2cde086db1ff4421ff6}{create\+Scene}} ()
+\item 
+\Hypertarget{classba_1_1Engine_a4ac3f1025bd8340fb08ee99c47694e88}\label{classba_1_1Engine_a4ac3f1025bd8340fb08ee99c47694e88} 
+IDtype {\bfseries add\+Scene} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1Scene}{Scene}} $>$ scene)
+\item 
+\Hypertarget{classba_1_1Engine_adf44910b0f4ca231bcecd15aafa79d1e}\label{classba_1_1Engine_adf44910b0f4ca231bcecd15aafa79d1e} 
 uint16 {\bfseries get\+FPSLimit} () const
 \item 
-\mbox{\Hypertarget{classba_1_1Engine_a90d3bca7c99fd02cad9fe7db97a6d771}\label{classba_1_1Engine_a90d3bca7c99fd02cad9fe7db97a6d771}} 
-virtual void {\bfseries init} ()
+\Hypertarget{classba_1_1Engine_a5b41addd309aa57bf44b09fe767b2383}\label{classba_1_1Engine_a5b41addd309aa57bf44b09fe767b2383} 
+void {\bfseries init} ()
 \item 
-\mbox{\Hypertarget{classba_1_1Engine_a57a9b4111d4f7585eae2eedef8a73724}\label{classba_1_1Engine_a57a9b4111d4f7585eae2eedef8a73724}} 
+\Hypertarget{classba_1_1Engine_a57a9b4111d4f7585eae2eedef8a73724}\label{classba_1_1Engine_a57a9b4111d4f7585eae2eedef8a73724} 
 void {\bfseries run} ()
-\item 
-\mbox{\Hypertarget{classba_1_1Engine_ac56d843fd0c476875242794f04127ee5}\label{classba_1_1Engine_ac56d843fd0c476875242794f04127ee5}} 
+\begin{DoxyCompactList}\small\item\em Starts the game loop. Only returns when the loop ends. \end{DoxyCompactList}\item 
+\Hypertarget{classba_1_1Engine_ac56d843fd0c476875242794f04127ee5}\label{classba_1_1Engine_ac56d843fd0c476875242794f04127ee5} 
 void {\bfseries handle\+Events} ()
 \item 
-\mbox{\Hypertarget{classba_1_1Engine_af3b416d3d8d95ba21a1793e3ad63e6ba}\label{classba_1_1Engine_af3b416d3d8d95ba21a1793e3ad63e6ba}} 
+\Hypertarget{classba_1_1Engine_af3b416d3d8d95ba21a1793e3ad63e6ba}\label{classba_1_1Engine_af3b416d3d8d95ba21a1793e3ad63e6ba} 
 void {\bfseries update} (float delta\+Time)
 \item 
-\mbox{\Hypertarget{classba_1_1Engine_ae6fd675faa8c6dac208458c63ceb41cb}\label{classba_1_1Engine_ae6fd675faa8c6dac208458c63ceb41cb}} 
+\Hypertarget{classba_1_1Engine_ae6fd675faa8c6dac208458c63ceb41cb}\label{classba_1_1Engine_ae6fd675faa8c6dac208458c63ceb41cb} 
 void {\bfseries post\+Update} (float delta\+Time)
 \item 
-\mbox{\Hypertarget{classba_1_1Engine_ac3f8c61b7add9b80f042ef9f539e9f13}\label{classba_1_1Engine_ac3f8c61b7add9b80f042ef9f539e9f13}} 
+\Hypertarget{classba_1_1Engine_ac3f8c61b7add9b80f042ef9f539e9f13}\label{classba_1_1Engine_ac3f8c61b7add9b80f042ef9f539e9f13} 
 void {\bfseries draw} ()
 \item 
-\mbox{\Hypertarget{classba_1_1Engine_a8f4f79d9d06e07f28403540766fa6cb8}\label{classba_1_1Engine_a8f4f79d9d06e07f28403540766fa6cb8}} 
+\Hypertarget{classba_1_1Engine_a8f4f79d9d06e07f28403540766fa6cb8}\label{classba_1_1Engine_a8f4f79d9d06e07f28403540766fa6cb8} 
 void {\bfseries clean\+Up} ()
 \end{DoxyCompactItemize}
-\doxysubsection*{Protected Attributes}
+\doxysubsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classba_1_1Engine_a44d7dc599b616c2615ed7bc83d3b4616}\label{classba_1_1Engine_a44d7dc599b616c2615ed7bc83d3b4616}} 
+\Hypertarget{classba_1_1Engine_a44d7dc599b616c2615ed7bc83d3b4616}\label{classba_1_1Engine_a44d7dc599b616c2615ed7bc83d3b4616} 
 \mbox{\hyperlink{classba_1_1Window}{Window}} {\bfseries m\+\_\+window}
 \item 
-\mbox{\Hypertarget{classba_1_1Engine_a0561e7047992c4b5230ef20577462e93}\label{classba_1_1Engine_a0561e7047992c4b5230ef20577462e93}} 
+\Hypertarget{classba_1_1Engine_a0561e7047992c4b5230ef20577462e93}\label{classba_1_1Engine_a0561e7047992c4b5230ef20577462e93} 
 \mbox{\hyperlink{classba_1_1ResourceManager}{Resource\+Manager}} {\bfseries m\+\_\+resources}
 \item 
-\mbox{\Hypertarget{classba_1_1Engine_a9240104d7f75a496bbdc7dffd91e31c2}\label{classba_1_1Engine_a9240104d7f75a496bbdc7dffd91e31c2}} 
+\Hypertarget{classba_1_1Engine_a9240104d7f75a496bbdc7dffd91e31c2}\label{classba_1_1Engine_a9240104d7f75a496bbdc7dffd91e31c2} 
 \mbox{\hyperlink{classba_1_1SceneManager}{Scene\+Manager}} {\bfseries m\+\_\+scene\+Manager}
 \end{DoxyCompactItemize}
 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classba_1_1Engine_acc109069f070a2cde086db1ff4421ff6}\label{classba_1_1Engine_acc109069f070a2cde086db1ff4421ff6} 
+\index{ba::Engine@{ba::Engine}!createScene@{createScene}}
+\index{createScene@{createScene}!ba::Engine@{ba::Engine}}
+\doxysubsubsection{\texorpdfstring{createScene()}{createScene()}}
+{\footnotesize\ttfamily template$<$Scene\+Type T$>$ \\
+std\+::shared\+\_\+ptr$<$ T $>$ ba\+::\+Engine\+::create\+Scene (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+METHOD IMPLEMENTATIONS 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

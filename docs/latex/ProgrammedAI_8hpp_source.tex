@@ -1,0 +1,44 @@
+\doxysection{Programmed\+AI.\+hpp}
+\hypertarget{ProgrammedAI_8hpp_source}{}\label{ProgrammedAI_8hpp_source}\index{include/BA/Components/AI/ProgrammedAI.hpp@{include/BA/Components/AI/ProgrammedAI.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}BA/Components/AI/AI.hpp"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }ba\ \{}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{using\ }Condition\ =\ std::function<bool(\textcolor{keywordtype}{float})>;}
+\DoxyCodeLine{00009\ \textcolor{keyword}{using\ }Behavior\ =\ std::function<void(\textcolor{keywordtype}{float})>;}
+\DoxyCodeLine{00010\ \textcolor{keyword}{using\ }BehaviorList\ =\ std::vector<Behavior>;}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ Bindings\ between\ condition\ and\ behavior,\ arranged\ by\ an\ integer\ key}}
+\DoxyCodeLine{00013\ \textcolor{keyword}{using\ }BehavioralBindings\ =\ std::map<int,\ std::pair<Condition,\ BehaviorList>>;}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classba_1_1ProgrammedAI}{ProgrammedAI}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classba_1_1AI}{AI}}\ \{}
+\DoxyCodeLine{00016\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classba_1_1ProgrammedAI}{ProgrammedAI}}(\mbox{\hyperlink{classba_1_1Entity}{Entity}}*\ owner);}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ behave(\textcolor{keywordtype}{float}\ deltaTime)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{bool}\ assignBindings(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id},\ \textcolor{keyword}{const}\ Condition\&\ condition,\ \textcolor{keyword}{const}\ BehaviorList\&\ behaviorList);}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{bool}\ assignBindings(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id},\ \textcolor{keyword}{const}\ Condition\&\ condition,\ \textcolor{keyword}{const}\ Behavior\&\ behavior);}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{bool}\ assignBindings(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id},\ \textcolor{keyword}{const}\ std::pair<Condition,\ BehaviorList>\&\ bindings);}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{void}\ addBehavior(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id},\ \textcolor{keyword}{const}\ Behavior\&\ behavior);}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{void}\ changeCondition(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id},\ \textcolor{keyword}{const}\ Condition\&\ condition);}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{const}\ std::pair<Condition,\ BehaviorList>\&\ getBindings(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{void}\ removeBindings(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{const}\ BehavioralBindings\&\ getBehavioralBindings()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00035\ \ \ \ \ BehavioralBindings\ \ \ \ \ \ m\_behaviorBindings;}
+\DoxyCodeLine{00036\ \};\ \textcolor{comment}{//\ class\ AI}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \}\ \textcolor{comment}{//\ namespace\ ba}}
+
+\end{DoxyCode}

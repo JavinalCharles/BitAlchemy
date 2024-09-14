@@ -1,0 +1,89 @@
+\doxysection{Entity\+Manager.\+hpp}
+\hypertarget{EntityManager_8hpp_source}{}\label{EntityManager_8hpp_source}\index{include/BA/Systems/EntityManager.hpp@{include/BA/Systems/EntityManager.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <set>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <stdexcept>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <BA/Entities/Entity.hpp>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <BA/Systems/CollisionSystem.hpp>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <BA/Systems/ComponentSystem.hpp>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <BA/Systems/RenderSystem.hpp>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <BA/Types.hpp>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <BA/Window/Window.hpp>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{namespace\ }ba\ \{}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00018\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptba_1_1SystemType}{SystemType}}\ =\ std::is\_base\_of<ba::ComponentSystem,\ T>::value;}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classba_1_1EntityManager}{EntityManager}}\ \{}
+\DoxyCodeLine{00021\ \textcolor{keyword}{public}:\ \textcolor{comment}{//\ METHODS}}
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{classba_1_1EntityManager}{EntityManager}}();}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{classba_1_1EntityManager}{\string~EntityManager}}();}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{void}\ add(std::vector<std::shared\_ptr<Entity>>\ \&otherEntities);}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{void}\ add(std::shared\_ptr<Entity>\ entity);}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{template}\ <SystemType\ T>}
+\DoxyCodeLine{00030\ \ \ \ \ std::shared\_ptr<T>\ includeSystem();}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{template}\ <SystemType\ T>}
+\DoxyCodeLine{00033\ \ \ \ \ std::shared\_ptr<T>\ getSystem()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{void}\ update(\textcolor{keywordtype}{float}\ deltaTime);}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{void}\ postUpdate(\textcolor{keywordtype}{float}\ deltaTime);}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ draw(\mbox{\hyperlink{classba_1_1Window}{ba::Window}}\&\ window);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{void}\ processNewObjects();}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{void}\ processRemovals();}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ std::shared\_ptr<Entity>\&\ operator[](IDtype\ entityID);}
+\DoxyCodeLine{00045\ \ \ \ \ std::shared\_ptr<Entity>\&\ at(IDtype\ entityID);}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00048\ \ \ \ \ std::map<IDtype,\ std::shared\_ptr<ba::Entity>>\ m\_entities;}
+\DoxyCodeLine{00049\ \ \ \ \ std::vector<std::shared\_ptr<ba::Entity>>\ m\_newEntities;}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ std::vector<std::shared\_ptr<ba::ComponentSystem>>\ m\_componentSystems;}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{classba_1_1RenderSystem}{RenderSystem}}\ m\_drawables;}
+\DoxyCodeLine{00054\ \};\ \textcolor{comment}{//\ class\ EntityManager}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{keyword}{template}\ <SystemType\ T>}
+\DoxyCodeLine{00058\ std::shared\_ptr<T>\ EntityManager::includeSystem()\ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\&\ existingSystem\ :\ m\_componentSystems)\ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (std::dynamic\_pointer\_cast<T>(existingSystem))\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::dynamic\_pointer\_cast<T>(existingSystem);}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00063\ \ \ \ \ \}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ std::shared\_ptr<T>\ newComponentSystem\ =\ std::make\_shared<T>(\textcolor{keyword}{this});}
+\DoxyCodeLine{00066\ \ \ \ \ m\_componentSystems.push\_back(newComponentSystem);}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordflow}{return}\ newComponentSystem;}
+\DoxyCodeLine{00069\ \}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \textcolor{keyword}{template}\ <SystemType\ T>}
+\DoxyCodeLine{00072\ std::shared\_ptr<T>\ EntityManager::getSystem()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\&\ existingSystem\ :\ m\_componentSystems)\ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (std::dynamic\_pointer\_cast<T>(existingSystem))\ \{}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::dynamic\_pointer\_cast<T>(existingSystem);}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00077\ \ \ \ \ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00080\ \}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \}\ \textcolor{comment}{//\ namespace\ ba}}
+
+\end{DoxyCode}

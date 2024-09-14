@@ -1,0 +1,42 @@
+\doxysection{Bit\+Alchemy\+Splash.\+hpp}
+\hypertarget{BitAlchemySplash_8hpp_source}{}\label{BitAlchemySplash_8hpp_source}\index{include/BA/Scenes/BitAlchemySplash.hpp@{include/BA/Scenes/BitAlchemySplash.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <stdexcept>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <SDL2/SDL.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <SDL2/SDL\_image.h>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <BA/Entities/Entity.hpp>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <BA/Scenes/Scene.hpp>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <BA/Types.hpp>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }ba\ \{}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classba_1_1BitAlchemySplash}{BitAlchemySplash}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classba_1_1Scene}{Scene}}\ \{}
+\DoxyCodeLine{00014\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00015\ \ \ \ \ \mbox{\hyperlink{classba_1_1BitAlchemySplash}{BitAlchemySplash}}();}
+\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{classba_1_1BitAlchemySplash}{BitAlchemySplash}}(\mbox{\hyperlink{classba_1_1Window}{Window}}*\ window,\ \mbox{\hyperlink{classba_1_1ResourceManager}{ResourceManager}}*\ resourceManager,\ \mbox{\hyperlink{classba_1_1SceneManager}{SceneManager}}*\ sceneManager);}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ onCreate();}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ onDestroy();}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ update(\textcolor{keywordtype}{float}\ deltaTime)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ draw(\mbox{\hyperlink{classba_1_1Window}{Window}}\&\ window);}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00027\ \ \ \ \ IDtype\ \ \ \ \ \ \ \ \ \ m\_splashTexID\ \ \ \ \ \ \ =\ 0;}
+\DoxyCodeLine{00028\ \ \ \ \ SDL\_Texture*\ \ \ \ m\_splashTexture\ \ \ \ \ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ m\_timeElapsed\ \ \ \ \ \ \ =\ 0.0f;}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ \ \ \ \ mk\_displayTime\ \ \ \ \ \ =\ 3.75f;}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \};\ \textcolor{comment}{//\ class\ BitAlchemySplash}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \}\ \textcolor{comment}{//\ namepapce\ ba}}
+
+\end{DoxyCode}

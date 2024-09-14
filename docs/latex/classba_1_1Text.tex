@@ -1,5 +1,5 @@
-\hypertarget{classba_1_1Text}{}\doxysection{ba\+::Text Class Reference}
-\label{classba_1_1Text}\index{ba::Text@{ba::Text}}
+\doxysection{ba\+::Text Class Reference}
+\hypertarget{classba_1_1Text}{}\label{classba_1_1Text}\index{ba::Text@{ba::Text}}
 
 
 Inheritance diagram for ba\+::Text\+:
@@ -7,7 +7,7 @@ Inheritance diagram for ba\+::Text\+:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=260pt]{classba_1_1Text__inherit__graph}
+\includegraphics[width=276pt]{classba_1_1Text__inherit__graph}
 \end{center}
 \end{figure}
 
@@ -20,47 +20,308 @@ Collaboration diagram for ba\+::Text\+:
 \includegraphics[width=350pt]{classba_1_1Text__coll__graph}
 \end{center}
 \end{figure}
-\doxysubsection*{Public Member Functions}
+\doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classba_1_1Text_ac8d6cb478b98eb730798665e33a7c349}\label{classba_1_1Text_ac8d6cb478b98eb730798665e33a7c349}} 
-{\bfseries Text} (\mbox{\hyperlink{classba_1_1Entity}{Entity}} $\ast$owner, IDtype draw\+Layer=0, IDtype sort\+Order=0)
+\Hypertarget{classba_1_1Text_a8d216c3430ec8bb5c1c1887ced5d4235}\label{classba_1_1Text_a8d216c3430ec8bb5c1c1887ced5d4235} 
+{\bfseries Text} (\mbox{\hyperlink{classba_1_1Entity}{Entity}} \texorpdfstring{$\ast$}{*}owner, IDtype draw\+Layer=DEFAULT\+\_\+\+RENDER\+\_\+\+LAYER)
 \item 
-\mbox{\Hypertarget{classba_1_1Text_a63a283220da23b28c24067bb0923ed16}\label{classba_1_1Text_a63a283220da23b28c24067bb0923ed16}} 
-virtual void {\bfseries draw} (\mbox{\hyperlink{classba_1_1Window}{Window}} \&window) override
+virtual void \mbox{\hyperlink{classba_1_1Text_a63a283220da23b28c24067bb0923ed16}{draw}} (\mbox{\hyperlink{classba_1_1Window}{Window}} \&window) override
 \item 
-\mbox{\Hypertarget{classba_1_1Text_ae5aedb8bdd8b85ddf3ad21e3a1f0c157}\label{classba_1_1Text_ae5aedb8bdd8b85ddf3ad21e3a1f0c157}} 
-IDtype {\bfseries load\+Font\+From\+File} (const std\+::string \&file\+Name, int font\+Size)
+void \mbox{\hyperlink{classba_1_1Text_a64bba8b6fa5da597cdf53858bab70c90}{append\+Text}} (char ch, std\+::size\+\_\+t count=1u)
+\begin{DoxyCompactList}\small\item\em Appends count copies of character ch at the end of the underlying text object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classba_1_1Text_af63aebf269f93fdc82fb7e2df880e504}{append\+Text}} (const std\+::string \&str)
+\begin{DoxyCompactList}\small\item\em Appends str to the end of the underlying text object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classba_1_1Text_a232a5158897fa12a4ff8d105211576e5}{append\+Text}} (const std\+::string \&str, std\+::size\+\_\+t pos, std\+::size\+\_\+t count=std\+::string\+::npos)
+\begin{DoxyCompactList}\small\item\em Appends substring\mbox{[}pos, pos + count\mbox{]} of str to the end of the underlying text object. \end{DoxyCompactList}\item 
+IDtype \mbox{\hyperlink{classba_1_1Text_ae5aedb8bdd8b85ddf3ad21e3a1f0c157}{load\+Font\+From\+File}} (const std\+::string \&file\+Name, int font\+Size)
+\begin{DoxyCompactList}\small\item\em Uses the owning entities resources CONTEXT to load a font from file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classba_1_1Text_a59f76f6e112da8b07e0d9323037e3991}{set\+Text}} (const std\+::string \&new\+Text)
+\begin{DoxyCompactList}\small\item\em Set the \doxylink{classba_1_1Text}{Text} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classba_1_1Text_ad49ce23cfec1154d21b036da6d48849e}{set\+Color}} (const \mbox{\hyperlink{classba_1_1Color}{Color}} \&color)
+\begin{DoxyCompactList}\small\item\em Set the \doxylink{classba_1_1Color}{Color} of the text. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classba_1_1Text_a71d9f42390219b53576d5bc1cdab1564}{set\+Font\+ID}} (IDtype new\+Font\+ID)
+\begin{DoxyCompactList}\small\item\em Set the font of the text to one referred to by new\+Font\+ID. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classba_1_1Text_ab0970e909d2623668630fcfc749fa494}{set\+Wrap\+Length}} (uint32 wrap\+Length)
+\begin{DoxyCompactList}\small\item\em Set the Wrap Length of the text. \end{DoxyCompactList}\item 
+const std\+::string \& \mbox{\hyperlink{classba_1_1Text_a9a1612405fa274f699fd0c374195b617}{get\+Text}} () const
+\begin{DoxyCompactList}\small\item\em Get the \doxylink{classba_1_1Text}{Text} object. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{classba_1_1Color}{Color}} \& \mbox{\hyperlink{classba_1_1Text_a3124d42ac7cf3c44806b392520c68d61}{get\+Color}} () const
+\begin{DoxyCompactList}\small\item\em Get the \doxylink{classba_1_1Color}{Color} object. \end{DoxyCompactList}\item 
+IDtype \mbox{\hyperlink{classba_1_1Text_aa7cf262bc5b0f1baf5b6eea82b555556}{get\+Font\+ID}} () const
+\begin{DoxyCompactList}\small\item\em Get the font ID of the text. \end{DoxyCompactList}\item 
+uint32 \mbox{\hyperlink{classba_1_1Text_ae0a3a96af7af0f1787b0ae202b0dd084}{get\+Wrap\+Length}} () const
+\begin{DoxyCompactList}\small\item\em Get the text\textquotesingle{}s Wrap Length in pixels. \end{DoxyCompactList}\item 
+const SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classba_1_1Text_a71d34a8e2a94aa45cde189b031547e8b}{get\+Texture}} () const
+\begin{DoxyCompactList}\small\item\em Get the Texture of the text. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classba_1_1Rect}{Float\+Rect}} \mbox{\hyperlink{classba_1_1Text_ac8d67572a5ac84f57a183dbbf9077cf6}{get\+Local\+Bounds}} () const override
 \item 
-\mbox{\Hypertarget{classba_1_1Text_a59f76f6e112da8b07e0d9323037e3991}\label{classba_1_1Text_a59f76f6e112da8b07e0d9323037e3991}} 
-void {\bfseries set\+Text} (const std\+::string \&new\+Text)
-\item 
-\mbox{\Hypertarget{classba_1_1Text_a579a00c4278b1f5edcd522826e384023}\label{classba_1_1Text_a579a00c4278b1f5edcd522826e384023}} 
-const std\+::string \& {\bfseries get\+Text} () const
-\item 
-\mbox{\Hypertarget{classba_1_1Text_ad49ce23cfec1154d21b036da6d48849e}\label{classba_1_1Text_ad49ce23cfec1154d21b036da6d48849e}} 
-void {\bfseries set\+Color} (const \mbox{\hyperlink{classba_1_1Color}{Color}} \&color)
-\item 
-\mbox{\Hypertarget{classba_1_1Text_a7e8d412fefb610e3293c7ed5e23cf643}\label{classba_1_1Text_a7e8d412fefb610e3293c7ed5e23cf643}} 
-const \mbox{\hyperlink{classba_1_1Color}{Color}} \& {\bfseries get\+Color} () const
-\item 
-\mbox{\Hypertarget{classba_1_1Text_a71d9f42390219b53576d5bc1cdab1564}\label{classba_1_1Text_a71d9f42390219b53576d5bc1cdab1564}} 
-void {\bfseries set\+Font\+ID} (IDtype new\+Font\+ID)
-\item 
-\mbox{\Hypertarget{classba_1_1Text_aa7cf262bc5b0f1baf5b6eea82b555556}\label{classba_1_1Text_aa7cf262bc5b0f1baf5b6eea82b555556}} 
-IDtype {\bfseries get\+Font\+ID} () const
-\item 
-\mbox{\Hypertarget{classba_1_1Text_add0f9de8a4de44f19094e0f226f2628e}\label{classba_1_1Text_add0f9de8a4de44f19094e0f226f2628e}} 
-SDL\+\_\+\+Texture $\ast$ {\bfseries get\+Texture} ()
-\item 
-\mbox{\Hypertarget{classba_1_1Text_ac8d67572a5ac84f57a183dbbf9077cf6}\label{classba_1_1Text_ac8d67572a5ac84f57a183dbbf9077cf6}} 
-virtual \mbox{\hyperlink{classba_1_1Rect}{Float\+Rect}} {\bfseries get\+Local\+Bounds} () const override
-\item 
-\mbox{\Hypertarget{classba_1_1Text_a0fe73e96d6861e0494b9f85bc514dfd6}\label{classba_1_1Text_a0fe73e96d6861e0494b9f85bc514dfd6}} 
-virtual \mbox{\hyperlink{classba_1_1Rect}{Float\+Rect}} {\bfseries get\+Global\+Bounds} () const override
+virtual \mbox{\hyperlink{classba_1_1Rect}{Float\+Rect}} \mbox{\hyperlink{classba_1_1Text_a0fe73e96d6861e0494b9f85bc514dfd6}{get\+Global\+Bounds}} () const override
 \end{DoxyCompactItemize}
-\doxysubsection*{Additional Inherited Members}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classba_1_1Drawable}{ba\+::\+Drawable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Drawable} (\mbox{\hyperlink{classba_1_1Entity}{Entity}} \texorpdfstring{$\ast$}{*}owner, IDtype draw\+Layer=DEFAULT\+\_\+\+RENDER\+\_\+\+LAYER)
+\item 
+void {\bfseries set\+Draw\+Layer} (IDtype draw\+Layer)
+\item 
+IDtype {\bfseries get\+Draw\+Layer} () const
+\item 
+int32 \mbox{\hyperlink{classba_1_1Drawable_a4ab43ebbd47bfe42bf7ec0f3ed755c31}{get\+Sort\+Order}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classba_1_1Component}{ba\+::\+Component}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classba_1_1Component_a45eb09f349a805cf0a646549ec6c204b}{Component}} (\mbox{\hyperlink{classba_1_1Entity}{Entity}} \texorpdfstring{$\ast$}{*}owner)
+\begin{DoxyCompactList}\small\item\em \doxylink{classba_1_1Component}{Component} Constructor. \end{DoxyCompactList}\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Component} ()
+\begin{DoxyCompactList}\small\item\em \doxylink{classba_1_1Component}{Component} Destructor. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classba_1_1Component_a6f0b77ccea25915379aa4b81bd29e25c}{awake}} ()
+\begin{DoxyCompactList}\small\item\em Called once after the entity owner is added to the main loop. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classba_1_1Entity}{Entity}} \texorpdfstring{$\ast$}{*} {\bfseries get\+Owner} () const
+\begin{DoxyCompactList}\small\item\em Provides a pointer Reference to owner entity. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Attributes inherited from \mbox{\hyperlink{classba_1_1Drawable}{ba\+::\+Drawable}}}
+\begin{DoxyCompactItemize}
+\item 
+static const IDtype {\bfseries CID}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classba_1_1Drawable}{ba\+::\+Drawable}}}
+\begin{DoxyCompactItemize}
+\item 
+IDtype {\bfseries m\+\_\+draw\+Layer}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classba_1_1Component}{ba\+::\+Component}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classba_1_1Entity}{Entity}} \texorpdfstring{$\ast$}{*} {\bfseries m\+\_\+owner}
+\end{DoxyCompactItemize}
 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classba_1_1Text_a64bba8b6fa5da597cdf53858bab70c90}\label{classba_1_1Text_a64bba8b6fa5da597cdf53858bab70c90} 
+\index{ba::Text@{ba::Text}!appendText@{appendText}}
+\index{appendText@{appendText}!ba::Text@{ba::Text}}
+\doxysubsubsection{\texorpdfstring{appendText()}{appendText()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily void ba\+::\+Text\+::append\+Text (\begin{DoxyParamCaption}\item[{char}]{ch,  }\item[{std\+::size\+\_\+t}]{count = {\ttfamily 1u} }\end{DoxyParamCaption})}
+
+
+
+Appends count copies of character ch at the end of the underlying text object. 
+
+MODIFIERS 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ch} & the character to be appended. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classba_1_1Text_af63aebf269f93fdc82fb7e2df880e504}\label{classba_1_1Text_af63aebf269f93fdc82fb7e2df880e504} 
+\index{ba::Text@{ba::Text}!appendText@{appendText}}
+\index{appendText@{appendText}!ba::Text@{ba::Text}}
+\doxysubsubsection{\texorpdfstring{appendText()}{appendText()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily void ba\+::\+Text\+::append\+Text (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{str }\end{DoxyParamCaption})}
+
+
+
+Appends str to the end of the underlying text object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & the string to be appended. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classba_1_1Text_a232a5158897fa12a4ff8d105211576e5}\label{classba_1_1Text_a232a5158897fa12a4ff8d105211576e5} 
+\index{ba::Text@{ba::Text}!appendText@{appendText}}
+\index{appendText@{appendText}!ba::Text@{ba::Text}}
+\doxysubsubsection{\texorpdfstring{appendText()}{appendText()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily void ba\+::\+Text\+::append\+Text (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{str,  }\item[{std\+::size\+\_\+t}]{pos,  }\item[{std\+::size\+\_\+t}]{count = {\ttfamily std\+:\+:string\+:\+:npos} }\end{DoxyParamCaption})}
+
+
+
+Appends substring\mbox{[}pos, pos + count\mbox{]} of str to the end of the underlying text object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & the text to be appended. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classba_1_1Text_a63a283220da23b28c24067bb0923ed16}\label{classba_1_1Text_a63a283220da23b28c24067bb0923ed16} 
+\index{ba::Text@{ba::Text}!draw@{draw}}
+\index{draw@{draw}!ba::Text@{ba::Text}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily virtual void ba\+::\+Text\+::draw (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classba_1_1Window}{Window}} \&}]{window }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classba_1_1Drawable}{ba\+::\+Drawable}}.
+
+\Hypertarget{classba_1_1Text_a3124d42ac7cf3c44806b392520c68d61}\label{classba_1_1Text_a3124d42ac7cf3c44806b392520c68d61} 
+\index{ba::Text@{ba::Text}!getColor@{getColor}}
+\index{getColor@{getColor}!ba::Text@{ba::Text}}
+\doxysubsubsection{\texorpdfstring{getColor()}{getColor()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{classba_1_1Color}{Color}} \& ba\+::\+Text\+::get\+Color (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get the \doxylink{classba_1_1Color}{Color} object. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the RGB-\/A \doxylink{classba_1_1Color}{Color} of the text. 
+\end{DoxyReturn}
+\Hypertarget{classba_1_1Text_aa7cf262bc5b0f1baf5b6eea82b555556}\label{classba_1_1Text_aa7cf262bc5b0f1baf5b6eea82b555556} 
+\index{ba::Text@{ba::Text}!getFontID@{getFontID}}
+\index{getFontID@{getFontID}!ba::Text@{ba::Text}}
+\doxysubsubsection{\texorpdfstring{getFontID()}{getFontID()}}
+{\footnotesize\ttfamily IDtype ba\+::\+Text\+::get\+Font\+ID (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get the font ID of the text. 
+
+\begin{DoxyReturn}{Returns}
+the ID/key to the current font of the object. 
+\end{DoxyReturn}
+\Hypertarget{classba_1_1Text_a0fe73e96d6861e0494b9f85bc514dfd6}\label{classba_1_1Text_a0fe73e96d6861e0494b9f85bc514dfd6} 
+\index{ba::Text@{ba::Text}!getGlobalBounds@{getGlobalBounds}}
+\index{getGlobalBounds@{getGlobalBounds}!ba::Text@{ba::Text}}
+\doxysubsubsection{\texorpdfstring{getGlobalBounds()}{getGlobalBounds()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classba_1_1Rect}{Float\+Rect}} ba\+::\+Text\+::get\+Global\+Bounds (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classba_1_1Drawable}{ba\+::\+Drawable}}.
+
+\Hypertarget{classba_1_1Text_ac8d67572a5ac84f57a183dbbf9077cf6}\label{classba_1_1Text_ac8d67572a5ac84f57a183dbbf9077cf6} 
+\index{ba::Text@{ba::Text}!getLocalBounds@{getLocalBounds}}
+\index{getLocalBounds@{getLocalBounds}!ba::Text@{ba::Text}}
+\doxysubsubsection{\texorpdfstring{getLocalBounds()}{getLocalBounds()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classba_1_1Rect}{Float\+Rect}} ba\+::\+Text\+::get\+Local\+Bounds (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classba_1_1Drawable}{ba\+::\+Drawable}}.
+
+\Hypertarget{classba_1_1Text_a9a1612405fa274f699fd0c374195b617}\label{classba_1_1Text_a9a1612405fa274f699fd0c374195b617} 
+\index{ba::Text@{ba::Text}!getText@{getText}}
+\index{getText@{getText}!ba::Text@{ba::Text}}
+\doxysubsubsection{\texorpdfstring{getText()}{getText()}}
+{\footnotesize\ttfamily const std\+::string \& ba\+::\+Text\+::get\+Text (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get the \doxylink{classba_1_1Text}{Text} object. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the underlying text object. 
+\end{DoxyReturn}
+\Hypertarget{classba_1_1Text_a71d34a8e2a94aa45cde189b031547e8b}\label{classba_1_1Text_a71d34a8e2a94aa45cde189b031547e8b} 
+\index{ba::Text@{ba::Text}!getTexture@{getTexture}}
+\index{getTexture@{getTexture}!ba::Text@{ba::Text}}
+\doxysubsubsection{\texorpdfstring{getTexture()}{getTexture()}}
+{\footnotesize\ttfamily const SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*} ba\+::\+Text\+::get\+Texture (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get the Texture of the text. 
+
+\begin{DoxyReturn}{Returns}
+A pointer to the texture of the \doxylink{classba_1_1Text}{Text}. 
+\end{DoxyReturn}
+\Hypertarget{classba_1_1Text_ae0a3a96af7af0f1787b0ae202b0dd084}\label{classba_1_1Text_ae0a3a96af7af0f1787b0ae202b0dd084} 
+\index{ba::Text@{ba::Text}!getWrapLength@{getWrapLength}}
+\index{getWrapLength@{getWrapLength}!ba::Text@{ba::Text}}
+\doxysubsubsection{\texorpdfstring{getWrapLength()}{getWrapLength()}}
+{\footnotesize\ttfamily uint32 ba\+::\+Text\+::get\+Wrap\+Length (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get the text\textquotesingle{}s Wrap Length in pixels. 
+
+\begin{DoxyReturn}{Returns}
+the text\textquotesingle{}s wrap length. 
+\end{DoxyReturn}
+\Hypertarget{classba_1_1Text_ae5aedb8bdd8b85ddf3ad21e3a1f0c157}\label{classba_1_1Text_ae5aedb8bdd8b85ddf3ad21e3a1f0c157} 
+\index{ba::Text@{ba::Text}!loadFontFromFile@{loadFontFromFile}}
+\index{loadFontFromFile@{loadFontFromFile}!ba::Text@{ba::Text}}
+\doxysubsubsection{\texorpdfstring{loadFontFromFile()}{loadFontFromFile()}}
+{\footnotesize\ttfamily IDtype ba\+::\+Text\+::load\+Font\+From\+File (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{file\+Name,  }\item[{int}]{font\+Size }\end{DoxyParamCaption})}
+
+
+
+Uses the owning entities resources CONTEXT to load a font from file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+Name} & the name of the file. \\
+\hline
+{\em font\+Size} & the preferred size to load the font with. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the ID key of the loaded font.
+\end{DoxyReturn}
+Uses the owning entities resources CONTEXT to load a font from. Might throw an std\+::invalid\+\_\+argument exception if file\+Name does not exists within the \doxylink{classba_1_1ResourceManager}{Resource\+Manager}\textquotesingle{}s search directories. \Hypertarget{classba_1_1Text_ad49ce23cfec1154d21b036da6d48849e}\label{classba_1_1Text_ad49ce23cfec1154d21b036da6d48849e} 
+\index{ba::Text@{ba::Text}!setColor@{setColor}}
+\index{setColor@{setColor}!ba::Text@{ba::Text}}
+\doxysubsubsection{\texorpdfstring{setColor()}{setColor()}}
+{\footnotesize\ttfamily void ba\+::\+Text\+::set\+Color (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classba_1_1Color}{Color}} \&}]{color }\end{DoxyParamCaption})}
+
+
+
+Set the \doxylink{classba_1_1Color}{Color} of the text. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color} & the color of the text. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classba_1_1Text_a71d9f42390219b53576d5bc1cdab1564}\label{classba_1_1Text_a71d9f42390219b53576d5bc1cdab1564} 
+\index{ba::Text@{ba::Text}!setFontID@{setFontID}}
+\index{setFontID@{setFontID}!ba::Text@{ba::Text}}
+\doxysubsubsection{\texorpdfstring{setFontID()}{setFontID()}}
+{\footnotesize\ttfamily void ba\+::\+Text\+::set\+Font\+ID (\begin{DoxyParamCaption}\item[{IDtype}]{new\+Font\+ID }\end{DoxyParamCaption})}
+
+
+
+Set the font of the text to one referred to by new\+Font\+ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Font\+ID} & the ID/key to the new font. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classba_1_1Text_a59f76f6e112da8b07e0d9323037e3991}\label{classba_1_1Text_a59f76f6e112da8b07e0d9323037e3991} 
+\index{ba::Text@{ba::Text}!setText@{setText}}
+\index{setText@{setText}!ba::Text@{ba::Text}}
+\doxysubsubsection{\texorpdfstring{setText()}{setText()}}
+{\footnotesize\ttfamily void ba\+::\+Text\+::set\+Text (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{new\+Text }\end{DoxyParamCaption})}
+
+
+
+Set the \doxylink{classba_1_1Text}{Text} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Text} & the string to set the underlying text object to.\\
+\hline
+\end{DoxyParams}
+This method replaces the currently stored stored text object with the new new\+Text. \Hypertarget{classba_1_1Text_ab0970e909d2623668630fcfc749fa494}\label{classba_1_1Text_ab0970e909d2623668630fcfc749fa494} 
+\index{ba::Text@{ba::Text}!setWrapLength@{setWrapLength}}
+\index{setWrapLength@{setWrapLength}!ba::Text@{ba::Text}}
+\doxysubsubsection{\texorpdfstring{setWrapLength()}{setWrapLength()}}
+{\footnotesize\ttfamily void ba\+::\+Text\+::set\+Wrap\+Length (\begin{DoxyParamCaption}\item[{uint32}]{wrap\+Length }\end{DoxyParamCaption})}
+
+
+
+Set the Wrap Length of the text. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em wrap\+Length} & the length by which the text will attempt to wrap on.\\
+\hline
+\end{DoxyParams}
+\doxylink{classba_1_1Text}{Text} is wrapped to multiple lines on line endings and on word boundaries if it extends wrap\+Length in pixels. If wrap\+Length is set to 0, the text will wrap only on new line characters. Note\+: wrap\+Length is set to 0 by default. 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

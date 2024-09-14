@@ -1,5 +1,5 @@
-\hypertarget{classba_1_1BoxCollider}{}\doxysection{ba\+::Box\+Collider Class Reference}
-\label{classba_1_1BoxCollider}\index{ba::BoxCollider@{ba::BoxCollider}}
+\doxysection{ba\+::Box\+Collider Class Reference}
+\hypertarget{classba_1_1BoxCollider}{}\label{classba_1_1BoxCollider}\index{ba::BoxCollider@{ba::BoxCollider}}
 
 
 Inheritance diagram for ba\+::Box\+Collider\+:
@@ -7,7 +7,7 @@ Inheritance diagram for ba\+::Box\+Collider\+:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=260pt]{classba_1_1BoxCollider__inherit__graph}
+\includegraphics[width=276pt]{classba_1_1BoxCollider__inherit__graph}
 \end{center}
 \end{figure}
 
@@ -20,37 +20,61 @@ Collaboration diagram for ba\+::Box\+Collider\+:
 \includegraphics[width=350pt]{classba_1_1BoxCollider__coll__graph}
 \end{center}
 \end{figure}
-\doxysubsection*{Public Member Functions}
+\doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classba_1_1BoxCollider_a1418c22a6ea74099335e8e0a1fe2c66b}\label{classba_1_1BoxCollider_a1418c22a6ea74099335e8e0a1fe2c66b}} 
-{\bfseries Box\+Collider} (\mbox{\hyperlink{classba_1_1Entity}{Entity}} $\ast$owner)
+\Hypertarget{classba_1_1BoxCollider_a1418c22a6ea74099335e8e0a1fe2c66b}\label{classba_1_1BoxCollider_a1418c22a6ea74099335e8e0a1fe2c66b} 
+{\bfseries Box\+Collider} (\mbox{\hyperlink{classba_1_1Entity}{Entity}} \texorpdfstring{$\ast$}{*}owner)
 \item 
 virtual void \mbox{\hyperlink{classba_1_1BoxCollider_a1febea30247963e739876559c122a6f2}{awake}} () override
 \begin{DoxyCompactList}\small\item\em Called once after the entity owner is added to the main loop. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classba_1_1BoxCollider_a68730f24f93539f74ed4f3a32db0e64e}\label{classba_1_1BoxCollider_a68730f24f93539f74ed4f3a32db0e64e}} 
+\Hypertarget{classba_1_1BoxCollider_a68730f24f93539f74ed4f3a32db0e64e}\label{classba_1_1BoxCollider_a68730f24f93539f74ed4f3a32db0e64e} 
 void {\bfseries set\+Size} (const \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}} \&dimension)
 \item 
-\mbox{\Hypertarget{classba_1_1BoxCollider_a5dba5c94914f9aa9cbe8c122353300c5}\label{classba_1_1BoxCollider_a5dba5c94914f9aa9cbe8c122353300c5}} 
+\Hypertarget{classba_1_1BoxCollider_aaf58d39a19e37ca57478be2ac5435d34}\label{classba_1_1BoxCollider_aaf58d39a19e37ca57478be2ac5435d34} 
 const \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}} \& {\bfseries get\+Size} () const
 \item 
-\mbox{\Hypertarget{classba_1_1BoxCollider_acd7ecc423a9d2153565877ca4d748d5b}\label{classba_1_1BoxCollider_acd7ecc423a9d2153565877ca4d748d5b}} 
-virtual bool {\bfseries is\+Colliding} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1Collider}{Collider}} $>$ \&other) override
+virtual bool \mbox{\hyperlink{classba_1_1BoxCollider_acd7ecc423a9d2153565877ca4d748d5b}{is\+Colliding}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1Collider}{Collider}} $>$ \&other) override
 \item 
-\mbox{\Hypertarget{classba_1_1BoxCollider_a6414debc7c69b86e0855cf003452406d}\label{classba_1_1BoxCollider_a6414debc7c69b86e0855cf003452406d}} 
-virtual void {\bfseries resolve} (const \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}} \&resolution) override
+virtual void \mbox{\hyperlink{classba_1_1BoxCollider_a6414debc7c69b86e0855cf003452406d}{resolve}} (const \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}} \&resolution) override
 \item 
-\mbox{\Hypertarget{classba_1_1BoxCollider_a046696aaef744634a3b7a1077cf0f13e}\label{classba_1_1BoxCollider_a046696aaef744634a3b7a1077cf0f13e}} 
-virtual \mbox{\hyperlink{classba_1_1Rect}{Float\+Rect}} {\bfseries get\+Local\+Bounds} () const override
+virtual \mbox{\hyperlink{classba_1_1Rect}{Float\+Rect}} \mbox{\hyperlink{classba_1_1BoxCollider_a046696aaef744634a3b7a1077cf0f13e}{get\+Local\+Bounds}} () const override
 \item 
-\mbox{\Hypertarget{classba_1_1BoxCollider_a97f8234d918ce7f7a9ade1cfaf0129e9}\label{classba_1_1BoxCollider_a97f8234d918ce7f7a9ade1cfaf0129e9}} 
-virtual \mbox{\hyperlink{classba_1_1Rect}{Float\+Rect}} {\bfseries get\+Global\+Bounds} () const override
+virtual \mbox{\hyperlink{classba_1_1Rect}{Float\+Rect}} \mbox{\hyperlink{classba_1_1BoxCollider_a97f8234d918ce7f7a9ade1cfaf0129e9}{get\+Global\+Bounds}} () const override
 \end{DoxyCompactItemize}
-\doxysubsection*{Additional Inherited Members}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classba_1_1Collider}{ba\+::\+Collider}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Collider} (\mbox{\hyperlink{classba_1_1Entity}{Entity}} \texorpdfstring{$\ast$}{*}owner)
+\item 
+void {\bfseries set\+Layer} (unsigned collision\+Layer)
+\item 
+unsigned {\bfseries get\+Layer} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classba_1_1Component}{ba\+::\+Component}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classba_1_1Component_a45eb09f349a805cf0a646549ec6c204b}{Component}} (\mbox{\hyperlink{classba_1_1Entity}{Entity}} \texorpdfstring{$\ast$}{*}owner)
+\begin{DoxyCompactList}\small\item\em \doxylink{classba_1_1Component}{Component} Constructor. \end{DoxyCompactList}\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Component} ()
+\begin{DoxyCompactList}\small\item\em \doxylink{classba_1_1Component}{Component} Destructor. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classba_1_1Entity}{Entity}} \texorpdfstring{$\ast$}{*} {\bfseries get\+Owner} () const
+\begin{DoxyCompactList}\small\item\em Provides a pointer Reference to owner entity. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Attributes inherited from \mbox{\hyperlink{classba_1_1Collider}{ba\+::\+Collider}}}
+\begin{DoxyCompactItemize}
+\item 
+static const IDtype {\bfseries CID}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classba_1_1Component}{ba\+::\+Component}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classba_1_1Entity}{Entity}} \texorpdfstring{$\ast$}{*} {\bfseries m\+\_\+owner}
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classba_1_1BoxCollider_a1febea30247963e739876559c122a6f2}\label{classba_1_1BoxCollider_a1febea30247963e739876559c122a6f2}} 
+\Hypertarget{classba_1_1BoxCollider_a1febea30247963e739876559c122a6f2}\label{classba_1_1BoxCollider_a1febea30247963e739876559c122a6f2} 
 \index{ba::BoxCollider@{ba::BoxCollider}!awake@{awake}}
 \index{awake@{awake}!ba::BoxCollider@{ba::BoxCollider}}
 \doxysubsubsection{\texorpdfstring{awake()}{awake()}}
@@ -60,9 +84,49 @@ virtual \mbox{\hyperlink{classba_1_1Rect}{Float\+Rect}} {\bfseries get\+Global\+
 
 Called once after the entity owner is added to the main loop. 
 
-This \mbox{\hyperlink{classba_1_1BoxCollider_a1febea30247963e739876559c122a6f2}{awake()}} does nothing, but subtypes should override this to ensure data is instantiated properly and the owner entity has the prerequisites needed to use that component. i.\+e. \mbox{\hyperlink{classba_1_1Animation}{Animation}} component needed \mbox{\hyperlink{classba_1_1Sprite}{Sprite}} component to work. 
+This \doxylink{classba_1_1BoxCollider_a1febea30247963e739876559c122a6f2}{awake()} does nothing, but subtypes should override this to ensure data is instantiated properly and the owner entity has the prerequisites needed to use that component. i.\+e. \doxylink{classba_1_1Animation}{Animation} component needed \doxylink{classba_1_1Sprite}{Sprite} component to work. 
 
 Reimplemented from \mbox{\hyperlink{classba_1_1Component_a6f0b77ccea25915379aa4b81bd29e25c}{ba\+::\+Component}}.
+
+\Hypertarget{classba_1_1BoxCollider_a97f8234d918ce7f7a9ade1cfaf0129e9}\label{classba_1_1BoxCollider_a97f8234d918ce7f7a9ade1cfaf0129e9} 
+\index{ba::BoxCollider@{ba::BoxCollider}!getGlobalBounds@{getGlobalBounds}}
+\index{getGlobalBounds@{getGlobalBounds}!ba::BoxCollider@{ba::BoxCollider}}
+\doxysubsubsection{\texorpdfstring{getGlobalBounds()}{getGlobalBounds()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classba_1_1Rect}{Float\+Rect}} ba\+::\+Box\+Collider\+::get\+Global\+Bounds (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classba_1_1Collider}{ba\+::\+Collider}}.
+
+\Hypertarget{classba_1_1BoxCollider_a046696aaef744634a3b7a1077cf0f13e}\label{classba_1_1BoxCollider_a046696aaef744634a3b7a1077cf0f13e} 
+\index{ba::BoxCollider@{ba::BoxCollider}!getLocalBounds@{getLocalBounds}}
+\index{getLocalBounds@{getLocalBounds}!ba::BoxCollider@{ba::BoxCollider}}
+\doxysubsubsection{\texorpdfstring{getLocalBounds()}{getLocalBounds()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classba_1_1Rect}{Float\+Rect}} ba\+::\+Box\+Collider\+::get\+Local\+Bounds (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classba_1_1Collider}{ba\+::\+Collider}}.
+
+\Hypertarget{classba_1_1BoxCollider_acd7ecc423a9d2153565877ca4d748d5b}\label{classba_1_1BoxCollider_acd7ecc423a9d2153565877ca4d748d5b} 
+\index{ba::BoxCollider@{ba::BoxCollider}!isColliding@{isColliding}}
+\index{isColliding@{isColliding}!ba::BoxCollider@{ba::BoxCollider}}
+\doxysubsubsection{\texorpdfstring{isColliding()}{isColliding()}}
+{\footnotesize\ttfamily virtual bool ba\+::\+Box\+Collider\+::is\+Colliding (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1Collider}{Collider}} $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classba_1_1Collider}{ba\+::\+Collider}}.
+
+\Hypertarget{classba_1_1BoxCollider_a6414debc7c69b86e0855cf003452406d}\label{classba_1_1BoxCollider_a6414debc7c69b86e0855cf003452406d} 
+\index{ba::BoxCollider@{ba::BoxCollider}!resolve@{resolve}}
+\index{resolve@{resolve}!ba::BoxCollider@{ba::BoxCollider}}
+\doxysubsubsection{\texorpdfstring{resolve()}{resolve()}}
+{\footnotesize\ttfamily virtual void ba\+::\+Box\+Collider\+::resolve (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}} \&}]{resolution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classba_1_1Collider}{ba\+::\+Collider}}.
 
 
 

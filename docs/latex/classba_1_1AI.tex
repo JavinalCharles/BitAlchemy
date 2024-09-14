@@ -1,5 +1,5 @@
-\hypertarget{classba_1_1AI}{}\doxysection{ba\+::AI Class Reference}
-\label{classba_1_1AI}\index{ba::AI@{ba::AI}}
+\doxysection{ba\+::AI Class Reference}
+\hypertarget{classba_1_1AI}{}\label{classba_1_1AI}\index{ba::AI@{ba::AI}}
 
 
 Inheritance diagram for ba\+::AI\+:
@@ -7,7 +7,7 @@ Inheritance diagram for ba\+::AI\+:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=178pt]{classba_1_1AI__inherit__graph}
+\includegraphics[width=187pt]{classba_1_1AI__inherit__graph}
 \end{center}
 \end{figure}
 
@@ -20,22 +20,38 @@ Collaboration diagram for ba\+::AI\+:
 \includegraphics[width=350pt]{classba_1_1AI__coll__graph}
 \end{center}
 \end{figure}
-\doxysubsection*{Public Member Functions}
+\doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classba_1_1AI_af7524979979ca85743733de85ff1411b}\label{classba_1_1AI_af7524979979ca85743733de85ff1411b}} 
-{\bfseries AI} (\mbox{\hyperlink{classba_1_1Entity}{Entity}} $\ast$owner)
+\Hypertarget{classba_1_1AI_af7524979979ca85743733de85ff1411b}\label{classba_1_1AI_af7524979979ca85743733de85ff1411b} 
+{\bfseries AI} (\mbox{\hyperlink{classba_1_1Entity}{Entity}} \texorpdfstring{$\ast$}{*}owner)
 \item 
-\mbox{\Hypertarget{classba_1_1AI_ac3be5b86957316d645f63eb8ca2a6f11}\label{classba_1_1AI_ac3be5b86957316d645f63eb8ca2a6f11}} 
+\Hypertarget{classba_1_1AI_ac3be5b86957316d645f63eb8ca2a6f11}\label{classba_1_1AI_ac3be5b86957316d645f63eb8ca2a6f11} 
 virtual void {\bfseries behave} (float delta\+Time)=0
 \end{DoxyCompactItemize}
-\doxysubsection*{Static Public Attributes}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classba_1_1Component}{ba\+::\+Component}}}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classba_1_1AI_a27ebd592e79d818c2fcdbac7a163ee2d}\label{classba_1_1AI_a27ebd592e79d818c2fcdbac7a163ee2d}} 
+\mbox{\hyperlink{classba_1_1Component_a45eb09f349a805cf0a646549ec6c204b}{Component}} (\mbox{\hyperlink{classba_1_1Entity}{Entity}} \texorpdfstring{$\ast$}{*}owner)
+\begin{DoxyCompactList}\small\item\em \doxylink{classba_1_1Component}{Component} Constructor. \end{DoxyCompactList}\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Component} ()
+\begin{DoxyCompactList}\small\item\em \doxylink{classba_1_1Component}{Component} Destructor. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classba_1_1Component_a6f0b77ccea25915379aa4b81bd29e25c}{awake}} ()
+\begin{DoxyCompactList}\small\item\em Called once after the entity owner is added to the main loop. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classba_1_1Entity}{Entity}} \texorpdfstring{$\ast$}{*} {\bfseries get\+Owner} () const
+\begin{DoxyCompactList}\small\item\em Provides a pointer Reference to owner entity. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classba_1_1AI_a27ebd592e79d818c2fcdbac7a163ee2d}\label{classba_1_1AI_a27ebd592e79d818c2fcdbac7a163ee2d} 
 static const IDtype {\bfseries CID}
 \end{DoxyCompactItemize}
-\doxysubsection*{Additional Inherited Members}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classba_1_1Component}{ba\+::\+Component}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classba_1_1Entity}{Entity}} \texorpdfstring{$\ast$}{*} {\bfseries m\+\_\+owner}
+\end{DoxyCompactItemize}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

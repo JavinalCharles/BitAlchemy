@@ -1,0 +1,42 @@
+\doxysection{Sprite.\+hpp}
+\hypertarget{Sprite_8hpp_source}{}\label{Sprite_8hpp_source}\index{include/BA/Components/Sprite.hpp@{include/BA/Components/Sprite.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <stdexcept>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <SDL2/SDL.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <BA/Components/Boundable.hpp>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <BA/Components/Drawable.hpp>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <BA/Types.hpp>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <BA/Utilities/Rect.hpp>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }ba\ \{}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classba_1_1Sprite}{Sprite}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classba_1_1Drawable}{Drawable}}\ \{}
+\DoxyCodeLine{00014\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classba_1_1Sprite}{Sprite}}(\mbox{\hyperlink{classba_1_1Entity}{ba::Entity}}*\ owner,\ IDtype\ drawLayer\ =\ DEFAULT\_RENDER\_LAYER);}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ draw(\mbox{\hyperlink{classba_1_1Window}{ba::Window}}\&\ window)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{bool}\ hasTexture()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ IDtype\ loadTextureFromFile(\textcolor{keyword}{const}\ std::string\&\ fileName);}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{void}\ setTexture(IDtype\ textureID);}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{void}\ setTexture(IDtype\ textureID,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Rect}{IntRect}}\&\ textureRect);}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{void}\ setTextureRect(\textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Rect}{IntRect}}\&\ rect);}
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{classba_1_1Rect}{IntRect}}\ getTextureRect()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classba_1_1Rect}{FloatRect}}\ getLocalBounds()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classba_1_1Rect}{FloatRect}}\ getGlobalBounds()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00031\ \ \ \ \ IDtype\ m\_textureID;}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{classba_1_1Rect}{ba::IntRect}}\ m\_textureRect;}
+\DoxyCodeLine{00034\ \};\ \textcolor{comment}{//\ class\ Sprite}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \};\ \textcolor{comment}{//\ namespace\ ba}}
+
+\end{DoxyCode}

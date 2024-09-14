@@ -1,48 +1,54 @@
-\hypertarget{classba_1_1Rect}{}\doxysection{ba\+::Rect$<$ T $>$ Class Template Reference}
-\label{classba_1_1Rect}\index{ba::Rect$<$ T $>$@{ba::Rect$<$ T $>$}}
-\doxysubsection*{Public Member Functions}
+\doxysection{ba\+::Rect\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classba_1_1Rect}{}\label{classba_1_1Rect}\index{ba::Rect$<$ T $>$@{ba::Rect$<$ T $>$}}
+\doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classba_1_1Rect_a177d8cb4151205ef894998467785b821}\label{classba_1_1Rect_a177d8cb4151205ef894998467785b821}} 
+\Hypertarget{classba_1_1Rect_a177d8cb4151205ef894998467785b821}\label{classba_1_1Rect_a177d8cb4151205ef894998467785b821} 
 constexpr {\bfseries Rect} (T left, T top, T width, T height)
 \item 
-\mbox{\Hypertarget{classba_1_1Rect_a08f716355548bb437be9634fc0b3a51e}\label{classba_1_1Rect_a08f716355548bb437be9634fc0b3a51e}} 
+\Hypertarget{classba_1_1Rect_a08f716355548bb437be9634fc0b3a51e}\label{classba_1_1Rect_a08f716355548bb437be9634fc0b3a51e} 
 constexpr {\bfseries Rect} (const \mbox{\hyperlink{classba_1_1Vector2}{Vector2}}$<$ T $>$ \&top\+Left, const \mbox{\hyperlink{classba_1_1Vector2}{Vector2}}$<$ T $>$ \&dimension)
 \item 
-\mbox{\Hypertarget{classba_1_1Rect_a757165fb3f119ca71caff9a0c921717f}\label{classba_1_1Rect_a757165fb3f119ca71caff9a0c921717f}} 
+\Hypertarget{classba_1_1Rect_a757165fb3f119ca71caff9a0c921717f}\label{classba_1_1Rect_a757165fb3f119ca71caff9a0c921717f} 
 {\footnotesize template$<$typename U $>$ }\\constexpr {\bfseries Rect} (const \mbox{\hyperlink{classba_1_1Rect}{Rect}}$<$ U $>$ \&other\+Rect)
 \item 
-\mbox{\Hypertarget{classba_1_1Rect_ae5b6733ec4f398523ea2018e1b706908}\label{classba_1_1Rect_ae5b6733ec4f398523ea2018e1b706908}} 
+\Hypertarget{classba_1_1Rect_adb25ca23af9aa4e3290e7033f7f31fa3}\label{classba_1_1Rect_adb25ca23af9aa4e3290e7033f7f31fa3} 
+constexpr void {\bfseries set\+Position} (const \mbox{\hyperlink{classba_1_1Vector2}{Vector2}}$<$ T $>$ \&pos)
+\item 
+\Hypertarget{classba_1_1Rect_a85708ac1fc1b06840a5acc3e0cea629d}\label{classba_1_1Rect_a85708ac1fc1b06840a5acc3e0cea629d} 
+constexpr void {\bfseries set\+Area} (const \mbox{\hyperlink{classba_1_1Vector2}{Vector2}}$<$ T $>$ \&size)
+\item 
+\Hypertarget{classba_1_1Rect_ae5b6733ec4f398523ea2018e1b706908}\label{classba_1_1Rect_ae5b6733ec4f398523ea2018e1b706908} 
 constexpr \mbox{\hyperlink{classba_1_1Vector2}{Vector2}}$<$ T $>$ {\bfseries get\+Position} () const
 \item 
-\mbox{\Hypertarget{classba_1_1Rect_ae7911e10acb86684e53403f4f41c1157}\label{classba_1_1Rect_ae7911e10acb86684e53403f4f41c1157}} 
+\Hypertarget{classba_1_1Rect_ae7911e10acb86684e53403f4f41c1157}\label{classba_1_1Rect_ae7911e10acb86684e53403f4f41c1157} 
 constexpr \mbox{\hyperlink{classba_1_1Vector2}{Vector2}}$<$ T $>$ {\bfseries get\+Area} () const
 \item 
-\mbox{\Hypertarget{classba_1_1Rect_a6064fb4d4e0803f7918f0d465d422d90}\label{classba_1_1Rect_a6064fb4d4e0803f7918f0d465d422d90}} 
+\Hypertarget{classba_1_1Rect_a6064fb4d4e0803f7918f0d465d422d90}\label{classba_1_1Rect_a6064fb4d4e0803f7918f0d465d422d90} 
 constexpr bool {\bfseries contains} (const \mbox{\hyperlink{classba_1_1Vector2}{Vector2}}$<$ T $>$ \&point) const
 \item 
-\mbox{\Hypertarget{classba_1_1Rect_abb0ba2b7020c434885309a87cdf09a3e}\label{classba_1_1Rect_abb0ba2b7020c434885309a87cdf09a3e}} 
+\Hypertarget{classba_1_1Rect_abb0ba2b7020c434885309a87cdf09a3e}\label{classba_1_1Rect_abb0ba2b7020c434885309a87cdf09a3e} 
 constexpr std\+::optional$<$ \mbox{\hyperlink{classba_1_1Rect}{Rect}}$<$ T $>$ $>$ {\bfseries intersects} (const \mbox{\hyperlink{classba_1_1Rect}{Rect}}$<$ T $>$ \&rect) const
 \item 
-\mbox{\Hypertarget{classba_1_1Rect_acfb0b48b3791ad1865b8b8d387f6c778}\label{classba_1_1Rect_acfb0b48b3791ad1865b8b8d387f6c778}} 
+\Hypertarget{classba_1_1Rect_acfb0b48b3791ad1865b8b8d387f6c778}\label{classba_1_1Rect_acfb0b48b3791ad1865b8b8d387f6c778} 
 {\footnotesize template$<$typename U $>$ }\\constexpr \mbox{\hyperlink{classba_1_1Rect}{Rect}}$<$ T $>$ \& {\bfseries operator=} (const \mbox{\hyperlink{classba_1_1Rect}{Rect}}$<$ U $>$ \&rhs)
 \item 
-\mbox{\Hypertarget{classba_1_1Rect_ab5e50a21dfd4522a460359fe3c3b62b6}\label{classba_1_1Rect_ab5e50a21dfd4522a460359fe3c3b62b6}} 
+\Hypertarget{classba_1_1Rect_ab5e50a21dfd4522a460359fe3c3b62b6}\label{classba_1_1Rect_ab5e50a21dfd4522a460359fe3c3b62b6} 
 constexpr SDL\+\_\+\+Rect {\bfseries to\+SDL\+\_\+\+Rect} () const
 \end{DoxyCompactItemize}
-\doxysubsection*{Public Attributes}
+\doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classba_1_1Rect_ad7eb1ca83d48710c3257cf80fd60a2ad}\label{classba_1_1Rect_ad7eb1ca83d48710c3257cf80fd60a2ad}} 
+\Hypertarget{classba_1_1Rect_ad7eb1ca83d48710c3257cf80fd60a2ad}\label{classba_1_1Rect_ad7eb1ca83d48710c3257cf80fd60a2ad} 
 T {\bfseries l} \{\}
 \item 
-\mbox{\Hypertarget{classba_1_1Rect_ac6a9540b72f4c48280b82fed92299122}\label{classba_1_1Rect_ac6a9540b72f4c48280b82fed92299122}} 
+\Hypertarget{classba_1_1Rect_ac6a9540b72f4c48280b82fed92299122}\label{classba_1_1Rect_ac6a9540b72f4c48280b82fed92299122} 
 T {\bfseries t} \{\}
 \item 
-\mbox{\Hypertarget{classba_1_1Rect_aebd71d336b4ee18d17c5830c4b2fa35b}\label{classba_1_1Rect_aebd71d336b4ee18d17c5830c4b2fa35b}} 
+\Hypertarget{classba_1_1Rect_aebd71d336b4ee18d17c5830c4b2fa35b}\label{classba_1_1Rect_aebd71d336b4ee18d17c5830c4b2fa35b} 
 T {\bfseries w} \{\}
 \item 
-\mbox{\Hypertarget{classba_1_1Rect_a9e79b549e73a17a3a71938dfecc1e2ce}\label{classba_1_1Rect_a9e79b549e73a17a3a71938dfecc1e2ce}} 
+\Hypertarget{classba_1_1Rect_a9e79b549e73a17a3a71938dfecc1e2ce}\label{classba_1_1Rect_a9e79b549e73a17a3a71938dfecc1e2ce} 
 T {\bfseries h} \{\}
 \end{DoxyCompactItemize}
 

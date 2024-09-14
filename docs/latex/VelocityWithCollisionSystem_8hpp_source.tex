@@ -1,0 +1,67 @@
+\doxysection{Velocity\+With\+Collision\+System.\+hpp}
+\hypertarget{VelocityWithCollisionSystem_8hpp_source}{}\label{VelocityWithCollisionSystem_8hpp_source}\index{include/BA/Systems/VelocityWithCollisionSystem.hpp@{include/BA/Systems/VelocityWithCollisionSystem.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <unordered\_set>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}BA/Systems/ComponentSystem.hpp"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}BA/Components/Colliders/Collider.hpp"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}BA/Components/Collidable.hpp"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}BA/Components/Velocity.hpp"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}BA/Containers/Quadtree.hpp"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}BA/Systems/EntityManager.hpp"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}BA/Entities/Entity.hpp"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}BA/Types.hpp"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}BA/Tools/DebugHelper.hpp"{}}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{namespace\ }ba\ \{}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classba_1_1VelocityWithCollisionSystem}{VelocityWithCollisionSystem}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classba_1_1ComponentSystem}{ComponentSystem}}\ \{}
+\DoxyCodeLine{00019\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classba_1_1VelocityWithCollisionSystem}{VelocityWithCollisionSystem}}(\mbox{\hyperlink{classba_1_1EntityManager}{EntityManager}}*\ entityManager);}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classba_1_1VelocityWithCollisionSystem}{\string~VelocityWithCollisionSystem}}();}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ update(\textcolor{keywordtype}{float}\ deltaTime)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ postUpdate(\textcolor{keywordtype}{float}\ deltaTime)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ add(std::shared\_ptr<Entity>\&\ entity)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{void}\ addCollisionLayer(IDtype\ layerID,\ \textcolor{keyword}{const}\ std::bitset<128>\&\ collisionBitmask\ =\ std::bitset<128>());}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{void}\ setCollision(IDtype\ layerID,\ IDtype\ otherLayer);}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{void}\ unsetCollision(IDtype\ layerID,\ IDtype\ otherLayer);}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ remove(IDtype\ entityID)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ std::vector<std::shared\_ptr<Collider>>\ searchStatic(\textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Rect}{FloatRect}}\&\ area)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00035\ \ \ \ \ std::vector<std::shared\_ptr<Collider>>\ searchNonStatic(\textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Rect}{FloatRect}}\&\ area)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00036\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{comment}{//\ HELPER\ METHODS}}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ detectCollisions();}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{void}\ resolveCollisions();}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{comment}{//\ HELPER\ HELPER\ METHODS}}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{void}\ detectCollisionsForCollider(std::shared\_ptr<Collider>\&\ collider);}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{void}\ enterCollision(IDtype\ c1,\ IDtype\ c2);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{void}\ useContinuousCollisionDetection(std::shared\_ptr<Collider>\&\ collider,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}}\&\ displacement);}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{bool}\ checkMostImmediateXRect(\textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Rect}{FloatRect}}\&\ i\_BOUNDS,\ \textcolor{keyword}{const}\ IDtype\&\ i\_LAYER,\ \textcolor{keywordtype}{float}\ xDisplacement);}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{bool}\ checkMostImmediateYRect(\textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Rect}{FloatRect}}\&\ i\_BOUNDS,\ \textcolor{keyword}{const}\ IDtype\&\ i\_LAYER,\ \textcolor{keywordtype}{float}\ yDisplacement);}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{classba_1_1Quadtree}{Quadtree<Collider>}}\ \ \ \ m\_staticColliderTree;}
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{classba_1_1Quadtree}{Quadtree<Collider>}}\ \ \ \ m\_objectsColliderTree;}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ std::unordered\_map<unsigned,\ std::bitset<128>>\ m\_collisionLayers;}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ std::vector<std::pair<IDtype,\ IDtype>>\ m\_collisions;}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ std::unordered\_set<IDtype>\ \ m\_nonCollidingEntityIDs;}
+\DoxyCodeLine{00059\ \};\ \textcolor{comment}{//\ class\ VelocityWithCollisionSystem}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \}\ \textcolor{comment}{//\ namespace\ ba}}
+
+\end{DoxyCode}

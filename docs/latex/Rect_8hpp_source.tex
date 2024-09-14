@@ -1,0 +1,179 @@
+\doxysection{Rect.\+hpp}
+\hypertarget{Rect_8hpp_source}{}\label{Rect_8hpp_source}\index{include/BA/Utilities/Rect.hpp@{include/BA/Utilities/Rect.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <optional>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <SDL2/SDL\_rect.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <BA/Utilities/Vector2.hpp>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{namespace\ }ba\ \{}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classba_1_1Rect}{Rect}}\ \{}
+\DoxyCodeLine{00011\ \textcolor{keyword}{public}:\ \textcolor{comment}{//\ ATTRIBUTES}}
+\DoxyCodeLine{00012\ \ \ \ \ T\ l\{\};\ \textcolor{comment}{//\ left}}
+\DoxyCodeLine{00013\ \ \ \ \ T\ t\{\};\ \textcolor{comment}{//\ top}}
+\DoxyCodeLine{00014\ \ \ \ \ T\ w\{\};\ \textcolor{comment}{//\ width}}
+\DoxyCodeLine{00015\ \ \ \ \ T\ h\{\};\ \textcolor{comment}{//\ height}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{public}:\ \textcolor{comment}{//\ METHODS\ \&\ CONSTRUCTORS}}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classba_1_1Rect}{Rect}}();}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classba_1_1Rect}{Rect}}(T\ left,\ T\ top,\ T\ width,\ T\ height);}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classba_1_1Rect}{Rect}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2<T>}}\&\ topLeft,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2<T>}}\&\ dimension);}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ U>}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classba_1_1Rect}{Rect}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Rect}{Rect<U>}}\&\ otherRect);}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{void}\ setPosition(\textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2<T>}}\&\ pos);}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{void}\ setArea(\textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2<T>}}\&\ size);}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2<T>}}\ getPosition()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2<T>}}\ getArea()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ contains(\textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2<T>}}\&\ point)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{constexpr}\ std::optional<Rect<T>>\ intersects(\textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Rect}{Rect<T>}}\&\ rect)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ U>}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classba_1_1Rect}{Rect<T>}}\&\ operator=(\textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Rect}{Rect<U>}}\&\ rhs);}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{constexpr}\ SDL\_Rect\ toSDL\_Rect()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00037\ \};\ \textcolor{comment}{//\ class\ Rect}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{comment}{//\ COMMON\ TYPEDEFS}}
+\DoxyCodeLine{00040\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classba_1_1Rect}{FloatRect}}\ =\ \mbox{\hyperlink{classba_1_1Rect}{ba::Rect<float>}};}
+\DoxyCodeLine{00041\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classba_1_1Rect}{IntRect}}\ =\ \mbox{\hyperlink{classba_1_1Rect}{ba::Rect<int>}};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00048\ \textcolor{keyword}{namespace\ }\{}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{constexpr}\ T\ min(\textcolor{keyword}{const}\ T\&\ a,\ \textcolor{keyword}{const}\ T\&\ b)\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ a\ <\ b\ ?\ a\ :\ b;}
+\DoxyCodeLine{00055\ \ \ \ \ \}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{constexpr}\ T\ max(\textcolor{keyword}{const}\ T\&\ a,\ \textcolor{keyword}{const}\ T\&\ b)\ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ a\ >\ b\ ?\ a\ :\ b;}
+\DoxyCodeLine{00060\ \ \ \ \ \}}
+\DoxyCodeLine{00061\ \}\ \textcolor{comment}{//\ anonymous\ namespace}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00064\ \textcolor{keyword}{constexpr}\ Rect<T>::Rect()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00067\ \textcolor{keyword}{constexpr}\ Rect<T>::Rect(\textcolor{keyword}{const}\ Vector2<T>\&\ topLeft,\ \textcolor{keyword}{const}\ Vector2<T>\&\ dimension)\ :}
+\DoxyCodeLine{00068\ \ \ \ \ l(topLeft.x),}
+\DoxyCodeLine{00069\ \ \ \ \ t(topLeft.y),}
+\DoxyCodeLine{00070\ \ \ \ \ w(dimension.x),}
+\DoxyCodeLine{00071\ \ \ \ \ h(dimension.y)}
+\DoxyCodeLine{00072\ \{}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00077\ \textcolor{keyword}{constexpr}\ Rect<T>::Rect(T\ left,\ T\ top,\ T\ width,\ T\ height)\ \ :}
+\DoxyCodeLine{00078\ \ \ \ \ l(left),}
+\DoxyCodeLine{00079\ \ \ \ \ t(top),}
+\DoxyCodeLine{00080\ \ \ \ \ w(width),}
+\DoxyCodeLine{00081\ \ \ \ \ h(height)}
+\DoxyCodeLine{00082\ \{}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00087\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ U>}
+\DoxyCodeLine{00088\ \textcolor{keyword}{constexpr}\ Rect<T>::Rect(\textcolor{keyword}{const}\ Rect<U>\&\ otherRect)\ :}
+\DoxyCodeLine{00089\ \ \ \ \ l(static\_cast<T>(otherRect.l)),}
+\DoxyCodeLine{00090\ \ \ \ \ t(static\_cast<T>(otherRect.t)),}
+\DoxyCodeLine{00091\ \ \ \ \ w(static\_cast<T>(otherRect.w)),}
+\DoxyCodeLine{00092\ \ \ \ \ h(static\_cast<T>(otherRect.h))}
+\DoxyCodeLine{00093\ \{}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00098\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{void}\ Rect<T>::setPosition(\textcolor{keyword}{const}\ Vector2<T>\&\ pos)\ \{}
+\DoxyCodeLine{00099\ \ \ \ \ this-\/>l\ =\ pos.x;}
+\DoxyCodeLine{00100\ \ \ \ \ this-\/>t\ =\ pos.y;}
+\DoxyCodeLine{00101\ \}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00104\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{void}\ Rect<T>::setArea(\textcolor{keyword}{const}\ Vector2<T>\&\ size)\ \{}
+\DoxyCodeLine{00105\ \ \ \ \ this-\/>w\ =\ size.x;}
+\DoxyCodeLine{00106\ \ \ \ \ this-\/>h\ =\ size.y;}
+\DoxyCodeLine{00107\ \}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00110\ \textcolor{keyword}{constexpr}\ Vector2<T>\ Rect<T>::getPosition()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordflow}{return}\ \{l,\ t\};}
+\DoxyCodeLine{00112\ \}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00115\ \textcolor{keyword}{constexpr}\ Vector2<T>\ Rect<T>::getArea()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordflow}{return}\ \{w,\ h\};}
+\DoxyCodeLine{00117\ \}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00121\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ Rect<T>::contains(\textcolor{keyword}{const}\ Vector2<T>\&\ point)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keyword}{const}\ T\ minX\ =\ min(l,\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(l\ +\ w));}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keyword}{const}\ T\ maxX\ =\ max(l,\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(l\ +\ w));}
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keyword}{const}\ T\ minY\ =\ min(t,\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(t\ +\ h));}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keyword}{const}\ T\ maxY\ =\ max(t,\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(t\ +\ h));}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keywordflow}{return}\ (point.x\ >=\ minX)\ \&\&\ (point.x\ <\ maxX)\ \&\&\ (point.y\ >=\ minY)\ \&\&\ (point.y\ <\ maxY);}
+\DoxyCodeLine{00128\ \}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00131\ \textcolor{keyword}{constexpr}\ std::optional<Rect<T>>\ Rect<T>::intersects(\textcolor{keyword}{const}\ Rect<T>\&\ rect)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keyword}{const}\ T\ r1minX\ =\ min(l,\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(l\ +\ w));}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keyword}{const}\ T\ r1maxX\ =\ max(l,\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(l\ +\ w));}
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keyword}{const}\ T\ r1minY\ =\ min(t,\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(t\ +\ h));}
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keyword}{const}\ T\ r1maxY\ =\ max(t,\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(t\ +\ h));}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keyword}{const}\ T\ r2minX\ =\ min(rect.l,\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(rect.l\ +\ rect.w));}
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keyword}{const}\ T\ r2maxX\ =\ max(rect.l,\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(rect.l\ +\ rect.w));}
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keyword}{const}\ T\ r2minY\ =\ min(rect.t,\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(rect.t\ +\ rect.h));}
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keyword}{const}\ T\ r2maxY\ =\ max(rect.t,\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(rect.t\ +\ rect.h));}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keyword}{const}\ T\ interLeft\ =\ max(r1minX,\ r2minX);}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keyword}{const}\ T\ interTop\ =\ max(r1minY,\ r2minY);}
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keyword}{const}\ T\ interRight\ =\ min(r1maxX,\ r2maxX);}
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keyword}{const}\ T\ interBottom\ =\ min(r1maxY,\ r2maxY);}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keywordflow}{if}\ (interLeft\ <\ interRight\ \&\&\ interTop\ <\ interBottom)\ \{}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::make\_optional<Rect<T>>(\{}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \{interLeft,\ interTop\},}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \{interRight\ -\/\ interLeft,\ interBottom\ -\/\ interTop\}}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00152\ \ \ \ \ \}}
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::nullopt;}
+\DoxyCodeLine{00155\ \ \ \ \ \}}
+\DoxyCodeLine{00156\ \}}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00159\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ U>}
+\DoxyCodeLine{00160\ \textcolor{keyword}{constexpr}\ Rect<T>\&\ Rect<T>::operator=(\textcolor{keyword}{const}\ Rect<U>\&\ rhs)\ \{}
+\DoxyCodeLine{00161\ \ \ \ \ l\ =\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(rhs.l);}
+\DoxyCodeLine{00162\ \ \ \ \ t\ =\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(rhs.t);}
+\DoxyCodeLine{00163\ \ \ \ \ w\ =\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(rhs.w);}
+\DoxyCodeLine{00164\ \ \ \ \ h\ =\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(rhs.h);}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00167\ \}}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00171\ \textcolor{keyword}{constexpr}\ SDL\_Rect\ Rect<T>::toSDL\_Rect()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keywordflow}{return}\ SDL\_Rect\{}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}((l\ <=\ (l+w))\ ?\ l\ :\ l+w),}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}((t\ <=\ (t+h))\ ?\ t\ :\ t+h),}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ static\_cast<int>((w\ >=\ 0)\ ?\ w\ :\ -\/w),}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ static\_cast<int>((h\ >=\ 0)\ ?\ h\ :\ -\/h)}
+\DoxyCodeLine{00177\ \ \ \ \ \};}
+\DoxyCodeLine{00178\ \}}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \};\ \textcolor{comment}{//\ namespace\ ba}}
+
+\end{DoxyCode}

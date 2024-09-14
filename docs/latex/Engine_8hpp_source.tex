@@ -1,0 +1,112 @@
+\doxysection{Engine.\+hpp}
+\hypertarget{Engine_8hpp_source}{}\label{Engine_8hpp_source}\index{include/BA/Engine.hpp@{include/BA/Engine.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <chrono>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <stdexcept>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <SDL2/SDL.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <SDL2/SDL\_image.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <SDL2/SDL\_mixer.h>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <SDL2/SDL\_ttf.h>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <BA/Entities/SharedContext.hpp>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <BA/Exceptions/Inaccessible.hpp>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <BA/Scenes/SceneManager.hpp>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <BA/Scenes/Scene.hpp>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <BA/Systems/EntityManager.hpp>}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <BA/Tools/DebugHelper.hpp>}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ <BA/Utilities/Vector2.hpp>}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <BA/Utilities/Rect.hpp>}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <BA/Window/Window.hpp>}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{namespace\ }ba\ \{}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ S>}
+\DoxyCodeLine{00030\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptba_1_1SceneType}{SceneType}}\ =\ std::is\_base\_of<Scene,\ S>::value;}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classba_1_1Engine}{Engine}}\ \{}
+\DoxyCodeLine{00033\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{classba_1_1Engine}{Engine}}();}
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{classba_1_1Engine}{Engine}}(\textcolor{keyword}{const}\ std::string\&\ orgName,\ \textcolor{keyword}{const}\ std::string\&\ appName);}
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{classba_1_1Engine}{Engine}}(\textcolor{keyword}{const}\ std::string\&\ orgName,\ \textcolor{keyword}{const}\ std::string\&\ appName,\ \textcolor{keyword}{const}\ std::string\&\ configFileName);}
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{classba_1_1Engine}{Engine}}(\textcolor{keyword}{const}\ std::string\&\ orgName,\ \textcolor{keyword}{const}\ std::string\&\ appName,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Rect}{IntRect}}\&\ windowDimension,\ ba::uint32\ windowFlags);}
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{classba_1_1Engine}{Engine}}(\textcolor{keyword}{const}\ std::string\&\ title,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Rect}{IntRect}}\&\ dimension,\ ba::uint32\ winFlags);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{classba_1_1Engine}{Engine}}(\mbox{\hyperlink{classba_1_1Engine}{Engine}}\&\ other)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{classba_1_1Engine}{Engine}}\&\ operator=(\mbox{\hyperlink{classba_1_1Engine}{Engine}}\&\ other)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{comment}{//\ SYSTEMS\ CONFIGURATION}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{comment}{//\ GAME\ CONFIGURATION}}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{void}\ setFPSLimit(uint16\ fps);}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{classba_1_1Window}{Window}}\&\ getWindow();}
+\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{classba_1_1ResourceManager}{ResourceManager}}\&\ getResourceManager();}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{void}\ setWindowSize(\textcolor{keywordtype}{int}\ width,\ \textcolor{keywordtype}{int}\ height);}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{void}\ setWindowSize(\textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2i}}\&\ windowArea);}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{void}\ setWindowDimension(\textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y,\ \textcolor{keywordtype}{int}\ w,\ \textcolor{keywordtype}{int}\ h);}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{void}\ setWindowDimension(\textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2i}}\&\ pos,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2i}}\&\ size);}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{void}\ setWindowDimension(\textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Rect}{IntRect}}\&\ dimension);}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{void}\ setWindowFlags(uint32\ flags);}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{void}\ addWindowFlags(uint32\ flags);}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ onInit();}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ onInit(\textcolor{keyword}{const}\ std::function<\textcolor{keywordtype}{void}()>\&\ initFunc);}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keyword}{template}\ <SceneType\ T>}
+\DoxyCodeLine{00069\ \ \ \ \ std::shared\_ptr<T>\ \mbox{\hyperlink{classba_1_1Engine_acc109069f070a2cde086db1ff4421ff6}{createScene}}();}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ IDtype\ addScene(std::shared\_ptr<Scene>\ scene);}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{comment}{//\ ENGINE\ DATA\ EXTRACTION}}
+\DoxyCodeLine{00076\ \ \ \ \ uint16\ getFPSLimit()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{comment}{//\ GAME\ LOOP\ METHODS}}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{void}\ init();}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classba_1_1Engine_a57a9b4111d4f7585eae2eedef8a73724}{run}}();}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordtype}{void}\ handleEvents();}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordtype}{void}\ update(\textcolor{keywordtype}{float}\ deltaTime);}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordtype}{void}\ postUpdate(\textcolor{keywordtype}{float}\ deltaTime);}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordtype}{void}\ draw();}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordtype}{void}\ cleanUp();}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordtype}{void}\ \_\_construct(\textcolor{keyword}{const}\ std::string\&\ org\ =\ \textcolor{stringliteral}{"{}"{}},\ \textcolor{keyword}{const}\ std::string\&\ appName\ =\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00099\ \ \ \ \ \mbox{\hyperlink{classba_1_1Window}{Window}}\ m\_window;}
+\DoxyCodeLine{00100\ \ \ \ \ \mbox{\hyperlink{classba_1_1ResourceManager}{ResourceManager}}\ m\_resources;}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \mbox{\hyperlink{classba_1_1SceneManager}{SceneManager}}\ m\_sceneManager;}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00105\ \ \ \ \ uint16\ m\_fpsLimit\ =\ 60u;}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ std::vector<std::function<void()>>\ m\_initFunctions;}
+\DoxyCodeLine{00108\ \};\ \textcolor{comment}{//\ class\ Engine}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00114\ \textcolor{keyword}{template}\ <SceneType\ T>}
+\DoxyCodeLine{00115\ std::shared\_ptr<T>\ \mbox{\hyperlink{classba_1_1Engine_acc109069f070a2cde086db1ff4421ff6}{Engine::createScene}}()\ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordflow}{return}\ std::make\_shared<T>(\&m\_window,\ \&m\_resources,\ \&m\_sceneManager);}
+\DoxyCodeLine{00117\ \}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \}\ \textcolor{comment}{//\ namespace\ ba}}
+
+\end{DoxyCode}

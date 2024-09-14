@@ -1,0 +1,60 @@
+\doxysection{Collision\+System.\+hpp}
+\hypertarget{CollisionSystem_8hpp_source}{}\label{CollisionSystem_8hpp_source}\index{include/BA/Systems/CollisionSystem.hpp@{include/BA/Systems/CollisionSystem.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <bitset>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <BA/Components/Colliders/Collider.hpp>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <BA/Components/Colliders/BoxCollider.hpp>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <BA/Components/Collidable.hpp>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <BA/Containers/Quadtree.hpp>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <BA/Entities/Entity.hpp>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <BA/Systems/ComponentSystem.hpp>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <BA/Types.hpp>}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{namespace\ }ba\ \{}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classba_1_1CollisionSystem}{CollisionSystem}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classba_1_1ComponentSystem}{ComponentSystem}}\ \{}
+\DoxyCodeLine{00020\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classba_1_1CollisionSystem}{CollisionSystem}}(\mbox{\hyperlink{classba_1_1EntityManager}{EntityManager}}*\ entities);}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{classba_1_1CollisionSystem}{\string~CollisionSystem}}();}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ add(std::shared\_ptr<Entity>\&\ entity)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ remove(IDtype\ entityID)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ update(\textcolor{keywordtype}{float}\ deltaTime)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ postUpdate(\textcolor{keywordtype}{float}\ deltaTime)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{void}\ addCollisionLayer(IDtype\ layerID,\ \textcolor{keyword}{const}\ std::bitset<128>\&\ collisionBitmask\ =\ std::bitset<128>());}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{void}\ setCollision(IDtype\ layerID,\ IDtype\ otherLayer);}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{void}\ unsetCollision(IDtype\ layerID,\ IDtype\ otherLayer);}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ std::vector<std::shared\_ptr<Collider>>\ searchStatic(\textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Rect}{FloatRect}}\&\ area)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00036\ \ \ \ \ std::vector<std::shared\_ptr<Collider>>\ searchNonStatic(\textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Rect}{FloatRect}}\&\ area)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{void}\ detectCollisions();}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{void}\ processCollisions();}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{void}\ resolveCollisions();}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{void}\ enterCollision(IDtype\ c1,\ IDtype\ c2);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{classba_1_1Quadtree}{Quadtree<Collider>}}\ \ \ \ m\_staticColliderTree;}
+\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{classba_1_1Quadtree}{Quadtree<Collider>}}\ \ \ \ m\_objectsColliderTree;}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ std::unordered\_map<unsigned,\ std::bitset<128>>\ m\_collisionLayers;}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ std::vector<std::pair<IDtype,\ IDtype>>\ m\_collisions;}
+\DoxyCodeLine{00052\ \};\ \textcolor{comment}{//\ class\ CollisionSystem}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \}\ \textcolor{comment}{//\ namespace\ ba}}
+
+\end{DoxyCode}

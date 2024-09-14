@@ -1,0 +1,137 @@
+\doxysection{Entity.\+hpp}
+\hypertarget{Entity_8hpp_source}{}\label{Entity_8hpp_source}\index{include/BA/Entities/Entity.hpp@{include/BA/Entities/Entity.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <typeinfo>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <typeindex>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <BA/Components/AI/AI.hpp>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <BA/Components/Colliders/Collider.hpp>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}BA/Components/Component.hpp"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}BA/Components/Drawable.hpp"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}BA/Entities/SharedContext.hpp"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <BA/Entities/Transformable.hpp>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <BA/Tools/DebugHelper.hpp>}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{namespace\ }ba\ \{}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ C>}
+\DoxyCodeLine{00026\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptba_1_1ComponentType}{ComponentType}}\ =\ std::is\_base\_of<ba::Component,\ C>::value;}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classba_1_1Entity}{Entity}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classba_1_1Transformable}{Transformable}}\ \{}
+\DoxyCodeLine{00034\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{const}\ IDtype\ \mbox{\hyperlink{classba_1_1Entity_ac14ef25f58e80e0de7d01acf17e31ee8}{ID}};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structba_1_1SharedContext}{ba::SharedContext}}*\ \mbox{\hyperlink{classba_1_1Entity_acc3fd5419c4e373b4c60b622086430b0}{CONTEXT}};}
+\DoxyCodeLine{00047\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{classba_1_1Entity_a975dcd3c21813b1414ebab61c83b1b9e}{Entity}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structba_1_1SharedContext}{SharedContext}}*\ context);}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classba_1_1Entity_a41eb33705fd1f952d0162331cf310645}{awake}}();}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classba_1_1Entity_a79a1b7f6e9351e6150e1b6d56ab6f115}{isStatic}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classba_1_1Entity_a5ab373ccdea15c17025865c79559d226}{setStatic}}(\textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classba_1_1Entity_a79a1b7f6e9351e6150e1b6d56ab6f115}{isStatic}});}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classba_1_1Entity_a8d113469ce23e4b55acb1ece81c5dcc7}{isQueuedForRemoval}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classba_1_1Entity_a05c265e873538a5a9b9dcf8ba8de76db}{queueForRemoval}}(\textcolor{keywordtype}{bool}\ remove\ =\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keyword}{template}<ComponentType\ T>}
+\DoxyCodeLine{00121\ \ \ \ \ std::shared\_ptr<T>\ \mbox{\hyperlink{classba_1_1Entity_a76b6b876c4ebbed9ac0b57d9a19cf1a0}{addComponent}}();}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keyword}{template}<\mbox{\hyperlink{conceptba_1_1ComponentType}{ComponentType}}\ T,\ \textcolor{keyword}{typename}...\ Args>}
+\DoxyCodeLine{00135\ \ \ \ \ std::shared\_ptr<T>\ \mbox{\hyperlink{classba_1_1Entity_a76b6b876c4ebbed9ac0b57d9a19cf1a0}{addComponent}}(Args...\ args);}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keyword}{template}<ComponentType\ T>}
+\DoxyCodeLine{00145\ \ \ \ \ std::shared\_ptr<T>\ \mbox{\hyperlink{classba_1_1Entity_a78b4ccc37eab89901ad87535d7b76039}{getComponent}}();}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00154\ \ \ \ \ std::shared\_ptr<Drawable>\ \mbox{\hyperlink{classba_1_1Entity_a078f293a3d9f28dd1c7e66c6eb42cedb}{getDrawable}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00163\ \ \ \ \ std::shared\_ptr<Collider>\ \mbox{\hyperlink{classba_1_1Entity_a66225fdea2e0ebe6bbcd265aabe55afd}{getCollider}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00172\ \ \ \ \ std::shared\_ptr<AI>\ \mbox{\hyperlink{classba_1_1Entity_ac475af13f7aef3065305884030edfd84}{getAI}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00173\ \textcolor{keyword}{private}:\ \textcolor{comment}{//\ ATTRIBUTES}}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_queuedForRemoval\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_static\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \ \ \ \ std::shared\_ptr<Collider>\ m\_collider\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00180\ \ \ \ \ std::shared\_ptr<Drawable>\ m\_drawable\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00181\ \ \ \ \ std::shared\_ptr<AI>\ m\_ai\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ \ \ \ \ std::unordered\_map<std::type\_index,\ std::shared\_ptr<ba::Component>>\ m\_components;}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keyword}{static}\ IDtype\ count;}
+\DoxyCodeLine{00187\ \};\ \textcolor{comment}{//\ class\ Entity}}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00199\ \textcolor{keyword}{template}<ComponentType\ T>}
+\DoxyCodeLine{00200\ std::shared\_ptr<T>\ \mbox{\hyperlink{classba_1_1Entity_a76b6b876c4ebbed9ac0b57d9a19cf1a0}{Entity::addComponent}}()\ \{}
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keyword}{const}\ std::type\_index\ INDEX(\textcolor{keyword}{typeid}(T));}
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keywordflow}{if}(m\_components.contains(INDEX))\ \{}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ entity\ already\ has\ a\ component\ of\ type\ T,\ just\ return\ it.}}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::dynamic\_pointer\_cast<T>(m\_components.at(INDEX));}
+\DoxyCodeLine{00205\ \ \ \ \ \}}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ \ \ \ \ \textcolor{comment}{//\ T\ doesn't\ already\ exist.\ construct\ and\ store\ one.}}
+\DoxyCodeLine{00208\ \ \ \ \ m\_components.insert\_or\_assign(INDEX,\ std::make\_shared<T>(\textcolor{keyword}{this}));}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \ \ \ \ \textcolor{keywordflow}{if}\ (std::dynamic\_pointer\_cast<Collider>(m\_components.at(INDEX))\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ m\_collider\ =\ std::dynamic\_pointer\_cast<Collider>(m\_components.at(INDEX));}
+\DoxyCodeLine{00212\ \ \ \ \ \}}
+\DoxyCodeLine{00213\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (std::dynamic\_pointer\_cast<Drawable>(m\_components.at(INDEX))\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ m\_drawable\ =\ std::dynamic\_pointer\_cast<Drawable>(m\_components.at(INDEX));}
+\DoxyCodeLine{00215\ \ \ \ \ \}}
+\DoxyCodeLine{00216\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (std::dynamic\_pointer\_cast<AI>(m\_components.at(INDEX)))\ \{}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ m\_ai\ =\ std::dynamic\_pointer\_cast<AI>(m\_components.at(INDEX));}
+\DoxyCodeLine{00218\ \ \ \ \ \}}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00220\ \ \ \ \ \textcolor{keywordflow}{return}\ std::dynamic\_pointer\_cast<T>(m\_components.at(INDEX));}
+\DoxyCodeLine{00221\ \}}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00223\ \textcolor{keyword}{template}<\mbox{\hyperlink{conceptba_1_1ComponentType}{ComponentType}}\ T,\ \textcolor{keyword}{typename}...\ Args>}
+\DoxyCodeLine{00224\ std::shared\_ptr<T>\ \mbox{\hyperlink{classba_1_1Entity_a76b6b876c4ebbed9ac0b57d9a19cf1a0}{Entity::addComponent}}(Args...\ args)\ \{}
+\DoxyCodeLine{00225\ \ \ \ \ \textcolor{keyword}{const}\ std::type\_index\ INDEX(\textcolor{keyword}{typeid}(T));}
+\DoxyCodeLine{00226\ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_components.contains(INDEX))\ \{}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ entity\ already\ has\ a\ component\ of\ type\ T,\ just\ return\ it}}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::dynamic\_pointer\_cast<T>(m\_components.at(INDEX));}
+\DoxyCodeLine{00229\ \ \ \ \ \}}
+\DoxyCodeLine{00230\ \ \ \ \ \textcolor{comment}{//\ T\ doesn't\ already\ exist.\ create\ it.}}
+\DoxyCodeLine{00231\ \ \ \ \ m\_components.insert\_or\_assign(INDEX,\ std::make\_shared<T>(\textcolor{keyword}{this},\ args...));}
+\DoxyCodeLine{00232\ }
+\DoxyCodeLine{00233\ \ \ \ \ \textcolor{keywordflow}{if}\ (std::dynamic\_pointer\_cast<Collider>(m\_components.at(INDEX))\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ m\_collider\ =\ std::dynamic\_pointer\_cast<Collider>(m\_components.at(INDEX));}
+\DoxyCodeLine{00235\ \ \ \ \ \}}
+\DoxyCodeLine{00236\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (std::dynamic\_pointer\_cast<Drawable>(m\_components.at(INDEX))\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ m\_drawable\ =\ std::dynamic\_pointer\_cast<Drawable>(m\_components.at(INDEX));}
+\DoxyCodeLine{00238\ \ \ \ \ \}}
+\DoxyCodeLine{00239\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (std::dynamic\_pointer\_cast<AI>(m\_components.at(INDEX)))\ \{}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ m\_ai\ =\ std::dynamic\_pointer\_cast<AI>(m\_components.at(INDEX));}
+\DoxyCodeLine{00241\ \ \ \ \ \}}
+\DoxyCodeLine{00242\ }
+\DoxyCodeLine{00243\ \ \ \ \ \textcolor{keywordflow}{return}\ std::dynamic\_pointer\_cast<T>(m\_components.at(INDEX));}
+\DoxyCodeLine{00244\ \}}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00246\ \textcolor{keyword}{template}\ <ComponentType\ T>}
+\DoxyCodeLine{00247\ std::shared\_ptr<T>\ \mbox{\hyperlink{classba_1_1Entity_a78b4ccc37eab89901ad87535d7b76039}{Entity::getComponent}}()\ \{}
+\DoxyCodeLine{00248\ \ \ \ \ \textcolor{keyword}{const}\ std::type\_index\ INDEX(\textcolor{keyword}{typeid}(T));}
+\DoxyCodeLine{00249\ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_components.contains(INDEX))\ \{}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::dynamic\_pointer\_cast<T>(m\_components.at(INDEX));}
+\DoxyCodeLine{00251\ \ \ \ \ \}}
+\DoxyCodeLine{00252\ }
+\DoxyCodeLine{00253\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00254\ \}}
+\DoxyCodeLine{00255\ }
+\DoxyCodeLine{00256\ \}\ \textcolor{comment}{//\ namespace\ ba}}
+
+\end{DoxyCode}

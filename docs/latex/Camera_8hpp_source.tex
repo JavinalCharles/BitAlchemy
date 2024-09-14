@@ -1,0 +1,27 @@
+\doxysection{Camera.\+hpp}
+\hypertarget{Camera_8hpp_source}{}\label{Camera_8hpp_source}\index{include/BA/Components/Camera.hpp@{include/BA/Components/Camera.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}BA/Components/Component.hpp"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}BA/Window/View.hpp"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }ba\ \{}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classba_1_1Camera}{Camera}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classba_1_1Component}{Component}}\ \{}
+\DoxyCodeLine{00009\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classba_1_1Camera}{Camera}}(\mbox{\hyperlink{classba_1_1Entity}{Entity}}*\ owner);}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keywordtype}{void}\ setView(\textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1View}{View}}\&\ view);}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1View}{View}}\&\ getView()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{void}\ setViewCenter(\textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}}\&\ center);}
+\DoxyCodeLine{00015\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{classba_1_1View}{ba::View}}\ m\_cameraView;}
+\DoxyCodeLine{00017\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ IDtype\ CID;}
+\DoxyCodeLine{00019\ \};\ \textcolor{comment}{//\ class\ Camera}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \}\ \textcolor{comment}{//\ namespace}}
+
+\end{DoxyCode}

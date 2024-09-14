@@ -1,0 +1,190 @@
+\doxysection{Vector2.\+hpp}
+\hypertarget{Vector2_8hpp_source}{}\label{Vector2_8hpp_source}\index{include/BA/Utilities/Vector2.hpp@{include/BA/Utilities/Vector2.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <SDL2/SDL.h>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }ba\ \{}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classba_1_1Vector2}{Vector2}}\ \{}
+\DoxyCodeLine{00010\ \textcolor{keyword}{public}:\ \textcolor{comment}{//\ Attributes}}
+\DoxyCodeLine{00011\ \ \ \ \ T\ x\{\};}
+\DoxyCodeLine{00012\ \ \ \ \ T\ y\{\};}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{public}:\ \textcolor{comment}{//\ Constructors}}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classba_1_1Vector2_af2d362bf17659a6df35a4d6ef287ed51}{Vector2}}(T\ X,\ T\ Y);}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classba_1_1Vector2_af2d362bf17659a6df35a4d6ef287ed51}{Vector2}}();}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ U>}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classba_1_1Vector2_af2d362bf17659a6df35a4d6ef287ed51}{Vector2}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2<U>}}\&\ other);}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{constexpr}\ SDL\_Point\ toSDL\_Point()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ distance(\textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2<T>}}\&\ other)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \};\ \textcolor{comment}{//\ class\ Vector2}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{comment}{//\ OPERATORS}}
+\DoxyCodeLine{00027\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00028\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2<T>}}\ operator-\/(\textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2<T>}}\&\ rhs);}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00031\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2<T>}}\&\ operator+=(\mbox{\hyperlink{classba_1_1Vector2}{Vector2<T>}}\&\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2<T>}}\&\ rhs);}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00034\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2<T>}}\&\ operator-\/=(\mbox{\hyperlink{classba_1_1Vector2}{Vector2<T>}}\&\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2<T>}}\&\ rhs);}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00037\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2<T>}}\ operator+(\textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2<T>}}\&\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2<T>}}\&\ rhs);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00040\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2<T>}}\ operator-\/(\textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2<T>}}\&\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2<T>}}\&\ rhs);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00043\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2<T>}}\ operator*(\textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2<T>}}\&\ lhs,\ T\ rhs);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00046\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2<T>}}\ operator*(T\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2<T>}}\&\ rhs);}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00049\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2<T>}}\&\ operator*=(\mbox{\hyperlink{classba_1_1Vector2}{Vector2<T>}}\&\ lhs,\ T\ rhs);}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00052\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2<T>}}\ operator/(\textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2<T>}}\&\ lhs,\ T\ rhs);}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00055\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2<T>}}\&\ operator/=(\mbox{\hyperlink{classba_1_1Vector2}{Vector2<T>}}\&\ lhs,\ T\ rhs);}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00058\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ operator==(\textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2<T>}}\&\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2<T>}}\&\ rhs);}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00061\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ operator!=(\textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2<T>}}\&\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2<T>}}\&\ rhs);}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00064\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ distance(\textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2<T>}}\&\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2<T>}}\&\ rhs);}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{comment}{//\ Define\ common\ types}}
+\DoxyCodeLine{00067\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classba_1_1Vector2}{Vector2i}}\ =\ \ \ \ \mbox{\hyperlink{classba_1_1Vector2}{Vector2<int>}};}
+\DoxyCodeLine{00068\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classba_1_1Vector2}{Vector2f}}\ =\ \ \ \ \mbox{\hyperlink{classba_1_1Vector2}{Vector2<float>}};}
+\DoxyCodeLine{00069\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classba_1_1Vector2}{Vector2u}}\ =\ \ \ \ \mbox{\hyperlink{classba_1_1Vector2}{Vector2<unsigned\ int>}};}
+\DoxyCodeLine{00070\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classba_1_1Vector2}{Vector2d}}\ =\ \ \ \ \mbox{\hyperlink{classba_1_1Vector2}{Vector2<double>}};}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00076\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00077\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classba_1_1Vector2_af2d362bf17659a6df35a4d6ef287ed51}{Vector2<T>::Vector2}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00080\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classba_1_1Vector2_af2d362bf17659a6df35a4d6ef287ed51}{Vector2<T>::Vector2}}(T\ X,\ T\ Y)\ :}
+\DoxyCodeLine{00081\ \ \ \ \ x(X),}
+\DoxyCodeLine{00082\ \ \ \ \ y(Y)}
+\DoxyCodeLine{00083\ \{}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00088\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ U>}
+\DoxyCodeLine{00089\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classba_1_1Vector2_af2d362bf17659a6df35a4d6ef287ed51}{Vector2<T>::Vector2}}(\textcolor{keyword}{const}\ Vector2<U>\&\ other)\ \ :}
+\DoxyCodeLine{00090\ \ \ \ \ x(static\_cast<T>(other.x)),}
+\DoxyCodeLine{00091\ \ \ \ \ y(static\_cast<T>(other.y))}
+\DoxyCodeLine{00092\ \{}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00097\ \textcolor{keyword}{constexpr}\ SDL\_Point\ Vector2<T>::toSDL\_Point()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordflow}{return}\ SDL\_Point\{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(x),}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(y)}
+\DoxyCodeLine{00101\ \ \ \ \ \};}
+\DoxyCodeLine{00102\ \}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00105\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ Vector2<T>::distance(\textcolor{keyword}{const}\ Vector2<T>\&\ other)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}(std::sqrt(std::exp2(other.x\ -\/\ this-\/>x)\ +\ std::exp2(other.y\ -\/\ this-\/>y)));}
+\DoxyCodeLine{00107\ \}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00113\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00114\ \textcolor{keyword}{constexpr}\ Vector2<T>\ operator-\/(\textcolor{keyword}{const}\ Vector2<T>\&\ rhs)\ \{}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordflow}{return}\ Vector2<T>(-\/rhs.x,\ -\/rhs.y);}
+\DoxyCodeLine{00116\ \}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00119\ \textcolor{keyword}{constexpr}\ Vector2<T>\&\ operator+=(Vector2<T>\&\ lhs,\ \textcolor{keyword}{const}\ Vector2<T>\&\ rhs)\ \{}
+\DoxyCodeLine{00120\ \ \ \ \ lhs.x\ +=\ rhs.x;}
+\DoxyCodeLine{00121\ \ \ \ \ lhs.y\ +=\ rhs.y;}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs;}
+\DoxyCodeLine{00123\ \}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00126\ \textcolor{keyword}{constexpr}\ Vector2<T>\&\ operator-\/=(Vector2<T>\&\ lhs,\ \textcolor{keyword}{const}\ Vector2<T>\&\ rhs)\ \{}
+\DoxyCodeLine{00127\ \ \ \ \ lhs.x\ -\/=\ rhs.x;}
+\DoxyCodeLine{00128\ \ \ \ \ lhs.y\ -\/=\ rhs.y;}
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs;}
+\DoxyCodeLine{00130\ \}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00133\ \textcolor{keyword}{constexpr}\ Vector2<T>\ operator+(\textcolor{keyword}{const}\ Vector2<T>\&\ lhs,\ \textcolor{keyword}{const}\ Vector2<T>\&\ rhs)\ \{}
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordflow}{return}\ Vector2<T>(lhs.x\ +\ rhs.x,\ lhs.y\ +\ rhs.y);}
+\DoxyCodeLine{00135\ \}}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00138\ \textcolor{keyword}{constexpr}\ Vector2<T>\ operator-\/(\textcolor{keyword}{const}\ Vector2<T>\&\ lhs,\ \textcolor{keyword}{const}\ Vector2<T>\&\ rhs)\ \{}
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keywordflow}{return}\ Vector2<T>(lhs.x\ -\/\ rhs.x,\ lhs.y\ -\/\ rhs.y);}
+\DoxyCodeLine{00140\ \}}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00143\ \textcolor{keyword}{constexpr}\ Vector2<T>\ operator*(\textcolor{keyword}{const}\ Vector2<T>\&\ lhs,\ T\ rhs)\ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keywordflow}{return}\ Vector2<T>(lhs.x\ *\ rhs,\ lhs.y\ *\ rhs);}
+\DoxyCodeLine{00145\ \}}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00148\ \textcolor{keyword}{constexpr}\ Vector2<T>\ operator*(T\ lhs,\ \textcolor{keyword}{const}\ Vector2<T>\&\ rhs)\ \{}
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keywordflow}{return}\ Vector2<T>(rhs.x\ *\ lhs,\ rhs.y\ *\ lhs);}
+\DoxyCodeLine{00150\ \}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00153\ \textcolor{keyword}{constexpr}\ Vector2<T>\&\ operator*=(Vector2<T>\&\ lhs,\ T\ rhs)\ \{}
+\DoxyCodeLine{00154\ \ \ \ \ lhs.x\ *=\ rhs;}
+\DoxyCodeLine{00155\ \ \ \ \ lhs.y\ *=\ rhs;}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs;}
+\DoxyCodeLine{00158\ \}}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00161\ \textcolor{keyword}{constexpr}\ Vector2<T>\ operator/(\textcolor{keyword}{const}\ Vector2<T>\&\ lhs,\ T\ rhs)\ \{}
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keywordflow}{return}\ Vector2<T>(lhs.x\ /\ rhs,\ lhs.y\ /\ rhs);}
+\DoxyCodeLine{00163\ \}}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00166\ \textcolor{keyword}{constexpr}\ Vector2<T>\ operator/=(Vector2<T>\&\ lhs,\ T\ rhs)\ \{}
+\DoxyCodeLine{00167\ \ \ \ \ lhs.x\ /=\ rhs;}
+\DoxyCodeLine{00168\ \ \ \ \ lhs.y\ /=\ rhs;}
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs;}
+\DoxyCodeLine{00170\ \}}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00173\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ operator==(\textcolor{keyword}{const}\ Vector2<T>\&\ lhs,\ \textcolor{keyword}{const}\ Vector2<T>\&\ rhs)\ \{}
+\DoxyCodeLine{00174\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs.x\ ==\ rhs.x\ \&\&\ lhs.y\ ==\ rhs.y;}
+\DoxyCodeLine{00175\ \}}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00178\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ operator!=(\textcolor{keyword}{const}\ Vector2<T>\&\ lhs,\ \textcolor{keyword}{const}\ Vector2<T>\&\ rhs)\ \{}
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs.x\ !=\ rhs.x\ ||\ lhs.y\ !=\ rhs.y;}
+\DoxyCodeLine{00180\ \}}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00183\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ distance(\textcolor{keyword}{const}\ Vector2<T>\&\ lhs,\ \textcolor{keyword}{const}\ Vector2<T>\&\ rhs)\ \{}
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}(std::sqrt(}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ std::exp2(rhs.x\ -\/\ lhs.x)\ +\ std::exp2(rhs.y\ -\/\ lhs.y)}
+\DoxyCodeLine{00186\ \ \ \ \ ));}
+\DoxyCodeLine{00187\ \}}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ \}\ \textcolor{comment}{//\ namespace\ ba}}
+
+\end{DoxyCode}

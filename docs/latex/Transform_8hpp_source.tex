@@ -1,0 +1,218 @@
+\doxysection{Transform.\+hpp}
+\hypertarget{Transform_8hpp_source}{}\label{Transform_8hpp_source}\index{include/BA/Utilities/Transform.hpp@{include/BA/Utilities/Transform.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <BA/Utilities/Rect.hpp>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <BA/Utilities/Vector2.hpp>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }ba\ \{}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{class\ }Angle;}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classba_1_1Transform}{Transform}}\ \{}
+\DoxyCodeLine{00014\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classba_1_1Transform_a68a00c8da3dbe42ffcee055becdee7d0}{Transform}}();}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classba_1_1Transform_a68a00c8da3dbe42ffcee055becdee7d0}{Transform}}(\textcolor{keywordtype}{float}\ a00,\ \textcolor{keywordtype}{float}\ a01,\ \textcolor{keywordtype}{float}\ a02,\ \textcolor{keywordtype}{float}\ a10,\ \textcolor{keywordtype}{float}\ a11,\ \textcolor{keywordtype}{float}\ a12,\ \textcolor{keywordtype}{float}\ a20,\ \textcolor{keywordtype}{float}\ a21,\ \textcolor{keywordtype}{float}\ a22);}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}*\ getMatrix()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classba_1_1Transform}{Transform}}\ getInverse()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}}\ transformPoint(\textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}}\&\ point)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classba_1_1Rect}{FloatRect}}\ transformRect(\textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Rect}{FloatRect}}\&\ rectangle)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classba_1_1Transform}{Transform}}\&\ combine(\textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Transform}{Transform}}\&\ transform);}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classba_1_1Transform}{Transform}}\&\ translate(\textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}}\&\ offset);}
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{classba_1_1Transform}{Transform}}\&\ rotate(\mbox{\hyperlink{classba_1_1Angle}{Angle}}\ angle);}
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{classba_1_1Transform}{Transform}}\&\ rotate(\mbox{\hyperlink{classba_1_1Angle}{Angle}}\ angle,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}}\&\ center);}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classba_1_1Transform}{Transform}}\&\ scale(\textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}}\&\ factors);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classba_1_1Transform}{Transform}}\&\ scale(\textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}}\&\ factors,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}}\&\ center);}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Transform}{Transform}}\ Identity;}
+\DoxyCodeLine{00042\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{float}\ m\_matrix[16]}
+\DoxyCodeLine{00044\ \ \ \ \ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ 1.f,\ 0.f,\ 0.f,\ 0.f,}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ 0.f,\ 1.f,\ 0.f,\ 0.f,}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ 0.f,\ 0.f,\ 1.f,\ 0.f,}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ 0.f,\ 0.f,\ 0.f,\ 1.f}
+\DoxyCodeLine{00049\ \ \ \ \ \};}
+\DoxyCodeLine{00050\ \};\ \textcolor{comment}{//\ class\ Transform}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{keyword}{constexpr}\ Transform\ operator*(\textcolor{keyword}{const}\ Transform\&\ left,\ \textcolor{keyword}{const}\ Transform\&\ right);}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{keyword}{constexpr}\ Transform\&\ operator*=(Transform\&\ left,\ \textcolor{keyword}{const}\ Transform\&\ right);}
+\DoxyCodeLine{00055\ \textcolor{keyword}{constexpr}\ Vector2f\ operator*(\textcolor{keyword}{const}\ Transform\&\ left,\ \textcolor{keyword}{const}\ Vector2f\&\ right);}
+\DoxyCodeLine{00056\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ operator==(\textcolor{keyword}{const}\ Transform\&\ left,\ \textcolor{keyword}{const}\ Transform\&\ right);}
+\DoxyCodeLine{00057\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ operator!=(\textcolor{keyword}{const}\ Transform\&\ left,\ \textcolor{keyword}{const}\ Transform\&\ right);}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00064\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classba_1_1Transform_a68a00c8da3dbe42ffcee055becdee7d0}{Transform::Transform}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classba_1_1Transform_a68a00c8da3dbe42ffcee055becdee7d0}{Transform::Transform}}(\textcolor{keywordtype}{float}\ a00,\ \textcolor{keywordtype}{float}\ a01,\ \textcolor{keywordtype}{float}\ a02,\ \textcolor{keywordtype}{float}\ a10,\ \textcolor{keywordtype}{float}\ a11,\ \textcolor{keywordtype}{float}\ a12,\ \textcolor{keywordtype}{float}\ a20,\ \textcolor{keywordtype}{float}\ a21,\ \textcolor{keywordtype}{float}\ a22)\ :}
+\DoxyCodeLine{00067\ \ \ \ \ m\_matrix}
+\DoxyCodeLine{00068\ \ \ \ \ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ a00,\ a10,\ 0.f,\ a20,}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ a01,\ a11,\ 0.f,\ a21,}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ 0.f,\ 0.f,\ 1.f,\ 0.f,}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ a02,\ a12,\ 0.f,\ a22}
+\DoxyCodeLine{00073\ \ \ \ \ \}}
+\DoxyCodeLine{00074\ \{}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}*\ Transform::getMatrix()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_matrix;}
+\DoxyCodeLine{00080\ \}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \textcolor{keyword}{constexpr}\ Transform\ Transform::getInverse()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordtype}{float}\ det\ =\ m\_matrix[0]\ *\ (m\_matrix[15]\ *\ m\_matrix[5]\ -\/\ m\_matrix[7]\ *\ m\_matrix[13])\ -\/}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_matrix[1]\ *\ (m\_matrix[15]\ *\ m\_matrix[4]\ -\/\ m\_matrix[7]\ *\ m\_matrix[12])\ +}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_matrix[3]\ *\ (m\_matrix[13]\ *\ m\_matrix[4]\ -\/\ m\_matrix[5]\ *\ m\_matrix[12]);}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordflow}{if}\ (det\ !=\ 0.f)}
+\DoxyCodeLine{00088\ \ \ \ \ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classba_1_1Transform_a68a00c8da3dbe42ffcee055becdee7d0}{Transform}}(\ (m\_matrix[15]\ *\ m\_matrix[5]\ -\/\ m\_matrix[7]\ *\ m\_matrix[13])\ /\ det,}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/(m\_matrix[15]\ *\ m\_matrix[4]\ -\/\ m\_matrix[7]\ *\ m\_matrix[12])\ /\ det,}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (m\_matrix[13]\ *\ m\_matrix[4]\ -\/\ m\_matrix[5]\ *\ m\_matrix[12])\ /\ det,}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/(m\_matrix[15]\ *\ m\_matrix[1]\ -\/\ m\_matrix[3]\ *\ m\_matrix[13])\ /\ det,}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (m\_matrix[15]\ *\ m\_matrix[0]\ -\/\ m\_matrix[3]\ *\ m\_matrix[12])\ /\ det,}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/(m\_matrix[13]\ *\ m\_matrix[0]\ -\/\ m\_matrix[1]\ *\ m\_matrix[12])\ /\ det,}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (m\_matrix[7]\ \ *\ m\_matrix[1]\ -\/\ m\_matrix[3]\ *\ m\_matrix[5])\ \ /\ det,}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/(m\_matrix[7]\ \ *\ m\_matrix[0]\ -\/\ m\_matrix[3]\ *\ m\_matrix[4])\ \ /\ det,}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (m\_matrix[5]\ \ *\ m\_matrix[0]\ -\/\ m\_matrix[1]\ *\ m\_matrix[4])\ \ /\ det);}
+\DoxyCodeLine{00098\ \ \ \ \ \}}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00100\ \ \ \ \ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Identity;}
+\DoxyCodeLine{00102\ \ \ \ \ \}}
+\DoxyCodeLine{00103\ \}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \textcolor{keyword}{constexpr}\ Vector2f\ Transform::transformPoint(\textcolor{keyword}{const}\ Vector2f\&\ point)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordflow}{return}\ Vector2f(}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ m\_matrix[0]\ *\ point.x\ +\ m\_matrix[4]\ *\ point.y\ +\ m\_matrix[12],}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ m\_matrix[1]\ *\ point.x\ +\ m\_matrix[5]\ *\ point.y\ +\ m\_matrix[13]}
+\DoxyCodeLine{00109\ \ \ \ \ );}
+\DoxyCodeLine{00110\ \}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \textcolor{keyword}{constexpr}\ FloatRect\ Transform::transformRect(\textcolor{keyword}{const}\ FloatRect\&\ rectangle)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keyword}{const}\ Vector2f\ points[]\ =}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ transformPoint(\{rectangle.l,\ rectangle.t\}),}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ transformPoint(\{rectangle.l,\ rectangle.t\ +\ rectangle.h\}),}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ transformPoint(\{rectangle.l\ +\ rectangle.w,\ rectangle.t\}),}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ transformPoint(\{rectangle.l\ +\ rectangle.w,\ rectangle.t\ +\ rectangle.h\})}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keywordtype}{float}\ left\ \ \ \ \ \ =\ points[0].x;}
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keywordtype}{float}\ top\ \ \ \ \ \ \ =\ points[0].y;}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordtype}{float}\ right\ \ \ \ \ =\ points[0].x;}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keywordtype}{float}\ bottom\ \ \ \ =\ points[0].y;}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 1;\ i\ <\ 4;\ ++i)\ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (points[i].x\ <\ left)}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ left\ =\ points[i].x;}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (points[i].x\ >\ right)}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ right\ =\ points[i].x;}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (points[i].y\ <\ top)}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ top\ =\ points[i].y;}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (points[i].y\ >\ bottom)}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ bottom\ =\ points[i].y;}
+\DoxyCodeLine{00135\ \ \ \ \ \}}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keywordflow}{return}\ FloatRect(\{left,\ top\},\ \{right\ -\/\ left,\ bottom\ -\/\ top\});}
+\DoxyCodeLine{00138\ \}}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \textcolor{keyword}{constexpr}\ Transform\&\ Transform::combine(\textcolor{keyword}{const}\ Transform\&\ transform)\ \{}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}*\ a\ =\ m\_matrix;}
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}*\ b\ =\ transform.m\_matrix;}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{comment}{//\ clang-\/format\ off}}
+\DoxyCodeLine{00145\ \ \ \ \ *\textcolor{keyword}{this}\ =\ \mbox{\hyperlink{classba_1_1Transform_a68a00c8da3dbe42ffcee055becdee7d0}{Transform}}(a[0]\ *\ b[0]\ \ +\ a[4]\ *\ b[1]\ \ +\ a[12]\ *\ b[3],}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ a[0]\ *\ b[4]\ \ +\ a[4]\ *\ b[5]\ \ +\ a[12]\ *\ b[7],}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ a[0]\ *\ b[12]\ +\ a[4]\ *\ b[13]\ +\ a[12]\ *\ b[15],}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ a[1]\ *\ b[0]\ \ +\ a[5]\ *\ b[1]\ \ +\ a[13]\ *\ b[3],}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ a[1]\ *\ b[4]\ \ +\ a[5]\ *\ b[5]\ \ +\ a[13]\ *\ b[7],}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ a[1]\ *\ b[12]\ +\ a[5]\ *\ b[13]\ +\ a[13]\ *\ b[15],}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ a[3]\ *\ b[0]\ \ +\ a[7]\ *\ b[1]\ \ +\ a[15]\ *\ b[3],}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ a[3]\ *\ b[4]\ \ +\ a[7]\ *\ b[5]\ \ +\ a[15]\ *\ b[7],}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ a[3]\ *\ b[12]\ +\ a[7]\ *\ b[13]\ +\ a[15]\ *\ b[15]);}
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{comment}{//\ clang-\/format\ on}}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00157\ \}}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \textcolor{keyword}{constexpr}\ Transform\&\ Transform::translate(\textcolor{keyword}{const}\ Vector2f\&\ offset)}
+\DoxyCodeLine{00160\ \{}
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{comment}{//\ clang-\/format\ off}}
+\DoxyCodeLine{00162\ \ \ \ \ \mbox{\hyperlink{classba_1_1Transform_a68a00c8da3dbe42ffcee055becdee7d0}{Transform}}\ translation(1,\ 0,\ offset.x,}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0,\ 1,\ offset.y,}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0,\ 0,\ 1);}
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{comment}{//\ clang-\/format\ on}}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{keywordflow}{return}\ combine(translation);}
+\DoxyCodeLine{00168\ \}}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \textcolor{keyword}{constexpr}\ Transform\&\ Transform::scale(\textcolor{keyword}{const}\ Vector2f\&\ factors)}
+\DoxyCodeLine{00171\ \{}
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{comment}{//\ clang-\/format\ off}}
+\DoxyCodeLine{00173\ \ \ \ \ \mbox{\hyperlink{classba_1_1Transform_a68a00c8da3dbe42ffcee055becdee7d0}{Transform}}\ scaling(factors.x,\ 0,\ \ \ \ \ \ \ \ \ 0,}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0,\ \ \ \ \ \ \ \ \ factors.y,\ 0,}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0,\ \ \ \ \ \ \ \ \ 0,\ \ \ \ \ \ \ \ \ 1);}
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{comment}{//\ clang-\/format\ on}}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{keywordflow}{return}\ combine(scaling);}
+\DoxyCodeLine{00179\ \}}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \textcolor{keyword}{constexpr}\ Transform\&\ Transform::scale(\textcolor{keyword}{const}\ Vector2f\&\ factors,\ \textcolor{keyword}{const}\ Vector2f\&\ center)}
+\DoxyCodeLine{00182\ \{}
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{comment}{//\ clang-\/format\ off}}
+\DoxyCodeLine{00184\ \ \ \ \ \mbox{\hyperlink{classba_1_1Transform_a68a00c8da3dbe42ffcee055becdee7d0}{Transform}}\ scaling(factors.x,\ 0,\ \ \ \ \ \ \ \ \ center.x\ *\ (1\ -\/\ factors.x),}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0,\ \ \ \ \ \ \ \ \ factors.y,\ center.y\ *\ (1\ -\/\ factors.y),}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0,\ \ \ \ \ \ \ \ \ 0,\ \ \ \ \ \ \ \ \ 1);}
+\DoxyCodeLine{00187\ \ \ \ \ \textcolor{comment}{//\ clang-\/format\ on}}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{keywordflow}{return}\ combine(scaling);}
+\DoxyCodeLine{00190\ \}}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \textcolor{keyword}{constexpr}\ Transform\ operator*(\textcolor{keyword}{const}\ Transform\&\ left,\ \textcolor{keyword}{const}\ Transform\&\ right)}
+\DoxyCodeLine{00193\ \{}
+\DoxyCodeLine{00194\ \ \ \ \ \textcolor{keywordflow}{return}\ Transform(left).combine(right);}
+\DoxyCodeLine{00195\ \}}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \textcolor{keyword}{constexpr}\ Transform\&\ operator*=(Transform\&\ left,\ \textcolor{keyword}{const}\ Transform\&\ right)}
+\DoxyCodeLine{00198\ \{}
+\DoxyCodeLine{00199\ \ \ \ \ \textcolor{keywordflow}{return}\ left.combine(right);}
+\DoxyCodeLine{00200\ \}}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ \textcolor{keyword}{constexpr}\ Vector2f\ operator*(\textcolor{keyword}{const}\ Transform\&\ left,\ \textcolor{keyword}{const}\ Vector2f\&\ right)}
+\DoxyCodeLine{00203\ \{}
+\DoxyCodeLine{00204\ \ \ \ \ \textcolor{keywordflow}{return}\ left.transformPoint(right);}
+\DoxyCodeLine{00205\ \}}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ operator==(\textcolor{keyword}{const}\ Transform\&\ left,\ \textcolor{keyword}{const}\ Transform\&\ right)}
+\DoxyCodeLine{00208\ \{}
+\DoxyCodeLine{00209\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}*\ a\ =\ left.getMatrix();}
+\DoxyCodeLine{00210\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}*\ b\ =\ right.getMatrix();}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{comment}{//\ clang-\/format\ off}}
+\DoxyCodeLine{00213\ \ \ \ \ \textcolor{keywordflow}{return}\ ((a[0]\ \ ==\ b[0])\ \ \&\&\ (a[1]\ \ ==\ b[1])\ \ \&\&\ (a[3]\ \ ==\ b[3])\ \&\&}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ (a[4]\ \ ==\ b[4])\ \ \&\&\ (a[5]\ \ ==\ b[5])\ \ \&\&\ (a[7]\ \ ==\ b[7])\ \&\&}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ (a[12]\ ==\ b[12])\ \&\&\ (a[13]\ ==\ b[13])\ \&\&\ (a[15]\ ==\ b[15]));}
+\DoxyCodeLine{00216\ \ \ \ \ \textcolor{comment}{//\ clang-\/format\ on}}
+\DoxyCodeLine{00217\ \}}
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00219\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ operator!=(\textcolor{keyword}{const}\ Transform\&\ left,\ \textcolor{keyword}{const}\ Transform\&\ right)}
+\DoxyCodeLine{00220\ \{}
+\DoxyCodeLine{00221\ \ \ \ \ \textcolor{keywordflow}{return}\ !(left\ ==\ right);}
+\DoxyCodeLine{00222\ \}}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00224\ \textcolor{keyword}{constexpr}\ Transform\ Transform::Identity;}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00226\ \}\ \textcolor{comment}{//\ namespace\ ba}}
+
+\end{DoxyCode}

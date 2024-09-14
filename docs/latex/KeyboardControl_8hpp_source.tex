@@ -1,0 +1,44 @@
+\doxysection{Keyboard\+Control.\+hpp}
+\hypertarget{KeyboardControl_8hpp_source}{}\label{KeyboardControl_8hpp_source}\index{include/BA/Components/KeyboardControl.hpp@{include/BA/Components/KeyboardControl.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <BA/Components/Component.hpp>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <BA/Inputs/InputManager.hpp>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <BA/Inputs/KeyboardInput.hpp>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }ba\ \{}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{using\ }KeyAction\ =\ std::function<void(\textcolor{keywordtype}{void})>;}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{using\ }KeyBindings\ =\ std::unordered\_map<SDL\_KeyCode,\ std::vector<KeyAction>>;}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classba_1_1KeyboardControl}{KeyboardControl}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classba_1_1Component}{Component}}\ \{}
+\DoxyCodeLine{00018\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classba_1_1KeyboardControl}{KeyboardControl}}(\mbox{\hyperlink{classba_1_1Entity}{Entity}}*\ owner);}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{void}\ bindOnKeyActive(SDL\_KeyCode\ key,\ KeyAction\ action);}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{void}\ bindOnKeyReleased(SDL\_KeyCode\ key,\ KeyAction\ action);}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{void}\ bindOnKeyPressed(SDL\_KeyCode\ key,\ KeyAction\ action);}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{const}\ KeyBindings\&\ getBindingsOnKeyPressed()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{const}\ KeyBindings\&\ getBindingsOnKeyReleased()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{const}\ KeyBindings\&\ getBindingsOnKeyActive()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00030\ \ \ \ \ KeyBindings\ \ \ \ \ m\_keyPressedActions;}
+\DoxyCodeLine{00031\ \ \ \ \ KeyBindings\ \ \ \ \ m\_keyActiveActions;}
+\DoxyCodeLine{00032\ \ \ \ \ KeyBindings\ \ \ \ \ m\_keyReleasedActions;}
+\DoxyCodeLine{00033\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ IDtype\ CID;}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \};\ \textcolor{comment}{//\ class\ KeyboardControl}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \}\ \textcolor{comment}{//\ namespace\ ba}}
+
+\end{DoxyCode}

@@ -1,5 +1,5 @@
-\hypertarget{classba_1_1MouseControlSystem}{}\doxysection{ba\+::Mouse\+Control\+System Class Reference}
-\label{classba_1_1MouseControlSystem}\index{ba::MouseControlSystem@{ba::MouseControlSystem}}
+\doxysection{ba\+::Mouse\+Control\+System Class Reference}
+\hypertarget{classba_1_1MouseControlSystem}{}\label{classba_1_1MouseControlSystem}\index{ba::MouseControlSystem@{ba::MouseControlSystem}}
 
 
 Inheritance diagram for ba\+::Mouse\+Control\+System\+:
@@ -7,7 +7,7 @@ Inheritance diagram for ba\+::Mouse\+Control\+System\+:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=208pt]{classba_1_1MouseControlSystem__inherit__graph}
+\includegraphics[width=219pt]{classba_1_1MouseControlSystem__inherit__graph}
 \end{center}
 \end{figure}
 
@@ -17,22 +17,70 @@ Collaboration diagram for ba\+::Mouse\+Control\+System\+:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=208pt]{classba_1_1MouseControlSystem__coll__graph}
+\includegraphics[width=219pt]{classba_1_1MouseControlSystem__coll__graph}
 \end{center}
 \end{figure}
-\doxysubsection*{Public Member Functions}
+\doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classba_1_1MouseControlSystem_a712b3fcf68ca31a1e39bfa70edbc29b0}\label{classba_1_1MouseControlSystem_a712b3fcf68ca31a1e39bfa70edbc29b0}} 
-{\bfseries Mouse\+Control\+System} (\mbox{\hyperlink{classba_1_1EntityManager}{Entity\+Manager}} $\ast$entity\+Manager)
+\Hypertarget{classba_1_1MouseControlSystem_a712b3fcf68ca31a1e39bfa70edbc29b0}\label{classba_1_1MouseControlSystem_a712b3fcf68ca31a1e39bfa70edbc29b0} 
+{\bfseries Mouse\+Control\+System} (\mbox{\hyperlink{classba_1_1EntityManager}{Entity\+Manager}} \texorpdfstring{$\ast$}{*}entity\+Manager)
 \item 
-\mbox{\Hypertarget{classba_1_1MouseControlSystem_afc31f0c6a0ae959b0ecd10e07da8a111}\label{classba_1_1MouseControlSystem_afc31f0c6a0ae959b0ecd10e07da8a111}} 
-virtual void {\bfseries update} (float delta\+Time)
+virtual void \mbox{\hyperlink{classba_1_1MouseControlSystem_afc31f0c6a0ae959b0ecd10e07da8a111}{update}} (float delta\+Time)
 \item 
-\mbox{\Hypertarget{classba_1_1MouseControlSystem_ab810ff099b22ad7226d313be37f48cf2}\label{classba_1_1MouseControlSystem_ab810ff099b22ad7226d313be37f48cf2}} 
-virtual void {\bfseries add} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1Entity}{Entity}} $>$ \&entity)
+virtual void \mbox{\hyperlink{classba_1_1MouseControlSystem_ab810ff099b22ad7226d313be37f48cf2}{add}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1Entity}{Entity}} $>$ \&entity)
 \end{DoxyCompactItemize}
-\doxysubsection*{Additional Inherited Members}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classba_1_1ComponentSystem}{ba\+::\+Component\+System}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Component\+System} (\mbox{\hyperlink{classba_1_1EntityManager}{Entity\+Manager}} \texorpdfstring{$\ast$}{*}entity\+Manager)
+\item 
+virtual void {\bfseries post\+Update} (float delta\+Time)
+\item 
+virtual void {\bfseries add} (std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1Entity}{Entity}} $>$ $>$ \&entities)
+\item 
+virtual void {\bfseries remove} (IDtype entity\+ID)
+\item 
+const std\+::set$<$ IDtype $>$ \& {\bfseries get\+IDs} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{classba_1_1ComponentSystem}{ba\+::\+Component\+System}}}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries add\+ID} (IDtype entity\+ID)
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1Entity}{Entity}} $>$ {\bfseries get\+Entity} (IDtype id) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classba_1_1ComponentSystem}{ba\+::\+Component\+System}}}
+\begin{DoxyCompactItemize}
+\item 
+std\+::set$<$ IDtype $>$ {\bfseries m\+\_\+entity\+IDs}
+\item 
+\mbox{\hyperlink{classba_1_1EntityManager}{ba\+::\+Entity\+Manager}} \texorpdfstring{$\ast$}{*} {\bfseries m\+\_\+entities}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classba_1_1MouseControlSystem_ab810ff099b22ad7226d313be37f48cf2}\label{classba_1_1MouseControlSystem_ab810ff099b22ad7226d313be37f48cf2} 
+\index{ba::MouseControlSystem@{ba::MouseControlSystem}!add@{add}}
+\index{add@{add}!ba::MouseControlSystem@{ba::MouseControlSystem}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily virtual void ba\+::\+Mouse\+Control\+System\+::add (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1Entity}{Entity}} $>$ \&}]{entity }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classba_1_1ComponentSystem}{ba\+::\+Component\+System}}.
+
+\Hypertarget{classba_1_1MouseControlSystem_afc31f0c6a0ae959b0ecd10e07da8a111}\label{classba_1_1MouseControlSystem_afc31f0c6a0ae959b0ecd10e07da8a111} 
+\index{ba::MouseControlSystem@{ba::MouseControlSystem}!update@{update}}
+\index{update@{update}!ba::MouseControlSystem@{ba::MouseControlSystem}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily virtual void ba\+::\+Mouse\+Control\+System\+::update (\begin{DoxyParamCaption}\item[{float}]{delta\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classba_1_1ComponentSystem}{ba\+::\+Component\+System}}.
+
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

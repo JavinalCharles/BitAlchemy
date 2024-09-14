@@ -1,0 +1,78 @@
+\doxysection{Animation.\+hpp}
+\hypertarget{Animation_8hpp_source}{}\label{Animation_8hpp_source}\index{include/BA/Components/Animation.hpp@{include/BA/Components/Animation.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <forward\_list>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <stdexcept>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <BA/Components/Sprite.hpp>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <BA/Types.hpp>}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{namespace\ }ba\ \{}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{using\ }FrameAction\ =\ std::function<void(\textcolor{keywordtype}{void})>;}
+\DoxyCodeLine{00019\ \textcolor{keyword}{using\ }SequenceAction\ =\ std::function<void(\textcolor{keywordtype}{void})>;}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structba_1_1Frame}{Frame}}\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ IDtype\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structba_1_1Frame_aafde05106fe8260b1fe198226451d130}{textureID}};}
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{classba_1_1Rect}{IntRect}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structba_1_1Frame_ae6168c9992ef8d4328b7ffc164c63a98}{textureRect}};}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structba_1_1Frame_a3070125b889a300d658731cdd4243489}{displaySeconds}};}
+\DoxyCodeLine{00034\ \ \ \ \ std::forward\_list<FrameAction>\ \ \mbox{\hyperlink{structba_1_1Frame_acb48fed3b94352e79f7bcf0c4e29f71b}{actions}}\{\};}
+\DoxyCodeLine{00035\ \};\ \textcolor{comment}{//\ struct\ Frame}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structba_1_1Sequence}{Sequence}}\ \{}
+\DoxyCodeLine{00043\ \ \ \ \ std::vector<Frame>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structba_1_1Sequence_a061bfaa4abb453ba515f10f2dd96d77a}{frames}};}
+\DoxyCodeLine{00045\ \ \ \ \ std::forward\_list<SequenceAction>\ \ \ \mbox{\hyperlink{structba_1_1Sequence_ae7fda3e550b6607234103c9c9fd590df}{actions}}\{\};}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structba_1_1Sequence_ae02ab260bb8d97b19aa8f9fa9baa719f}{looped}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00049\ \};\ \textcolor{comment}{//\ struct\ Sequence}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00057\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classba_1_1Animation}{Animation}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classba_1_1Component}{Component}}\ \{}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classba_1_1AnimationSystem}{AnimationSystem}};}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classba_1_1Animation_ae722b55eb5613d303a643563bba6c736}{Animation}}(\mbox{\hyperlink{classba_1_1Entity}{Entity}}*\ owner);}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classba_1_1Animation_a2fe7607f59a29649415802b2866c17c5}{awake}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classba_1_1Animation_a9a8f153fb9f0b16ffa94a3872ff56fca}{add}}(IDtype\ animationID,\ \mbox{\hyperlink{structba_1_1Sequence}{Sequence}}\ sequence);}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classba_1_1Animation_ac9d6b48c2273f8af1662446fe91aa5ea}{set}}(IDtype\ animationID);}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classba_1_1Animation_af10cdd68a7621ed878b7d9aab6b7c6c4}{setLoop}}(IDtype\ animationID,\ \textcolor{keywordtype}{bool}\ isLoop\ =\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classba_1_1Animation_a6e18d7786d5c678e0f66b0c5517760c6}{setFrame}}(IDtype\ animationID,\ std::size\_t\ frameIndex,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structba_1_1Frame}{Frame}}\&\ frame);}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classba_1_1Animation_a77430fb6097918fa0451ff37e78f3673}{addFrame}}(IDtype\ animationID,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structba_1_1Frame}{Frame}}\&\ frame);}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classba_1_1Animation_a325b09f5ae3a5b0047f724db6e6048b0}{addFrameAction}}(IDtype\ animationID,\ std::size\_t\ frameIndex,\ \textcolor{keyword}{const}\ FrameAction\&\ frameAction);}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classba_1_1Animation_a6ba355b6c6c79f724cb891c72f729b1c}{addSequenceAction}}(IDtype\ animationID,\ \textcolor{keyword}{const}\ SequenceAction\&\ sequenceAction);}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00150\ \ \ \ \ IDtype\ \mbox{\hyperlink{classba_1_1Animation_af893295b327ad62d713a6b1620e049ca}{getCurrentAnimationID}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structba_1_1Sequence}{Sequence}}\&\ \mbox{\hyperlink{classba_1_1Animation_ae7b930fe218dd41ee898a24f4ae08fcf}{getCurrentSequence}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00158\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00159\ \ \ \ \ std::unordered\_map<IDtype,\ Sequence>\ m\_animationMap;}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ \ \ IDtype\ \ \ \ \ \ \ \ \ \ m\_currentAnimation\{\};}
+\DoxyCodeLine{00162\ \ \ \ \ std::size\_t\ \ \ \ \ m\_currentFrame\{\};}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ m\_currentFrameTime\{\};}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \ \ Sprite*\ \ \ \ \ \ \ \ \ m\_sprite\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00167\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ IDtype\ CID;}
+\DoxyCodeLine{00169\ \};\ \textcolor{comment}{//\ class\ Animation}}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \}\ \textcolor{comment}{//\ namespace\ ba}}
+
+\end{DoxyCode}

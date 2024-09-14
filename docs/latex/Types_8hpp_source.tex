@@ -1,0 +1,92 @@
+\doxysection{Types.\+hpp}
+\hypertarget{Types_8hpp_source}{}\label{Types_8hpp_source}\index{include/BA/Types.hpp@{include/BA/Types.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{keyword}{namespace\ }ba}
+\DoxyCodeLine{00006\ \{}
+\DoxyCodeLine{00007\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{double}\ PI\ =\ 3.14159265359;}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keyword}{using\ }int8\ =\ \ \ \ std::int8\_t;}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keyword}{using\ }uint8\ =\ \ \ std::uint8\_t;}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keyword}{using\ }int16\ =\ \ \ std::int16\_t;}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keyword}{using\ }uint16\ =\ \ std::uint16\_t;}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{using\ }int32\ =\ \ \ std::int32\_t;}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{using\ }uint32\ =\ \ std::uint32\_t;}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{using\ }int64\ =\ \ \ std::int64\_t;}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{using\ }uint64\ =\ \ std::uint64\_t;}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{using\ }IDtype\ =\ \ std::size\_t;}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{enum}\ ComponentID\ :\ IDtype\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ NONE\ =\ 0,}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ A\_I,}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ ANIMATION,}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ CAMERA,}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ COLLIDABLE,}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ COLLIDER,}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ DRAWABLE,}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ KEYBOARD\_CONTROL,}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ MOUSE\_CONTROL,}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ SOUND\_EMITTER,}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ TIMER,}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ VELOCITY,}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ XTRA1,}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ XTRA2,}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ XTRA3,}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ XTRA4,}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ XTRA5,}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ XTRA6,}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ XTRA7,}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ XTRA8}
+\DoxyCodeLine{00041\ \ \ \ \ \};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{enum}\ ConfigID\ :\ IDtype\ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ CONFIG\_ROOT\ =\ 0,}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ CONFIG\_NEEDS\_REWRITE,}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Application\ Information}}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ ORG\_NAME,}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ APP\_NAME,}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ User\ Information}}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ PROFILE\_NAME,}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ window\ configuration}}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ WINDOW\_WIDTH,}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ WINDOW\_HEIGHT,}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ WINDOW\_FULLSCREEN,}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ WINDOW\_BORDERLESS,}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ WINDOW\_RESIZABLE,}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ WINDOW\_TITLE,}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ input\ configuraions}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ MOUSE\_ENABLED,}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ KEYBOARD\_ENABLED,}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ CONTROLLER\_ENABLED,}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ mouse\ input\ configuration}}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ MOUSE\_SCROLL\_SPEED,}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ volume\ configuration}}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ GENERAL\_VOLUME,}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ MUSIC\_VOLUME,}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ SFX\_VOLUME,}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ VOICE\_VOLUME,}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ AUDIO\_TYPE,}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ display\ configurations}}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ BRIGHTNESS\_LEVEL,}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ GAMMA\_LEVEL,}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ CONTRAST\_LEVEL,}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ VSYNC\_ENABLED,}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Game\ Play\ Settings}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ FPS\_CAP\_LIMIT,}
+\DoxyCodeLine{00085\ \ \ \ \ \};}
+\DoxyCodeLine{00086\ \}\ \textcolor{comment}{//\ namespace\ ba}}
+
+\end{DoxyCode}

@@ -1,5 +1,5 @@
-\hypertarget{classba_1_1VelocityWithCollisionSystem}{}\doxysection{ba\+::Velocity\+With\+Collision\+System Class Reference}
-\label{classba_1_1VelocityWithCollisionSystem}\index{ba::VelocityWithCollisionSystem@{ba::VelocityWithCollisionSystem}}
+\doxysection{ba\+::Velocity\+With\+Collision\+System Class Reference}
+\hypertarget{classba_1_1VelocityWithCollisionSystem}{}\label{classba_1_1VelocityWithCollisionSystem}\index{ba::VelocityWithCollisionSystem@{ba::VelocityWithCollisionSystem}}
 
 
 Inheritance diagram for ba\+::Velocity\+With\+Collision\+System\+:
@@ -7,7 +7,7 @@ Inheritance diagram for ba\+::Velocity\+With\+Collision\+System\+:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=206pt]{classba_1_1VelocityWithCollisionSystem__inherit__graph}
+\includegraphics[width=218pt]{classba_1_1VelocityWithCollisionSystem__inherit__graph}
 \end{center}
 \end{figure}
 
@@ -17,43 +17,105 @@ Collaboration diagram for ba\+::Velocity\+With\+Collision\+System\+:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=206pt]{classba_1_1VelocityWithCollisionSystem__coll__graph}
+\includegraphics[width=218pt]{classba_1_1VelocityWithCollisionSystem__coll__graph}
 \end{center}
 \end{figure}
-\doxysubsection*{Public Member Functions}
+\doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classba_1_1VelocityWithCollisionSystem_a4efc46ee504398af41b2c292bcd94e8a}\label{classba_1_1VelocityWithCollisionSystem_a4efc46ee504398af41b2c292bcd94e8a}} 
-{\bfseries Velocity\+With\+Collision\+System} (\mbox{\hyperlink{classba_1_1EntityManager}{Entity\+Manager}} $\ast$entity\+Manager)
+\Hypertarget{classba_1_1VelocityWithCollisionSystem_a4efc46ee504398af41b2c292bcd94e8a}\label{classba_1_1VelocityWithCollisionSystem_a4efc46ee504398af41b2c292bcd94e8a} 
+{\bfseries Velocity\+With\+Collision\+System} (\mbox{\hyperlink{classba_1_1EntityManager}{Entity\+Manager}} \texorpdfstring{$\ast$}{*}entity\+Manager)
 \item 
-\mbox{\Hypertarget{classba_1_1VelocityWithCollisionSystem_a88cebd2dad1ac0ad353b4406933c49e9}\label{classba_1_1VelocityWithCollisionSystem_a88cebd2dad1ac0ad353b4406933c49e9}} 
-virtual void {\bfseries update} (float delta\+Time) override
+virtual void \mbox{\hyperlink{classba_1_1VelocityWithCollisionSystem_a88cebd2dad1ac0ad353b4406933c49e9}{update}} (float delta\+Time) override
 \item 
-\mbox{\Hypertarget{classba_1_1VelocityWithCollisionSystem_a8cf86c1e9ff9619aadd51e946136c2b1}\label{classba_1_1VelocityWithCollisionSystem_a8cf86c1e9ff9619aadd51e946136c2b1}} 
-virtual void {\bfseries post\+Update} (float delta\+Time) override
+virtual void \mbox{\hyperlink{classba_1_1VelocityWithCollisionSystem_a8cf86c1e9ff9619aadd51e946136c2b1}{post\+Update}} (float delta\+Time) override
 \item 
-\mbox{\Hypertarget{classba_1_1VelocityWithCollisionSystem_a2d430793d305cbcbfeb22f6b67d2258d}\label{classba_1_1VelocityWithCollisionSystem_a2d430793d305cbcbfeb22f6b67d2258d}} 
-virtual void {\bfseries add} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1Entity}{Entity}} $>$ \&entity) override
+virtual void \mbox{\hyperlink{classba_1_1VelocityWithCollisionSystem_a2d430793d305cbcbfeb22f6b67d2258d}{add}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1Entity}{Entity}} $>$ \&entity) override
 \item 
-\mbox{\Hypertarget{classba_1_1VelocityWithCollisionSystem_ad87e469c725259dc552fe6f56a95ebb8}\label{classba_1_1VelocityWithCollisionSystem_ad87e469c725259dc552fe6f56a95ebb8}} 
+\Hypertarget{classba_1_1VelocityWithCollisionSystem_ad87e469c725259dc552fe6f56a95ebb8}\label{classba_1_1VelocityWithCollisionSystem_ad87e469c725259dc552fe6f56a95ebb8} 
 void {\bfseries add\+Collision\+Layer} (IDtype layer\+ID, const std\+::bitset$<$ 128 $>$ \&collision\+Bitmask=std\+::bitset$<$ 128 $>$())
 \item 
-\mbox{\Hypertarget{classba_1_1VelocityWithCollisionSystem_a7f84add3a83ed823ae52806e5969bd53}\label{classba_1_1VelocityWithCollisionSystem_a7f84add3a83ed823ae52806e5969bd53}} 
+\Hypertarget{classba_1_1VelocityWithCollisionSystem_a7f84add3a83ed823ae52806e5969bd53}\label{classba_1_1VelocityWithCollisionSystem_a7f84add3a83ed823ae52806e5969bd53} 
 void {\bfseries set\+Collision} (IDtype layer\+ID, IDtype other\+Layer)
 \item 
-\mbox{\Hypertarget{classba_1_1VelocityWithCollisionSystem_abafad1e73074f32514262f4401efc093}\label{classba_1_1VelocityWithCollisionSystem_abafad1e73074f32514262f4401efc093}} 
+\Hypertarget{classba_1_1VelocityWithCollisionSystem_abafad1e73074f32514262f4401efc093}\label{classba_1_1VelocityWithCollisionSystem_abafad1e73074f32514262f4401efc093} 
 void {\bfseries unset\+Collision} (IDtype layer\+ID, IDtype other\+Layer)
 \item 
-\mbox{\Hypertarget{classba_1_1VelocityWithCollisionSystem_a270ef12949aac70f9e459520b3b8679a}\label{classba_1_1VelocityWithCollisionSystem_a270ef12949aac70f9e459520b3b8679a}} 
-virtual void {\bfseries remove} (IDtype entity\+ID) override
+virtual void \mbox{\hyperlink{classba_1_1VelocityWithCollisionSystem_a270ef12949aac70f9e459520b3b8679a}{remove}} (IDtype entity\+ID) override
 \item 
-\mbox{\Hypertarget{classba_1_1VelocityWithCollisionSystem_ab971aa723b22f99e16b033e9958a2dad}\label{classba_1_1VelocityWithCollisionSystem_ab971aa723b22f99e16b033e9958a2dad}} 
+\Hypertarget{classba_1_1VelocityWithCollisionSystem_adc86dfda255a8fb81a663440bb3bfb4c}\label{classba_1_1VelocityWithCollisionSystem_adc86dfda255a8fb81a663440bb3bfb4c} 
 std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1Collider}{Collider}} $>$ $>$ {\bfseries search\+Static} (const \mbox{\hyperlink{classba_1_1Rect}{Float\+Rect}} \&area) const
 \item 
-\mbox{\Hypertarget{classba_1_1VelocityWithCollisionSystem_a1a3ea7310a9a2ecc666f1a142d5cbd14}\label{classba_1_1VelocityWithCollisionSystem_a1a3ea7310a9a2ecc666f1a142d5cbd14}} 
+\Hypertarget{classba_1_1VelocityWithCollisionSystem_a2fb3542ddd44b980cc3e58ad0bdcc500}\label{classba_1_1VelocityWithCollisionSystem_a2fb3542ddd44b980cc3e58ad0bdcc500} 
 std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1Collider}{Collider}} $>$ $>$ {\bfseries search\+Non\+Static} (const \mbox{\hyperlink{classba_1_1Rect}{Float\+Rect}} \&area) const
 \end{DoxyCompactItemize}
-\doxysubsection*{Additional Inherited Members}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classba_1_1ComponentSystem}{ba\+::\+Component\+System}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Component\+System} (\mbox{\hyperlink{classba_1_1EntityManager}{Entity\+Manager}} \texorpdfstring{$\ast$}{*}entity\+Manager)
+\item 
+virtual void {\bfseries add} (std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1Entity}{Entity}} $>$ $>$ \&entities)
+\item 
+const std\+::set$<$ IDtype $>$ \& {\bfseries get\+IDs} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{classba_1_1ComponentSystem}{ba\+::\+Component\+System}}}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries add\+ID} (IDtype entity\+ID)
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1Entity}{Entity}} $>$ {\bfseries get\+Entity} (IDtype id) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classba_1_1ComponentSystem}{ba\+::\+Component\+System}}}
+\begin{DoxyCompactItemize}
+\item 
+std\+::set$<$ IDtype $>$ {\bfseries m\+\_\+entity\+IDs}
+\item 
+\mbox{\hyperlink{classba_1_1EntityManager}{ba\+::\+Entity\+Manager}} \texorpdfstring{$\ast$}{*} {\bfseries m\+\_\+entities}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classba_1_1VelocityWithCollisionSystem_a2d430793d305cbcbfeb22f6b67d2258d}\label{classba_1_1VelocityWithCollisionSystem_a2d430793d305cbcbfeb22f6b67d2258d} 
+\index{ba::VelocityWithCollisionSystem@{ba::VelocityWithCollisionSystem}!add@{add}}
+\index{add@{add}!ba::VelocityWithCollisionSystem@{ba::VelocityWithCollisionSystem}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily virtual void ba\+::\+Velocity\+With\+Collision\+System\+::add (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1Entity}{Entity}} $>$ \&}]{entity }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classba_1_1ComponentSystem}{ba\+::\+Component\+System}}.
+
+\Hypertarget{classba_1_1VelocityWithCollisionSystem_a8cf86c1e9ff9619aadd51e946136c2b1}\label{classba_1_1VelocityWithCollisionSystem_a8cf86c1e9ff9619aadd51e946136c2b1} 
+\index{ba::VelocityWithCollisionSystem@{ba::VelocityWithCollisionSystem}!postUpdate@{postUpdate}}
+\index{postUpdate@{postUpdate}!ba::VelocityWithCollisionSystem@{ba::VelocityWithCollisionSystem}}
+\doxysubsubsection{\texorpdfstring{postUpdate()}{postUpdate()}}
+{\footnotesize\ttfamily virtual void ba\+::\+Velocity\+With\+Collision\+System\+::post\+Update (\begin{DoxyParamCaption}\item[{float}]{delta\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classba_1_1ComponentSystem}{ba\+::\+Component\+System}}.
+
+\Hypertarget{classba_1_1VelocityWithCollisionSystem_a270ef12949aac70f9e459520b3b8679a}\label{classba_1_1VelocityWithCollisionSystem_a270ef12949aac70f9e459520b3b8679a} 
+\index{ba::VelocityWithCollisionSystem@{ba::VelocityWithCollisionSystem}!remove@{remove}}
+\index{remove@{remove}!ba::VelocityWithCollisionSystem@{ba::VelocityWithCollisionSystem}}
+\doxysubsubsection{\texorpdfstring{remove()}{remove()}}
+{\footnotesize\ttfamily virtual void ba\+::\+Velocity\+With\+Collision\+System\+::remove (\begin{DoxyParamCaption}\item[{IDtype}]{entity\+ID }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classba_1_1ComponentSystem}{ba\+::\+Component\+System}}.
+
+\Hypertarget{classba_1_1VelocityWithCollisionSystem_a88cebd2dad1ac0ad353b4406933c49e9}\label{classba_1_1VelocityWithCollisionSystem_a88cebd2dad1ac0ad353b4406933c49e9} 
+\index{ba::VelocityWithCollisionSystem@{ba::VelocityWithCollisionSystem}!update@{update}}
+\index{update@{update}!ba::VelocityWithCollisionSystem@{ba::VelocityWithCollisionSystem}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily virtual void ba\+::\+Velocity\+With\+Collision\+System\+::update (\begin{DoxyParamCaption}\item[{float}]{delta\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classba_1_1ComponentSystem}{ba\+::\+Component\+System}}.
+
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

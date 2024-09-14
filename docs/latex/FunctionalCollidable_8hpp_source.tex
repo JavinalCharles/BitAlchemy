@@ -1,0 +1,35 @@
+\doxysection{Functional\+Collidable.\+hpp}
+\hypertarget{FunctionalCollidable_8hpp_source}{}\label{FunctionalCollidable_8hpp_source}\index{include/BA/Components/FunctionalCollidable.hpp@{include/BA/Components/FunctionalCollidable.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}BA/Components/Collidable.hpp"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{namespace\ }ba\ \{}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{using\ }CollidableFunction\ =\ std::function<void(IDtype)>;}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classba_1_1FunctionalCollidable}{FunctionalCollidable}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classba_1_1Collidable}{Collidable}}\ \{}
+\DoxyCodeLine{00012\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classba_1_1FunctionalCollidable}{FunctionalCollidable}}(\mbox{\hyperlink{classba_1_1Entity}{Entity}}*\ owner);}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ onCollisionEnter(IDtype\ other);}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ onCollisionStay(IDtype\ other);}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ onCollisionExit(IDtype\ other);}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{void}\ addOnCollisionEnter(\textcolor{keyword}{const}\ CollidableFunction\&\ function);}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{void}\ addOnCollisionStay(\textcolor{keyword}{const}\ CollidableFunction\&\ function);}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{void}\ addOnCollisionExit(\textcolor{keyword}{const}\ CollidableFunction\&\ function);}
+\DoxyCodeLine{00022\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00023\ \ \ \ \ std::vector<CollidableFunction>\ m\_exeOnCollisionEnter;}
+\DoxyCodeLine{00024\ \ \ \ \ std::vector<CollidableFunction>\ m\_exeOnCollisionStay;}
+\DoxyCodeLine{00025\ \ \ \ \ std::vector<CollidableFunction>\ m\_exeOnCollisionExit;}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \};\ \textcolor{comment}{//\ class\ FunctionalCollidable}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \}\ \textcolor{comment}{//\ namespace\ ba}}
+
+\end{DoxyCode}

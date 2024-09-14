@@ -1,5 +1,5 @@
-\hypertarget{classba_1_1KeyboardControlSystem}{}\doxysection{ba\+::Keyboard\+Control\+System Class Reference}
-\label{classba_1_1KeyboardControlSystem}\index{ba::KeyboardControlSystem@{ba::KeyboardControlSystem}}
+\doxysection{ba\+::Keyboard\+Control\+System Class Reference}
+\hypertarget{classba_1_1KeyboardControlSystem}{}\label{classba_1_1KeyboardControlSystem}\index{ba::KeyboardControlSystem@{ba::KeyboardControlSystem}}
 
 
 Inheritance diagram for ba\+::Keyboard\+Control\+System\+:
@@ -7,7 +7,7 @@ Inheritance diagram for ba\+::Keyboard\+Control\+System\+:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=220pt]{classba_1_1KeyboardControlSystem__inherit__graph}
+\includegraphics[width=232pt]{classba_1_1KeyboardControlSystem__inherit__graph}
 \end{center}
 \end{figure}
 
@@ -17,22 +17,70 @@ Collaboration diagram for ba\+::Keyboard\+Control\+System\+:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=220pt]{classba_1_1KeyboardControlSystem__coll__graph}
+\includegraphics[width=232pt]{classba_1_1KeyboardControlSystem__coll__graph}
 \end{center}
 \end{figure}
-\doxysubsection*{Public Member Functions}
+\doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classba_1_1KeyboardControlSystem_a2318682a29a13189c41c66f3b4837ecf}\label{classba_1_1KeyboardControlSystem_a2318682a29a13189c41c66f3b4837ecf}} 
-{\bfseries Keyboard\+Control\+System} (\mbox{\hyperlink{classba_1_1EntityManager}{Entity\+Manager}} $\ast$entity\+Manager)
+\Hypertarget{classba_1_1KeyboardControlSystem_a2318682a29a13189c41c66f3b4837ecf}\label{classba_1_1KeyboardControlSystem_a2318682a29a13189c41c66f3b4837ecf} 
+{\bfseries Keyboard\+Control\+System} (\mbox{\hyperlink{classba_1_1EntityManager}{Entity\+Manager}} \texorpdfstring{$\ast$}{*}entity\+Manager)
 \item 
-\mbox{\Hypertarget{classba_1_1KeyboardControlSystem_a713ab6f8878713b759d7fc2f40e0b5cd}\label{classba_1_1KeyboardControlSystem_a713ab6f8878713b759d7fc2f40e0b5cd}} 
-virtual void {\bfseries update} (float delta\+Time)
+virtual void \mbox{\hyperlink{classba_1_1KeyboardControlSystem_a713ab6f8878713b759d7fc2f40e0b5cd}{update}} (float delta\+Time)
 \item 
-\mbox{\Hypertarget{classba_1_1KeyboardControlSystem_ae0b467bbbc3430249ea7861daaba3c16}\label{classba_1_1KeyboardControlSystem_ae0b467bbbc3430249ea7861daaba3c16}} 
-virtual void {\bfseries add} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1Entity}{Entity}} $>$ \&entity)
+virtual void \mbox{\hyperlink{classba_1_1KeyboardControlSystem_ae0b467bbbc3430249ea7861daaba3c16}{add}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1Entity}{Entity}} $>$ \&entity)
 \end{DoxyCompactItemize}
-\doxysubsection*{Additional Inherited Members}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classba_1_1ComponentSystem}{ba\+::\+Component\+System}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Component\+System} (\mbox{\hyperlink{classba_1_1EntityManager}{Entity\+Manager}} \texorpdfstring{$\ast$}{*}entity\+Manager)
+\item 
+virtual void {\bfseries post\+Update} (float delta\+Time)
+\item 
+virtual void {\bfseries add} (std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1Entity}{Entity}} $>$ $>$ \&entities)
+\item 
+virtual void {\bfseries remove} (IDtype entity\+ID)
+\item 
+const std\+::set$<$ IDtype $>$ \& {\bfseries get\+IDs} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{classba_1_1ComponentSystem}{ba\+::\+Component\+System}}}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries add\+ID} (IDtype entity\+ID)
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1Entity}{Entity}} $>$ {\bfseries get\+Entity} (IDtype id) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classba_1_1ComponentSystem}{ba\+::\+Component\+System}}}
+\begin{DoxyCompactItemize}
+\item 
+std\+::set$<$ IDtype $>$ {\bfseries m\+\_\+entity\+IDs}
+\item 
+\mbox{\hyperlink{classba_1_1EntityManager}{ba\+::\+Entity\+Manager}} \texorpdfstring{$\ast$}{*} {\bfseries m\+\_\+entities}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classba_1_1KeyboardControlSystem_ae0b467bbbc3430249ea7861daaba3c16}\label{classba_1_1KeyboardControlSystem_ae0b467bbbc3430249ea7861daaba3c16} 
+\index{ba::KeyboardControlSystem@{ba::KeyboardControlSystem}!add@{add}}
+\index{add@{add}!ba::KeyboardControlSystem@{ba::KeyboardControlSystem}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily virtual void ba\+::\+Keyboard\+Control\+System\+::add (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1Entity}{Entity}} $>$ \&}]{entity }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classba_1_1ComponentSystem}{ba\+::\+Component\+System}}.
+
+\Hypertarget{classba_1_1KeyboardControlSystem_a713ab6f8878713b759d7fc2f40e0b5cd}\label{classba_1_1KeyboardControlSystem_a713ab6f8878713b759d7fc2f40e0b5cd} 
+\index{ba::KeyboardControlSystem@{ba::KeyboardControlSystem}!update@{update}}
+\index{update@{update}!ba::KeyboardControlSystem@{ba::KeyboardControlSystem}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily virtual void ba\+::\+Keyboard\+Control\+System\+::update (\begin{DoxyParamCaption}\item[{float}]{delta\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classba_1_1ComponentSystem}{ba\+::\+Component\+System}}.
+
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

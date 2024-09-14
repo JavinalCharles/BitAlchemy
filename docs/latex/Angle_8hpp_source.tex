@@ -1,0 +1,219 @@
+\doxysection{Angle.\+hpp}
+\hypertarget{Angle_8hpp_source}{}\label{Angle_8hpp_source}\index{include/BA/Utilities/Angle.hpp@{include/BA/Utilities/Angle.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <cassert>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}BA/Types.hpp"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }ba\ \{}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classba_1_1Angle}{Angle}}\ \{}
+\DoxyCodeLine{00009\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classba_1_1Angle_a2ee075ea8dd0731e731cc543cd49e1fb}{Angle}}();}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classba_1_1Angle_a2ee075ea8dd0731e731cc543cd49e1fb}{Angle}}(\textcolor{keywordtype}{float}\ degres);}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ asDegrees()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ asRadians()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classba_1_1Angle}{Angle}}\ wrapSigned()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classba_1_1Angle}{Angle}}\ wrapUnsigned()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Angle}{Angle}}\ Zero;}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classba_1_1Angle}{Angle}}\ degrees(\textcolor{keywordtype}{float}\ angle);}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classba_1_1Angle}{Angle}}\ radians(\textcolor{keywordtype}{float}\ angle);}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{float}\ m\_degrees\{\};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \};\ \textcolor{comment}{//\ class\ Angle}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{constexpr}\ Angle\ degrees(\textcolor{keywordtype}{float}\ angle);}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{constexpr}\ Angle\ radians(\textcolor{keywordtype}{float}\ angle);}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ operator==(Angle\ left,\ Angle\ right);}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ operator!=(Angle\ left,\ Angle\ right);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ operator<(Angle\ left,\ Angle\ right);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ operator>(Angle\ left,\ Angle\ right);}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ operator<=(Angle\ left,\ Angle\ right);}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ operator>=(Angle\ left,\ Angle\ right);}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{keyword}{constexpr}\ Angle\ operator-\/(Angle\ right);}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{keyword}{constexpr}\ Angle\ operator+(Angle\ left,\ Angle\ right);}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{keyword}{constexpr}\ Angle\&\ operator+=(Angle\&\ left,\ Angle\ right);}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{keyword}{constexpr}\ Angle\ operator-\/(Angle\ left,\ Angle\ right);}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{keyword}{constexpr}\ Angle\&\ operator-\/=(Angle\&\ left,\ Angle\ right);}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{keyword}{constexpr}\ Angle\ operator*(Angle\ left,\ Angle\ right);}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{keyword}{constexpr}\ Angle\&\ operator*=(Angle\&\ left,\ Angle\ right);}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{keyword}{constexpr}\ Angle\ operator/(Angle\ left,\ Angle\ right);}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{keyword}{constexpr}\ Angle\ operator/(Angle\ left,\ \textcolor{keywordtype}{float}\ right);}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{keyword}{constexpr}\ Angle\&\ operator/=(Angle\&\ left,\ \textcolor{keywordtype}{float}\ right);}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{keyword}{constexpr}\ Angle\ operator\%(Angle\ left,\ Angle\ right);}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{keyword}{constexpr}\ Angle\&\ operator\%=(Angle\ left,\ Angle\ right);}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ positiveRemainder(\textcolor{keywordtype}{float}\ a,\ \textcolor{keywordtype}{float}\ b)\ \{}
+\DoxyCodeLine{00073\ \ \ \ \ assert(b\ >\ 0.0f);}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ val\ =\ a\ -\/\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(a/b))\ *\ b;}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordflow}{if}\ (val\ >=\ 0.f)}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ val;}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ val\ +\ b;}
+\DoxyCodeLine{00080\ \}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00087\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classba_1_1Angle_a2ee075ea8dd0731e731cc543cd49e1fb}{Angle::Angle}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ Angle::asDegrees()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_degrees;}
+\DoxyCodeLine{00091\ \}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ Angle::asRadians()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_degrees\ *\ (PI\ /\ 180);}
+\DoxyCodeLine{00095\ \}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \textcolor{keyword}{constexpr}\ Angle\ Angle::wrapSigned()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordflow}{return}\ degrees(positiveRemainder(m\_degrees\ +\ 180,\ 360)\ -\/\ 180);}
+\DoxyCodeLine{00099\ \}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \textcolor{keyword}{constexpr}\ Angle\ Angle::wrapUnsigned()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordflow}{return}\ degrees(positiveRemainder(m\_degrees,\ 360));}
+\DoxyCodeLine{00103\ \}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classba_1_1Angle_a2ee075ea8dd0731e731cc543cd49e1fb}{Angle::Angle}}(\textcolor{keywordtype}{float}\ degres)}
+\DoxyCodeLine{00106\ \ \ \ \ :\ m\_degrees(degres)}
+\DoxyCodeLine{00107\ \{}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \textcolor{keyword}{constexpr}\ Angle\ degrees(\textcolor{keywordtype}{float}\ angle)\ \{}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordflow}{return}\ Angle(angle);}
+\DoxyCodeLine{00113\ \}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \textcolor{keyword}{constexpr}\ Angle\ radians(\textcolor{keywordtype}{float}\ angle)\ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordflow}{return}\ Angle(angle\ *\ (180\ /\ PI));}
+\DoxyCodeLine{00117\ \}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ operator==(Angle\ left,\ Angle\ right)}
+\DoxyCodeLine{00120\ \{}
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keywordflow}{return}\ left.asDegrees()\ ==\ right.asDegrees();}
+\DoxyCodeLine{00122\ \}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ operator!=(Angle\ left,\ Angle\ right)}
+\DoxyCodeLine{00125\ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordflow}{return}\ left.asDegrees()\ !=\ right.asDegrees();}
+\DoxyCodeLine{00127\ \}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ operator<(Angle\ left,\ Angle\ right)}
+\DoxyCodeLine{00130\ \{}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keywordflow}{return}\ left.asDegrees()\ <\ right.asDegrees();}
+\DoxyCodeLine{00132\ \}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ operator>(Angle\ left,\ Angle\ right)}
+\DoxyCodeLine{00135\ \{}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keywordflow}{return}\ left.asDegrees()\ >\ right.asDegrees();}
+\DoxyCodeLine{00137\ \}}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ operator<=(Angle\ left,\ Angle\ right)}
+\DoxyCodeLine{00140\ \{}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keywordflow}{return}\ left.asDegrees()\ <=\ right.asDegrees();}
+\DoxyCodeLine{00142\ \}}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ operator>=(Angle\ left,\ Angle\ right)}
+\DoxyCodeLine{00145\ \{}
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keywordflow}{return}\ left.asDegrees()\ >=\ right.asDegrees();}
+\DoxyCodeLine{00147\ \}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \textcolor{keyword}{constexpr}\ Angle\ operator-\/(Angle\ right)}
+\DoxyCodeLine{00150\ \{}
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keywordflow}{return}\ degrees(-\/right.asDegrees());}
+\DoxyCodeLine{00152\ \}}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \textcolor{keyword}{constexpr}\ Angle\ operator+(Angle\ left,\ Angle\ right)}
+\DoxyCodeLine{00155\ \{}
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keywordflow}{return}\ degrees(left.asDegrees()\ +\ right.asDegrees());}
+\DoxyCodeLine{00157\ \}}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \textcolor{keyword}{constexpr}\ Angle\&\ operator+=(Angle\&\ left,\ Angle\ right)}
+\DoxyCodeLine{00160\ \{}
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keywordflow}{return}\ left\ =\ left\ +\ right;}
+\DoxyCodeLine{00162\ \}}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \textcolor{keyword}{constexpr}\ Angle\ operator-\/(Angle\ left,\ Angle\ right)}
+\DoxyCodeLine{00165\ \{}
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keywordflow}{return}\ degrees(left.asDegrees()\ -\/\ right.asDegrees());}
+\DoxyCodeLine{00167\ \}}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \textcolor{keyword}{constexpr}\ Angle\&\ operator-\/=(Angle\&\ left,\ Angle\ right)}
+\DoxyCodeLine{00170\ \{}
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keywordflow}{return}\ left\ =\ left\ -\/\ right;}
+\DoxyCodeLine{00172\ \}}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \textcolor{keyword}{constexpr}\ Angle\ operator*(Angle\ left,\ \textcolor{keywordtype}{float}\ right)}
+\DoxyCodeLine{00175\ \{}
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{keywordflow}{return}\ degrees(left.asDegrees()\ *\ right);}
+\DoxyCodeLine{00177\ \}}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \textcolor{keyword}{constexpr}\ Angle\ operator*(\textcolor{keywordtype}{float}\ left,\ Angle\ right)}
+\DoxyCodeLine{00180\ \{}
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{keywordflow}{return}\ right\ *\ left;}
+\DoxyCodeLine{00182\ \}}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \textcolor{keyword}{constexpr}\ Angle\&\ operator*=(Angle\&\ left,\ \textcolor{keywordtype}{float}\ right)}
+\DoxyCodeLine{00185\ \{}
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keywordflow}{return}\ left\ =\ left\ *\ right;}
+\DoxyCodeLine{00187\ \}}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \textcolor{keyword}{constexpr}\ Angle\ operator/(Angle\ left,\ \textcolor{keywordtype}{float}\ right)}
+\DoxyCodeLine{00190\ \{}
+\DoxyCodeLine{00191\ \ \ \ \ \textcolor{keywordflow}{return}\ degrees(left.asDegrees()\ /\ right);}
+\DoxyCodeLine{00192\ \}}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \textcolor{keyword}{constexpr}\ Angle\&\ operator/=(Angle\&\ left,\ \textcolor{keywordtype}{float}\ right)}
+\DoxyCodeLine{00195\ \{}
+\DoxyCodeLine{00196\ \ \ \ \ \textcolor{keywordflow}{return}\ left\ =\ left\ /\ right;}
+\DoxyCodeLine{00197\ \}}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00199\ \textcolor{keyword}{constexpr}\ Angle\ operator/(Angle\ left,\ Angle\ right)}
+\DoxyCodeLine{00200\ \{}
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keywordflow}{return}\ Angle(left.asDegrees()\ /\ right.asDegrees());}
+\DoxyCodeLine{00202\ \}}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ \textcolor{keyword}{constexpr}\ Angle\ operator\%(Angle\ left,\ Angle\ right)}
+\DoxyCodeLine{00205\ \{}
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{keywordflow}{return}\ degrees(positiveRemainder(left.asDegrees(),\ right.asDegrees()));}
+\DoxyCodeLine{00207\ \}}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ \textcolor{keyword}{constexpr}\ Angle\&\ operator\%=(Angle\&\ left,\ Angle\ right)}
+\DoxyCodeLine{00210\ \{}
+\DoxyCodeLine{00211\ \ \ \ \ \textcolor{keywordflow}{return}\ left\ =\ left\ \%\ right;}
+\DoxyCodeLine{00212\ \}}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00217\ \}\ \textcolor{comment}{//\ namespace\ ba}}
+
+\end{DoxyCode}

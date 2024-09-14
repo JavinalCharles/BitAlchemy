@@ -1,0 +1,42 @@
+\doxysection{Debug\+Helper.\+hpp}
+\hypertarget{DebugHelper_8hpp_source}{}\label{DebugHelper_8hpp_source}\index{include/BA/Tools/DebugHelper.hpp@{include/BA/Tools/DebugHelper.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}BA/Utilities/Color.hpp"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}BA/Utilities/Line.hpp"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}BA/Utilities/Rect.hpp"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}BA/Utilities/Vector2.hpp"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}BA/Window/Window.hpp"{}}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }ba\ \{}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classba_1_1DebugHelper}{DebugHelper}}\ :\ \textcolor{keyword}{public}\ std::basic\_ostream<wchar\_t,\ std::char\_traits<wchar\_t>>\ \{}
+\DoxyCodeLine{00016\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classba_1_1DebugHelper}{DebugHelper}}(std::basic\_streambuf<\textcolor{keywordtype}{wchar\_t},\ std::char\_traits<wchar\_t>>*\ sb\ =\ std::wclog.rdbuf());}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{classba_1_1DebugHelper}{DebugHelper}}\&\ operator<<(\textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Rect}{IntRect}}\&\ rect);}
+\DoxyCodeLine{00020\ \ \ \ \ \mbox{\hyperlink{classba_1_1DebugHelper}{DebugHelper}}\&\ operator<<(\textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Line}{IntLine}}\&\ line);}
+\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{classba_1_1DebugHelper}{DebugHelper}}\&\ operator<<(\textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}}\&\ point);}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{void}\ draw(\mbox{\hyperlink{classba_1_1Window}{Window}}\&\ window);}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{void}\ setColor(\textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Color}{Color}}\&\ color);}
+\DoxyCodeLine{00025\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00026\ \ \ \ \ std::vector<IntRect>\ \ \ \ m\_rects;}
+\DoxyCodeLine{00027\ \ \ \ \ std::vector<IntLine>\ \ \ \ m\_lines;}
+\DoxyCodeLine{00028\ \ \ \ \ std::vector<Vector2f>\ \ \ m\_points;}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{classba_1_1Color}{Color}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_color\ =\ Color::Blue;}
+\DoxyCodeLine{00032\ \};\ \textcolor{comment}{//\ class\ DebugHelper;}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{classba_1_1DebugHelper}{DebugHelper}}\ debug;}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \}\ \textcolor{comment}{//\ namespace\ ba}}
+
+\end{DoxyCode}

@@ -1,0 +1,45 @@
+\doxysection{Velocity.\+hpp}
+\hypertarget{Velocity_8hpp_source}{}\label{Velocity_8hpp_source}\index{include/BA/Components/Velocity.hpp@{include/BA/Components/Velocity.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <BA/Components/Component.hpp>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <BA/Utilities/Vector2.hpp>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }ba\ \{}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classba_1_1Velocity}{Velocity}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classba_1_1Component}{Component}}\ \{}
+\DoxyCodeLine{00009\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classba_1_1Velocity}{Velocity}}(\mbox{\hyperlink{classba_1_1Entity}{Entity}}*\ owner);}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keywordtype}{void}\ setMax(\textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}}\&\ maxVelocity);}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}}\&\ getMax()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordtype}{void}\ set(\textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}}\&\ vel);}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{void}\ set(\textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ y);}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{void}\ setX(\textcolor{keywordtype}{float}\ x);}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{void}\ setY(\textcolor{keywordtype}{float}\ y);}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}}\&\ get()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{void}\ resetVelocity();}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{void}\ moveUp();}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{void}\ moveRight();}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{void}\ moveDown();}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{void}\ moveLeft();}
+\DoxyCodeLine{00028\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{void}\ clampVelocity();}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}}\ m\_velocity\{\};}
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}}\ m\_maxVelocity\{600.f,600.f\};}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ IDtype\ CID;}
+\DoxyCodeLine{00036\ \};\ \textcolor{comment}{//\ class\ Velocity}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \}\ \textcolor{comment}{//\ namespace\ ba}}
+
+\end{DoxyCode}

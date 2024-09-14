@@ -1,5 +1,5 @@
-\hypertarget{classba_1_1BitAlchemySplash}{}\doxysection{ba\+::Bit\+Alchemy\+Splash Class Reference}
-\label{classba_1_1BitAlchemySplash}\index{ba::BitAlchemySplash@{ba::BitAlchemySplash}}
+\doxysection{ba\+::Bit\+Alchemy\+Splash Class Reference}
+\hypertarget{classba_1_1BitAlchemySplash}{}\label{classba_1_1BitAlchemySplash}\index{ba::BitAlchemySplash@{ba::BitAlchemySplash}}
 
 
 Inheritance diagram for ba\+::Bit\+Alchemy\+Splash\+:
@@ -7,7 +7,7 @@ Inheritance diagram for ba\+::Bit\+Alchemy\+Splash\+:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=193pt]{classba_1_1BitAlchemySplash__inherit__graph}
+\includegraphics[width=203pt]{classba_1_1BitAlchemySplash__inherit__graph}
 \end{center}
 \end{figure}
 
@@ -20,25 +20,110 @@ Collaboration diagram for ba\+::Bit\+Alchemy\+Splash\+:
 \includegraphics[width=350pt]{classba_1_1BitAlchemySplash__coll__graph}
 \end{center}
 \end{figure}
-\doxysubsection*{Public Member Functions}
+\doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classba_1_1BitAlchemySplash_aeb7e936b982d2f3aefae5106925f8636}\label{classba_1_1BitAlchemySplash_aeb7e936b982d2f3aefae5106925f8636}} 
-{\bfseries Bit\+Alchemy\+Splash} (\mbox{\hyperlink{classba_1_1Window}{Window}} $\ast$window, \mbox{\hyperlink{classba_1_1ResourceManager}{Resource\+Manager}} $\ast$resource\+Manager, \mbox{\hyperlink{classba_1_1SceneManager}{Scene\+Manager}} $\ast$scene\+Manager)
+\Hypertarget{classba_1_1BitAlchemySplash_aeb7e936b982d2f3aefae5106925f8636}\label{classba_1_1BitAlchemySplash_aeb7e936b982d2f3aefae5106925f8636} 
+{\bfseries Bit\+Alchemy\+Splash} (\mbox{\hyperlink{classba_1_1Window}{Window}} \texorpdfstring{$\ast$}{*}window, \mbox{\hyperlink{classba_1_1ResourceManager}{Resource\+Manager}} \texorpdfstring{$\ast$}{*}resource\+Manager, \mbox{\hyperlink{classba_1_1SceneManager}{Scene\+Manager}} \texorpdfstring{$\ast$}{*}scene\+Manager)
 \item 
-\mbox{\Hypertarget{classba_1_1BitAlchemySplash_a856e6aee4884f26fa1212d5e853c36d6}\label{classba_1_1BitAlchemySplash_a856e6aee4884f26fa1212d5e853c36d6}} 
-virtual void {\bfseries on\+Create} ()
+virtual void \mbox{\hyperlink{classba_1_1BitAlchemySplash_a856e6aee4884f26fa1212d5e853c36d6}{on\+Create}} ()
 \item 
-\mbox{\Hypertarget{classba_1_1BitAlchemySplash_a10c205c0c8962f3a76bfc2a3b8a247d0}\label{classba_1_1BitAlchemySplash_a10c205c0c8962f3a76bfc2a3b8a247d0}} 
-virtual void {\bfseries on\+Destroy} ()
+virtual void \mbox{\hyperlink{classba_1_1BitAlchemySplash_a10c205c0c8962f3a76bfc2a3b8a247d0}{on\+Destroy}} ()
 \item 
-\mbox{\Hypertarget{classba_1_1BitAlchemySplash_af0e8c88798510fbad87d83df606fbc22}\label{classba_1_1BitAlchemySplash_af0e8c88798510fbad87d83df606fbc22}} 
-virtual void {\bfseries update} (float delta\+Time) override
+virtual void \mbox{\hyperlink{classba_1_1BitAlchemySplash_af0e8c88798510fbad87d83df606fbc22}{update}} (float delta\+Time) override
 \item 
-\mbox{\Hypertarget{classba_1_1BitAlchemySplash_a0bb47436cf79d9d3640a03ef78c9bd6d}\label{classba_1_1BitAlchemySplash_a0bb47436cf79d9d3640a03ef78c9bd6d}} 
-virtual void {\bfseries draw} (\mbox{\hyperlink{classba_1_1Window}{Window}} \&window)
+virtual void \mbox{\hyperlink{classba_1_1BitAlchemySplash_a0bb47436cf79d9d3640a03ef78c9bd6d}{draw}} (\mbox{\hyperlink{classba_1_1Window}{Window}} \&window)
 \end{DoxyCompactItemize}
-\doxysubsection*{Additional Inherited Members}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classba_1_1Scene}{ba\+::\+Scene}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Scene} (\mbox{\hyperlink{classba_1_1Window}{Window}} \texorpdfstring{$\ast$}{*}window, \mbox{\hyperlink{classba_1_1ResourceManager}{Resource\+Manager}} \texorpdfstring{$\ast$}{*}resource\+Manager, \mbox{\hyperlink{classba_1_1SceneManager}{Scene\+Manager}} \texorpdfstring{$\ast$}{*}scene\+Manager)
+\item 
+void {\bfseries create} ()
+\item 
+void {\bfseries destroy} ()
+\item 
+void {\bfseries activate} ()
+\item 
+void {\bfseries deactivate} ()
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1Entity}{Entity}} $>$ {\bfseries create\+Entity} ()
+\item 
+{\footnotesize template$<$Entity\+Type T$>$ }\\std\+::shared\+\_\+ptr$<$ T $>$ \mbox{\hyperlink{classba_1_1Scene_ad084160e442a5c69372f9b5c1670f0ff}{create\+Custom\+Entity}} ()
+\item 
+virtual void {\bfseries on\+Create} (const std\+::function$<$ void()$>$ \&function)
+\item 
+virtual void {\bfseries on\+Activate} ()
+\item 
+virtual void {\bfseries on\+Activate} (const std\+::function$<$ void()$>$ \&function)
+\item 
+virtual void {\bfseries on\+Deactivate} ()
+\item 
+virtual void {\bfseries handle\+Events} ()
+\item 
+virtual void {\bfseries post\+Update} (float delta\+Time)
+\item 
+virtual void {\bfseries set\+Window} (\mbox{\hyperlink{classba_1_1Window}{Window}} \texorpdfstring{$\ast$}{*}window)
+\item 
+virtual void {\bfseries set\+Reesource\+Manager} (\mbox{\hyperlink{classba_1_1ResourceManager}{Resource\+Manager}} \texorpdfstring{$\ast$}{*}rm)
+\item 
+virtual void {\bfseries set\+Scene\+Manager} (\mbox{\hyperlink{classba_1_1SceneManager}{Scene\+Manager}} \texorpdfstring{$\ast$}{*}sm)
+\item 
+virtual void {\bfseries set\+Switch\+To} (IDtype scene\+ID)
+\item 
+IDtype {\bfseries get\+SWitch\+To} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classba_1_1Scene}{ba\+::\+Scene}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structba_1_1SharedContext}{Shared\+Context}} {\bfseries m\+\_\+\+CONTEXT}
+\item 
+\mbox{\hyperlink{classba_1_1SceneManager}{Scene\+Manager}} \texorpdfstring{$\ast$}{*} {\bfseries m\+\_\+scene\+Manager} = nullptr
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classba_1_1BitAlchemySplash_a0bb47436cf79d9d3640a03ef78c9bd6d}\label{classba_1_1BitAlchemySplash_a0bb47436cf79d9d3640a03ef78c9bd6d} 
+\index{ba::BitAlchemySplash@{ba::BitAlchemySplash}!draw@{draw}}
+\index{draw@{draw}!ba::BitAlchemySplash@{ba::BitAlchemySplash}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily virtual void ba\+::\+Bit\+Alchemy\+Splash\+::draw (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classba_1_1Window}{Window}} \&}]{window }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classba_1_1Scene}{ba\+::\+Scene}}.
+
+\Hypertarget{classba_1_1BitAlchemySplash_a856e6aee4884f26fa1212d5e853c36d6}\label{classba_1_1BitAlchemySplash_a856e6aee4884f26fa1212d5e853c36d6} 
+\index{ba::BitAlchemySplash@{ba::BitAlchemySplash}!onCreate@{onCreate}}
+\index{onCreate@{onCreate}!ba::BitAlchemySplash@{ba::BitAlchemySplash}}
+\doxysubsubsection{\texorpdfstring{onCreate()}{onCreate()}}
+{\footnotesize\ttfamily virtual void ba\+::\+Bit\+Alchemy\+Splash\+::on\+Create (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classba_1_1Scene}{ba\+::\+Scene}}.
+
+\Hypertarget{classba_1_1BitAlchemySplash_a10c205c0c8962f3a76bfc2a3b8a247d0}\label{classba_1_1BitAlchemySplash_a10c205c0c8962f3a76bfc2a3b8a247d0} 
+\index{ba::BitAlchemySplash@{ba::BitAlchemySplash}!onDestroy@{onDestroy}}
+\index{onDestroy@{onDestroy}!ba::BitAlchemySplash@{ba::BitAlchemySplash}}
+\doxysubsubsection{\texorpdfstring{onDestroy()}{onDestroy()}}
+{\footnotesize\ttfamily virtual void ba\+::\+Bit\+Alchemy\+Splash\+::on\+Destroy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classba_1_1Scene}{ba\+::\+Scene}}.
+
+\Hypertarget{classba_1_1BitAlchemySplash_af0e8c88798510fbad87d83df606fbc22}\label{classba_1_1BitAlchemySplash_af0e8c88798510fbad87d83df606fbc22} 
+\index{ba::BitAlchemySplash@{ba::BitAlchemySplash}!update@{update}}
+\index{update@{update}!ba::BitAlchemySplash@{ba::BitAlchemySplash}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily virtual void ba\+::\+Bit\+Alchemy\+Splash\+::update (\begin{DoxyParamCaption}\item[{float}]{delta\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classba_1_1Scene}{ba\+::\+Scene}}.
+
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

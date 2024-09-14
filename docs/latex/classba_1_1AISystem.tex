@@ -1,5 +1,5 @@
-\hypertarget{classba_1_1AISystem}{}\doxysection{ba\+::AISystem Class Reference}
-\label{classba_1_1AISystem}\index{ba::AISystem@{ba::AISystem}}
+\doxysection{ba\+::AISystem Class Reference}
+\hypertarget{classba_1_1AISystem}{}\label{classba_1_1AISystem}\index{ba::AISystem@{ba::AISystem}}
 
 
 Inheritance diagram for ba\+::AISystem\+:
@@ -7,7 +7,7 @@ Inheritance diagram for ba\+::AISystem\+:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=197pt]{classba_1_1AISystem__inherit__graph}
+\includegraphics[width=208pt]{classba_1_1AISystem__inherit__graph}
 \end{center}
 \end{figure}
 
@@ -17,22 +17,70 @@ Collaboration diagram for ba\+::AISystem\+:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=197pt]{classba_1_1AISystem__coll__graph}
+\includegraphics[width=208pt]{classba_1_1AISystem__coll__graph}
 \end{center}
 \end{figure}
-\doxysubsection*{Public Member Functions}
+\doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classba_1_1AISystem_a487eba422ed3eff09daf03ae487c4190}\label{classba_1_1AISystem_a487eba422ed3eff09daf03ae487c4190}} 
-{\bfseries AISystem} (\mbox{\hyperlink{classba_1_1EntityManager}{Entity\+Manager}} $\ast$entity\+Manager)
+\Hypertarget{classba_1_1AISystem_a487eba422ed3eff09daf03ae487c4190}\label{classba_1_1AISystem_a487eba422ed3eff09daf03ae487c4190} 
+{\bfseries AISystem} (\mbox{\hyperlink{classba_1_1EntityManager}{Entity\+Manager}} \texorpdfstring{$\ast$}{*}entity\+Manager)
 \item 
-\mbox{\Hypertarget{classba_1_1AISystem_ad8f6ff11e88f8710d4d0e3b000176aef}\label{classba_1_1AISystem_ad8f6ff11e88f8710d4d0e3b000176aef}} 
-virtual void {\bfseries update} (float delta\+Time)
+virtual void \mbox{\hyperlink{classba_1_1AISystem_ad8f6ff11e88f8710d4d0e3b000176aef}{update}} (float delta\+Time)
 \item 
-\mbox{\Hypertarget{classba_1_1AISystem_a6ea2efd18a8049d00286e60f9aba23fc}\label{classba_1_1AISystem_a6ea2efd18a8049d00286e60f9aba23fc}} 
-virtual void {\bfseries add} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1Entity}{Entity}} $>$ \&entity)
+virtual void \mbox{\hyperlink{classba_1_1AISystem_a6ea2efd18a8049d00286e60f9aba23fc}{add}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1Entity}{Entity}} $>$ \&entity)
 \end{DoxyCompactItemize}
-\doxysubsection*{Additional Inherited Members}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classba_1_1ComponentSystem}{ba\+::\+Component\+System}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Component\+System} (\mbox{\hyperlink{classba_1_1EntityManager}{Entity\+Manager}} \texorpdfstring{$\ast$}{*}entity\+Manager)
+\item 
+virtual void {\bfseries post\+Update} (float delta\+Time)
+\item 
+virtual void {\bfseries add} (std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1Entity}{Entity}} $>$ $>$ \&entities)
+\item 
+virtual void {\bfseries remove} (IDtype entity\+ID)
+\item 
+const std\+::set$<$ IDtype $>$ \& {\bfseries get\+IDs} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{classba_1_1ComponentSystem}{ba\+::\+Component\+System}}}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries add\+ID} (IDtype entity\+ID)
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1Entity}{Entity}} $>$ {\bfseries get\+Entity} (IDtype id) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classba_1_1ComponentSystem}{ba\+::\+Component\+System}}}
+\begin{DoxyCompactItemize}
+\item 
+std\+::set$<$ IDtype $>$ {\bfseries m\+\_\+entity\+IDs}
+\item 
+\mbox{\hyperlink{classba_1_1EntityManager}{ba\+::\+Entity\+Manager}} \texorpdfstring{$\ast$}{*} {\bfseries m\+\_\+entities}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classba_1_1AISystem_a6ea2efd18a8049d00286e60f9aba23fc}\label{classba_1_1AISystem_a6ea2efd18a8049d00286e60f9aba23fc} 
+\index{ba::AISystem@{ba::AISystem}!add@{add}}
+\index{add@{add}!ba::AISystem@{ba::AISystem}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily virtual void ba\+::\+AISystem\+::add (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1Entity}{Entity}} $>$ \&}]{entity }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classba_1_1ComponentSystem}{ba\+::\+Component\+System}}.
+
+\Hypertarget{classba_1_1AISystem_ad8f6ff11e88f8710d4d0e3b000176aef}\label{classba_1_1AISystem_ad8f6ff11e88f8710d4d0e3b000176aef} 
+\index{ba::AISystem@{ba::AISystem}!update@{update}}
+\index{update@{update}!ba::AISystem@{ba::AISystem}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily virtual void ba\+::\+AISystem\+::update (\begin{DoxyParamCaption}\item[{float}]{delta\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classba_1_1ComponentSystem}{ba\+::\+Component\+System}}.
+
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

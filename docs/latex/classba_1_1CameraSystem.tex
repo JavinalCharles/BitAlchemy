@@ -1,5 +1,5 @@
-\hypertarget{classba_1_1CameraSystem}{}\doxysection{ba\+::Camera\+System Class Reference}
-\label{classba_1_1CameraSystem}\index{ba::CameraSystem@{ba::CameraSystem}}
+\doxysection{ba\+::Camera\+System Class Reference}
+\hypertarget{classba_1_1CameraSystem}{}\label{classba_1_1CameraSystem}\index{ba::CameraSystem@{ba::CameraSystem}}
 
 
 Inheritance diagram for ba\+::Camera\+System\+:
@@ -7,7 +7,7 @@ Inheritance diagram for ba\+::Camera\+System\+:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=197pt]{classba_1_1CameraSystem__inherit__graph}
+\includegraphics[width=208pt]{classba_1_1CameraSystem__inherit__graph}
 \end{center}
 \end{figure}
 
@@ -17,22 +17,70 @@ Collaboration diagram for ba\+::Camera\+System\+:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=197pt]{classba_1_1CameraSystem__coll__graph}
+\includegraphics[width=208pt]{classba_1_1CameraSystem__coll__graph}
 \end{center}
 \end{figure}
-\doxysubsection*{Public Member Functions}
+\doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classba_1_1CameraSystem_a4cee47b11f716791575b103633a19675}\label{classba_1_1CameraSystem_a4cee47b11f716791575b103633a19675}} 
-{\bfseries Camera\+System} (\mbox{\hyperlink{classba_1_1EntityManager}{Entity\+Manager}} $\ast$entity\+Manager)
+\Hypertarget{classba_1_1CameraSystem_a4cee47b11f716791575b103633a19675}\label{classba_1_1CameraSystem_a4cee47b11f716791575b103633a19675} 
+{\bfseries Camera\+System} (\mbox{\hyperlink{classba_1_1EntityManager}{Entity\+Manager}} \texorpdfstring{$\ast$}{*}entity\+Manager)
 \item 
-\mbox{\Hypertarget{classba_1_1CameraSystem_a2fe98efc46eced243e9abf15fa78ca13}\label{classba_1_1CameraSystem_a2fe98efc46eced243e9abf15fa78ca13}} 
-virtual void {\bfseries update} (float delta\+Time)
+virtual void \mbox{\hyperlink{classba_1_1CameraSystem_a2fe98efc46eced243e9abf15fa78ca13}{update}} (float delta\+Time)
 \item 
-\mbox{\Hypertarget{classba_1_1CameraSystem_add97bf2a8585adc32f8b2923b8419bd8}\label{classba_1_1CameraSystem_add97bf2a8585adc32f8b2923b8419bd8}} 
-virtual void {\bfseries add} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1Entity}{Entity}} $>$ \&entity)
+virtual void \mbox{\hyperlink{classba_1_1CameraSystem_add97bf2a8585adc32f8b2923b8419bd8}{add}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1Entity}{Entity}} $>$ \&entity)
 \end{DoxyCompactItemize}
-\doxysubsection*{Additional Inherited Members}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classba_1_1ComponentSystem}{ba\+::\+Component\+System}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Component\+System} (\mbox{\hyperlink{classba_1_1EntityManager}{Entity\+Manager}} \texorpdfstring{$\ast$}{*}entity\+Manager)
+\item 
+virtual void {\bfseries post\+Update} (float delta\+Time)
+\item 
+virtual void {\bfseries add} (std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1Entity}{Entity}} $>$ $>$ \&entities)
+\item 
+virtual void {\bfseries remove} (IDtype entity\+ID)
+\item 
+const std\+::set$<$ IDtype $>$ \& {\bfseries get\+IDs} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{classba_1_1ComponentSystem}{ba\+::\+Component\+System}}}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries add\+ID} (IDtype entity\+ID)
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1Entity}{Entity}} $>$ {\bfseries get\+Entity} (IDtype id) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classba_1_1ComponentSystem}{ba\+::\+Component\+System}}}
+\begin{DoxyCompactItemize}
+\item 
+std\+::set$<$ IDtype $>$ {\bfseries m\+\_\+entity\+IDs}
+\item 
+\mbox{\hyperlink{classba_1_1EntityManager}{ba\+::\+Entity\+Manager}} \texorpdfstring{$\ast$}{*} {\bfseries m\+\_\+entities}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classba_1_1CameraSystem_add97bf2a8585adc32f8b2923b8419bd8}\label{classba_1_1CameraSystem_add97bf2a8585adc32f8b2923b8419bd8} 
+\index{ba::CameraSystem@{ba::CameraSystem}!add@{add}}
+\index{add@{add}!ba::CameraSystem@{ba::CameraSystem}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily virtual void ba\+::\+Camera\+System\+::add (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1Entity}{Entity}} $>$ \&}]{entity }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classba_1_1ComponentSystem}{ba\+::\+Component\+System}}.
+
+\Hypertarget{classba_1_1CameraSystem_a2fe98efc46eced243e9abf15fa78ca13}\label{classba_1_1CameraSystem_a2fe98efc46eced243e9abf15fa78ca13} 
+\index{ba::CameraSystem@{ba::CameraSystem}!update@{update}}
+\index{update@{update}!ba::CameraSystem@{ba::CameraSystem}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily virtual void ba\+::\+Camera\+System\+::update (\begin{DoxyParamCaption}\item[{float}]{delta\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classba_1_1ComponentSystem}{ba\+::\+Component\+System}}.
+
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

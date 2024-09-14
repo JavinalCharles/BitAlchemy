@@ -1,0 +1,35 @@
+\doxysection{Keyboard\+Input.\+hpp}
+\hypertarget{KeyboardInput_8hpp_source}{}\label{KeyboardInput_8hpp_source}\index{include/BA/Inputs/KeyboardInput.hpp@{include/BA/Inputs/KeyboardInput.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <SDL2/SDL\_events.h>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <BA/Inputs/Input.hpp>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <BA/Types.hpp>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <BA/Utilities/Vector2.hpp>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{namespace\ }ba\ \{}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classba_1_1KeyboardInput}{KeyboardInput}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classba_1_1Input}{Input}}\ \{}
+\DoxyCodeLine{00013\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ IDtype\ IID;}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{classba_1_1KeyboardInput}{KeyboardInput}}(\mbox{\hyperlink{classba_1_1InputManager}{InputManager}}*\ im);}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ handleEvents();}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{bool}\ isKeyUp(SDL\_KeyCode\ key);}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{bool}\ isKeyDown(SDL\_KeyCode\ key);}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{bool}\ isKeyActive(SDL\_KeyCode\ key);}
+\DoxyCodeLine{00023\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00024\ \ \ \ \ std::vector<bool>\ m\_prevKeys;}
+\DoxyCodeLine{00025\ \ \ \ \ std::vector<bool>\ m\_currKeys;}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{int}\ m\_numKeys;}
+\DoxyCodeLine{00027\ \};\ \textcolor{comment}{//\ class\ KeyboardInput}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \}\ \textcolor{comment}{//\ namespace\ ba}}
+
+\end{DoxyCode}

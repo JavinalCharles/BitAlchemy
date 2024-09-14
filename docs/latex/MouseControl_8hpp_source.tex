@@ -1,0 +1,44 @@
+\doxysection{Mouse\+Control.\+hpp}
+\hypertarget{MouseControl_8hpp_source}{}\label{MouseControl_8hpp_source}\index{include/BA/Components/MouseControl.hpp@{include/BA/Components/MouseControl.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}BA/Components/Component.hpp"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}BA/Inputs/InputManager.hpp"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}BA/Inputs/MouseInput.hpp"{}}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{namespace\ }ba\ \{}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{using\ }MButtonAction\ =\ std::function<void(\textcolor{keywordtype}{void})>;}
+\DoxyCodeLine{00015\ \textcolor{keyword}{using\ }MButtonBindings\ =\ std::unordered\_map<ba::MouseButton,\ std::vector<MButtonAction>>;}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classba_1_1MouseControl}{MouseControl}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classba_1_1Component}{Component}}\ \{}
+\DoxyCodeLine{00018\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classba_1_1MouseControl}{MouseControl}}(\mbox{\hyperlink{classba_1_1Entity}{Entity}}*\ owner);}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{void}\ bindOnMouseButtonActive(MouseButton\ btn,\ MButtonAction\ action);}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{void}\ bindOnMouseButtonReleased(MouseButton\ btn,\ MButtonAction\ action);}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{void}\ bindOnMouseButtonPressed(MouseButton\ btn,\ MButtonAction\ action);}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{const}\ MButtonBindings\&\ getBindingsOnMouseButtonPressed()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{const}\ MButtonBindings\&\ getBindingsOnMouseButtonReleased()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{const}\ MButtonBindings\&\ getBindingsOnMouseButtonActive()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00028\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00029\ \ \ \ \ MButtonBindings\ \ \ \ \ m\_buttonPressedActions;}
+\DoxyCodeLine{00030\ \ \ \ \ MButtonBindings\ \ \ \ \ m\_buttonActiveActions;}
+\DoxyCodeLine{00031\ \ \ \ \ MButtonBindings\ \ \ \ \ m\_buttonReleasedActions;}
+\DoxyCodeLine{00032\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ IDtype\ CID;}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \};\ \textcolor{comment}{//\ class\ MouseButton}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \}\ \textcolor{comment}{//\ namespace\ ba}}
+
+\end{DoxyCode}

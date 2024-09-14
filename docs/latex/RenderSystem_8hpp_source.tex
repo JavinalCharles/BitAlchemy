@@ -1,0 +1,54 @@
+\doxysection{Render\+System.\+hpp}
+\hypertarget{RenderSystem_8hpp_source}{}\label{RenderSystem_8hpp_source}\index{include/BA/Systems/RenderSystem.hpp@{include/BA/Systems/RenderSystem.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <set>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <BA/Components/Drawable.hpp>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <BA/Entities/Entity.hpp>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <BA/Types.hpp>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <BA/Window/Window.hpp>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }ba\ \{}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }EntityManager;}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{using\ }DrawLayer\ =\ IDtype;}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ const\ IDtype\ DEFAULT\_RENDER\_LAYER\ =\ 0;}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classba_1_1RenderSystem}{RenderSystem}}\ \{}
+\DoxyCodeLine{00020\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classba_1_1RenderSystem}{RenderSystem}}(\mbox{\hyperlink{classba_1_1EntityManager}{EntityManager}}*\ entities);}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{void}\ add(std::vector<std::shared\_ptr<Entity>>\ entities);}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{void}\ add(std::shared\_ptr<Entity>\ entity);}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{void}\ remove(IDtype\ entityID);}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{void}\ update(\textcolor{keywordtype}{float}\ deltaTime);}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{void}\ draw(\mbox{\hyperlink{classba_1_1Window}{Window}}\&\ window);}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{void}\ sort();}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{void}\ sortStaticEntities();}
+\DoxyCodeLine{00035\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_staticEntitiesAdded\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00037\ \ \ \ \ std::map<IDtype,\ ba::View>\ m\_viewMap;}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{comment}{//\ For\ each\ layer\ in\ m\_drawables:}}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{comment}{//\ .first\ =\ static\ entities}}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{comment}{//\ .second\ =\ non-\/static\ entities}}
+\DoxyCodeLine{00042\ \ \ \ \ std::map<DrawLayer,\ std::pair<std::vector<IDtype>,std::vector<IDtype>>>\ m\_drawables;}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \mbox{\hyperlink{classba_1_1EntityManager}{EntityManager}}*\ m\_entities;}
+\DoxyCodeLine{00045\ \};\ \textcolor{comment}{//\ class\ RenderSystem}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \}\ \textcolor{comment}{//\ namespace\ ba}}
+
+\end{DoxyCode}

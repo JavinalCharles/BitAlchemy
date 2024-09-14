@@ -1,0 +1,40 @@
+\doxysection{Collider.\+hpp}
+\hypertarget{Collider_8hpp_source}{}\label{Collider_8hpp_source}\index{include/BA/Components/Colliders/Collider.hpp@{include/BA/Components/Colliders/Collider.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <BA/Components/Boundable.hpp>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <BA/Components/Component.hpp>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <BA/Entities/Transformable.hpp>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <BA/Utilities/Circle.hpp>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <BA/Utilities/Vector2.hpp>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <BA/Utilities/Rect.hpp>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }ba\ \{}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classba_1_1Collider}{Collider}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classba_1_1Component}{Component}},\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classba_1_1Boundable}{Boundable}}\ \{}
+\DoxyCodeLine{00014\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classba_1_1Collider}{Collider}}(\mbox{\hyperlink{classba_1_1Entity}{Entity}}*\ owner);}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{void}\ setLayer(\textcolor{keywordtype}{unsigned}\ collisionLayer);}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ getLayer()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ isColliding(std::shared\_ptr<Collider>\&\ other)\ =\ 0;}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ resolve(\textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}}\&\ resolution)\ =\ 0;}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classba_1_1Rect}{FloatRect}}\ getLocalBounds()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classba_1_1Rect}{FloatRect}}\ getGlobalBounds()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ m\_layer\{\};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ IDtype\ CID;}
+\DoxyCodeLine{00032\ \};\ \textcolor{comment}{//\ class\ Collider}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \}\ \textcolor{comment}{//\ namespace\ ba}}
+
+\end{DoxyCode}

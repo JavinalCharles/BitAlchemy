@@ -1,5 +1,5 @@
-\hypertarget{classba_1_1TimerSystem}{}\doxysection{ba\+::Timer\+System Class Reference}
-\label{classba_1_1TimerSystem}\index{ba::TimerSystem@{ba::TimerSystem}}
+\doxysection{ba\+::Timer\+System Class Reference}
+\hypertarget{classba_1_1TimerSystem}{}\label{classba_1_1TimerSystem}\index{ba::TimerSystem@{ba::TimerSystem}}
 
 
 Inheritance diagram for ba\+::Timer\+System\+:
@@ -7,7 +7,7 @@ Inheritance diagram for ba\+::Timer\+System\+:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=197pt]{classba_1_1TimerSystem__inherit__graph}
+\includegraphics[width=208pt]{classba_1_1TimerSystem__inherit__graph}
 \end{center}
 \end{figure}
 
@@ -17,22 +17,70 @@ Collaboration diagram for ba\+::Timer\+System\+:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=197pt]{classba_1_1TimerSystem__coll__graph}
+\includegraphics[width=208pt]{classba_1_1TimerSystem__coll__graph}
 \end{center}
 \end{figure}
-\doxysubsection*{Public Member Functions}
+\doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classba_1_1TimerSystem_a5dbb1a145627d56646809e8e443e5e7f}\label{classba_1_1TimerSystem_a5dbb1a145627d56646809e8e443e5e7f}} 
-{\bfseries Timer\+System} (\mbox{\hyperlink{classba_1_1EntityManager}{Entity\+Manager}} $\ast$entity\+Manager)
+\Hypertarget{classba_1_1TimerSystem_a5dbb1a145627d56646809e8e443e5e7f}\label{classba_1_1TimerSystem_a5dbb1a145627d56646809e8e443e5e7f} 
+{\bfseries Timer\+System} (\mbox{\hyperlink{classba_1_1EntityManager}{Entity\+Manager}} \texorpdfstring{$\ast$}{*}entity\+Manager)
 \item 
-\mbox{\Hypertarget{classba_1_1TimerSystem_a4b4cf0b4b9e2c2c557f8d8cef87ca887}\label{classba_1_1TimerSystem_a4b4cf0b4b9e2c2c557f8d8cef87ca887}} 
-virtual void {\bfseries update} (float delta\+Time)
+virtual void \mbox{\hyperlink{classba_1_1TimerSystem_a4b4cf0b4b9e2c2c557f8d8cef87ca887}{update}} (float delta\+Time)
 \item 
-\mbox{\Hypertarget{classba_1_1TimerSystem_a8029e908004994781f027bb573efccd5}\label{classba_1_1TimerSystem_a8029e908004994781f027bb573efccd5}} 
-virtual void {\bfseries add} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1Entity}{Entity}} $>$ \&entity)
+virtual void \mbox{\hyperlink{classba_1_1TimerSystem_a8029e908004994781f027bb573efccd5}{add}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1Entity}{Entity}} $>$ \&entity)
 \end{DoxyCompactItemize}
-\doxysubsection*{Additional Inherited Members}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classba_1_1ComponentSystem}{ba\+::\+Component\+System}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Component\+System} (\mbox{\hyperlink{classba_1_1EntityManager}{Entity\+Manager}} \texorpdfstring{$\ast$}{*}entity\+Manager)
+\item 
+virtual void {\bfseries post\+Update} (float delta\+Time)
+\item 
+virtual void {\bfseries add} (std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1Entity}{Entity}} $>$ $>$ \&entities)
+\item 
+virtual void {\bfseries remove} (IDtype entity\+ID)
+\item 
+const std\+::set$<$ IDtype $>$ \& {\bfseries get\+IDs} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{classba_1_1ComponentSystem}{ba\+::\+Component\+System}}}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries add\+ID} (IDtype entity\+ID)
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1Entity}{Entity}} $>$ {\bfseries get\+Entity} (IDtype id) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classba_1_1ComponentSystem}{ba\+::\+Component\+System}}}
+\begin{DoxyCompactItemize}
+\item 
+std\+::set$<$ IDtype $>$ {\bfseries m\+\_\+entity\+IDs}
+\item 
+\mbox{\hyperlink{classba_1_1EntityManager}{ba\+::\+Entity\+Manager}} \texorpdfstring{$\ast$}{*} {\bfseries m\+\_\+entities}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classba_1_1TimerSystem_a8029e908004994781f027bb573efccd5}\label{classba_1_1TimerSystem_a8029e908004994781f027bb573efccd5} 
+\index{ba::TimerSystem@{ba::TimerSystem}!add@{add}}
+\index{add@{add}!ba::TimerSystem@{ba::TimerSystem}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily virtual void ba\+::\+Timer\+System\+::add (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1Entity}{Entity}} $>$ \&}]{entity }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classba_1_1ComponentSystem}{ba\+::\+Component\+System}}.
+
+\Hypertarget{classba_1_1TimerSystem_a4b4cf0b4b9e2c2c557f8d8cef87ca887}\label{classba_1_1TimerSystem_a4b4cf0b4b9e2c2c557f8d8cef87ca887} 
+\index{ba::TimerSystem@{ba::TimerSystem}!update@{update}}
+\index{update@{update}!ba::TimerSystem@{ba::TimerSystem}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily virtual void ba\+::\+Timer\+System\+::update (\begin{DoxyParamCaption}\item[{float}]{delta\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classba_1_1ComponentSystem}{ba\+::\+Component\+System}}.
+
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

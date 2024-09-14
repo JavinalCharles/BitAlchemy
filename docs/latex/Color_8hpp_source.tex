@@ -1,0 +1,78 @@
+\doxysection{Color.\+hpp}
+\hypertarget{Color_8hpp_source}{}\label{Color_8hpp_source}\index{include/BA/Utilities/Color.hpp@{include/BA/Utilities/Color.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <SDL2/SDL\_pixels.h>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }ba\ \{}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classba_1_1Color}{Color}}\ \{}
+\DoxyCodeLine{00009\ \textcolor{keyword}{public}:\ \textcolor{comment}{//\ static\ attributes}}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Color}{Color}}\ Black;}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Color}{Color}}\ White;}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Color}{Color}}\ Red;}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Color}{Color}}\ Green;}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Color}{Color}}\ Blue;}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Color}{Color}}\ Yellow;}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Color}{Color}}\ Magenta;}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Color}{Color}}\ Cyan;}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Color}{Color}}\ Transparent;}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{public}:\ \textcolor{comment}{//\ attributes}}
+\DoxyCodeLine{00021\ \ \ \ \ std::uint8\_t\ r\{\};}
+\DoxyCodeLine{00022\ \ \ \ \ std::uint8\_t\ g\{\};}
+\DoxyCodeLine{00023\ \ \ \ \ std::uint8\_t\ b\{\};}
+\DoxyCodeLine{00024\ \ \ \ \ std::uint8\_t\ a\{\};}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classba_1_1Color_a1b5cd4b765787c892101a91f0c765410}{Color}}();}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classba_1_1Color_a1b5cd4b765787c892101a91f0c765410}{Color}}(std::uint8\_t\ red,\ std::uint8\_t\ green,\ std::uint8\_t\ blue,\ std::uint8\_t\ alpha\ =\ 255);}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classba_1_1Color_a1b5cd4b765787c892101a91f0c765410}{Color}}(std::uint32\_t\ color);}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{constexpr}\ SDL\_Color\ toSDL\_Color()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \};\ \textcolor{comment}{//\ class\ Color}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classba_1_1Color_a1b5cd4b765787c892101a91f0c765410}{Color::Color}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classba_1_1Color_a1b5cd4b765787c892101a91f0c765410}{Color::Color}}(std::uint8\_t\ red,\ std::uint8\_t\ green,\ std::uint8\_t\ blue,\ std::uint8\_t\ alpha)}
+\DoxyCodeLine{00043\ \ \ \ \ :\ r(red),}
+\DoxyCodeLine{00044\ \ \ \ \ g(green),}
+\DoxyCodeLine{00045\ \ \ \ \ b(blue),}
+\DoxyCodeLine{00046\ \ \ \ \ a(alpha)}
+\DoxyCodeLine{00047\ \{}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classba_1_1Color_a1b5cd4b765787c892101a91f0c765410}{Color::Color}}(std::uint32\_t\ color)}
+\DoxyCodeLine{00052\ \ \ \ \ :\ r(static\_cast<std::uint8\_t>((color\ \&\ 0xff000000)\ >>\ 24)),}
+\DoxyCodeLine{00053\ \ \ \ \ g(static\_cast<std::uint8\_t>((color\ \&\ 0x00ff0000)\ >>\ 16)),}
+\DoxyCodeLine{00054\ \ \ \ \ b(static\_cast<std::uint8\_t>((color\ \&\ 0x0000ff00)\ >>\ 8)),}
+\DoxyCodeLine{00055\ \ \ \ \ a(static\_cast<std::uint8\_t>(color\ \&\ 0x000000ff))}
+\DoxyCodeLine{00056\ \{}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{keyword}{constexpr}\ SDL\_Color\ Color::toSDL\_Color()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordflow}{return}\ SDL\_Color\ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ r,\ g,\ b,\ a}
+\DoxyCodeLine{00063\ \ \ \ \ \};}
+\DoxyCodeLine{00064\ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{keyword}{constexpr}\ Color\ Color::Black(0,\ 0,\ 0);}
+\DoxyCodeLine{00067\ \textcolor{keyword}{constexpr}\ Color\ Color::White(255,\ 255,\ 255);}
+\DoxyCodeLine{00068\ \textcolor{keyword}{constexpr}\ Color\ Color::Red(255,\ 0,\ 0);}
+\DoxyCodeLine{00069\ \textcolor{keyword}{constexpr}\ Color\ Color::Green(0,\ 255,\ 0);}
+\DoxyCodeLine{00070\ \textcolor{keyword}{constexpr}\ Color\ Color::Blue(0,\ 0,\ 255);}
+\DoxyCodeLine{00071\ \textcolor{keyword}{constexpr}\ Color\ Color::Yellow(255,\ 255,\ 0);}
+\DoxyCodeLine{00072\ \textcolor{keyword}{constexpr}\ Color\ Color::Magenta(255,\ 0,\ 255);}
+\DoxyCodeLine{00073\ \textcolor{keyword}{constexpr}\ Color\ Color::Cyan(0,\ 255,\ 255);}
+\DoxyCodeLine{00074\ \textcolor{keyword}{constexpr}\ Color\ Color::Transparent(0,\ 0,\ 0,\ 0);}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \}\ \textcolor{comment}{//\ namespace\ ba}}
+
+\end{DoxyCode}

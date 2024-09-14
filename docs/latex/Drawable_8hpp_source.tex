@@ -1,0 +1,42 @@
+\doxysection{Drawable.\+hpp}
+\hypertarget{Drawable_8hpp_source}{}\label{Drawable_8hpp_source}\index{include/BA/Components/Drawable.hpp@{include/BA/Components/Drawable.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}BA/Components/Boundable.hpp"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}BA/Components/Component.hpp"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}BA/Window/Window.hpp"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}BA/Utilities/Rect.hpp"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}BA/Types.hpp"{}}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{namespace\ }ba\ \{}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ TODO:\ Provide\ a\ more\ modularized/functional\ means\ of\ determining\ the\ order\ of\ drawables\ for\ use\ by\ Drawable::getSortOrder()}}
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classba_1_1Drawable}{Drawable}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classba_1_1Component}{Component}},\ \mbox{\hyperlink{classba_1_1Boundable}{Boundable}}\ \{}
+\DoxyCodeLine{00014\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classba_1_1Drawable}{Drawable}}(\mbox{\hyperlink{classba_1_1Entity}{Entity}}*\ owner,\ IDtype\ drawLayer\ =\ DEFAULT\_RENDER\_LAYER);}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ draw(\mbox{\hyperlink{classba_1_1Window}{Window}}\&\ window)\ =\ 0;}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{void}\ setDrawLayer(IDtype\ drawLayer);}
+\DoxyCodeLine{00020\ \ \ \ \ IDtype\ getDrawLayer()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00026\ \ \ \ \ int32\ \mbox{\hyperlink{classba_1_1Drawable_a4ab43ebbd47bfe42bf7ec0f3ed755c31}{getSortOrder}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classba_1_1Rect}{FloatRect}}\ getLocalBounds()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classba_1_1Rect}{FloatRect}}\ getGlobalBounds()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{comment}{//\ Determines\ at\ which\ layer\ the\ drawable\ will\ be\ drawn\ (i.e.\ Background,\ Objects,\ GUI\ etc.)}}
+\DoxyCodeLine{00033\ \ \ \ \ IDtype\ m\_drawLayer;}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ IDtype\ CID;\ \textcolor{comment}{//\ This\ number\ should\ no\ longer\ be\ in\ use.}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \};\ \textcolor{comment}{//\ class\ Drawable}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \}\ \textcolor{comment}{//\ namespace\ ba}}
+
+\end{DoxyCode}

@@ -1,5 +1,5 @@
-\hypertarget{classba_1_1MovementSystem}{}\doxysection{ba\+::Movement\+System Class Reference}
-\label{classba_1_1MovementSystem}\index{ba::MovementSystem@{ba::MovementSystem}}
+\doxysection{ba\+::Movement\+System Class Reference}
+\hypertarget{classba_1_1MovementSystem}{}\label{classba_1_1MovementSystem}\index{ba::MovementSystem@{ba::MovementSystem}}
 
 
 Inheritance diagram for ba\+::Movement\+System\+:
@@ -7,7 +7,7 @@ Inheritance diagram for ba\+::Movement\+System\+:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=197pt]{classba_1_1MovementSystem__inherit__graph}
+\includegraphics[width=208pt]{classba_1_1MovementSystem__inherit__graph}
 \end{center}
 \end{figure}
 
@@ -17,25 +17,80 @@ Collaboration diagram for ba\+::Movement\+System\+:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=197pt]{classba_1_1MovementSystem__coll__graph}
+\includegraphics[width=208pt]{classba_1_1MovementSystem__coll__graph}
 \end{center}
 \end{figure}
-\doxysubsection*{Public Member Functions}
+\doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classba_1_1MovementSystem_ac85ca6ace3b269779ca46fd097f39755}\label{classba_1_1MovementSystem_ac85ca6ace3b269779ca46fd097f39755}} 
-{\bfseries Movement\+System} (\mbox{\hyperlink{classba_1_1EntityManager}{Entity\+Manager}} $\ast$entity\+Manager)
+\Hypertarget{classba_1_1MovementSystem_ac85ca6ace3b269779ca46fd097f39755}\label{classba_1_1MovementSystem_ac85ca6ace3b269779ca46fd097f39755} 
+{\bfseries Movement\+System} (\mbox{\hyperlink{classba_1_1EntityManager}{Entity\+Manager}} \texorpdfstring{$\ast$}{*}entity\+Manager)
 \item 
-\mbox{\Hypertarget{classba_1_1MovementSystem_a963935aef710199295aba8c9c96bedbc}\label{classba_1_1MovementSystem_a963935aef710199295aba8c9c96bedbc}} 
-virtual void {\bfseries update} (float delta\+Time)
+virtual void \mbox{\hyperlink{classba_1_1MovementSystem_a963935aef710199295aba8c9c96bedbc}{update}} (float delta\+Time)
 \item 
-\mbox{\Hypertarget{classba_1_1MovementSystem_abea151dd244454d8c26b373400e9bf51}\label{classba_1_1MovementSystem_abea151dd244454d8c26b373400e9bf51}} 
-virtual void {\bfseries post\+Update} (float delta\+Time)
+virtual void \mbox{\hyperlink{classba_1_1MovementSystem_abea151dd244454d8c26b373400e9bf51}{post\+Update}} (float delta\+Time)
 \item 
-\mbox{\Hypertarget{classba_1_1MovementSystem_a636f72a741721beb31b649aff9322c23}\label{classba_1_1MovementSystem_a636f72a741721beb31b649aff9322c23}} 
-virtual void {\bfseries add} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1Entity}{Entity}} $>$ \&entity)
+virtual void \mbox{\hyperlink{classba_1_1MovementSystem_a636f72a741721beb31b649aff9322c23}{add}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1Entity}{Entity}} $>$ \&entity)
 \end{DoxyCompactItemize}
-\doxysubsection*{Additional Inherited Members}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classba_1_1ComponentSystem}{ba\+::\+Component\+System}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Component\+System} (\mbox{\hyperlink{classba_1_1EntityManager}{Entity\+Manager}} \texorpdfstring{$\ast$}{*}entity\+Manager)
+\item 
+virtual void {\bfseries add} (std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1Entity}{Entity}} $>$ $>$ \&entities)
+\item 
+virtual void {\bfseries remove} (IDtype entity\+ID)
+\item 
+const std\+::set$<$ IDtype $>$ \& {\bfseries get\+IDs} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{classba_1_1ComponentSystem}{ba\+::\+Component\+System}}}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries add\+ID} (IDtype entity\+ID)
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1Entity}{Entity}} $>$ {\bfseries get\+Entity} (IDtype id) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classba_1_1ComponentSystem}{ba\+::\+Component\+System}}}
+\begin{DoxyCompactItemize}
+\item 
+std\+::set$<$ IDtype $>$ {\bfseries m\+\_\+entity\+IDs}
+\item 
+\mbox{\hyperlink{classba_1_1EntityManager}{ba\+::\+Entity\+Manager}} \texorpdfstring{$\ast$}{*} {\bfseries m\+\_\+entities}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classba_1_1MovementSystem_a636f72a741721beb31b649aff9322c23}\label{classba_1_1MovementSystem_a636f72a741721beb31b649aff9322c23} 
+\index{ba::MovementSystem@{ba::MovementSystem}!add@{add}}
+\index{add@{add}!ba::MovementSystem@{ba::MovementSystem}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily virtual void ba\+::\+Movement\+System\+::add (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1Entity}{Entity}} $>$ \&}]{entity }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classba_1_1ComponentSystem}{ba\+::\+Component\+System}}.
+
+\Hypertarget{classba_1_1MovementSystem_abea151dd244454d8c26b373400e9bf51}\label{classba_1_1MovementSystem_abea151dd244454d8c26b373400e9bf51} 
+\index{ba::MovementSystem@{ba::MovementSystem}!postUpdate@{postUpdate}}
+\index{postUpdate@{postUpdate}!ba::MovementSystem@{ba::MovementSystem}}
+\doxysubsubsection{\texorpdfstring{postUpdate()}{postUpdate()}}
+{\footnotesize\ttfamily virtual void ba\+::\+Movement\+System\+::post\+Update (\begin{DoxyParamCaption}\item[{float}]{delta\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classba_1_1ComponentSystem}{ba\+::\+Component\+System}}.
+
+\Hypertarget{classba_1_1MovementSystem_a963935aef710199295aba8c9c96bedbc}\label{classba_1_1MovementSystem_a963935aef710199295aba8c9c96bedbc} 
+\index{ba::MovementSystem@{ba::MovementSystem}!update@{update}}
+\index{update@{update}!ba::MovementSystem@{ba::MovementSystem}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily virtual void ba\+::\+Movement\+System\+::update (\begin{DoxyParamCaption}\item[{float}]{delta\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classba_1_1ComponentSystem}{ba\+::\+Component\+System}}.
+
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

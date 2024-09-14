@@ -1,5 +1,5 @@
-\hypertarget{classba_1_1Entity}{}\doxysection{ba\+::Entity Class Reference}
-\label{classba_1_1Entity}\index{ba::Entity@{ba::Entity}}
+\doxysection{ba\+::Entity Class Reference}
+\hypertarget{classba_1_1Entity}{}\label{classba_1_1Entity}\index{ba::Entity@{ba::Entity}}
 
 
 An object to represent each game entity.  
@@ -16,7 +16,7 @@ Inheritance diagram for ba\+::Entity\+:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=175pt]{classba_1_1Entity__inherit__graph}
+\includegraphics[width=184pt]{classba_1_1Entity__inherit__graph}
 \end{center}
 \end{figure}
 
@@ -29,38 +29,69 @@ Collaboration diagram for ba\+::Entity\+:
 \includegraphics[width=350pt]{classba_1_1Entity__coll__graph}
 \end{center}
 \end{figure}
-\doxysubsection*{Public Member Functions}
+\doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classba_1_1Entity_a7833ff83ccc75bb070b31ec18b1685f1}{Entity}} (\mbox{\hyperlink{structba_1_1SharedContext}{Shared\+Context}} $\ast$context)
+\mbox{\hyperlink{classba_1_1Entity_a975dcd3c21813b1414ebab61c83b1b9e}{Entity}} (const \mbox{\hyperlink{structba_1_1SharedContext}{Shared\+Context}} \texorpdfstring{$\ast$}{*}context)
 \begin{DoxyCompactList}\small\item\em Entiy constructor. \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{classba_1_1Entity_a41eb33705fd1f952d0162331cf310645}{awake}} ()
 \begin{DoxyCompactList}\small\item\em Use to ensure that all components and their attributes are properly initialized. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classba_1_1Entity_a79a1b7f6e9351e6150e1b6d56ab6f115}{is\+Static}} () const
-\begin{DoxyCompactList}\small\item\em Checks if this \mbox{\hyperlink{classba_1_1Entity}{Entity}} is a static object. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Checks if this \doxylink{classba_1_1Entity}{Entity} is a static object. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classba_1_1Entity_a5ab373ccdea15c17025865c79559d226}{set\+Static}} (bool \mbox{\hyperlink{classba_1_1Entity_a79a1b7f6e9351e6150e1b6d56ab6f115}{is\+Static}})
-\begin{DoxyCompactList}\small\item\em Declares whether this \mbox{\hyperlink{classba_1_1Entity}{Entity}} is a static object. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Declares whether this \doxylink{classba_1_1Entity}{Entity} is a static object. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classba_1_1Entity_a8d113469ce23e4b55acb1ece81c5dcc7}{is\+Queued\+For\+Removal}} () const
 \begin{DoxyCompactList}\small\item\em returns a boolean value that tells if this entity is scheduled to be removed from the main loop. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classba_1_1Entity_a05c265e873538a5a9b9dcf8ba8de76db}{queue\+For\+Removal}} (bool remove=true)
 \begin{DoxyCompactList}\small\item\em Sets wether to remove this object or not. \end{DoxyCompactList}\item 
 {\footnotesize template$<$Component\+Type T$>$ }\\std\+::shared\+\_\+ptr$<$ T $>$ \mbox{\hyperlink{classba_1_1Entity_a76b6b876c4ebbed9ac0b57d9a19cf1a0}{add\+Component}} ()
-\begin{DoxyCompactList}\small\item\em Creates a Component\+Type of type T and stores it in this entity\textquotesingle{}s component array and returning a shared pointer to it. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Creates a Component\+Type of type T and stores it in this entity\textquotesingle{}s component array and returning a shared pointer to it. If a component of type T already exists, then this method will only return that without creating a new one. \end{DoxyCompactList}\item 
 {\footnotesize template$<$Component\+Type T, typename... Args$>$ }\\std\+::shared\+\_\+ptr$<$ T $>$ \mbox{\hyperlink{classba_1_1Entity_ab37eabcaf934a8aae3b9168b6015c935}{add\+Component}} (Args... args)
-\begin{DoxyCompactList}\small\item\em Creates a Component\+Type of type T and stores it in this entity\textquotesingle{}s component array and returning a shared pointer to it. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Creates a Component\+Type of type T and stores it in this entity\textquotesingle{}s component array and returning a shared pointer to it. If a component of type T already exists, then this method will only return that without creating a new one. \end{DoxyCompactList}\item 
 {\footnotesize template$<$Component\+Type T$>$ }\\std\+::shared\+\_\+ptr$<$ T $>$ \mbox{\hyperlink{classba_1_1Entity_a78b4ccc37eab89901ad87535d7b76039}{get\+Component}} ()
 \begin{DoxyCompactList}\small\item\em returns a shared pointer to the requested component. Returns nullptr if the component does not exist. \end{DoxyCompactList}\item 
-std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1Drawable}{Drawable}} $>$ \mbox{\hyperlink{classba_1_1Entity_a3b37523d43d214ecf2e0adcd0640152c}{get\+Drawable}} () const
-\begin{DoxyCompactList}\small\item\em Returns a pointer to the drawable component of this entity, or nullptr if this entity does not have one. Equivalent to. \end{DoxyCompactList}\item 
-std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1Collider}{Collider}} $>$ \mbox{\hyperlink{classba_1_1Entity_a5fd367ab66647e34e8a57beff9c267da}{get\+Collider}} () const
-\begin{DoxyCompactList}\small\item\em Returns to pointer to the collider component of his entity, or nullptr if this entity does not have one. Equivalent to. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Public Attributes}
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1Drawable}{Drawable}} $>$ \mbox{\hyperlink{classba_1_1Entity_a078f293a3d9f28dd1c7e66c6eb42cedb}{get\+Drawable}} () const
+\begin{DoxyCompactList}\small\item\em Returns a pointer to the drawable component of this entity, or nullptr if this entity does not have one. If entity has stored multiple \doxylink{classba_1_1Drawable}{Drawable} then this method will return the lastes inserted \doxylink{classba_1_1Drawable}{Drawable}. \end{DoxyCompactList}\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1Collider}{Collider}} $>$ \mbox{\hyperlink{classba_1_1Entity_a66225fdea2e0ebe6bbcd265aabe55afd}{get\+Collider}} () const
+\begin{DoxyCompactList}\small\item\em Returns a pointer to the collider component of this entity, or nullptr if this entity does not have one. If entity has stored multiple \doxylink{classba_1_1Collider}{Collider} then this method will return the latest inserted \doxylink{classba_1_1Collider}{Collider}. \end{DoxyCompactList}\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1AI}{AI}} $>$ \mbox{\hyperlink{classba_1_1Entity_ac475af13f7aef3065305884030edfd84}{get\+AI}} () const
+\begin{DoxyCompactList}\small\item\em Returns a pointer to the \doxylink{classba_1_1AI}{AI} component of this entity, or nullptr if this entity does not have one. If entity has stored multiple \doxylink{classba_1_1AI}{AI} components, then this method will return the lastest inserted \doxylink{classba_1_1AI}{AI}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classba_1_1Transformable}{ba\+::\+Transformable}}}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries set\+Position} (const \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}} \&position)
+\item 
+void {\bfseries set\+Rotation} (\mbox{\hyperlink{classba_1_1Angle}{Angle}} angle)
+\item 
+void {\bfseries set\+Scale} (const \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}} \&factors)
+\item 
+void {\bfseries set\+Origin} (const \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}} \&origin)
+\item 
+const \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}} \& {\bfseries get\+Position} () const
+\item 
+\mbox{\hyperlink{classba_1_1Angle}{Angle}} {\bfseries get\+Rotation} () const
+\item 
+const \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}} \& {\bfseries get\+Scale} () const
+\item 
+const \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}} \& {\bfseries get\+Origin} () const
+\item 
+void {\bfseries move} (const \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}} \&offset)
+\item 
+void {\bfseries rotate} (\mbox{\hyperlink{classba_1_1Angle}{Angle}} angle)
+\item 
+void {\bfseries scale} (const \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}} \&factor)
+\item 
+const \mbox{\hyperlink{classba_1_1Transform}{Transform}} \& {\bfseries get\+Transform} () const
+\item 
+const \mbox{\hyperlink{classba_1_1Transform}{Transform}} \& {\bfseries get\+Inverse\+Transform} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 const IDtype \mbox{\hyperlink{classba_1_1Entity_ac14ef25f58e80e0de7d01acf17e31ee8}{ID}}
-\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classba_1_1Entity}{Entity}} Identification. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classba_1_1Entity_acc3fd5419c4e373b4c60b622086430b0}\label{classba_1_1Entity_acc3fd5419c4e373b4c60b622086430b0}} 
-const \mbox{\hyperlink{structba_1_1SharedContext}{ba\+::\+Shared\+Context}} $\ast$ \mbox{\hyperlink{classba_1_1Entity_acc3fd5419c4e373b4c60b622086430b0}{CONTEXT}}
+\begin{DoxyCompactList}\small\item\em \doxylink{classba_1_1Entity}{Entity} Identification. \end{DoxyCompactList}\item 
+\Hypertarget{classba_1_1Entity_acc3fd5419c4e373b4c60b622086430b0}\label{classba_1_1Entity_acc3fd5419c4e373b4c60b622086430b0} 
+const \mbox{\hyperlink{structba_1_1SharedContext}{ba\+::\+Shared\+Context}} \texorpdfstring{$\ast$}{*} {\bfseries CONTEXT}
 \begin{DoxyCompactList}\small\item\em A const pointer that allows access to the game\textquotesingle{}s context. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -68,11 +99,11 @@ const \mbox{\hyperlink{structba_1_1SharedContext}{ba\+::\+Shared\+Context}} $\as
 An object to represent each game entity. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{classba_1_1Entity_a7833ff83ccc75bb070b31ec18b1685f1}\label{classba_1_1Entity_a7833ff83ccc75bb070b31ec18b1685f1}} 
+\Hypertarget{classba_1_1Entity_a975dcd3c21813b1414ebab61c83b1b9e}\label{classba_1_1Entity_a975dcd3c21813b1414ebab61c83b1b9e} 
 \index{ba::Entity@{ba::Entity}!Entity@{Entity}}
 \index{Entity@{Entity}!ba::Entity@{ba::Entity}}
 \doxysubsubsection{\texorpdfstring{Entity()}{Entity()}}
-{\footnotesize\ttfamily ba\+::\+Entity\+::\+Entity (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structba_1_1SharedContext}{Shared\+Context}} $\ast$}]{context }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+{\footnotesize\ttfamily ba\+::\+Entity\+::\+Entity (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structba_1_1SharedContext}{Shared\+Context}} \texorpdfstring{$\ast$}{*}}]{context }\end{DoxyParamCaption})}
 
 
 
@@ -80,32 +111,32 @@ Entiy constructor.
 
 
 \begin{DoxyParams}{Parameters}
-{\em context} & sets the public attribute \mbox{\hyperlink{classba_1_1Entity_acc3fd5419c4e373b4c60b622086430b0}{Entity\+::\+CONTEXT}}. \\
+{\em context} & sets the public attribute \doxylink{classba_1_1Entity_acc3fd5419c4e373b4c60b622086430b0}{Entity\+::\+CONTEXT}. \\
 \hline
 \end{DoxyParams}
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classba_1_1Entity_a76b6b876c4ebbed9ac0b57d9a19cf1a0}\label{classba_1_1Entity_a76b6b876c4ebbed9ac0b57d9a19cf1a0}} 
+\Hypertarget{classba_1_1Entity_a76b6b876c4ebbed9ac0b57d9a19cf1a0}\label{classba_1_1Entity_a76b6b876c4ebbed9ac0b57d9a19cf1a0} 
 \index{ba::Entity@{ba::Entity}!addComponent@{addComponent}}
 \index{addComponent@{addComponent}!ba::Entity@{ba::Entity}}
 \doxysubsubsection{\texorpdfstring{addComponent()}{addComponent()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily template$<$Component\+Type T$>$ \\
-std\+::shared\+\_\+ptr$<$ T $>$ ba\+::\+Entity\+::add\+Component}
+std\+::shared\+\_\+ptr$<$ T $>$ ba\+::\+Entity\+::add\+Component (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
-Creates a Component\+Type of type T and stores it in this entity\textquotesingle{}s component array and returning a shared pointer to it. 
+Creates a Component\+Type of type T and stores it in this entity\textquotesingle{}s component array and returning a shared pointer to it. If a component of type T already exists, then this method will only return that without creating a new one. 
 
 
 \begin{DoxyTemplParams}{Template Parameters}
-{\em T} & The type of \mbox{\hyperlink{classba_1_1Component}{Component}}. \\
+{\em T} & The type of \doxylink{classba_1_1Component}{Component}. \\
 \hline
 \end{DoxyTemplParams}
 \begin{DoxyReturn}{Returns}
-a shared pointer to the created \mbox{\hyperlink{classba_1_1Component}{Component}}. 
+a shared pointer to the created \doxylink{classba_1_1Component}{Component}. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classba_1_1Entity_ab37eabcaf934a8aae3b9168b6015c935}\label{classba_1_1Entity_ab37eabcaf934a8aae3b9168b6015c935}} 
+\Hypertarget{classba_1_1Entity_ab37eabcaf934a8aae3b9168b6015c935}\label{classba_1_1Entity_ab37eabcaf934a8aae3b9168b6015c935} 
 \index{ba::Entity@{ba::Entity}!addComponent@{addComponent}}
 \index{addComponent@{addComponent}!ba::Entity@{ba::Entity}}
 \doxysubsubsection{\texorpdfstring{addComponent()}{addComponent()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
@@ -114,11 +145,11 @@ std\+::shared\+\_\+ptr$<$ T $>$ ba\+::\+Entity\+::add\+Component (\begin{DoxyPar
 
 
 
-Creates a Component\+Type of type T and stores it in this entity\textquotesingle{}s component array and returning a shared pointer to it. 
+Creates a Component\+Type of type T and stores it in this entity\textquotesingle{}s component array and returning a shared pointer to it. If a component of type T already exists, then this method will only return that without creating a new one. 
 
 
 \begin{DoxyTemplParams}{Template Parameters}
-{\em T} & The type of \mbox{\hyperlink{classba_1_1Component}{Component}}. \\
+{\em T} & The type of \doxylink{classba_1_1Component}{Component}. \\
 \hline
 \end{DoxyTemplParams}
 
@@ -127,9 +158,9 @@ Creates a Component\+Type of type T and stores it in this entity\textquotesingle
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-a shared pointer to the created \mbox{\hyperlink{classba_1_1Component}{Component}}. 
+a shared pointer to the created \doxylink{classba_1_1Component}{Component}. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classba_1_1Entity_a41eb33705fd1f952d0162331cf310645}\label{classba_1_1Entity_a41eb33705fd1f952d0162331cf310645}} 
+\Hypertarget{classba_1_1Entity_a41eb33705fd1f952d0162331cf310645}\label{classba_1_1Entity_a41eb33705fd1f952d0162331cf310645} 
 \index{ba::Entity@{ba::Entity}!awake@{awake}}
 \index{awake@{awake}!ba::Entity@{ba::Entity}}
 \doxysubsubsection{\texorpdfstring{awake()}{awake()}}
@@ -139,32 +170,38 @@ a shared pointer to the created \mbox{\hyperlink{classba_1_1Component}{Component
 
 Use to ensure that all components and their attributes are properly initialized. 
 
-\mbox{\hyperlink{classba_1_1Entity_a41eb33705fd1f952d0162331cf310645}{awake()}} Use to ensure that all components are present and all attributes are initialized. \mbox{\Hypertarget{classba_1_1Entity_a5fd367ab66647e34e8a57beff9c267da}\label{classba_1_1Entity_a5fd367ab66647e34e8a57beff9c267da}} 
+\doxylink{classba_1_1Entity_a41eb33705fd1f952d0162331cf310645}{awake()} Use to ensure that all components are present and all attributes are initialized.  \Hypertarget{classba_1_1Entity_ac475af13f7aef3065305884030edfd84}\label{classba_1_1Entity_ac475af13f7aef3065305884030edfd84} 
+\index{ba::Entity@{ba::Entity}!getAI@{getAI}}
+\index{getAI@{getAI}!ba::Entity@{ba::Entity}}
+\doxysubsubsection{\texorpdfstring{getAI()}{getAI()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1AI}{AI}} $>$ ba\+::\+Entity\+::get\+AI (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns a pointer to the \doxylink{classba_1_1AI}{AI} component of this entity, or nullptr if this entity does not have one. If entity has stored multiple \doxylink{classba_1_1AI}{AI} components, then this method will return the lastest inserted \doxylink{classba_1_1AI}{AI}. 
+
+\begin{DoxyReturn}{Returns}
+a pointer to the \doxylink{classba_1_1AI}{AI} component, or nullptr. 
+\end{DoxyReturn}
+\Hypertarget{classba_1_1Entity_a66225fdea2e0ebe6bbcd265aabe55afd}\label{classba_1_1Entity_a66225fdea2e0ebe6bbcd265aabe55afd} 
 \index{ba::Entity@{ba::Entity}!getCollider@{getCollider}}
 \index{getCollider@{getCollider}!ba::Entity@{ba::Entity}}
 \doxysubsubsection{\texorpdfstring{getCollider()}{getCollider()}}
-{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classba_1_1Collider}{Collider}}$>$ ba\+::\+Entity\+::get\+Collider (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1Collider}{Collider}} $>$ ba\+::\+Entity\+::get\+Collider (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 
 
-Returns to pointer to the collider component of his entity, or nullptr if this entity does not have one. Equivalent to. 
-
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{entityObject.getComponent<\mbox{\hyperlink{classba_1_1Collider}{ba::Collider}}>();}
-
-\end{DoxyCode}
-
+Returns a pointer to the collider component of this entity, or nullptr if this entity does not have one. If entity has stored multiple \doxylink{classba_1_1Collider}{Collider} then this method will return the latest inserted \doxylink{classba_1_1Collider}{Collider}. 
 
 \begin{DoxyReturn}{Returns}
 a pointer to the collider component, or nullptr. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classba_1_1Entity_a78b4ccc37eab89901ad87535d7b76039}\label{classba_1_1Entity_a78b4ccc37eab89901ad87535d7b76039}} 
+\Hypertarget{classba_1_1Entity_a78b4ccc37eab89901ad87535d7b76039}\label{classba_1_1Entity_a78b4ccc37eab89901ad87535d7b76039} 
 \index{ba::Entity@{ba::Entity}!getComponent@{getComponent}}
 \index{getComponent@{getComponent}!ba::Entity@{ba::Entity}}
 \doxysubsubsection{\texorpdfstring{getComponent()}{getComponent()}}
 {\footnotesize\ttfamily template$<$Component\+Type T$>$ \\
-std\+::shared\+\_\+ptr$<$ T $>$ ba\+::\+Entity\+::get\+Component}
+std\+::shared\+\_\+ptr$<$ T $>$ ba\+::\+Entity\+::get\+Component (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
@@ -172,33 +209,26 @@ returns a shared pointer to the requested component. Returns nullptr if the comp
 
 
 \begin{DoxyTemplParams}{Template Parameters}
-{\em T} & The type of \mbox{\hyperlink{classba_1_1Component}{Component}}. \\
+{\em T} & The type of \doxylink{classba_1_1Component}{Component}. \\
 \hline
 \end{DoxyTemplParams}
 \begin{DoxyReturn}{Returns}
 a shared pointer to the requested component or nullptr. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classba_1_1Entity_a3b37523d43d214ecf2e0adcd0640152c}\label{classba_1_1Entity_a3b37523d43d214ecf2e0adcd0640152c}} 
+\Hypertarget{classba_1_1Entity_a078f293a3d9f28dd1c7e66c6eb42cedb}\label{classba_1_1Entity_a078f293a3d9f28dd1c7e66c6eb42cedb} 
 \index{ba::Entity@{ba::Entity}!getDrawable@{getDrawable}}
 \index{getDrawable@{getDrawable}!ba::Entity@{ba::Entity}}
 \doxysubsubsection{\texorpdfstring{getDrawable()}{getDrawable()}}
-{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classba_1_1Drawable}{Drawable}}$>$ ba\+::\+Entity\+::get\+Drawable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1Drawable}{Drawable}} $>$ ba\+::\+Entity\+::get\+Drawable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 
 
-Returns a pointer to the drawable component of this entity, or nullptr if this entity does not have one. Equivalent to. 
-
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{entityObject.getComponent<\mbox{\hyperlink{classba_1_1Drawable}{ba::Drawable}}>();}
-
-\end{DoxyCode}
-
+Returns a pointer to the drawable component of this entity, or nullptr if this entity does not have one. If entity has stored multiple \doxylink{classba_1_1Drawable}{Drawable} then this method will return the lastes inserted \doxylink{classba_1_1Drawable}{Drawable}. 
 
 \begin{DoxyReturn}{Returns}
 a pointer to the drawable component, or nullptr. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classba_1_1Entity_a8d113469ce23e4b55acb1ece81c5dcc7}\label{classba_1_1Entity_a8d113469ce23e4b55acb1ece81c5dcc7}} 
+\Hypertarget{classba_1_1Entity_a8d113469ce23e4b55acb1ece81c5dcc7}\label{classba_1_1Entity_a8d113469ce23e4b55acb1ece81c5dcc7} 
 \index{ba::Entity@{ba::Entity}!isQueuedForRemoval@{isQueuedForRemoval}}
 \index{isQueuedForRemoval@{isQueuedForRemoval}!ba::Entity@{ba::Entity}}
 \doxysubsubsection{\texorpdfstring{isQueuedForRemoval()}{isQueuedForRemoval()}}
@@ -211,7 +241,7 @@ returns a boolean value that tells if this entity is scheduled to be removed fro
 \begin{DoxyReturn}{Returns}
 true if this object is destined for removal, otherwise false. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classba_1_1Entity_a79a1b7f6e9351e6150e1b6d56ab6f115}\label{classba_1_1Entity_a79a1b7f6e9351e6150e1b6d56ab6f115}} 
+\Hypertarget{classba_1_1Entity_a79a1b7f6e9351e6150e1b6d56ab6f115}\label{classba_1_1Entity_a79a1b7f6e9351e6150e1b6d56ab6f115} 
 \index{ba::Entity@{ba::Entity}!isStatic@{isStatic}}
 \index{isStatic@{isStatic}!ba::Entity@{ba::Entity}}
 \doxysubsubsection{\texorpdfstring{isStatic()}{isStatic()}}
@@ -219,12 +249,12 @@ true if this object is destined for removal, otherwise false.
 
 
 
-Checks if this \mbox{\hyperlink{classba_1_1Entity}{Entity}} is a static object. 
+Checks if this \doxylink{classba_1_1Entity}{Entity} is a static object. 
 
 \begin{DoxyReturn}{Returns}
 true if this object is static, otherwise false. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classba_1_1Entity_a05c265e873538a5a9b9dcf8ba8de76db}\label{classba_1_1Entity_a05c265e873538a5a9b9dcf8ba8de76db}} 
+\Hypertarget{classba_1_1Entity_a05c265e873538a5a9b9dcf8ba8de76db}\label{classba_1_1Entity_a05c265e873538a5a9b9dcf8ba8de76db} 
 \index{ba::Entity@{ba::Entity}!queueForRemoval@{queueForRemoval}}
 \index{queueForRemoval@{queueForRemoval}!ba::Entity@{ba::Entity}}
 \doxysubsubsection{\texorpdfstring{queueForRemoval()}{queueForRemoval()}}
@@ -239,7 +269,7 @@ Sets wether to remove this object or not.
 {\em remove} & Boolean value. Sets whether to remove this object.\\
 \hline
 \end{DoxyParams}
-If given a true value, then the entity manager holding a pointer of this entity shall instruct all systems to clear references of this entity before eventually freeing memory assigned to this as well as its components. Giving a false value within the same frametime after it was given a true value should prevent that from happening. \mbox{\Hypertarget{classba_1_1Entity_a5ab373ccdea15c17025865c79559d226}\label{classba_1_1Entity_a5ab373ccdea15c17025865c79559d226}} 
+If given a true value, then the entity manager holding a pointer of this entity shall instruct all systems to clear references of this entity before eventually freeing memory assigned to this as well as its components. Giving a false value within the same frametime after it was given a true value should prevent that from happening. \Hypertarget{classba_1_1Entity_a5ab373ccdea15c17025865c79559d226}\label{classba_1_1Entity_a5ab373ccdea15c17025865c79559d226} 
 \index{ba::Entity@{ba::Entity}!setStatic@{setStatic}}
 \index{setStatic@{setStatic}!ba::Entity@{ba::Entity}}
 \doxysubsubsection{\texorpdfstring{setStatic()}{setStatic()}}
@@ -247,7 +277,7 @@ If given a true value, then the entity manager holding a pointer of this entity 
 
 
 
-Declares whether this \mbox{\hyperlink{classba_1_1Entity}{Entity}} is a static object. 
+Declares whether this \doxylink{classba_1_1Entity}{Entity} is a static object. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -257,7 +287,7 @@ Declares whether this \mbox{\hyperlink{classba_1_1Entity}{Entity}} is a static o
 Static entities are treated differently by Systems from non-\/static entities. Setting an entity as static tells the engine that the state of this entity are not likely to transform, and thus not included in system loops for efficiency reasons. Example of game objects that should be declared statics are. but not limited to, as follows\+: background, non-\/moving tiles, decoration objects like flower, plants, clutter, paths, etc.. 
 
 \doxysubsection{Member Data Documentation}
-\mbox{\Hypertarget{classba_1_1Entity_ac14ef25f58e80e0de7d01acf17e31ee8}\label{classba_1_1Entity_ac14ef25f58e80e0de7d01acf17e31ee8}} 
+\Hypertarget{classba_1_1Entity_ac14ef25f58e80e0de7d01acf17e31ee8}\label{classba_1_1Entity_ac14ef25f58e80e0de7d01acf17e31ee8} 
 \index{ba::Entity@{ba::Entity}!ID@{ID}}
 \index{ID@{ID}!ba::Entity@{ba::Entity}}
 \doxysubsubsection{\texorpdfstring{ID}{ID}}
@@ -265,7 +295,7 @@ Static entities are treated differently by Systems from non-\/static entities. S
 
 
 
-\mbox{\hyperlink{classba_1_1Entity}{Entity}} Identification. 
+\doxylink{classba_1_1Entity}{Entity} Identification. 
 
 Mostly used as keys for maps or sets kept by Systems and Components. 
 

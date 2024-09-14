@@ -1,0 +1,157 @@
+\doxysection{Resource\+Manager.\+hpp}
+\hypertarget{ResourceManager_8hpp_source}{}\label{ResourceManager_8hpp_source}\index{include/BA/ResourceManager.hpp@{include/BA/ResourceManager.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <any>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <filesystem>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <optional>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <stdexcept>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <tinyxml2/tinyxml2.h>}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <SDL2/SDL.h>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <SDL2/SDL\_filesystem.h>}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <SDL2/SDL\_image.h>}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ <SDL2/SDL\_mixer.h>}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <SDL2/SDL\_ttf.h>}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <BA/Exceptions/Inaccessible.hpp>}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}BA/Types.hpp"{}}}
+\DoxyCodeLine{00026\ \textcolor{comment}{//\ \#include\ "{}BA/Tools/ConfigMap.hpp"{}}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ "{}BA/Tools/DebugHelper.hpp"{}}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{namespace\ }fs\ =\ std::filesystem;}
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ using\ std::filesystem::path;}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{namespace\ }ba\ \{}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classba_1_1ResourceManager}{ResourceManager}}\ \{}
+\DoxyCodeLine{00035\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{classba_1_1ResourceManager_a552c7d38fc79f3dab74acb7cfae023d8}{ResourceType}}:\ IDtype\ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ NO\_RESTYPE\ =\ 0,}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ CONFIGS,}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ TEXTURES,}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ SOUNDS,}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ MUSICS,}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ FONTS,}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ STRINGS,}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ XMLDOC,}
+\DoxyCodeLine{00048\ \ \ \ \ \};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{keyword}{public}:\ \textcolor{comment}{//\ Methods\ and\ Constructors}}
+\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{classba_1_1ResourceManager}{ResourceManager}}();}
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{classba_1_1ResourceManager}{ResourceManager}}(SDL\_Renderer*\ rend);}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{classba_1_1ResourceManager}{ResourceManager}}(\mbox{\hyperlink{classba_1_1ResourceManager}{ResourceManager}}\&\ other)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{classba_1_1ResourceManager}{ResourceManager}}\&\ operator=(\mbox{\hyperlink{classba_1_1ResourceManager}{ResourceManager}}\&\ other)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \mbox{\hyperlink{classba_1_1ResourceManager}{\string~ResourceManager}}();}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{void}\ freeAllResources();}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{comment}{//\ RESOURCES\ LOADING}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classba_1_1ResourceManager_a01a428af49f49b099bc4e51e43ad6d18}{loadConfig}}(\textcolor{keyword}{const}\ std::string\&\ fileName);}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classba_1_1ResourceManager_a4b9d9fa921e13b3bd3b3e9aa3a539201}{setConfig}}(ConfigID\ \textcolor{keywordtype}{id},\ std::any\ value);}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00087\ \ \ \ \ IDtype\ \mbox{\hyperlink{classba_1_1ResourceManager_ae07527e0adf4f92eed77e895fbf3c535}{loadTexture}}(\textcolor{keyword}{const}\ std::string\&\ fileName);}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00095\ \ \ \ \ IDtype\ \mbox{\hyperlink{classba_1_1ResourceManager_ab23632ccaf80026b6a058a204eca727c}{addTexture}}(SDL\_Texture*\ texture);}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00103\ \ \ \ \ IDtype\ \mbox{\hyperlink{classba_1_1ResourceManager_a7a47c7b5abfd03b44c7d3f6853758dcc}{loadSound}}(\textcolor{keyword}{const}\ std::string\&\ fileName);}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00111\ \ \ \ \ IDtype\ \mbox{\hyperlink{classba_1_1ResourceManager_a86594addb34ac99591bcdef82cc89bdd}{loadMusic}}(\textcolor{keyword}{const}\ std::string\&\ fileName);}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00119\ \ \ \ \ IDtype\ \mbox{\hyperlink{classba_1_1ResourceManager_a926b233d7cdcfd7b210d856a8f78189c}{loadFont}}(\textcolor{keyword}{const}\ std::string\&\ fileName,\ \textcolor{keywordtype}{int}\ fontSize);}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00128\ \ \ \ \ IDtype\ \mbox{\hyperlink{classba_1_1ResourceManager_ab7082bfad07c26109333f662507a4db5}{loadXML}}(\textcolor{keyword}{const}\ std::string\&\ fileName);}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{comment}{//\ RESOURCES\ EXTRACTION}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00144\ \ \ \ \ std::any\ \mbox{\hyperlink{classba_1_1ResourceManager_abcd9fffcc3842fd8a6625ebeea652848}{getConfig}}(ConfigID\ \textcolor{keywordtype}{id})\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keyword}{const}\ std::string\&\ \mbox{\hyperlink{classba_1_1ResourceManager_a4e0f44a7778026e5a153dfa97128b583}{getString}}(IDtype\ \textcolor{keywordtype}{id})\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00158\ \ \ \ \ SDL\_Texture*\ \mbox{\hyperlink{classba_1_1ResourceManager_a67939a9b8f14283e7e9ec5094be0d59a}{getTexture}}(IDtype\ \textcolor{keywordtype}{id})\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00164\ \ \ \ \ Mix\_Chunk*\ \mbox{\hyperlink{classba_1_1ResourceManager_a0df86a68848e69d50fc72179bfe72b6f}{getSound}}(IDtype\ \textcolor{keywordtype}{id})\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00170\ \ \ \ \ Mix\_Music*\ \mbox{\hyperlink{classba_1_1ResourceManager_a59344436b4eaa1cdb73a84839200691e}{getMusic}}(IDtype\ \textcolor{keywordtype}{id})\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00176\ \ \ \ \ TTF\_Font*\ \mbox{\hyperlink{classba_1_1ResourceManager_aa2bff69c31b8c95ca8d527f26851d719}{getFont}}(IDtype\ \textcolor{keywordtype}{id})\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{tinyxml2::XMLDocument}}*\ \mbox{\hyperlink{classba_1_1ResourceManager_a02fafacc91f354f32c72d18c2eb01b99}{getXML}}(IDtype\ \textcolor{keywordtype}{id})\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{comment}{//\ MODIFIERS}}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00194\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classba_1_1ResourceManager_a2efeff13a9391e66a816bfc312cf68fd}{setRenderer}}(SDL\_Renderer*\ renderer);}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{comment}{//\ STATIC\ MODIFIERS}}
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ addToSearchPaths(\textcolor{keyword}{const}\ std::string\&\ dir);}
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ addToSearchPaths(\textcolor{keyword}{const}\ fs::path\&\ dir);}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00203\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ std::vector<fs::path>\&\ getBaseDirs();}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00205\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00206\ \ \ \ \ std::optional<fs::path>\ getExistingPath(\textcolor{keyword}{const}\ fs::path\&\ suffixPath);}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00208\ \ \ \ \ \textcolor{keywordtype}{void}\ saveCurrentConfiguration();}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00211\ \ \ \ \ \textcolor{comment}{//\ TODO:\ Considering\ the\ tediousness\ of\ having\ to\ maintain\ quite\ a\ numerous\ number\ resource\ maps}}
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{comment}{//\ And\ that\ the\ number\ of\ different\ resources\ just\ keeps\ growing,\ prompting\ me\ to\ make\ more\ load,\ get,\ and\ free\ methods\ for\ each\ type\ of\ resources\ }}
+\DoxyCodeLine{00213\ \ \ \ \ \textcolor{comment}{//\ and\ that\ there\ is\ no\ certainty\ for\ a\ game\ needing\ to\ maintain\ this\ much\ variety\ in\ resources,}}
+\DoxyCodeLine{00214\ \ \ \ \ \textcolor{comment}{//\ It\ is\ probably\ better\ to\ create\ a\ separate\ class\ to\ abstract\ all\ of\ the\ common\ functionalities}}
+\DoxyCodeLine{00215\ \ \ \ \ \textcolor{comment}{//\ of\ loading,\ storing,\ getting,\ updating,\ and\ freeing\ all\ these\ resources}}
+\DoxyCodeLine{00216\ \ \ \ \ \textcolor{comment}{//\ and\ have\ ResourceManager\ provide\ a\ means\ to\ include\ only\ the\ resource\ it\ needs.}}
+\DoxyCodeLine{00217\ \ \ \ \ \textcolor{comment}{//\ i.e}}
+\DoxyCodeLine{00218\ \ \ \ \ \textcolor{comment}{//\ \`{}\`{}\`{}}}
+\DoxyCodeLine{00219\ \ \ \ \ \textcolor{comment}{//\ ResourceManager\ res;}}
+\DoxyCodeLine{00220\ \ \ \ \ \textcolor{comment}{//\ res-\/>includeResourceHandler<TextureHandler>();}}
+\DoxyCodeLine{00221\ \ \ \ \ \textcolor{comment}{//\ auto\&\ textures\ =\ res-\/>getResourceHandler<TextureHandler>();}}
+\DoxyCodeLine{00222\ \ \ \ \ \textcolor{comment}{//\ ...\ //\ \ do\ something.}}
+\DoxyCodeLine{00223\ \ \ \ \ \textcolor{comment}{//\ \`{}\`{}\`{}}}
+\DoxyCodeLine{00224\ \ \ \ \ std::unordered\_map<IDtype,\ std::any>\ configMap;}
+\DoxyCodeLine{00225\ \ \ \ \ std::unordered\_map<IDtype,\ std::string>\ stringMap\ =\ \{\{0u,\ \textcolor{stringliteral}{"{}"{}}\}\};}
+\DoxyCodeLine{00226\ \ \ \ \ std::unordered\_map<IDtype,\ SDL\_Texture*>\ texturesMap;}
+\DoxyCodeLine{00227\ \ \ \ \ std::unordered\_map<IDtype,\ Mix\_Chunk*>\ soundsMap;}
+\DoxyCodeLine{00228\ \ \ \ \ std::unordered\_map<IDtype,\ Mix\_Music*>\ musicsMap;}
+\DoxyCodeLine{00229\ \ \ \ \ std::unordered\_map<IDtype,\ TTF\_Font*>\ fontsMap;}
+\DoxyCodeLine{00230\ \ \ \ \ std::unordered\_map<IDtype,\ std::unique\_ptr<tinyxml2::XMLDocument>>\ xmlMap;}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00232\ \ \ \ \ IDtype\ stringCount\ =\ 0;}
+\DoxyCodeLine{00233\ \ \ \ \ IDtype\ textureCount\ =\ 0;}
+\DoxyCodeLine{00234\ \ \ \ \ IDtype\ soundCount\ =\ 0;}
+\DoxyCodeLine{00235\ \ \ \ \ IDtype\ musicCount\ =\ 0;}
+\DoxyCodeLine{00236\ \ \ \ \ IDtype\ fontCount\ =\ 0;}
+\DoxyCodeLine{00237\ \ \ \ \ IDtype\ xmlDocCount\ =\ 0;}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00239\ \ \ \ \ SDL\_Renderer*\ m\_renderer\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00240\ \ \ \ \ std::string\ m\_configFile\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00241\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00245\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ std::array<fs::path,\ 8>\ \ \ \ sk\_PATHS;}
+\DoxyCodeLine{00246\ }
+\DoxyCodeLine{00250\ \ \ \ \ \textcolor{keyword}{static}\ std::vector<fs::path>\ s\_DIRS;\textcolor{comment}{//\ arrays\ of\ possible\ directories\ to\ find\ assets.}}
+\DoxyCodeLine{00251\ }
+\DoxyCodeLine{00255\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ std::map<std::string,\ ConfigID>\ sk\_configStringMap;}
+\DoxyCodeLine{00256\ \ \ \ \ }
+\DoxyCodeLine{00257\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ std::unordered\_map<ConfigID,\ std::pair<std::string,\ const\ std::type\_info\&>>\ sk\_configIDMap;}
+\DoxyCodeLine{00258\ \};\ \textcolor{comment}{//\ class\ ResourceManager}}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00260\ \}\ \textcolor{comment}{//\ namespace\ ba}}
+
+\end{DoxyCode}

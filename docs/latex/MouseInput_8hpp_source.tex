@@ -1,0 +1,73 @@
+\doxysection{Mouse\+Input.\+hpp}
+\hypertarget{MouseInput_8hpp_source}{}\label{MouseInput_8hpp_source}\index{include/BA/Inputs/MouseInput.hpp@{include/BA/Inputs/MouseInput.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <SDL2/SDL\_events.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <SDL2/SDL\_mouse.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <BA/Inputs/Input.hpp>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <BA/Types.hpp>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <BA/Utilities/Vector2.hpp>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }ba\ \{}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ Currently,\ the\ max\ known\ number\ of\ buttons\ a\ mouse\ can\ have\ is\ 15.}}
+\DoxyCodeLine{00014\ \textcolor{keyword}{enum\ class}\ MouseButton\ :\ std::uint32\_t\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ NONE\ \ \ \ =\ \ \ 00,}
+\DoxyCodeLine{00016\ \ \ \ \ LEFT\ \ \ \ =\ \ \ 01,}
+\DoxyCodeLine{00017\ \ \ \ \ MIDDLE\ \ =\ \ \ 02,}
+\DoxyCodeLine{00018\ \ \ \ \ RIGHT\ \ \ =\ \ \ 04,}
+\DoxyCodeLine{00019\ \ \ \ \ \_4TH\ \ \ \ =\ \ \ 010,}
+\DoxyCodeLine{00020\ \ \ \ \ \_5TH\ \ \ \ =\ \ \ 020,}
+\DoxyCodeLine{00021\ \ \ \ \ \_6TH\ \ \ \ =\ \ \ 040,}
+\DoxyCodeLine{00022\ \ \ \ \ \_7TH\ \ \ \ =\ \ \ 0100,}
+\DoxyCodeLine{00023\ \ \ \ \ \_8TH\ \ \ \ =\ \ \ 0200,}
+\DoxyCodeLine{00024\ \ \ \ \ \_9TH\ \ \ \ =\ \ \ 0400,}
+\DoxyCodeLine{00025\ \ \ \ \ \_10TH\ \ \ =\ \ \ 01000,}
+\DoxyCodeLine{00026\ \ \ \ \ \_11TH\ \ \ =\ \ \ 02000,}
+\DoxyCodeLine{00027\ \ \ \ \ \_12TH\ \ \ =\ \ \ 04000,}
+\DoxyCodeLine{00028\ \ \ \ \ \_13TH\ \ \ =\ \ \ 010000,}
+\DoxyCodeLine{00029\ \ \ \ \ \_14TH\ \ \ =\ \ \ 020000,}
+\DoxyCodeLine{00030\ \ \ \ \ \_15TH\ \ \ =\ \ \ 040000,}
+\DoxyCodeLine{00031\ \};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classba_1_1MouseInput}{MouseInput}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classba_1_1Input}{Input}}\ \{}
+\DoxyCodeLine{00036\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ IDtype\ IID;}
+\DoxyCodeLine{00038\ \ \ \ \ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{classba_1_1MouseInput}{MouseInput}}(\mbox{\hyperlink{classba_1_1InputManager}{InputManager}}*\ im);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ handleEvents();}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2i}}\&\ getPrevMousePos()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2i}}\&\ getCurrMousePos()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{bool}\ isButtonUp(MouseButton\ button)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{bool}\ isButtonDown(MouseButton\ button)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{bool}\ isButtonActive(MouseButton\ button)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{float}\ timeSinceLastClicked(MouseButton\ button)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00052\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{comment}{//\ Mouse\ Positions\ relative\ to\ Window}}
+\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{classba_1_1Vector2}{Vector2i}}\ m\_prevMousePos\{0,\ 0\};}
+\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{classba_1_1Vector2}{Vector2i}}\ m\_currMousePos\{0,\ 0\};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{comment}{//\ State\ of\ Mouse\ Buttons}}
+\DoxyCodeLine{00058\ \ \ \ \ std::uint32\_t\ \ \ m\_prevMouseButtons\ =\ 0u;}
+\DoxyCodeLine{00059\ \ \ \ \ std::uint32\_t\ \ \ m\_currMouseButtons\ =\ 0u;}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ std::unordered\_map<ba::uint32,\ ba::uint64>\ \ m\_lastClicked;}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ NEVER\_CLICKED;}
+\DoxyCodeLine{00065\ \};\ \textcolor{comment}{//\ class\ MouseInput}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \}\ \textcolor{comment}{//\ namespace\ ba}}
+
+\end{DoxyCode}

@@ -1,0 +1,70 @@
+\doxysection{Text.\+hpp}
+\hypertarget{Text_8hpp_source}{}\label{Text_8hpp_source}\index{include/BA/Components/Text.hpp@{include/BA/Components/Text.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <stdexcept>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <BA/Components/Drawable.hpp>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <BA/Types.hpp>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <BA/Utilities/Color.hpp>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <BA/Utilities/Rect.hpp>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }ba\ \{}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classba_1_1Text}{Text}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classba_1_1Drawable}{Drawable}}\ \{}
+\DoxyCodeLine{00014\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classba_1_1Text}{Text}}(\mbox{\hyperlink{classba_1_1Entity}{Entity}}*\ owner,\ IDtype\ drawLayer\ =\ DEFAULT\_RENDER\_LAYER);}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classba_1_1Text}{\string~Text}}();}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ draw(\mbox{\hyperlink{classba_1_1Window}{Window}}\&\ window)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classba_1_1Text_a64bba8b6fa5da597cdf53858bab70c90}{appendText}}(\textcolor{keywordtype}{char}\ ch,\ std::size\_t\ count\ =\ 1u);}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classba_1_1Text_af63aebf269f93fdc82fb7e2df880e504}{appendText}}(\textcolor{keyword}{const}\ std::string\&\ str);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classba_1_1Text_a232a5158897fa12a4ff8d105211576e5}{appendText}}(\textcolor{keyword}{const}\ std::string\&\ str,\ std::size\_t\ pos,\ std::size\_t\ count\ =\ std::string::npos);}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00060\ \ \ \ \ IDtype\ \mbox{\hyperlink{classba_1_1Text_ae5aedb8bdd8b85ddf3ad21e3a1f0c157}{loadFontFromFile}}(\textcolor{keyword}{const}\ std::string\&\ fileName,\ \textcolor{keywordtype}{int}\ fontSize);}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classba_1_1Text_a59f76f6e112da8b07e0d9323037e3991}{setText}}(\textcolor{keyword}{const}\ std::string\&\ newText);}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classba_1_1Text_ad49ce23cfec1154d21b036da6d48849e}{setColor}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Color}{Color}}\&\ color);}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classba_1_1Text_a71d9f42390219b53576d5bc1cdab1564}{setFontID}}(IDtype\ newFontID);}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classba_1_1Text_ab0970e909d2623668630fcfc749fa494}{setWrapLength}}(uint32\ wrapLength);}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keyword}{const}\ std::string\&\ \mbox{\hyperlink{classba_1_1Text_a9a1612405fa274f699fd0c374195b617}{getText}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Color}{Color}}\&\ \mbox{\hyperlink{classba_1_1Text_a3124d42ac7cf3c44806b392520c68d61}{getColor}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00117\ \ \ \ \ IDtype\ \mbox{\hyperlink{classba_1_1Text_aa7cf262bc5b0f1baf5b6eea82b555556}{getFontID}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00124\ \ \ \ \ uint32\ \mbox{\hyperlink{classba_1_1Text_ae0a3a96af7af0f1787b0ae202b0dd084}{getWrapLength}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keyword}{const}\ SDL\_Texture*\ \mbox{\hyperlink{classba_1_1Text_a71d34a8e2a94aa45cde189b031547e8b}{getTexture}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classba_1_1Rect}{FloatRect}}\ getLocalBounds()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classba_1_1Rect}{FloatRect}}\ getGlobalBounds()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00135\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keywordtype}{void}\ updateText()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00139\ \ \ \ \ std::string\ \ \ \ \ m\_text\{\textcolor{stringliteral}{"{}"{}}\};}
+\DoxyCodeLine{00140\ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ m\_wrapLength\ =\ 0u;}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \ \ IDtype\ \ \ \ \ \ \ \ \ \ m\_fontID\ =\ 0u;}
+\DoxyCodeLine{00143\ \ \ \ \ \mbox{\hyperlink{classba_1_1Color}{Color}}\ \ \ \ \ \ \ \ \ \ m\_textColor\ =\ Color::White;}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keyword}{mutable}\ SDL\_Texture*\ \ \ \ m\_textTexture\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keyword}{mutable}\ \mbox{\hyperlink{classba_1_1Rect}{IntRect}}\ \ \ \ \ \ \ \ \ \ m\_rect\{0,\ 0,\ 0,\ 0\};}
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keyword}{mutable}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ m\_updatedText\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00148\ \};\ \textcolor{comment}{//\ class\ Text}}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \}\ \textcolor{comment}{//\ namespace\ ba}}
+
+\end{DoxyCode}

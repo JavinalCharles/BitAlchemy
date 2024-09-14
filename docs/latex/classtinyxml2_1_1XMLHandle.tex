@@ -1,0 +1,113 @@
+\doxysection{tinyxml2\+::XMLHandle Class Reference}
+\hypertarget{classtinyxml2_1_1XMLHandle}{}\label{classtinyxml2_1_1XMLHandle}\index{tinyxml2::XMLHandle@{tinyxml2::XMLHandle}}
+
+
+{\ttfamily \#include $<$tinyxml2.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classtinyxml2_1_1XMLHandle_a9c240a35c18f053509b4b97ddccd9793}\label{classtinyxml2_1_1XMLHandle_a9c240a35c18f053509b4b97ddccd9793} 
+{\bfseries XMLHandle} (\mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}} \texorpdfstring{$\ast$}{*}node)
+\begin{DoxyCompactList}\small\item\em Create a handle from any node (at any depth of the tree.) This can be a null pointer. \end{DoxyCompactList}\item 
+\Hypertarget{classtinyxml2_1_1XMLHandle_aa2edbc1c0d3e3e8259bd98de7f1cf500}\label{classtinyxml2_1_1XMLHandle_aa2edbc1c0d3e3e8259bd98de7f1cf500} 
+{\bfseries XMLHandle} (\mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}} \&node)
+\begin{DoxyCompactList}\small\item\em Create a handle from a node. \end{DoxyCompactList}\item 
+\Hypertarget{classtinyxml2_1_1XMLHandle_afd8e01e6018c07347b8e6d80272466aa}\label{classtinyxml2_1_1XMLHandle_afd8e01e6018c07347b8e6d80272466aa} 
+{\bfseries XMLHandle} (const \mbox{\hyperlink{classtinyxml2_1_1XMLHandle}{XMLHandle}} \&ref)
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classtinyxml2_1_1XMLHandle_aa07c9a53f78d7b2dc1018668641521d8}\label{classtinyxml2_1_1XMLHandle_aa07c9a53f78d7b2dc1018668641521d8} 
+\mbox{\hyperlink{classtinyxml2_1_1XMLHandle}{XMLHandle}} \& {\bfseries operator=} (const \mbox{\hyperlink{classtinyxml2_1_1XMLHandle}{XMLHandle}} \&ref)
+\begin{DoxyCompactList}\small\item\em Assignment. \end{DoxyCompactList}\item 
+\Hypertarget{classtinyxml2_1_1XMLHandle_a536447dc7f54c0cd11e031dad94795ae}\label{classtinyxml2_1_1XMLHandle_a536447dc7f54c0cd11e031dad94795ae} 
+\mbox{\hyperlink{classtinyxml2_1_1XMLHandle}{XMLHandle}} {\bfseries First\+Child} ()
+\begin{DoxyCompactList}\small\item\em Get the first child of this handle. \end{DoxyCompactList}\item 
+\Hypertarget{classtinyxml2_1_1XMLHandle_a74b04dd0f15e0bf01860e282b840b6a3}\label{classtinyxml2_1_1XMLHandle_a74b04dd0f15e0bf01860e282b840b6a3} 
+\mbox{\hyperlink{classtinyxml2_1_1XMLHandle}{XMLHandle}} {\bfseries First\+Child\+Element} (const char \texorpdfstring{$\ast$}{*}name=0)
+\begin{DoxyCompactList}\small\item\em Get the first child element of this handle. \end{DoxyCompactList}\item 
+\Hypertarget{classtinyxml2_1_1XMLHandle_a9d09f04435f0f2f7d0816b0198d0517b}\label{classtinyxml2_1_1XMLHandle_a9d09f04435f0f2f7d0816b0198d0517b} 
+\mbox{\hyperlink{classtinyxml2_1_1XMLHandle}{XMLHandle}} {\bfseries Last\+Child} ()
+\begin{DoxyCompactList}\small\item\em Get the last child of this handle. \end{DoxyCompactList}\item 
+\Hypertarget{classtinyxml2_1_1XMLHandle_a42cccd0ce8b1ce704f431025e9f19e0c}\label{classtinyxml2_1_1XMLHandle_a42cccd0ce8b1ce704f431025e9f19e0c} 
+\mbox{\hyperlink{classtinyxml2_1_1XMLHandle}{XMLHandle}} {\bfseries Last\+Child\+Element} (const char \texorpdfstring{$\ast$}{*}name=0)
+\begin{DoxyCompactList}\small\item\em Get the last child element of this handle. \end{DoxyCompactList}\item 
+\Hypertarget{classtinyxml2_1_1XMLHandle_a428374e756f4db4cbc287fec64eae02c}\label{classtinyxml2_1_1XMLHandle_a428374e756f4db4cbc287fec64eae02c} 
+\mbox{\hyperlink{classtinyxml2_1_1XMLHandle}{XMLHandle}} {\bfseries Previous\+Sibling} ()
+\begin{DoxyCompactList}\small\item\em Get the previous sibling of this handle. \end{DoxyCompactList}\item 
+\Hypertarget{classtinyxml2_1_1XMLHandle_a786957e498039554ed334cdc36612a7e}\label{classtinyxml2_1_1XMLHandle_a786957e498039554ed334cdc36612a7e} 
+\mbox{\hyperlink{classtinyxml2_1_1XMLHandle}{XMLHandle}} {\bfseries Previous\+Sibling\+Element} (const char \texorpdfstring{$\ast$}{*}name=0)
+\begin{DoxyCompactList}\small\item\em Get the previous sibling element of this handle. \end{DoxyCompactList}\item 
+\Hypertarget{classtinyxml2_1_1XMLHandle_aad2eccc7c7c7b18145877c978c3850b5}\label{classtinyxml2_1_1XMLHandle_aad2eccc7c7c7b18145877c978c3850b5} 
+\mbox{\hyperlink{classtinyxml2_1_1XMLHandle}{XMLHandle}} {\bfseries Next\+Sibling} ()
+\begin{DoxyCompactList}\small\item\em Get the next sibling of this handle. \end{DoxyCompactList}\item 
+\Hypertarget{classtinyxml2_1_1XMLHandle_ae41d88ee061f3c49a081630ff753b2c5}\label{classtinyxml2_1_1XMLHandle_ae41d88ee061f3c49a081630ff753b2c5} 
+\mbox{\hyperlink{classtinyxml2_1_1XMLHandle}{XMLHandle}} {\bfseries Next\+Sibling\+Element} (const char \texorpdfstring{$\ast$}{*}name=0)
+\begin{DoxyCompactList}\small\item\em Get the next sibling element of this handle. \end{DoxyCompactList}\item 
+\Hypertarget{classtinyxml2_1_1XMLHandle_a689453c96dd3d4016437d2298d1de691}\label{classtinyxml2_1_1XMLHandle_a689453c96dd3d4016437d2298d1de691} 
+\mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}} \texorpdfstring{$\ast$}{*} {\bfseries To\+Node} ()
+\begin{DoxyCompactList}\small\item\em Safe cast to \doxylink{classtinyxml2_1_1XMLNode}{XMLNode}. This can return null. \end{DoxyCompactList}\item 
+\Hypertarget{classtinyxml2_1_1XMLHandle_ab2371c4adb8b04afe04ed216bf9b0676}\label{classtinyxml2_1_1XMLHandle_ab2371c4adb8b04afe04ed216bf9b0676} 
+\mbox{\hyperlink{classtinyxml2_1_1XMLElement}{XMLElement}} \texorpdfstring{$\ast$}{*} {\bfseries To\+Element} ()
+\begin{DoxyCompactList}\small\item\em Safe cast to \doxylink{classtinyxml2_1_1XMLElement}{XMLElement}. This can return null. \end{DoxyCompactList}\item 
+\Hypertarget{classtinyxml2_1_1XMLHandle_accc80bcbd81e816f13a23c172587c288}\label{classtinyxml2_1_1XMLHandle_accc80bcbd81e816f13a23c172587c288} 
+\mbox{\hyperlink{classtinyxml2_1_1XMLText}{XMLText}} \texorpdfstring{$\ast$}{*} {\bfseries To\+Text} ()
+\begin{DoxyCompactList}\small\item\em Safe cast to \doxylink{classtinyxml2_1_1XMLText}{XMLText}. This can return null. \end{DoxyCompactList}\item 
+\Hypertarget{classtinyxml2_1_1XMLHandle_add97784cbe14ef42bb36e158ad6e6082}\label{classtinyxml2_1_1XMLHandle_add97784cbe14ef42bb36e158ad6e6082} 
+\mbox{\hyperlink{classtinyxml2_1_1XMLUnknown}{XMLUnknown}} \texorpdfstring{$\ast$}{*} {\bfseries To\+Unknown} ()
+\begin{DoxyCompactList}\small\item\em Safe cast to \doxylink{classtinyxml2_1_1XMLUnknown}{XMLUnknown}. This can return null. \end{DoxyCompactList}\item 
+\Hypertarget{classtinyxml2_1_1XMLHandle_a85d0c76920a013ea2a29456dbf7d160d}\label{classtinyxml2_1_1XMLHandle_a85d0c76920a013ea2a29456dbf7d160d} 
+\mbox{\hyperlink{classtinyxml2_1_1XMLDeclaration}{XMLDeclaration}} \texorpdfstring{$\ast$}{*} {\bfseries To\+Declaration} ()
+\begin{DoxyCompactList}\small\item\em Safe cast to \doxylink{classtinyxml2_1_1XMLDeclaration}{XMLDeclaration}. This can return null. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A \doxylink{classtinyxml2_1_1XMLHandle}{XMLHandle} is a class that wraps a node pointer with null checks; this is an incredibly useful thing. Note that \doxylink{classtinyxml2_1_1XMLHandle}{XMLHandle} is not part of the Tiny\+XML-\/2 DOM structure. It is a separate utility class.
+
+Take an example\+: \begin{DoxyVerb}<Document>
+    <Element attributeA = "valueA">
+        <Child attributeB = "value1" />
+        <Child attributeB = "value2" />
+    </Element>
+</Document>
+\end{DoxyVerb}
+
+
+Assuming you want the value of "{}attribute\+B"{} in the 2nd "{}\+Child"{} element, it\textquotesingle{}s very easy to write a {\itshape lot} of code that looks like\+:
+
+\begin{DoxyVerb}XMLElement* root = document.FirstChildElement( "Document" );
+if ( root )
+{
+    XMLElement* element = root->FirstChildElement( "Element" );
+    if ( element )
+    {
+        XMLElement* child = element->FirstChildElement( "Child" );
+        if ( child )
+        {
+            XMLElement* child2 = child->NextSiblingElement( "Child" );
+            if ( child2 )
+            {
+                // Finally do something useful.
+\end{DoxyVerb}
+
+
+And that doesn\textquotesingle{}t even cover "{}else"{} cases. \doxylink{classtinyxml2_1_1XMLHandle}{XMLHandle} addresses the verbosity of such code. A \doxylink{classtinyxml2_1_1XMLHandle}{XMLHandle} checks for null pointers so it is perfectly safe and correct to use\+:
+
+\begin{DoxyVerb}XMLHandle docHandle( &document );
+XMLElement* child2 = docHandle.FirstChildElement( "Document" ).FirstChildElement( "Element" ).FirstChildElement().NextSiblingElement();
+if ( child2 )
+{
+    // do something useful
+\end{DoxyVerb}
+
+
+Which is MUCH more concise and useful.
+
+It is also safe to copy handles -\/ internally they are nothing more than node pointers. \begin{DoxyVerb}XMLHandle handleCopy = handle;
+\end{DoxyVerb}
+
+
+See also \doxylink{classtinyxml2_1_1XMLConstHandle}{XMLConst\+Handle}, which is the same as \doxylink{classtinyxml2_1_1XMLHandle}{XMLHandle}, but operates on const objects. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/tinyxml2/tinyxml2.\+h\end{DoxyCompactItemize}

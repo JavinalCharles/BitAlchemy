@@ -1,5 +1,5 @@
-\hypertarget{classba_1_1Sprite}{}\doxysection{ba\+::Sprite Class Reference}
-\label{classba_1_1Sprite}\index{ba::Sprite@{ba::Sprite}}
+\doxysection{ba\+::Sprite Class Reference}
+\hypertarget{classba_1_1Sprite}{}\label{classba_1_1Sprite}\index{ba::Sprite@{ba::Sprite}}
 
 
 Inheritance diagram for ba\+::Sprite\+:
@@ -7,7 +7,7 @@ Inheritance diagram for ba\+::Sprite\+:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=260pt]{classba_1_1Sprite__inherit__graph}
+\includegraphics[width=276pt]{classba_1_1Sprite__inherit__graph}
 \end{center}
 \end{figure}
 
@@ -20,40 +20,107 @@ Collaboration diagram for ba\+::Sprite\+:
 \includegraphics[width=350pt]{classba_1_1Sprite__coll__graph}
 \end{center}
 \end{figure}
-\doxysubsection*{Public Member Functions}
+\doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classba_1_1Sprite_a7b45089decdd9f033473127155101370}\label{classba_1_1Sprite_a7b45089decdd9f033473127155101370}} 
-{\bfseries Sprite} (\mbox{\hyperlink{classba_1_1Entity}{ba\+::\+Entity}} $\ast$owner, IDtype draw\+Layer=0, IDtype sort\+Order=0)
+\Hypertarget{classba_1_1Sprite_addb52121287d11cb0f24c51ba82fb869}\label{classba_1_1Sprite_addb52121287d11cb0f24c51ba82fb869} 
+{\bfseries Sprite} (\mbox{\hyperlink{classba_1_1Entity}{ba\+::\+Entity}} \texorpdfstring{$\ast$}{*}owner, IDtype draw\+Layer=DEFAULT\+\_\+\+RENDER\+\_\+\+LAYER)
 \item 
-\mbox{\Hypertarget{classba_1_1Sprite_a9c0357d21451db2358662a7d0ed85459}\label{classba_1_1Sprite_a9c0357d21451db2358662a7d0ed85459}} 
-virtual void {\bfseries draw} (\mbox{\hyperlink{classba_1_1Window}{ba\+::\+Window}} \&window) override
+virtual void \mbox{\hyperlink{classba_1_1Sprite_a9c0357d21451db2358662a7d0ed85459}{draw}} (\mbox{\hyperlink{classba_1_1Window}{ba\+::\+Window}} \&window) override
 \item 
-\mbox{\Hypertarget{classba_1_1Sprite_a9562f86962aa73f611c3572f46b570e9}\label{classba_1_1Sprite_a9562f86962aa73f611c3572f46b570e9}} 
+\Hypertarget{classba_1_1Sprite_a9562f86962aa73f611c3572f46b570e9}\label{classba_1_1Sprite_a9562f86962aa73f611c3572f46b570e9} 
 bool {\bfseries has\+Texture} () const
 \item 
-\mbox{\Hypertarget{classba_1_1Sprite_aa159c535a7a0c9bc80345f40b7d54ae8}\label{classba_1_1Sprite_aa159c535a7a0c9bc80345f40b7d54ae8}} 
+\Hypertarget{classba_1_1Sprite_aa159c535a7a0c9bc80345f40b7d54ae8}\label{classba_1_1Sprite_aa159c535a7a0c9bc80345f40b7d54ae8} 
 IDtype {\bfseries load\+Texture\+From\+File} (const std\+::string \&file\+Name)
 \item 
-\mbox{\Hypertarget{classba_1_1Sprite_a1731ef52e1eb25d76b810b82f39d0a14}\label{classba_1_1Sprite_a1731ef52e1eb25d76b810b82f39d0a14}} 
+\Hypertarget{classba_1_1Sprite_a1731ef52e1eb25d76b810b82f39d0a14}\label{classba_1_1Sprite_a1731ef52e1eb25d76b810b82f39d0a14} 
 void {\bfseries set\+Texture} (IDtype texture\+ID)
 \item 
-\mbox{\Hypertarget{classba_1_1Sprite_a991b48a54f1994ab769ddac8b3af0f4e}\label{classba_1_1Sprite_a991b48a54f1994ab769ddac8b3af0f4e}} 
+\Hypertarget{classba_1_1Sprite_a991b48a54f1994ab769ddac8b3af0f4e}\label{classba_1_1Sprite_a991b48a54f1994ab769ddac8b3af0f4e} 
 void {\bfseries set\+Texture} (IDtype texture\+ID, const \mbox{\hyperlink{classba_1_1Rect}{Int\+Rect}} \&texture\+Rect)
 \item 
-\mbox{\Hypertarget{classba_1_1Sprite_a429256b0fa2c8b2c96ddc001c00c94c3}\label{classba_1_1Sprite_a429256b0fa2c8b2c96ddc001c00c94c3}} 
+\Hypertarget{classba_1_1Sprite_a429256b0fa2c8b2c96ddc001c00c94c3}\label{classba_1_1Sprite_a429256b0fa2c8b2c96ddc001c00c94c3} 
 void {\bfseries set\+Texture\+Rect} (const \mbox{\hyperlink{classba_1_1Rect}{Int\+Rect}} \&rect)
 \item 
-\mbox{\Hypertarget{classba_1_1Sprite_ae6529618a738e9bf0c854004d7217271}\label{classba_1_1Sprite_ae6529618a738e9bf0c854004d7217271}} 
+\Hypertarget{classba_1_1Sprite_ae6529618a738e9bf0c854004d7217271}\label{classba_1_1Sprite_ae6529618a738e9bf0c854004d7217271} 
 \mbox{\hyperlink{classba_1_1Rect}{Int\+Rect}} {\bfseries get\+Texture\+Rect} () const
 \item 
-\mbox{\Hypertarget{classba_1_1Sprite_aeeea72847a3cddf61f9eec1f2aa225e3}\label{classba_1_1Sprite_aeeea72847a3cddf61f9eec1f2aa225e3}} 
-virtual \mbox{\hyperlink{classba_1_1Rect}{Float\+Rect}} {\bfseries get\+Local\+Bounds} () const override
+virtual \mbox{\hyperlink{classba_1_1Rect}{Float\+Rect}} \mbox{\hyperlink{classba_1_1Sprite_aeeea72847a3cddf61f9eec1f2aa225e3}{get\+Local\+Bounds}} () const override
 \item 
-\mbox{\Hypertarget{classba_1_1Sprite_aa6a62207a4462c57fc07cbda515d7723}\label{classba_1_1Sprite_aa6a62207a4462c57fc07cbda515d7723}} 
-virtual \mbox{\hyperlink{classba_1_1Rect}{Float\+Rect}} {\bfseries get\+Global\+Bounds} () const override
+virtual \mbox{\hyperlink{classba_1_1Rect}{Float\+Rect}} \mbox{\hyperlink{classba_1_1Sprite_aa6a62207a4462c57fc07cbda515d7723}{get\+Global\+Bounds}} () const override
 \end{DoxyCompactItemize}
-\doxysubsection*{Additional Inherited Members}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classba_1_1Drawable}{ba\+::\+Drawable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Drawable} (\mbox{\hyperlink{classba_1_1Entity}{Entity}} \texorpdfstring{$\ast$}{*}owner, IDtype draw\+Layer=DEFAULT\+\_\+\+RENDER\+\_\+\+LAYER)
+\item 
+void {\bfseries set\+Draw\+Layer} (IDtype draw\+Layer)
+\item 
+IDtype {\bfseries get\+Draw\+Layer} () const
+\item 
+int32 \mbox{\hyperlink{classba_1_1Drawable_a4ab43ebbd47bfe42bf7ec0f3ed755c31}{get\+Sort\+Order}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classba_1_1Component}{ba\+::\+Component}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classba_1_1Component_a45eb09f349a805cf0a646549ec6c204b}{Component}} (\mbox{\hyperlink{classba_1_1Entity}{Entity}} \texorpdfstring{$\ast$}{*}owner)
+\begin{DoxyCompactList}\small\item\em \doxylink{classba_1_1Component}{Component} Constructor. \end{DoxyCompactList}\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Component} ()
+\begin{DoxyCompactList}\small\item\em \doxylink{classba_1_1Component}{Component} Destructor. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classba_1_1Component_a6f0b77ccea25915379aa4b81bd29e25c}{awake}} ()
+\begin{DoxyCompactList}\small\item\em Called once after the entity owner is added to the main loop. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classba_1_1Entity}{Entity}} \texorpdfstring{$\ast$}{*} {\bfseries get\+Owner} () const
+\begin{DoxyCompactList}\small\item\em Provides a pointer Reference to owner entity. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Attributes inherited from \mbox{\hyperlink{classba_1_1Drawable}{ba\+::\+Drawable}}}
+\begin{DoxyCompactItemize}
+\item 
+static const IDtype {\bfseries CID}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classba_1_1Drawable}{ba\+::\+Drawable}}}
+\begin{DoxyCompactItemize}
+\item 
+IDtype {\bfseries m\+\_\+draw\+Layer}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classba_1_1Component}{ba\+::\+Component}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classba_1_1Entity}{Entity}} \texorpdfstring{$\ast$}{*} {\bfseries m\+\_\+owner}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classba_1_1Sprite_a9c0357d21451db2358662a7d0ed85459}\label{classba_1_1Sprite_a9c0357d21451db2358662a7d0ed85459} 
+\index{ba::Sprite@{ba::Sprite}!draw@{draw}}
+\index{draw@{draw}!ba::Sprite@{ba::Sprite}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily virtual void ba\+::\+Sprite\+::draw (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classba_1_1Window}{ba\+::\+Window}} \&}]{window }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classba_1_1Drawable}{ba\+::\+Drawable}}.
+
+\Hypertarget{classba_1_1Sprite_aa6a62207a4462c57fc07cbda515d7723}\label{classba_1_1Sprite_aa6a62207a4462c57fc07cbda515d7723} 
+\index{ba::Sprite@{ba::Sprite}!getGlobalBounds@{getGlobalBounds}}
+\index{getGlobalBounds@{getGlobalBounds}!ba::Sprite@{ba::Sprite}}
+\doxysubsubsection{\texorpdfstring{getGlobalBounds()}{getGlobalBounds()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classba_1_1Rect}{Float\+Rect}} ba\+::\+Sprite\+::get\+Global\+Bounds (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classba_1_1Drawable}{ba\+::\+Drawable}}.
+
+\Hypertarget{classba_1_1Sprite_aeeea72847a3cddf61f9eec1f2aa225e3}\label{classba_1_1Sprite_aeeea72847a3cddf61f9eec1f2aa225e3} 
+\index{ba::Sprite@{ba::Sprite}!getLocalBounds@{getLocalBounds}}
+\index{getLocalBounds@{getLocalBounds}!ba::Sprite@{ba::Sprite}}
+\doxysubsubsection{\texorpdfstring{getLocalBounds()}{getLocalBounds()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classba_1_1Rect}{Float\+Rect}} ba\+::\+Sprite\+::get\+Local\+Bounds (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classba_1_1Drawable}{ba\+::\+Drawable}}.
+
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

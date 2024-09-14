@@ -1,0 +1,28 @@
+\doxysection{Keyboard\+Control\+System.\+hpp}
+\hypertarget{KeyboardControlSystem_8hpp_source}{}\label{KeyboardControlSystem_8hpp_source}\index{include/BA/Systems/KeyboardControlSystem.hpp@{include/BA/Systems/KeyboardControlSystem.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <BA/Components/KeyboardControl.hpp>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <BA/Inputs/KeyboardInput.hpp>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <BA/Systems/ComponentSystem.hpp>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{namespace\ }ba\ \{}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classba_1_1KeyboardControlSystem}{KeyboardControlSystem}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classba_1_1ComponentSystem}{ComponentSystem}}\ \{}
+\DoxyCodeLine{00010\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classba_1_1KeyboardControlSystem}{KeyboardControlSystem}}(\mbox{\hyperlink{classba_1_1EntityManager}{EntityManager}}*\ entityManager);}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ update(\textcolor{keywordtype}{float}\ deltaTime);}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{comment}{//\ virtual\ void\ postUpdate(float\ deltaTime);}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ add(std::shared\_ptr<Entity>\&\ entity);}
+\DoxyCodeLine{00017\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00018\ \ \ \ \ std::shared\_ptr<KeyboardInput>\ m\_keyInput\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \};\ \textcolor{comment}{//\ class\ KeyboardControlSystem}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \}\ \textcolor{comment}{//\ namespace\ ba}}
+
+\end{DoxyCode}

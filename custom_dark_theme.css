@@ -1,0 +1,32 @@
+/* Background and text colors */
+body {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+/* Header and navigation colors */
+#nav-tree, #doc-content {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+}
+
+/* Links */
+a {
+    color: #80cbc4;
+}
+
+/* Code block colors */
+pre, code {
+    background-color: #1e1e1e;
+    color: #c3e88d;
+}
+
+/* Table colors */
+table {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+}
+
+th, td {
+    border-color: #333;
+}

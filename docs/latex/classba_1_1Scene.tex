@@ -1,5 +1,5 @@
-\hypertarget{classba_1_1Scene}{}\doxysection{ba\+::Scene Class Reference}
-\label{classba_1_1Scene}\index{ba::Scene@{ba::Scene}}
+\doxysection{ba\+::Scene Class Reference}
+\hypertarget{classba_1_1Scene}{}\label{classba_1_1Scene}\index{ba::Scene@{ba::Scene}}
 
 
 Inheritance diagram for ba\+::Scene\+:
@@ -7,7 +7,7 @@ Inheritance diagram for ba\+::Scene\+:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=193pt]{classba_1_1Scene__inherit__graph}
+\includegraphics[width=203pt]{classba_1_1Scene__inherit__graph}
 \end{center}
 \end{figure}
 
@@ -20,61 +20,94 @@ Collaboration diagram for ba\+::Scene\+:
 \includegraphics[width=350pt]{classba_1_1Scene__coll__graph}
 \end{center}
 \end{figure}
-\doxysubsection*{Public Member Functions}
+\doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classba_1_1Scene_a4bae8099f935e048574dffb6733be79e}\label{classba_1_1Scene_a4bae8099f935e048574dffb6733be79e}} 
-{\bfseries Scene} (\mbox{\hyperlink{classba_1_1Window}{Window}} $\ast$window, \mbox{\hyperlink{classba_1_1ResourceManager}{Resource\+Manager}} $\ast$resource\+Manager, \mbox{\hyperlink{classba_1_1SceneManager}{Scene\+Manager}} $\ast$scene\+Manager)
+\Hypertarget{classba_1_1Scene_a4bae8099f935e048574dffb6733be79e}\label{classba_1_1Scene_a4bae8099f935e048574dffb6733be79e} 
+{\bfseries Scene} (\mbox{\hyperlink{classba_1_1Window}{Window}} \texorpdfstring{$\ast$}{*}window, \mbox{\hyperlink{classba_1_1ResourceManager}{Resource\+Manager}} \texorpdfstring{$\ast$}{*}resource\+Manager, \mbox{\hyperlink{classba_1_1SceneManager}{Scene\+Manager}} \texorpdfstring{$\ast$}{*}scene\+Manager)
 \item 
-\mbox{\Hypertarget{classba_1_1Scene_a4e8eba932cc89a15b504724827b878a3}\label{classba_1_1Scene_a4e8eba932cc89a15b504724827b878a3}} 
-virtual void {\bfseries on\+Create} ()=0
+\Hypertarget{classba_1_1Scene_a47981b77b478da8f2f0a863c436a2e28}\label{classba_1_1Scene_a47981b77b478da8f2f0a863c436a2e28} 
+void {\bfseries create} ()
 \item 
-\mbox{\Hypertarget{classba_1_1Scene_a652aea06cff835a1b7c09352ff4e2a20}\label{classba_1_1Scene_a652aea06cff835a1b7c09352ff4e2a20}} 
-virtual void {\bfseries on\+Destroy} ()=0
+\Hypertarget{classba_1_1Scene_ab98f6d9cdcdd177c48edb64b768edd5b}\label{classba_1_1Scene_ab98f6d9cdcdd177c48edb64b768edd5b} 
+void {\bfseries destroy} ()
 \item 
-\mbox{\Hypertarget{classba_1_1Scene_a766e181c8f6b8bed046fba8fd785a2c9}\label{classba_1_1Scene_a766e181c8f6b8bed046fba8fd785a2c9}} 
+\Hypertarget{classba_1_1Scene_ae87d3002febeb089789d94ceb9239212}\label{classba_1_1Scene_ae87d3002febeb089789d94ceb9239212} 
+void {\bfseries activate} ()
+\item 
+\Hypertarget{classba_1_1Scene_ace799ceec3536964390ffc2bb2e8543f}\label{classba_1_1Scene_ace799ceec3536964390ffc2bb2e8543f} 
+void {\bfseries deactivate} ()
+\item 
+\Hypertarget{classba_1_1Scene_a1dfb9557d1dc75f5ceea9e0aab1f6890}\label{classba_1_1Scene_a1dfb9557d1dc75f5ceea9e0aab1f6890} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classba_1_1Entity}{Entity}} $>$ {\bfseries create\+Entity} ()
+\item 
+{\footnotesize template$<$Entity\+Type T$>$ }\\std\+::shared\+\_\+ptr$<$ T $>$ \mbox{\hyperlink{classba_1_1Scene_ad084160e442a5c69372f9b5c1670f0ff}{create\+Custom\+Entity}} ()
+\item 
+\Hypertarget{classba_1_1Scene_a0c61370ae0c87a6116b4e6728f34861f}\label{classba_1_1Scene_a0c61370ae0c87a6116b4e6728f34861f} 
+virtual void {\bfseries on\+Create} ()
+\item 
+\Hypertarget{classba_1_1Scene_a46801ba9a86bfd215522051afb70786c}\label{classba_1_1Scene_a46801ba9a86bfd215522051afb70786c} 
+virtual void {\bfseries on\+Create} (const std\+::function$<$ void()$>$ \&function)
+\item 
+\Hypertarget{classba_1_1Scene_a5347d90c98a7b3296b123bd4008d1140}\label{classba_1_1Scene_a5347d90c98a7b3296b123bd4008d1140} 
+virtual void {\bfseries on\+Destroy} ()
+\item 
+\Hypertarget{classba_1_1Scene_a766e181c8f6b8bed046fba8fd785a2c9}\label{classba_1_1Scene_a766e181c8f6b8bed046fba8fd785a2c9} 
 virtual void {\bfseries on\+Activate} ()
 \item 
-\mbox{\Hypertarget{classba_1_1Scene_a05c4277a49ab8ac214a254fabf2b63c7}\label{classba_1_1Scene_a05c4277a49ab8ac214a254fabf2b63c7}} 
+\Hypertarget{classba_1_1Scene_a405f7f5d706bf3a6d61293150a2e6e53}\label{classba_1_1Scene_a405f7f5d706bf3a6d61293150a2e6e53} 
+virtual void {\bfseries on\+Activate} (const std\+::function$<$ void()$>$ \&function)
+\item 
+\Hypertarget{classba_1_1Scene_a05c4277a49ab8ac214a254fabf2b63c7}\label{classba_1_1Scene_a05c4277a49ab8ac214a254fabf2b63c7} 
 virtual void {\bfseries on\+Deactivate} ()
 \item 
-\mbox{\Hypertarget{classba_1_1Scene_ae1231e10958dc0edb21f5a65a2022cf9}\label{classba_1_1Scene_ae1231e10958dc0edb21f5a65a2022cf9}} 
+\Hypertarget{classba_1_1Scene_ae1231e10958dc0edb21f5a65a2022cf9}\label{classba_1_1Scene_ae1231e10958dc0edb21f5a65a2022cf9} 
 virtual void {\bfseries handle\+Events} ()
 \item 
-\mbox{\Hypertarget{classba_1_1Scene_a0293c4cbd6a3190b895e155330e66be8}\label{classba_1_1Scene_a0293c4cbd6a3190b895e155330e66be8}} 
+\Hypertarget{classba_1_1Scene_a0293c4cbd6a3190b895e155330e66be8}\label{classba_1_1Scene_a0293c4cbd6a3190b895e155330e66be8} 
 virtual void {\bfseries update} (float delta\+Time)
 \item 
-\mbox{\Hypertarget{classba_1_1Scene_ad80d2ae3ab8dca03cd8ddf18b17087f3}\label{classba_1_1Scene_ad80d2ae3ab8dca03cd8ddf18b17087f3}} 
+\Hypertarget{classba_1_1Scene_ad80d2ae3ab8dca03cd8ddf18b17087f3}\label{classba_1_1Scene_ad80d2ae3ab8dca03cd8ddf18b17087f3} 
 virtual void {\bfseries post\+Update} (float delta\+Time)
 \item 
-\mbox{\Hypertarget{classba_1_1Scene_a15b298cac23750c5573eb7ae654517f5}\label{classba_1_1Scene_a15b298cac23750c5573eb7ae654517f5}} 
+\Hypertarget{classba_1_1Scene_a15b298cac23750c5573eb7ae654517f5}\label{classba_1_1Scene_a15b298cac23750c5573eb7ae654517f5} 
 virtual void {\bfseries draw} (\mbox{\hyperlink{classba_1_1Window}{Window}} \&window)=0
 \item 
-\mbox{\Hypertarget{classba_1_1Scene_a0a0a27c24556475838bf17f80daaee2e}\label{classba_1_1Scene_a0a0a27c24556475838bf17f80daaee2e}} 
-virtual void {\bfseries set\+Window} (\mbox{\hyperlink{classba_1_1Window}{Window}} $\ast$window)
+\Hypertarget{classba_1_1Scene_a0a0a27c24556475838bf17f80daaee2e}\label{classba_1_1Scene_a0a0a27c24556475838bf17f80daaee2e} 
+virtual void {\bfseries set\+Window} (\mbox{\hyperlink{classba_1_1Window}{Window}} \texorpdfstring{$\ast$}{*}window)
 \item 
-\mbox{\Hypertarget{classba_1_1Scene_ad47832e07350026d416a0e982292cca8}\label{classba_1_1Scene_ad47832e07350026d416a0e982292cca8}} 
-virtual void {\bfseries set\+Reesource\+Manager} (\mbox{\hyperlink{classba_1_1ResourceManager}{Resource\+Manager}} $\ast$rm)
+\Hypertarget{classba_1_1Scene_ad47832e07350026d416a0e982292cca8}\label{classba_1_1Scene_ad47832e07350026d416a0e982292cca8} 
+virtual void {\bfseries set\+Reesource\+Manager} (\mbox{\hyperlink{classba_1_1ResourceManager}{Resource\+Manager}} \texorpdfstring{$\ast$}{*}rm)
 \item 
-\mbox{\Hypertarget{classba_1_1Scene_ab0d8e61f1cd5fd5ca1ff69c5302edc47}\label{classba_1_1Scene_ab0d8e61f1cd5fd5ca1ff69c5302edc47}} 
-virtual void {\bfseries set\+Scene\+Manager} (\mbox{\hyperlink{classba_1_1SceneManager}{Scene\+Manager}} $\ast$sm)
+\Hypertarget{classba_1_1Scene_ab0d8e61f1cd5fd5ca1ff69c5302edc47}\label{classba_1_1Scene_ab0d8e61f1cd5fd5ca1ff69c5302edc47} 
+virtual void {\bfseries set\+Scene\+Manager} (\mbox{\hyperlink{classba_1_1SceneManager}{Scene\+Manager}} \texorpdfstring{$\ast$}{*}sm)
 \item 
-\mbox{\Hypertarget{classba_1_1Scene_a95bb0ff06fe17263aaec4a6261d54519}\label{classba_1_1Scene_a95bb0ff06fe17263aaec4a6261d54519}} 
+\Hypertarget{classba_1_1Scene_a95bb0ff06fe17263aaec4a6261d54519}\label{classba_1_1Scene_a95bb0ff06fe17263aaec4a6261d54519} 
 virtual void {\bfseries set\+Switch\+To} (IDtype scene\+ID)
 \item 
-\mbox{\Hypertarget{classba_1_1Scene_aac9df92e7b7ec39be5eddd2fd5605920}\label{classba_1_1Scene_aac9df92e7b7ec39be5eddd2fd5605920}} 
+\Hypertarget{classba_1_1Scene_aac9df92e7b7ec39be5eddd2fd5605920}\label{classba_1_1Scene_aac9df92e7b7ec39be5eddd2fd5605920} 
 IDtype {\bfseries get\+SWitch\+To} () const
 \end{DoxyCompactItemize}
-\doxysubsection*{Protected Attributes}
+\doxysubsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classba_1_1Scene_a96735bd4d7773b78487926dc077126dd}\label{classba_1_1Scene_a96735bd4d7773b78487926dc077126dd}} 
+\Hypertarget{classba_1_1Scene_a96735bd4d7773b78487926dc077126dd}\label{classba_1_1Scene_a96735bd4d7773b78487926dc077126dd} 
 \mbox{\hyperlink{structba_1_1SharedContext}{Shared\+Context}} {\bfseries m\+\_\+\+CONTEXT}
 \item 
-\mbox{\Hypertarget{classba_1_1Scene_add5e0bfebac6154ff855afb0545714ce}\label{classba_1_1Scene_add5e0bfebac6154ff855afb0545714ce}} 
-\mbox{\hyperlink{classba_1_1SceneManager}{Scene\+Manager}} $\ast$ {\bfseries m\+\_\+scene\+Manager} = nullptr
+\Hypertarget{classba_1_1Scene_add5e0bfebac6154ff855afb0545714ce}\label{classba_1_1Scene_add5e0bfebac6154ff855afb0545714ce} 
+\mbox{\hyperlink{classba_1_1SceneManager}{Scene\+Manager}} \texorpdfstring{$\ast$}{*} {\bfseries m\+\_\+scene\+Manager} = nullptr
 \end{DoxyCompactItemize}
 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classba_1_1Scene_ad084160e442a5c69372f9b5c1670f0ff}\label{classba_1_1Scene_ad084160e442a5c69372f9b5c1670f0ff} 
+\index{ba::Scene@{ba::Scene}!createCustomEntity@{createCustomEntity}}
+\index{createCustomEntity@{createCustomEntity}!ba::Scene@{ba::Scene}}
+\doxysubsubsection{\texorpdfstring{createCustomEntity()}{createCustomEntity()}}
+{\footnotesize\ttfamily template$<$Entity\+Type T$>$ \\
+std\+::shared\+\_\+ptr$<$ T $>$ ba\+::\+Scene\+::create\+Custom\+Entity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+BELOW ARE METHOD IMPLEMETATIONS 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

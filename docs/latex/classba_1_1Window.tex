@@ -1,77 +1,168 @@
-\hypertarget{classba_1_1Window}{}\doxysection{ba\+::Window Class Reference}
-\label{classba_1_1Window}\index{ba::Window@{ba::Window}}
-\doxysubsection*{Public Member Functions}
+\doxysection{ba\+::Window Class Reference}
+\hypertarget{classba_1_1Window}{}\label{classba_1_1Window}\index{ba::Window@{ba::Window}}
+\doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classba_1_1Window_a5d1cf2d350a7e17d18d9ad6a8a2e2e05}\label{classba_1_1Window_a5d1cf2d350a7e17d18d9ad6a8a2e2e05}} 
-{\bfseries Window} (const std\+::string \&title, int x, int y, int w, int h, std\+::uint32\+\_\+t flags)
+\Hypertarget{classba_1_1Window_a13c66f36e8f956a7b9b8b47b7d759892}\label{classba_1_1Window_a13c66f36e8f956a7b9b8b47b7d759892} 
+{\bfseries Window} (const std\+::string \&title, const \mbox{\hyperlink{classba_1_1Rect}{Int\+Rect}} \&dimension, ba\+::uint32 flags=SDL\+\_\+\+WINDOW\+\_\+\+SHOWN)
 \item 
-\mbox{\Hypertarget{classba_1_1Window_a1c9c69c5b0ebea3142b5b4486a950945}\label{classba_1_1Window_a1c9c69c5b0ebea3142b5b4486a950945}} 
+\Hypertarget{classba_1_1Window_ac3eaec2a1bce3b8576aa7a37fd8d96a7}\label{classba_1_1Window_ac3eaec2a1bce3b8576aa7a37fd8d96a7} 
+{\bfseries Window} (const std\+::string \&title, int x, int y, int w, int h, ba\+::uint32 flags=SDL\+\_\+\+WINDOW\+\_\+\+SHOWN)
+\item 
+\Hypertarget{classba_1_1Window_a5ac76d4b9fade3c49b1fcd2322f979c7}\label{classba_1_1Window_a5ac76d4b9fade3c49b1fcd2322f979c7} 
+{\bfseries Window} (\mbox{\hyperlink{classba_1_1Window}{Window}} \&other)=delete
+\item 
+\Hypertarget{classba_1_1Window_a740ad8cd2bb257708af6777c72d0452f}\label{classba_1_1Window_a740ad8cd2bb257708af6777c72d0452f} 
+\mbox{\hyperlink{classba_1_1Window}{Window}} \& {\bfseries operator=} (\mbox{\hyperlink{classba_1_1Window}{Window}} \&window)=delete
+\item 
+\Hypertarget{classba_1_1Window_a1c9c69c5b0ebea3142b5b4486a950945}\label{classba_1_1Window_a1c9c69c5b0ebea3142b5b4486a950945} 
 void {\bfseries init} ()
-\item 
-\mbox{\Hypertarget{classba_1_1Window_a7591961cb409982acead8a7d8d915733}\label{classba_1_1Window_a7591961cb409982acead8a7d8d915733}} 
-bool {\bfseries is\+Open} () const
-\item 
-\mbox{\Hypertarget{classba_1_1Window_a256c426e757da32f62a8d1a28d12477c}\label{classba_1_1Window_a256c426e757da32f62a8d1a28d12477c}} 
+\begin{DoxyCompactList}\small\item\em Initializes the window with the flags and states set by the user through Window\+::set\texorpdfstring{$\ast$}{*}() methods. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classba_1_1Window_a7591961cb409982acead8a7d8d915733}{is\+Open}} () const
+\begin{DoxyCompactList}\small\item\em Checks if the window is still open. \end{DoxyCompactList}\item 
+\Hypertarget{classba_1_1Window_a256c426e757da32f62a8d1a28d12477c}\label{classba_1_1Window_a256c426e757da32f62a8d1a28d12477c} 
 void {\bfseries close} ()
+\begin{DoxyCompactList}\small\item\em Closes the window and deallocates memory used for its initialization and usage. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classba_1_1Window_acd172005e0f993c4e6b4bd471e6368b4}{clear}} (\mbox{\hyperlink{classba_1_1Color}{ba\+::\+Color}} color=ba\+::\+Color\+::\+Black)
+\begin{DoxyCompactList}\small\item\em fills the window\textquotesingle{}s content with the specified color. \end{DoxyCompactList}\item 
+\Hypertarget{classba_1_1Window_adda73b807cdd1aa06dad1d81c93c7c04}\label{classba_1_1Window_adda73b807cdd1aa06dad1d81c93c7c04} 
+void {\bfseries display} ()
+\begin{DoxyCompactList}\small\item\em Displays on window\textquotesingle{}s content the textures/objects given to the various Window\+::draw\texorpdfstring{$\ast$}{*}() methods. \end{DoxyCompactList}\item 
+\Hypertarget{classba_1_1Window_a35e1e7a692a3465a39c7db328eba49f1}\label{classba_1_1Window_a35e1e7a692a3465a39c7db328eba49f1} 
+void {\bfseries handle\+Events} ()
+\begin{DoxyCompactList}\small\item\em Handles window specific events. \end{DoxyCompactList}\item 
+\Hypertarget{classba_1_1Window_a9c4437827383a915da28fb33dd7334a8}\label{classba_1_1Window_a9c4437827383a915da28fb33dd7334a8} 
+void {\bfseries set\+Flags} (uint32 flags)
 \item 
-\mbox{\Hypertarget{classba_1_1Window_a35e1e7a692a3465a39c7db328eba49f1}\label{classba_1_1Window_a35e1e7a692a3465a39c7db328eba49f1}} 
-void \mbox{\hyperlink{classba_1_1Window_a35e1e7a692a3465a39c7db328eba49f1}{handle\+Events}} ()
-\begin{DoxyCompactList}\small\item\em Allows the window to handle window specific events. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classba_1_1Window_acd172005e0f993c4e6b4bd471e6368b4}\label{classba_1_1Window_acd172005e0f993c4e6b4bd471e6368b4}} 
-void {\bfseries clear} (\mbox{\hyperlink{classba_1_1Color}{ba\+::\+Color}} color=ba\+::\+Color\+::\+Black)
+\Hypertarget{classba_1_1Window_a87c799f7deeb924718997af313c85ecb}\label{classba_1_1Window_a87c799f7deeb924718997af313c85ecb} 
+void {\bfseries add\+Flags} (uint32 flags)
 \item 
-\mbox{\Hypertarget{classba_1_1Window_ae9cc9627e6a393a62c8048b55ea30f62}\label{classba_1_1Window_ae9cc9627e6a393a62c8048b55ea30f62}} 
-void {\bfseries draw} (SDL\+\_\+\+Texture $\ast$texture, const \mbox{\hyperlink{classba_1_1Rect}{Float\+Rect}} \&dest\+Rect)
+\Hypertarget{classba_1_1Window_a1626c51d7e66e6ced2018b08ae6862f1}\label{classba_1_1Window_a1626c51d7e66e6ced2018b08ae6862f1} 
+void {\bfseries set\+Size} (const \mbox{\hyperlink{classba_1_1Vector2}{Vector2i}} \&new\+Size)
 \item 
-\mbox{\Hypertarget{classba_1_1Window_ae2a94be1cc4d1c0cbd5507c2d5861618}\label{classba_1_1Window_ae2a94be1cc4d1c0cbd5507c2d5861618}} 
-void {\bfseries draw} (SDL\+\_\+\+Texture $\ast$texture, const \mbox{\hyperlink{classba_1_1Rect}{Int\+Rect}} \&texture\+Rect, const \mbox{\hyperlink{classba_1_1Rect}{Float\+Rect}} \&dest\+Rect, const \mbox{\hyperlink{classba_1_1Angle}{Angle}} \&angle=Angle\+::\+Zero)
+\Hypertarget{classba_1_1Window_a7799d2f5a1bf527696751b7bff6da64e}\label{classba_1_1Window_a7799d2f5a1bf527696751b7bff6da64e} 
+void {\bfseries set\+Size} (int w, int h)
 \item 
-\mbox{\Hypertarget{classba_1_1Window_a8f8ec1b9c9e245deecca9d0f0b24c1c1}\label{classba_1_1Window_a8f8ec1b9c9e245deecca9d0f0b24c1c1}} 
+\Hypertarget{classba_1_1Window_ae227f17848e57606ba2d0c8e7a581d35}\label{classba_1_1Window_ae227f17848e57606ba2d0c8e7a581d35} 
+void {\bfseries set\+Dimension} (int x, int y, int w, int h)
+\item 
+\Hypertarget{classba_1_1Window_a396fdfcaba7da1787c11c4b97a4b6fbe}\label{classba_1_1Window_a396fdfcaba7da1787c11c4b97a4b6fbe} 
+void {\bfseries set\+Dimension} (const \mbox{\hyperlink{classba_1_1Vector2}{Vector2i}} \&pos, const \mbox{\hyperlink{classba_1_1Vector2}{Vector2i}} \&size)
+\item 
+\Hypertarget{classba_1_1Window_abfb3074f84534780093aa01ff07044ad}\label{classba_1_1Window_abfb3074f84534780093aa01ff07044ad} 
+void {\bfseries set\+Dimension} (const \mbox{\hyperlink{classba_1_1Rect}{Int\+Rect}} \&new\+Dimension)
+\item 
+void \mbox{\hyperlink{classba_1_1Window_a401ef74dee216631474e31b7897e764f}{use\+View\+From\+Layer}} (IDtype render\+Layer=DEFAULT\+\_\+\+RENDER\+\_\+\+LAYER)
+\item 
+void \mbox{\hyperlink{classba_1_1Window_ab0b630d63f801adf8a965b8aa187a337}{set\+View}} (const \mbox{\hyperlink{classba_1_1View}{View}} \&view)
+\item 
+\Hypertarget{classba_1_1Window_a4facfed034764dbaf5a3101c04ecbd9b}\label{classba_1_1Window_a4facfed034764dbaf5a3101c04ecbd9b} 
+void {\bfseries set\+Layer\+View} (IDtype LAYER, const \mbox{\hyperlink{classba_1_1View}{View}} \&new\+View)
+\item 
+\Hypertarget{classba_1_1Window_ae9cc9627e6a393a62c8048b55ea30f62}\label{classba_1_1Window_ae9cc9627e6a393a62c8048b55ea30f62} 
+void {\bfseries draw} (SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}texture, const \mbox{\hyperlink{classba_1_1Rect}{Float\+Rect}} \&dest\+Rect)
+\item 
+\Hypertarget{classba_1_1Window_ae2a94be1cc4d1c0cbd5507c2d5861618}\label{classba_1_1Window_ae2a94be1cc4d1c0cbd5507c2d5861618} 
+void {\bfseries draw} (SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}texture, const \mbox{\hyperlink{classba_1_1Rect}{Int\+Rect}} \&texture\+Rect, const \mbox{\hyperlink{classba_1_1Rect}{Float\+Rect}} \&dest\+Rect, const \mbox{\hyperlink{classba_1_1Angle}{Angle}} \&angle=Angle\+::\+Zero)
+\item 
+\Hypertarget{classba_1_1Window_a8f8ec1b9c9e245deecca9d0f0b24c1c1}\label{classba_1_1Window_a8f8ec1b9c9e245deecca9d0f0b24c1c1} 
 void {\bfseries draw\+Point} (const \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}} \&point, const \mbox{\hyperlink{classba_1_1Color}{Color}} \&point\+Color=Color\+::\+White)
 \item 
-\mbox{\Hypertarget{classba_1_1Window_ae167806b03e3160065b09f99c0b5d4eb}\label{classba_1_1Window_ae167806b03e3160065b09f99c0b5d4eb}} 
+\Hypertarget{classba_1_1Window_ae167806b03e3160065b09f99c0b5d4eb}\label{classba_1_1Window_ae167806b03e3160065b09f99c0b5d4eb} 
 void {\bfseries draw\+Line} (const \mbox{\hyperlink{classba_1_1Line}{Int\+Line}} \&line, const \mbox{\hyperlink{classba_1_1Color}{Color}} \&line\+Color=Color\+::\+White)
 \item 
-\mbox{\Hypertarget{classba_1_1Window_a7a6258212d06f96f7368c77b63c607fe}\label{classba_1_1Window_a7a6258212d06f96f7368c77b63c607fe}} 
+\Hypertarget{classba_1_1Window_a7a6258212d06f96f7368c77b63c607fe}\label{classba_1_1Window_a7a6258212d06f96f7368c77b63c607fe} 
 void {\bfseries draw\+Rect} (const \mbox{\hyperlink{classba_1_1Rect}{Int\+Rect}} \&rect, const \mbox{\hyperlink{classba_1_1Color}{Color}} \&rect\+Color=Color\+::\+White)
 \item 
-\mbox{\Hypertarget{classba_1_1Window_a4c0efc8095a2328903cf1ce69a11c388}\label{classba_1_1Window_a4c0efc8095a2328903cf1ce69a11c388}} 
-void {\bfseries draw\+On\+Screen} (SDL\+\_\+\+Texture $\ast$texture, const \mbox{\hyperlink{classba_1_1Rect}{Float\+Rect}} \&dest\+Rect)
+\Hypertarget{classba_1_1Window_a4c0efc8095a2328903cf1ce69a11c388}\label{classba_1_1Window_a4c0efc8095a2328903cf1ce69a11c388} 
+void {\bfseries draw\+On\+Screen} (SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}texture, const \mbox{\hyperlink{classba_1_1Rect}{Float\+Rect}} \&dest\+Rect)
 \item 
-\mbox{\Hypertarget{classba_1_1Window_adfa4b87b4aca112050663ece78dc300f}\label{classba_1_1Window_adfa4b87b4aca112050663ece78dc300f}} 
-void {\bfseries draw\+On\+Screen} (SDL\+\_\+\+Texture $\ast$texture, const \mbox{\hyperlink{classba_1_1Rect}{Int\+Rect}} \&texture\+Rect, const \mbox{\hyperlink{classba_1_1Rect}{Float\+Rect}} \&dest\+Rect, const \mbox{\hyperlink{classba_1_1Angle}{Angle}} \&angle=Angle\+::\+Zero)
+\Hypertarget{classba_1_1Window_adfa4b87b4aca112050663ece78dc300f}\label{classba_1_1Window_adfa4b87b4aca112050663ece78dc300f} 
+void {\bfseries draw\+On\+Screen} (SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}texture, const \mbox{\hyperlink{classba_1_1Rect}{Int\+Rect}} \&texture\+Rect, const \mbox{\hyperlink{classba_1_1Rect}{Float\+Rect}} \&dest\+Rect, const \mbox{\hyperlink{classba_1_1Angle}{Angle}} \&angle=Angle\+::\+Zero)
 \item 
-\mbox{\Hypertarget{classba_1_1Window_ae44ceb03f4d3dbacc1fd06e2cc4767cd}\label{classba_1_1Window_ae44ceb03f4d3dbacc1fd06e2cc4767cd}} 
+\Hypertarget{classba_1_1Window_ae44ceb03f4d3dbacc1fd06e2cc4767cd}\label{classba_1_1Window_ae44ceb03f4d3dbacc1fd06e2cc4767cd} 
 void {\bfseries draw\+Point\+On\+Screen} (const \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}} \&point, \mbox{\hyperlink{classba_1_1Color}{Color}} point\+Color=Color\+::\+White)
 \item 
-\mbox{\Hypertarget{classba_1_1Window_ac2e02f8cd05f7cd58c3d9daa7fa89c91}\label{classba_1_1Window_ac2e02f8cd05f7cd58c3d9daa7fa89c91}} 
+\Hypertarget{classba_1_1Window_ac2e02f8cd05f7cd58c3d9daa7fa89c91}\label{classba_1_1Window_ac2e02f8cd05f7cd58c3d9daa7fa89c91} 
 void {\bfseries draw\+Rect\+On\+Screen} (const \mbox{\hyperlink{classba_1_1Rect}{Int\+Rect}} \&rect, \mbox{\hyperlink{classba_1_1Color}{Color}} rect\+Color=Color\+::\+White)
 \item 
-\mbox{\Hypertarget{classba_1_1Window_adda73b807cdd1aa06dad1d81c93c7c04}\label{classba_1_1Window_adda73b807cdd1aa06dad1d81c93c7c04}} 
-void {\bfseries display} ()
+\Hypertarget{classba_1_1Window_ad2b5fd878cc23ab4d4d4eabc79ff9523}\label{classba_1_1Window_ad2b5fd878cc23ab4d4d4eabc79ff9523} 
+SDL\+\_\+\+Window \texorpdfstring{$\ast$}{*} {\bfseries get\+Window} () const
 \item 
-\mbox{\Hypertarget{classba_1_1Window_aa20ada71b121fa3d6aab25fa827630e0}\label{classba_1_1Window_aa20ada71b121fa3d6aab25fa827630e0}} 
-SDL\+\_\+\+Window $\ast$ {\bfseries get\+Window} () const
-\item 
-\mbox{\Hypertarget{classba_1_1Window_af694d98ddfba7f015493beb52b664a27}\label{classba_1_1Window_af694d98ddfba7f015493beb52b664a27}} 
+\Hypertarget{classba_1_1Window_af694d98ddfba7f015493beb52b664a27}\label{classba_1_1Window_af694d98ddfba7f015493beb52b664a27} 
 \mbox{\hyperlink{classba_1_1Vector2}{Vector2i}} {\bfseries get\+Size} () const
 \item 
-\mbox{\Hypertarget{classba_1_1Window_ac3eee5963200b0371df550a4dd9c0693}\label{classba_1_1Window_ac3eee5963200b0371df550a4dd9c0693}} 
-SDL\+\_\+\+Renderer $\ast$ {\bfseries get\+Renderer} () const
+\Hypertarget{classba_1_1Window_aa62c9a47b726eec249462873ddfa260c}\label{classba_1_1Window_aa62c9a47b726eec249462873ddfa260c} 
+SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*} {\bfseries get\+Renderer} () const
 \item 
-\mbox{\Hypertarget{classba_1_1Window_a39ac8e9fd00f0000b87e34cfe311605c}\label{classba_1_1Window_a39ac8e9fd00f0000b87e34cfe311605c}} 
-const \mbox{\hyperlink{classba_1_1View}{View}} \& {\bfseries get\+View} () const
+\Hypertarget{classba_1_1Window_a11334a4fda14dbc52c2166bece0b9d21}\label{classba_1_1Window_a11334a4fda14dbc52c2166bece0b9d21} 
+const \mbox{\hyperlink{classba_1_1View}{View}} \& {\bfseries get\+Current\+View} () const
 \item 
-\mbox{\Hypertarget{classba_1_1Window_ab21fe9918b2a874fd1b841911191cfe6}\label{classba_1_1Window_ab21fe9918b2a874fd1b841911191cfe6}} 
-const \mbox{\hyperlink{classba_1_1View}{View}} \& {\bfseries get\+Default\+View} () const
+\Hypertarget{classba_1_1Window_af9acf3cd7959a5a46e5a01bde8e95c7b}\label{classba_1_1Window_af9acf3cd7959a5a46e5a01bde8e95c7b} 
+\mbox{\hyperlink{classba_1_1View}{View}} {\bfseries get\+Default\+View} () const
 \item 
-\mbox{\Hypertarget{classba_1_1Window_a662f2c5f054f9d043c92db5235377682}\label{classba_1_1Window_a662f2c5f054f9d043c92db5235377682}} 
+\Hypertarget{classba_1_1Window_a662f2c5f054f9d043c92db5235377682}\label{classba_1_1Window_a662f2c5f054f9d043c92db5235377682} 
 \mbox{\hyperlink{classba_1_1Rect}{Float\+Rect}} {\bfseries get\+View\+Space} () const
 \item 
-\mbox{\Hypertarget{classba_1_1Window_ab0b630d63f801adf8a965b8aa187a337}\label{classba_1_1Window_ab0b630d63f801adf8a965b8aa187a337}} 
-void {\bfseries set\+View} (const \mbox{\hyperlink{classba_1_1View}{View}} \&view)
+\Hypertarget{classba_1_1Window_a696024ed42bde0acaa9e319f4b1f2348}\label{classba_1_1Window_a696024ed42bde0acaa9e319f4b1f2348} 
+const \mbox{\hyperlink{classba_1_1View}{View}} \& {\bfseries get\+Layer\+View} (IDtype LAYER=DEFAULT\+\_\+\+RENDER\+\_\+\+LAYER) const
 \end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classba_1_1Window_acd172005e0f993c4e6b4bd471e6368b4}\label{classba_1_1Window_acd172005e0f993c4e6b4bd471e6368b4} 
+\index{ba::Window@{ba::Window}!clear@{clear}}
+\index{clear@{clear}!ba::Window@{ba::Window}}
+\doxysubsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily void ba\+::\+Window\+::clear (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classba_1_1Color}{ba\+::\+Color}}}]{color = {\ttfamily ba\+:\+:Color\+:\+:Black} }\end{DoxyParamCaption})}
+
+
+
+fills the window\textquotesingle{}s content with the specified color. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color} & the color to fill the canvas with. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classba_1_1Window_a7591961cb409982acead8a7d8d915733}\label{classba_1_1Window_a7591961cb409982acead8a7d8d915733} 
+\index{ba::Window@{ba::Window}!isOpen@{isOpen}}
+\index{isOpen@{isOpen}!ba::Window@{ba::Window}}
+\doxysubsubsection{\texorpdfstring{isOpen()}{isOpen()}}
+{\footnotesize\ttfamily bool ba\+::\+Window\+::is\+Open (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Checks if the window is still open. 
+
+\begin{DoxyReturn}{Returns}
+true if the window is still open, otherwise false. 
+\end{DoxyReturn}
+\Hypertarget{classba_1_1Window_ab0b630d63f801adf8a965b8aa187a337}\label{classba_1_1Window_ab0b630d63f801adf8a965b8aa187a337} 
+\index{ba::Window@{ba::Window}!setView@{setView}}
+\index{setView@{setView}!ba::Window@{ba::Window}}
+\doxysubsubsection{\texorpdfstring{setView()}{setView()}}
+{\footnotesize\ttfamily void ba\+::\+Window\+::set\+View (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classba_1_1View}{View}} \&}]{view }\end{DoxyParamCaption})}
+
+Instructs the \doxylink{classba_1_1Window}{Window} to use the given view for until this method and \doxylink{classba_1_1Window_a401ef74dee216631474e31b7897e764f}{use\+View\+From\+Layer()} has been called. 
+\begin{DoxyParams}{Parameters}
+{\em view} & The \doxylink{classba_1_1View}{View} object to be used. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classba_1_1Window_a401ef74dee216631474e31b7897e764f}\label{classba_1_1Window_a401ef74dee216631474e31b7897e764f} 
+\index{ba::Window@{ba::Window}!useViewFromLayer@{useViewFromLayer}}
+\index{useViewFromLayer@{useViewFromLayer}!ba::Window@{ba::Window}}
+\doxysubsubsection{\texorpdfstring{useViewFromLayer()}{useViewFromLayer()}}
+{\footnotesize\ttfamily void ba\+::\+Window\+::use\+View\+From\+Layer (\begin{DoxyParamCaption}\item[{IDtype}]{render\+Layer = {\ttfamily DEFAULT\+\_\+RENDER\+\_\+LAYER} }\end{DoxyParamCaption})}
+
+Instructs the window to use the view mapped to the given render\+Layer key. The window will be using this view as target for the draw\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}() methods, until after this method, or \doxylink{classba_1_1Window_ab0b630d63f801adf8a965b8aa187a337}{set\+View()} is called again. 
+\begin{DoxyParams}{Parameters}
+{\em render\+Layer} & the ID of the view used.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+If Render\+Layer does not exists, the window will revert to using DEFAULT\+\_\+\+RENDER\+\_\+\+LAYER 
+\end{DoxyNote}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
