@@ -16,7 +16,7 @@ void CameraSystem::update(float) {
 		auto c = e->getComponent<Camera>();
 
 		c->setViewCenter(e->getPosition());
-		e->CONTEXT->window->setView(c->getView());
+		// e->CONTEXT->window->setView(c->getView());
 	}
 }
 

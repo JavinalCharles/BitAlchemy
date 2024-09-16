@@ -11,14 +11,24 @@ Camera::Camera(Entity* owner) :
 
 }
 
+void Camera::useViewFromLayer(IDtype RENDER_LAYER) {
+	m_layerID = RENDER_LAYER;
+	m_isUsingCustomView = false;
+}
+
 void Camera::setView(const View& view) {
 	m_cameraView = view;
+	m_isUsingCustomView = true;
 }
 const View& Camera::getView() const {
-	return m_cameraView;
+	if (m_isUsingCustomView) {
+		return m_cameraView;
+	}
+	return m_owner->CONTEXT->window->getLayerView(m_layerID);
 }
 void Camera::setViewCenter(const Vector2f& center) {
-	m_cameraView.setCenter(center);
+	const View& view = getView();
+	view.setCenter(center);
 }
 
 
