@@ -1,23 +1,23 @@
 #pragma once
 
+#include <iostream>
 #include <string>
 
 #include <BA/Utilities/Vector2.hpp>
-#include <BA/Tools/DebugHelper.hpp>
 
 #include <SDL2/SDL_render.h>
 #include <SDL2/SDL_image.h>
 
 namespace ba {
-namespace Resource {
+namespace Resources {
 
     /**
-     * @brief A wrapper class for SDL_Texture*
+     * @brief A wrappers for SDL_Texture*
      * 
      * This class acts as a wrapper for SDL_Texture and provides 
-     * an OOP means of managing the stored texture, and also acts
+     * an OOP means of managing the stored object, and also acts
      * as its own smart pointer that keep tracks of how many objects
-     * share ownership to the same SDL_Texture*(pointer) and 
+     * share ownership to the same pointer and 
      * automatically calls SDL_DestroyTexture() once one of the 
      * following happens:
      *  - The last remaining Texture owning the pointer is destroyed.
@@ -28,10 +28,10 @@ namespace Resource {
     public:
         ///@{
         /**
-         * Creates the texture.
+         * Constructs the texture.
          * 
-         * Initializes this object, and calls the relevant create**() method,
-         * if given an argument.
+         * Initializes this object and for constructors with
+         * parameters, calls the relevant create() method.
          * 
          * @param renderer The renderer used to create the texture.
          * @param file the path to the texture file, can be absolute path or relative to the current working directory.
@@ -70,15 +70,16 @@ namespace Resource {
          * 
          * @returns A pointer to
          * 
-         * @note Textures created with the createBlank() functions are created
-         * with SDL_TEXTUREACCESS_TARGET and SDL_PIXELFORMAT_RGBA32 arguments.
+         * @note Textures created without the file parameter will be
+         * created with SDL_TEXTUREACCESS_TARGET and 
+         * SDL_PIXELFORMAT_RGBA32 arguments.
          * 
          * @warning Do not use SDL_DestroyTexture() on the given pointer.
          * Use the clear() method instead.
          */
-        SDL_Texture* createFromFile(SDL_Renderer* renderer, const std::string& file); 
-        SDL_Texture* createBlank(SDL_Renderer* renderer, int width, int height);
-        SDL_Texture* createBlank(SDL_Renderer* renderer, const Vector2i& dimension);
+        SDL_Texture* create(SDL_Renderer* renderer, const std::string& file);
+        SDL_Texture* create(SDL_Renderer* renderer, int width, int height);
+        SDL_Texture* create(SDL_Renderer* renderer, const Vector2i& dimension);
         ///@}
 
         /**
