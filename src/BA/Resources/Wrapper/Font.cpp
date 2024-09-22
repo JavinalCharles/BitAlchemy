@@ -71,6 +71,7 @@ TTF_Font* Font::openFont(const std::string& file, int ptsize) {
 	m_font = TTF_OpenFont(file.c_str(), ptsize);
 
 	initializeRefCount();
+	return m_font;
 }
 
 TTF_Font* Font::openFont(const std::string& file, int ptsize, long index) {
@@ -80,30 +81,32 @@ TTF_Font* Font::openFont(const std::string& file, int ptsize, long index) {
 	m_font = TTF_OpenFontIndex(file.c_str(), ptsize, index);
 
 	initializeRefCount();
+	return m_font;
 }
 
 TTF_Font* Font::openFont(const std::string& file, int ptsize, const Vector2u& dpi) {
 	if (m_font != nullptr) {
-		return m_font;
+		reset();
 	}
 	m_font = TTF_OpenFontDPI(file.c_str(), ptsize, dpi.x, dpi.y);
 
 	initializeRefCount();
+	return m_font;
 }
 
 TTF_Font* Font::openFont(const std::string& file, int ptsize, long index, const Vector2u& dpi) {
 	if (m_font != nullptr) {
-		return m_font;
+		reset();
 	}
 	m_font = TTF_OpenFontIndexDPI(file.c_str(), ptsize, index, dpi.x, dpi.y);
 
 	initializeRefCount();
-
+	return m_font;
 }
 
 void Font::initializeRefCount() {
 	if (m_font == nullptr) {
-		std::cerr << "In ba::Resource::Font::openFont(). Unable to open font.\n";
+		std::cerr << "In ba::Resources::Font::openFont(). Unable to open font.\n";
 		std::cerr << "TTF_GetError() returns: " << TTF_GetError() << std::endl;
 		return;
 	}
