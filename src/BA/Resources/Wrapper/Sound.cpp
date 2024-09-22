@@ -54,10 +54,11 @@ Sound& Sound::operator=(Sound&& rhs) {
 
 Mix_Chunk* Sound::loadSound(const std::string& file) {
 	if (m_sound != nullptr) {
-		return m_sound;
+		reset();
 	}
 	m_sound = Mix_LoadWAV(file.c_str());
 	initRefCounter();
+	return m_sound;
 }
 
 void Sound::reset() {
