@@ -34,10 +34,10 @@ Window::Window(const std::string& title, int x, int y, int w, int h, ba::uint32 
 }
 
 Window::~Window() {
-	if (m_renderer != nullptr) {
-		SDL_DestroyRenderer(m_renderer);
+	if (globalRenderer != nullptr) {
+		SDL_DestroyRenderer(globalRenderer);
 	}
-	m_renderer = nullptr;
+	globalRenderer = nullptr;
 	if (m_window != nullptr) {
 		SDL_DestroyWindow(m_window);
 	}
@@ -89,7 +89,7 @@ void Window::useViewFromLayer(IDtype renderLayer) {
 void Window::setView(const View& view) {
 	m_currentView = view;
 	SDL_Rect rect = m_currentView.getViewport().toSDL_Rect();
-	int err = SDL_RenderSetViewport(m_renderer, &rect);
+	int err = SDL_RenderSetViewport(globalRenderer, &rect);
 }
 
 void Window::setLayerView(IDtype LAYER, const View& newView) {
@@ -103,10 +103,14 @@ void Window::init() {
 		throw std::runtime_error(SDL_GetError());
 	}
 
-	m_renderer = SDL_CreateRenderer(m_window, -1, SDL_RENDERER_ACCELERATED);
-	if (m_renderer == NULL) {
-		throw std::runtime_error(SDL_GetError());
+	if (globalRenderer == nullptr) {
+		globalRenderer = SDL_CreateRenderer(m_window, -1, SDL_RENDERER_ACCELERATED);
+		if (globalRenderer == nullptr) {
+			throw std::runtime_error(SDL_GetError());
+		}
 	}
+
+	
 
 	m_open = true;
 }
@@ -117,10 +121,16 @@ bool Window::isOpen() const {
 }
 
 void Window::close() {
-	SDL_DestroyRenderer(m_renderer);
+	/**
+	 * TODO: Take into account the possibility of a game having multiple
+	 * windows, and thus provide a means of tracking number of windows
+	 * and only destroy the globalRenderer upon the closing of the 
+	 * LAST window.
+	 * 
+	 */
+	SDL_DestroyRenderer(globalRenderer);
 	SDL_DestroyWindow(m_window);
 	m_open = false;
-	m_renderer = nullptr;
 	m_window = nullptr;
 }
 
@@ -146,12 +156,12 @@ void Window::handleEvents() {
 }
 
 void Window::clear(ba::Color color) {
-	SDL_SetRenderDrawColor( m_renderer, color.r, color.g, color.b, color.a);
-	SDL_RenderClear(m_renderer);
+	SDL_SetRenderDrawColor(globalRenderer, color.r, color.g, color.b, color.a);
+	SDL_RenderClear(globalRenderer);
 }
 
 void Window::display() {
-	SDL_RenderPresent(m_renderer);
+	SDL_RenderPresent(globalRenderer);
 }
 
 namespace {
@@ -170,7 +180,7 @@ namespace {
 void Window::draw(SDL_Texture* texture, const FloatRect& destRect) {
 	SDL_Rect screenDest = m_currentView.mapToView(destRect).toSDL_Rect();
 
-	SDL_RenderCopy(m_renderer, texture, NULL, &screenDest);
+	SDL_RenderCopy(globalRenderer, texture, NULL, &screenDest);
 }
 
 void Window::draw(SDL_Texture* texture, const ba::IntRect& textureRect, const FloatRect& destRect, const Angle& angle) {
@@ -179,7 +189,7 @@ void Window::draw(SDL_Texture* texture, const ba::IntRect& textureRect, const Fl
 	SDL_Rect screenCoordsRect = m_currentView.mapToView(destRect).toSDL_Rect();
 	SDL_Rect textureSDLRect = textureRect.toSDL_Rect();
 
-	SDL_RenderCopyEx(m_renderer, texture, &textureSDLRect, &screenCoordsRect, angle.asDegrees(), NULL, flip);
+	SDL_RenderCopyEx(globalRenderer, texture, &textureSDLRect, &screenCoordsRect, angle.asDegrees(), NULL, flip);
 }
 
 void Window::drawPoint(const Vector2f& point, const Color& pc) {
@@ -193,41 +203,41 @@ void Window::drawPoint(const Vector2f& point, const Color& pc) {
 		SDL_Point{static_cast<int>(sc.x), 	static_cast<int>(sc.y)-1}
 	};
 
-	SDL_GetRenderDrawColor(m_renderer, &cb.r, &cb.g, &cb.b, &cb.a);
+	SDL_GetRenderDrawColor(globalRenderer, &cb.r, &cb.g, &cb.b, &cb.a);
 
-	SDL_SetRenderDrawColor(m_renderer, pc.r, pc.g, pc.b, pc.a);
-	SDL_RenderDrawPoint(m_renderer, sc.x, sc.y);
-	SDL_RenderDrawPoints(m_renderer, points, 5);
+	SDL_SetRenderDrawColor(globalRenderer, pc.r, pc.g, pc.b, pc.a);
+	SDL_RenderDrawPoint(globalRenderer, sc.x, sc.y);
+	SDL_RenderDrawPoints(globalRenderer, points, 5);
 
 
-	SDL_SetRenderDrawColor(m_renderer, cb.r, cb.g, cb.b, cb.a);
+	SDL_SetRenderDrawColor(globalRenderer, cb.r, cb.g, cb.b, cb.a);
 }
 
 void Window::drawLine(const IntLine& l, const Color& lc) {
 	Color cb;
-	SDL_GetRenderDrawColor(m_renderer, &cb.r, &cb.g, &cb.b, &cb.a);
-	SDL_SetRenderDrawColor(m_renderer, lc.r, lc.g, lc.b, lc.a);
+	SDL_GetRenderDrawColor(globalRenderer, &cb.r, &cb.g, &cb.b, &cb.a);
+	SDL_SetRenderDrawColor(globalRenderer, lc.r, lc.g, lc.b, lc.a);
 	Vector2i p1 = m_currentView.mapToView(l.p1);
 	Vector2i p2 = m_currentView.mapToView(l.p2);
 
-	SDL_RenderDrawLine(m_renderer, p1.x, p1.y, p2.x, p2.y);
+	SDL_RenderDrawLine(globalRenderer, p1.x, p1.y, p2.x, p2.y);
 
-	SDL_SetRenderDrawColor(m_renderer, cb.r, cb.g, cb.b, cb.a);
+	SDL_SetRenderDrawColor(globalRenderer, cb.r, cb.g, cb.b, cb.a);
 }
 
 void Window::drawRect(const IntRect& rect, const Color& rc) {
 	Color cb; // Color Buffer
 	SDL_Rect r = m_currentView.mapToView(rect).toSDL_Rect();
-	SDL_GetRenderDrawColor(m_renderer, &cb.r, &cb.g, &cb.b, &cb.a);
-	SDL_SetRenderDrawColor(m_renderer, rc.r, rc.g, rc.b, rc.a);
-	SDL_RenderDrawRect(m_renderer, &r);
-	SDL_SetRenderDrawColor(m_renderer, cb.r, cb.g, cb.b, cb.a);
+	SDL_GetRenderDrawColor(globalRenderer, &cb.r, &cb.g, &cb.b, &cb.a);
+	SDL_SetRenderDrawColor(globalRenderer, rc.r, rc.g, rc.b, rc.a);
+	SDL_RenderDrawRect(globalRenderer, &r);
+	SDL_SetRenderDrawColor(globalRenderer, cb.r, cb.g, cb.b, cb.a);
 }
 
 void Window::drawOnScreen(SDL_Texture* texture, const FloatRect& destRect) {
 	SDL_Rect screenDest = destRect.toSDL_Rect();
 
-	SDL_RenderCopy(m_renderer, texture, NULL, &screenDest);
+	SDL_RenderCopy(globalRenderer, texture, NULL, &screenDest);
 }
 
 void Window::drawOnScreen(SDL_Texture* texture, const IntRect& textureRect, const FloatRect& destRect, const Angle& angle) {
@@ -236,7 +246,7 @@ void Window::drawOnScreen(SDL_Texture* texture, const IntRect& textureRect, cons
 	SDL_Rect screenCoordsRect = destRect.toSDL_Rect();
 	SDL_Rect textureSDLRect = textureRect.toSDL_Rect();
 
-	SDL_RenderCopyEx(m_renderer, texture, &textureSDLRect, &screenCoordsRect, angle.asDegrees(), NULL, flip);
+	SDL_RenderCopyEx(globalRenderer, texture, &textureSDLRect, &screenCoordsRect, angle.asDegrees(), NULL, flip);
 }
 
 void Window::drawPointOnScreen(const Vector2f& p, Color pc) {
@@ -249,23 +259,23 @@ void Window::drawPointOnScreen(const Vector2f& p, Color pc) {
 		SDL_Point{static_cast<int>(p.x), 	static_cast<int>(p.y)-1}
 	};
 
-	SDL_GetRenderDrawColor(m_renderer, &cb.r, &cb.g, &cb.b, &cb.a);
+	SDL_GetRenderDrawColor(globalRenderer, &cb.r, &cb.g, &cb.b, &cb.a);
 
-	SDL_SetRenderDrawColor(m_renderer, pc.r, pc.g, pc.b, pc.a);
-	SDL_RenderDrawPoint(m_renderer, p.x, p.y);
-	SDL_RenderDrawPoints(m_renderer, points, 5);
+	SDL_SetRenderDrawColor(globalRenderer, pc.r, pc.g, pc.b, pc.a);
+	SDL_RenderDrawPoint(globalRenderer, p.x, p.y);
+	SDL_RenderDrawPoints(globalRenderer, points, 5);
 
 
-	SDL_SetRenderDrawColor(m_renderer, cb.r, cb.g, cb.b, cb.a);
+	SDL_SetRenderDrawColor(globalRenderer, cb.r, cb.g, cb.b, cb.a);
 }
 
 void Window::drawRectOnScreen(const IntRect& rect, Color rc) {
 	Color cb;
 	SDL_Rect r = rect.toSDL_Rect();
-	SDL_GetRenderDrawColor(m_renderer, &cb.r, &cb.g, &cb.b, &cb.a);
-	SDL_SetRenderDrawColor(m_renderer, rc.r, rc.g, rc.b, rc.a);
-	SDL_RenderDrawRect(m_renderer, &r);
-	SDL_SetRenderDrawColor(m_renderer, cb.r, cb.g, cb.b, cb.a);
+	SDL_GetRenderDrawColor(globalRenderer, &cb.r, &cb.g, &cb.b, &cb.a);
+	SDL_SetRenderDrawColor(globalRenderer, rc.r, rc.g, rc.b, rc.a);
+	SDL_RenderDrawRect(globalRenderer, &r);
+	SDL_SetRenderDrawColor(globalRenderer, cb.r, cb.g, cb.b, cb.a);
 }
 
 
@@ -283,7 +293,7 @@ Vector2i Window::getSize() const {
 }
 
 SDL_Renderer* Window::getRenderer() const {
-	return m_renderer;
+	return globalRenderer;
 }
 
 View Window::getDefaultView() const {
@@ -305,12 +315,12 @@ const View& Window::getLayerView(IDtype LAYER) const {
 // void Window::setView(const View& view) {
 // 	m_view = view;
 // 	SDL_Rect rect = m_view.getViewport().toSDL_Rect();
-// 	SDL_RenderSetViewport(m_renderer, &rect);
+// 	SDL_RenderSetViewport(globalRenderer, &rect);
 // }
 
 // void Window::useDefaultView() {
 // 	m_view = m_defaultView;
-// 	SDL_RenderSetViewport(m_renderer, nullptr);
+// 	SDL_RenderSetViewport(globalRenderer, nullptr);
 // }
 
 FloatRect Window::getViewSpace() const {

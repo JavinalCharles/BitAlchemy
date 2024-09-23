@@ -3,6 +3,8 @@
 
 namespace ba {
 
+using ba::Resources::TextureManager;
+
 Sprite::Sprite(ba::Entity* owner, IDtype drawLayer) :
 	Drawable(owner, drawLayer),
 	m_textureID(0u) // 0 == no texture
@@ -12,7 +14,7 @@ Sprite::Sprite(ba::Entity* owner, IDtype drawLayer) :
 
 void Sprite::draw(Window& window) {
 	if (m_textureID != 0) {
-		SDL_Texture* texture = getOwner()->CONTEXT->resources->getTexture(m_textureID);
+		SDL_Texture* texture = getOwner()->CONTEXT->warehouse->getManager<ba::Resources::TextureManager>().at(m_textureID).get();
 		window.draw(texture, m_textureRect, this->getGlobalBounds(), m_owner->getRotation());
 	}
 
@@ -31,9 +33,10 @@ bool Sprite::hasTexture() const {
 }
 
 IDtype Sprite::loadTextureFromFile(const std::string& fileName) {
-	m_textureID = getOwner()->CONTEXT->resources->loadTexture(fileName);
+	TextureManager& textures = getOwner()->CONTEXT->warehouse->getManager<TextureManager>();
+	m_textureID = textures.create(fileName);
 
-	SDL_Texture* textureObj = getOwner()->CONTEXT->resources->getTexture(m_textureID);
+	SDL_Texture* textureObj = textures.at(m_textureID).get();
 
 	// Initial textureRect is the whole dimension of the texture.
 	m_textureRect.l = 0;
@@ -44,7 +47,7 @@ IDtype Sprite::loadTextureFromFile(const std::string& fileName) {
 }
 
 void Sprite::setTexture(IDtype textureID) {
-	SDL_Texture* textureObj = getOwner()->CONTEXT->resources->getTexture(textureID);
+	SDL_Texture* textureObj = getOwner()->CONTEXT->warehouse->getManager<TextureManager>().at(textureID).get();
 	if(textureObj == nullptr)
 		throw std::invalid_argument("Invalid. Non-existent texture ID given,");
 	m_textureID = textureID;
@@ -56,7 +59,7 @@ void Sprite::setTexture(IDtype textureID) {
 }
 
 void Sprite::setTexture(IDtype textureID, const IntRect& rect) {
-	SDL_Texture* textureObj = getOwner()->CONTEXT->resources->getTexture(textureID);
+	SDL_Texture* textureObj = getOwner()->CONTEXT->warehouse->getManager<TextureManager>().at(textureID).get();
 	if(textureObj == nullptr)
 		throw std::invalid_argument("Invalid. Non-existent texture ID given,");
 	m_textureID = textureID;

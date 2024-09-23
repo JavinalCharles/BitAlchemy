@@ -3,6 +3,8 @@
 
 namespace ba {
 
+SDL_Renderer* globalRenderer = nullptr;
+
 Engine::Engine()
 {
 	__construct();
@@ -118,7 +120,8 @@ void Engine::init() {
 	}
 
 	m_window.init();
-	m_resources.setRenderer(m_window.getRenderer());
+
+	// m_resources.setRenderer(m_window.getRenderer());
 
 	this->onInit();
 

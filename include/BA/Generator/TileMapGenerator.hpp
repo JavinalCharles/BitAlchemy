@@ -16,7 +16,6 @@
 #include "BA/Components/Sprite.hpp"
 #include "BA/Components/Colliders/BoxCollider.hpp"
 #include "BA/Entities/Entity.hpp"
-#include "BA/ResourceManager.hpp"
 #include "BA/Utilities/Vector2.hpp"
 #include "BA/Utilities/Rect.hpp"
 #include "BA/Types.hpp"
@@ -53,7 +52,7 @@ public: // METHODS
 
 private: // HELPERS
 	void generateTilesets(long firstgid, const std::string& source);
-	const tinyxml2::XMLDocument* getXML(const std::string& source);
+	tinyxml2::XMLDocument& getXML(const std::string& source);
 	IDtype loadXML(const std::string& source);
 
 	std::vector<TileInfo> getLayerInfo(tinyxml2::XMLElement* dataNode, const Vector2i& LAYER_AREA) const;
@@ -71,7 +70,7 @@ private:
 	std::unordered_map<std::string, IDtype> m_sourceIdMap;
 	std::unordered_map<std::string, IDtype> m_texSrcIdMap;
 	ba::SharedContext* mp_context = nullptr;
-	ba::ResourceManager* mp_resources = nullptr;
+	// ba::ResourceManager* mp_resources = nullptr;
 };
 
 

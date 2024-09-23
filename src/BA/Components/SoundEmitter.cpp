@@ -13,7 +13,7 @@ SoundEmitter::SoundEmitter(Entity* owner) :
 }
 
 void SoundEmitter::emitSound(IDtype soundID) {
-	Mix_Chunk* chunk = m_owner->CONTEXT->resources->getSound(soundID);
+	Mix_Chunk* chunk = m_owner->CONTEXT->warehouse->getManager<ba::Resources::SoundManager>().at(soundID).get();
 	if(chunk == nullptr) {
 		throw std::invalid_argument("INVALID! ResourceManager doesn't recognize the sound ID");
 	}
