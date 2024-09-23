@@ -3,6 +3,8 @@
 
 #include <iostream>
 
+using ba::Resources::FontManager;
+
 namespace ba {
 
 Text::Text(Entity* owner, IDtype layer) :
@@ -16,7 +18,7 @@ Text::~Text() {
 }
 
 IDtype Text::loadFontFromFile(const std::string& fileName, int fontSize) {
-	m_fontID = m_owner->CONTEXT->resources->loadFont(fileName, fontSize);
+	m_fontID = m_owner->CONTEXT->warehouse->getManager<FontManager>().create(fileName, fontSize);
 	m_updatedText = false;
 	return m_fontID;
 }
@@ -109,7 +111,7 @@ void Text::updateText() const {
 		m_textTexture = nullptr;
 	}
 
-	TTF_Font* font = m_owner->CONTEXT->resources->getFont(m_fontID);
+	TTF_Font* font = m_owner->CONTEXT->warehouse->getManager<FontManager>().at(m_fontID).get();
 	SDL_Color color = m_textColor.toSDL_Color();
 	SDL_Surface* surface = TTF_RenderUTF8_Blended_Wrapped(font, m_text.c_str(), color, m_wrapLength);
 

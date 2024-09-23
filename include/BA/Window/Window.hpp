@@ -4,6 +4,7 @@
 #include <string>
 #include <stdexcept>
 #include <SDL2/SDL.h>
+#include <BA/Globals.hpp>
 #include <BA/Utilities/Angle.hpp>
 #include <BA/Utilities/Color.hpp>
 #include <BA/Utilities/Line.hpp>
@@ -144,7 +145,6 @@ private: // Attributes
 	std::uint32_t	m_flags = SDL_WINDOW_SHOWN;
 
 	SDL_Window* 	m_window = nullptr;
-	SDL_Renderer* 	m_renderer = nullptr;
 
 	// View			m_defaultView{{0.f, 0.f, DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT}};
 	// View 			m_view{{0.f, 0.f, DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT}};

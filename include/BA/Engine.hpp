@@ -23,7 +23,6 @@
 #include <BA/Window/Window.hpp>
 
 
-
 namespace ba {
 
 template <typename S>

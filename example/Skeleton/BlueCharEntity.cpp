@@ -1,6 +1,7 @@
 #include "BlueCharEntity.hpp"
 
 using namespace ba;
+using ba::Resources::TextureManager;
 
 const IDtype BlueCharEntity::rightID = 1;
 const IDtype BlueCharEntity::leftID = 2;
@@ -17,7 +18,7 @@ BlueCharEntity::BlueCharEntity(SharedContext* context) :
 	Entity(context)
 {
 	if (!m_resourcesLoaded) {
-		CHAR_TEXTURE = CONTEXT->resources->loadTexture("oak_woods_v1.0/character/char_blue.png");
+		CHAR_TEXTURE = CONTEXT->warehouse->getManager<TextureManager>().create("oak_woods_v1.0/character/char_blue.png");
 		m_resourcesLoaded = true;
 	}
 
@@ -27,7 +28,7 @@ BlueCharEntity::BlueCharEntity(SharedContext* context) :
 	auto ai = this->addComponent<ProgrammedAI>();
 	// auto timer = this->addComponent<Timer>();
 
-	vel-> setMax({64.f, 64.f});
+	vel->setMax({64.f, 64.f});
 
 	m_anime = anime.get();
 	m_velocity = vel.get();

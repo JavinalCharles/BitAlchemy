@@ -13,8 +13,20 @@
 namespace ba {
 namespace Resources {
 
+	/**
+	 * @brief concept definition for a type that could be managed by
+	 * ResourceManager.
+	 * 
+	 * Defines the constraints that is a valid templated type for
+	 * ResourceManager. The constraints are as follows.
+	 * 	- R is NOT a union type
+	 * 	- R is NOT a const qualified type (no const or const valatile)
+	 * 	- R is NOT a reference. (no Type&, Type&&)
+	 * 
+	 * @tparam R the Resource type
+	 */
 	template <typename R>
-	concept ManageableResource = std::is_copy_constructible<R>::value;
+	concept ManageableResource = !std::is_union_v<R> && !std::is_const_v<R> && !std::is_reference_v<R>;
 
 	class RMBase {};
 	/**
@@ -75,6 +87,7 @@ namespace Resources {
 	using MusicManager		= ResourceManager<ba::Resources::Music>;
 	using SoundManager		= ResourceManager<ba::Resources::Sound>;
 	using TextureManager	= ResourceManager<ba::Resources::Texture>;
+	using XMLManager		= ResourceManager<tinyxml2::XMLDocument>;
 	///@}
 
 	template <ManageableResource R>

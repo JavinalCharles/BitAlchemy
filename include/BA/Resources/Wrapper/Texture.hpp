@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 
+#include <BA/Globals.hpp>
 #include <BA/Utilities/Vector2.hpp>
 
 #include <SDL2/SDL_render.h>
@@ -33,7 +34,6 @@ namespace Resources {
          * Initializes this object and for constructors with
          * parameters, calls the relevant create() method.
          * 
-         * @param renderer The renderer used to create the texture.
          * @param file the path to the texture file, can be absolute path or relative to the current working directory.
          * @param width The desired width for the texture.
          * @param height The desired height for the texture.
@@ -42,9 +42,9 @@ namespace Resources {
          * @param rvalue The texture to be moved.
          */
         Texture();
-        Texture(SDL_Renderer* renderer, const std::string& file);
-        Texture(SDL_Renderer* renderer, int width, int height);
-        Texture(SDL_Renderer* renderer, const Vector2i& dimesnsion);
+        Texture(const std::string& file);
+        Texture(int width, int height);
+        Texture(const Vector2i& dimesnsion);
         Texture(const Texture& other);
         Texture(Texture&& rvalue) noexcept;
         ///@}
@@ -77,9 +77,9 @@ namespace Resources {
          * @warning Do not use SDL_DestroyTexture() on the given pointer.
          * Use the clear() method instead.
          */
-        SDL_Texture* create(SDL_Renderer* renderer, const std::string& file);
-        SDL_Texture* create(SDL_Renderer* renderer, int width, int height);
-        SDL_Texture* create(SDL_Renderer* renderer, const Vector2i& dimension);
+        SDL_Texture* create(const std::string& file);
+        SDL_Texture* create(int width, int height);
+        SDL_Texture* create(const Vector2i& dimension);
         ///@}
 
         /**

@@ -27,14 +27,8 @@ namespace Resources {
 
 		~Warehouse();
 
-		template <ManageableResource R>
-		ResourceManager<R>& includeResourceManager();
-
 		template <ValidResourceManager RM>
 		RM& includeResourceManager();
-
-		template <ManageableResource R>
-		ResourceManager<R>& getManager();
 
 		template <ValidResourceManager RM>
 		RM& getManager();
@@ -42,11 +36,6 @@ namespace Resources {
 	private:
 		std::unordered_map<std::type_index, std::unique_ptr<RMBase>> m_managers;
 	}; // class Warehouse
-
-	template <ManageableResource R>
-	ResourceManager<R>& Warehouse::includeResourceManager() {
-		return includeResourceManager<ResourceManager<R>>();
-	}
 
 	template <ValidResourceManager RM>
 	RM& Warehouse::includeResourceManager() {
@@ -57,11 +46,6 @@ namespace Resources {
 		}
 
 		return *std::dynamic_pointer_cast<RM>(m_managers.at(index));
-	}
-
-	template <ManageableResource R>
-	ResourceManager<R>& Warehouse::getManager() {
-		return getManager<ResourceManager<R>>();
 	}
 
 	template <ValidResourceManager RM>

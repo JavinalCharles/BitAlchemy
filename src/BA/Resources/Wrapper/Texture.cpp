@@ -5,16 +5,16 @@ namespace Resources {
 
 Texture::Texture() = default;
 
-Texture::Texture(SDL_Renderer* renderer, const std::string& file) {
-    this->create(renderer, file);
+Texture::Texture(const std::string& file) {
+    this->create(file);
 }
 
-Texture::Texture(SDL_Renderer* renderer, int width, int height) {
-    this->create(renderer, width, height);
+Texture::Texture(int width, int height) {
+    this->create(width, height);
 }
 
-Texture::Texture(SDL_Renderer* renderer, const Vector2i& dimension) {
-    this->create(renderer, dimension);
+Texture::Texture(const Vector2i& dimension) {
+    this->create(dimension);
 }
 
 Texture::Texture(const Texture& other) :
@@ -60,12 +60,12 @@ Texture& Texture::operator=(Texture&& rvalue) {
     return *this;
 }
 
-SDL_Texture* Texture::create(SDL_Renderer* renderer, const std::string& file) {
-    if (m_texture != nullptr || renderer == nullptr) {
+SDL_Texture* Texture::create(const std::string& file) {
+    if (m_texture != nullptr || globalRenderer == nullptr) {
         return m_texture;
     }
 
-    m_texture = IMG_LoadTexture(renderer, file.c_str());
+    m_texture = IMG_LoadTexture(globalRenderer, file.c_str());
 
     if (m_texture != nullptr) {
         m_refCount = new int(1);
@@ -78,12 +78,12 @@ SDL_Texture* Texture::create(SDL_Renderer* renderer, const std::string& file) {
     return m_texture;
 }
 
-SDL_Texture* Texture::create(SDL_Renderer* renderer, int width, int height) {
-    if (m_texture != nullptr || renderer == nullptr) {
+SDL_Texture* Texture::create(int width, int height) {
+    if (m_texture != nullptr || globalRenderer == nullptr) {
         return m_texture;
     }
 
-    m_texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA32, SDL_TEXTUREACCESS_TARGET, width, height);
+    m_texture = SDL_CreateTexture(globalRenderer, SDL_PIXELFORMAT_RGBA32, SDL_TEXTUREACCESS_TARGET, width, height);
     if (m_texture != nullptr) {
         m_refCount = new int(1);
     }
@@ -95,8 +95,8 @@ SDL_Texture* Texture::create(SDL_Renderer* renderer, int width, int height) {
     return m_texture;
 }
 
-SDL_Texture* Texture::create(SDL_Renderer* renderer, const Vector2i& dimension) {
-    return create(renderer, dimension.x, dimension.y);
+SDL_Texture* Texture::create(const Vector2i& dimension) {
+    return create(dimension.x, dimension.y);
 }
 
 void Texture::reset() {

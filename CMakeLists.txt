@@ -45,6 +45,11 @@ set(SOURCES
 	src/BA/Inputs/InputManager.cpp
 	src/BA/Inputs/KeyboardInput.cpp
 	src/BA/Inputs/MouseInput.cpp
+	src/BA/Resources/Warehouse.cpp
+	src/BA/Resources/Wrapper/Font.cpp
+	src/BA/Resources/Wrapper/Music.cpp
+	src/BA/Resources/Wrapper/Sound.cpp
+	src/BA/Resources/Wrapper/Texture.cpp
 	src/BA/Scenes/BitAlchemySplash.cpp
 	src/BA/Scenes/Scene.cpp
 	src/BA/Scenes/SceneManager.cpp
@@ -66,7 +71,7 @@ set(SOURCES
 	src/BA/Utilities/Transform.cpp
 	src/BA/Window/Window.cpp
 	src/BA/Window/View.cpp
-	src/BA/ResourceManager.cpp
+	src/BA/Globals.cpp
 	src/BA/Engine.cpp
 )
 

@@ -3,6 +3,8 @@
 
 namespace ba {
 
+using ba::Resources::SoundManager;
+
 SoundSystem::SoundSystem(EntityManager* entities) :
 	ComponentSystem(entities)
 {
@@ -14,7 +16,7 @@ void SoundSystem::postUpdate(float) {
 		std::queue<IDtype>& soundQueue = m_entities->at(ID)->getComponent<SoundEmitter>()->getSounds();
 
 		while(!soundQueue.empty()) {
-			Mix_Chunk* sound = m_entities->at(ID)->CONTEXT->resources->getSound(soundQueue.front());
+			Mix_Chunk* sound = m_entities->at(ID)->CONTEXT->warehouse->getManager<SoundManager>().at(soundQueue.front()).get();
 			Mix_PlayChannel(-1, sound, 0);
 			soundQueue.pop();
 		}

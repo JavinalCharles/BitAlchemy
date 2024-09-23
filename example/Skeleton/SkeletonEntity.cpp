@@ -1,6 +1,9 @@
 #include "SkeletonEntity.hpp"
 #include <BA/Tools/DebugHelper.hpp>
 
+using ba::Resources::TextureManager;
+using ba::Resources::SoundManager;
+
 ba::IDtype SkeletonEntity::IDLE_TEXTURE = 0;
 ba::IDtype SkeletonEntity::WALK_TEXTURE = 0;
 ba::IDtype SkeletonEntity::WALK_SOUND = 0;
@@ -13,9 +16,9 @@ SkeletonEntity::SkeletonEntity(SharedContext* context) :
 	Entity(context)
 {
 	if(!m_resourcesLoaded) {
-		IDLE_TEXTURE = CONTEXT->resources->loadTexture("Skeleton Idle.png");
-		WALK_TEXTURE = CONTEXT->resources->loadTexture("Skeleton_Walk.png");
-		WALK_SOUND = CONTEXT->resources->loadSound("Concrete 1.wav");
+		IDLE_TEXTURE = CONTEXT->warehouse->getManager<TextureManager>().create("Skeleton Idle.png");
+		WALK_TEXTURE = CONTEXT->warehouse->getManager<TextureManager>().create("Skeleton_Walk.png");
+		WALK_SOUND = CONTEXT->warehouse->getManager<SoundManager>().create("Concrete 1.wav");
 		m_resourcesLoaded = true;
 	}
 
