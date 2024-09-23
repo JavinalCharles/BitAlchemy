@@ -1,5 +1,6 @@
 #pragma once
 
+#include <type_traits>
 #include <unordered_map>
 
 #include <BA/Resources/Wrapper/Font.hpp>
@@ -12,17 +13,25 @@
 namespace ba {
 namespace Resources {
 
+	template <typename R>
+	concept ManageableResource = std::is_copy_constructible<R>::value;
+
+	class RMBase {};
 	/**
 	 * @brief A template class for managing a specific type of resource.
 	 * 
 	 * @tparam Res The Resource Type that the ResourceManger is 
 	 * intended to manage.
 	 */
-	template <typename Res>
-	class ResourceManager {
+	template <ManageableResource R>
+	class ResourceManager : public RMBase {
 	public:
+		using Resource = R;
+		
 		/// @brief Default Constructor
 		ResourceManager();
+
+		virtual ~ResourceManager() override;
 
 		/**
 		 * @brief Creates an object of Res.
@@ -45,8 +54,8 @@ namespace Resources {
 		 * @return A reference to the mapped value.
 		 * @throws std::out_of_range if the key does not exist.
 		 */
-		const Res& at(const IDtype& key) const throw(std::out_of_range);
-		Res& at(const IDtype& key) throw(std::out_of_range);
+		const R& at(const IDtype& key) const throw(std::out_of_range);
+		R& at(const IDtype& key) throw(std::out_of_range);
 		///@}
 
 		std::size_t erase(const IDtype& id);
@@ -68,43 +77,48 @@ namespace Resources {
 	using TextureManager	= ResourceManager<ba::Resources::Texture>;
 	///@}
 
-	template <typename Res>
-	ResourceManager<Res>::ResourceManager() = default;
-	
-	template <typename Res>
+	template <ManageableResource R>
+	ResourceManager<R>::ResourceManager() = default;
+
+	template <ManageableResource R>
+	ResourceManager<R>::~ResourceManager() {
+		m_map.clear();
+	}
+	 
+	template <ManageableResource Res>
 	template <typename... Args>
 	IDtype ResourceManager<Res>::create(Args... args) {
 		m_map.emplace(++m_count, args...);
 		return m_count;
 	}
 
-	template <typename Res>
-	const Res& ResourceManager<Res>::at(const IDtype& key) const {
+	template <ManageableResource R>
+	const R& ResourceManager<R>::at(const IDtype& key) const {
 		return m_map.at(key);
 	}
 
-	template <typename Res>
-	Res& ResourceManager<Res>::at(const IDtype& key) {
+	template <ManageableResource R>
+	R& ResourceManager<R>::at(const IDtype& key) {
 		return m_map.at(key);
 	}
 
-	template <typename Res>
-	std::size_t ResourceManager<Res>::erase(const IDtype& key) {
+	template <ManageableResource R>
+	std::size_t ResourceManager<R>::erase(const IDtype& key) {
 		return m_map.erase(key);
 	}
 
-	template <typename Res>
-	void ResourceManager<Res>::clear() {
+	template <ManageableResource R>
+	void ResourceManager<R>::clear() {
 		m_map.clear();
 	}
 
-	template <typename Res>
-	std::size_t ResourceManager<Res>::size() const {
+	template <ManageableResource R>
+	std::size_t ResourceManager<R>::size() const {
 		return m_map.size();
 	}
 
-	template <typename Res>
-	bool ResourceManager<Res>::empty() const {
+	template <ManageableResource R>
+	bool ResourceManager<R>::empty() const {
 		return m_map.empty();
 	}
 
