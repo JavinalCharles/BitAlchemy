@@ -16,8 +16,9 @@ BitAlchemySplash::BitAlchemySplash(Window* window, ResourceManager* resourceMana
 }
 
 void BitAlchemySplash::onCreate() {
-	m_splashTexID = m_CONTEXT.resources->loadTexture("Poweredby_BitAlchemy_Splash.png");
-	m_splashTexture = m_CONTEXT.resources->getTexture(m_splashTexID);
+	ba::Resources::TextureManager& TM = m_CONTEXT.warehouse->getManager<ba::Resources::TextureManager>();
+	m_splashTexID = TM.create("Poweredby_BitAlchemy_Splash.png");
+	m_splashTexture = TM.at(m_splashTexID).get();
 }
 
 void BitAlchemySplash::onDestroy() {

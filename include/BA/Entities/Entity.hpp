@@ -7,10 +7,17 @@
 #include <unordered_map>
 #include <BA/Components/AI/AI.hpp>
 #include <BA/Components/Colliders/Collider.hpp>
-#include "BA/Components/Component.hpp"
-#include "BA/Components/Drawable.hpp"
-#include "BA/Entities/SharedContext.hpp"
+#include <BA/Components/Component.hpp>
+#include <BA/Components/Drawable.hpp>
+#include <BA/Entities/SharedContext.hpp>
 #include <BA/Entities/Transformable.hpp>
+
+// Included for the forward declaration of classes in SharedContext.
+// Probably unnecessary
+// #include <BA/Inputs/InputManager.hpp>
+// #include <BA/Resources/Warehouse.hpp>
+// #include <BA/Systems/MusicPlayer.hpp>
+// #include "BA/Window/Window.hpp"
 
 #include <BA/Tools/DebugHelper.hpp>
 

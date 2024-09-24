@@ -43,8 +43,8 @@ namespace Resources {
 		 * 
 		 * @param other The object to be copied/moved to this object.
 		 */
-		Font() noexcept;
-		explicit Font(const std::string& file, int ptsize = 16);
+		Font();
+		Font(const std::string& file, int ptsize);
 		Font(const std::string& file, int ptsize, long index);
 		Font(const std::string& file, int ptsize, const Vector2u& dpi);
 		Font(const std::string& file, int ptsize, long index, const Vector2u& dpi);
@@ -103,7 +103,7 @@ namespace Resources {
 		int* m_refCount = nullptr;
 	}; // class Font
 
-	constexpr TTF_Font* Font::get() const  {
+	constexpr TTF_Font* Font::get() const noexcept {
 		return m_font;
 	}
 } // namespace Resource

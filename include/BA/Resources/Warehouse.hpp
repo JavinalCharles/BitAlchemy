@@ -15,10 +15,10 @@ namespace Resources {
 	template <typename T>
 	concept ValidResourceManager = requires {
 		typename T::Resource;
-	} && std::is_base_of_v<RMBase, T> && std::is_same_v<T, ResourceManager<typename T::Resource>>;
+	} && std::is_base_of_v<PathFinder, T> && std::is_same_v<T, ResourceManager<typename T::Resource>>;
 
 	/**
-	 * @brief A single class to managed all resources and filesystem.
+	 * @brief Warehouse oversees the management of resources.
 	 * 
 	 */
 	class Warehouse {
@@ -34,29 +34,29 @@ namespace Resources {
 		RM& getManager();
 
 	private:
-		std::unordered_map<std::type_index, std::unique_ptr<RMBase>> m_managers;
+		std::unordered_map<std::type_index, std::unique_ptr<PathFinder>> m_managers;
 	}; // class Warehouse
 
 	template <ValidResourceManager RM>
 	RM& Warehouse::includeResourceManager() {
-		std::type_index index(typeid(RM::Resource));
+		std::type_index index(typeid(typename RM::Resource));
 
 		if (!m_managers.contains(index)) {
 			m_managers.emplace(index, std::make_unique<RM>());
 		}
 
-		return *std::dynamic_pointer_cast<RM>(m_managers.at(index));
+		return *dynamic_cast<RM*>(m_managers.at(index).get());
 	}
 
 	template <ValidResourceManager RM>
 	RM& Warehouse::getManager() {
-		std::type_index index(typeid(RM::Resource));
+		std::type_index index(typeid(typename RM::Resource));
 
 		if (!m_managers.contains(index)) {
 			m_managers.emplace(index, std::make_unique<RM>());
 		}
 
-		return *std::dynamic_pointer_cast<RM>(m_managers.at(index));
+		return *dynamic_cast<RM*>(m_managers.at(index).get());
 	}
 } // namespace Resources
 }; // namespace ba

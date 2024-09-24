@@ -34,7 +34,7 @@ namespace Resources {
 		 * @param other the other Sound object to be copied/moved.
 		 */
 		Sound();
-		explicit Sound(const std::string& file);
+		Sound(const std::string& file);
 		Sound(const Sound& other);
 		Sound(Sound&& other);
 		///@}
@@ -65,7 +65,7 @@ namespace Resources {
 		 * @brief returns a pointer to the internally managed object.
 		 * @return the pointer.
 		 */
-		constexpr Mix_Chunk* get() const;
+		constexpr Mix_Chunk* get() const noexcept;
 
 		/**
 		 * @brief release ownership of the managed object.
@@ -83,7 +83,7 @@ namespace Resources {
 		int* m_refCount = nullptr;
 	}; // class Sound
 
-	constexpr Mix_Chunk* Sound::get() const {
+	constexpr Mix_Chunk* Sound::get() const noexcept {
 		return m_sound;
 	}
 } // namespace Resource

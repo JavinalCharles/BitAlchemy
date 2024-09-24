@@ -13,7 +13,7 @@ namespace ba {
 class BitAlchemySplash : public Scene {
 public:
 	BitAlchemySplash();
-	BitAlchemySplash(Window* window, ResourceManager* resourceManager, SceneManager* sceneManager);
+	BitAlchemySplash(Window* window, ba::Resources::Warehouse* warehouse, SceneManager* sceneManager);
 
 	virtual void onCreate();
 

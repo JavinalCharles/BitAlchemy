@@ -48,7 +48,7 @@ void Engine::__construct(const std::string& org, const std::string& app) {
 	char* basePath = SDL_GetBasePath();
 	if (basePath != nullptr) {
 		debug << "Adding " << basePath << " to search paths." << std::endl;
-		m_resources.addToSearchPaths(fs::path(basePath));
+		// m_resources.addToSearchPaths(fs::path(basePath));
 	}
 	else {
 		debug << "Base Path could not be determined." << std::endl;
