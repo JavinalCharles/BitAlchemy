@@ -34,7 +34,7 @@ namespace Resources {
 		 * 
 		 */
 		Music();
-		explicit Music(const std::string& file);
+		Music(const std::string& file);
 		Music(const Music& other);
 		Music(Music&& other);
 		///@}
@@ -69,7 +69,7 @@ namespace Resources {
 		 * 
 		 * @return the managed object or nullptr if none.
 		 */
-		constexpr Mix_Music* get() const;
+		constexpr Mix_Music* get() const noexcept;
 
 		/**
 		 * @brief release ownership of the managed object.
@@ -88,7 +88,7 @@ namespace Resources {
 	}; // class Music
 
 
-	constexpr Mix_Music* Music::get() const {
+	constexpr Mix_Music* Music::get() const noexcept {
 		return m_music;
 	}
 } // namespace Resources

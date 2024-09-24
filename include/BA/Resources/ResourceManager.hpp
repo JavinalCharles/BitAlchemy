@@ -3,6 +3,7 @@
 #include <type_traits>
 #include <unordered_map>
 
+#include <BA/Resources/PathFinder.hpp>
 #include <BA/Resources/Wrapper/Font.hpp>
 #include <BA/Resources/Wrapper/Music.hpp>
 #include <BA/Resources/Wrapper/Sound.hpp>
@@ -28,7 +29,6 @@ namespace Resources {
 	template <typename R>
 	concept ManageableResource = !std::is_union_v<R> && !std::is_const_v<R> && !std::is_reference_v<R>;
 
-	class RMBase {};
 	/**
 	 * @brief A template class for managing a specific type of resource.
 	 * 
@@ -36,14 +36,14 @@ namespace Resources {
 	 * intended to manage.
 	 */
 	template <ManageableResource R>
-	class ResourceManager : public RMBase {
+	class ResourceManager : public PathFinder {
 	public:
 		using Resource = R;
 		
 		/// @brief Default Constructor
 		ResourceManager();
 
-		virtual ~ResourceManager() override;
+		virtual ~ResourceManager();
 
 		/**
 		 * @brief Creates an object of Res.
@@ -54,8 +54,8 @@ namespace Resources {
 		 * @param args arguments to forward to Res's constructor.
 		 * @return IDtype The key to the newly created Res.
 		 */
-		template<typename... Args>
-		IDtype create(Args... args);
+		template <typename... Args>
+		IDtype create(Args&&... args);
 
 		///@{
 		/**
@@ -66,8 +66,8 @@ namespace Resources {
 		 * @return A reference to the mapped value.
 		 * @throws std::out_of_range if the key does not exist.
 		 */
-		const R& at(const IDtype& key) const throw(std::out_of_range);
-		R& at(const IDtype& key) throw(std::out_of_range);
+		const R& at(const IDtype& key) const;
+		R& at(const IDtype& key);
 		///@}
 
 		std::size_t erase(const IDtype& id);
@@ -76,7 +76,7 @@ namespace Resources {
 		std::size_t size() const;
 		bool empty() const;
 	private:
-		std::unordered_map<IDtype, Res> m_map;
+		std::unordered_map<IDtype, Resource> m_map;
 		IDtype m_count = 0u;
 	}; // class ResourceManager
 
@@ -100,8 +100,9 @@ namespace Resources {
 	 
 	template <ManageableResource Res>
 	template <typename... Args>
-	IDtype ResourceManager<Res>::create(Args... args) {
-		m_map.emplace(++m_count, args...);
+	IDtype ResourceManager<Res>::create(Args&&... args) {
+		Res resource(std::forward<Args>(args)...);
+		m_map.emplace(++m_count, std::move(resource));
 		return m_count;
 	}
 

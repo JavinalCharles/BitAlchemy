@@ -46,13 +46,13 @@ namespace Resources {
         Texture(int width, int height);
         Texture(const Vector2i& dimesnsion);
         Texture(const Texture& other);
-        Texture(Texture&& rvalue) noexcept;
+        Texture(Texture&& rvalue);
         ///@}
 
         ~Texture();
 
         Texture& operator=(const Texture& rhs);
-        Texture& operator=(Texture&& rvalue) noexcept;
+        Texture& operator=(Texture&& rvalue);
 
         ///@{
         /**
@@ -87,7 +87,7 @@ namespace Resources {
          * 
          * @return constexpr SDL_Texture* 
          */
-        constexpr SDL_Texture* get() const;
+        constexpr SDL_Texture* get() const noexcept;
 
         /**
          * @brief Destroy the texture and reset the pointer.
@@ -99,7 +99,7 @@ namespace Resources {
         int* m_refCount = nullptr;
     }; // class Texture
 
-    constexpr SDL_Texture* Texture::get() const {
+    constexpr SDL_Texture* Texture::get() const noexcept {
         return m_texture;
     }
 } // namespace Resource

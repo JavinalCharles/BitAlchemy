@@ -18,7 +18,7 @@ class Scene {
 public:
 	Scene();
 
-	Scene(Window* window, ResourceManager* resourceManager, SceneManager* sceneManager);
+	Scene(Window* window, ba::Resources::Warehouse* warehouse, SceneManager* sceneManager);
 
 	void create();
 	void destroy();

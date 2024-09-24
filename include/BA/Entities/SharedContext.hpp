@@ -3,7 +3,7 @@
 #include <BA/Inputs/InputManager.hpp>
 #include <BA/Resources/Warehouse.hpp>
 #include <BA/Systems/MusicPlayer.hpp>
-#include "BA/Window/Window.hpp"
+#include <BA/Window/Window.hpp>
 
 namespace ba {
 

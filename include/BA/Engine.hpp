@@ -95,10 +95,10 @@ private:
 	void __construct(const std::string& org = "", const std::string& appName = "");
 
 protected:
-	Window m_window;
-	ResourceManager m_resources;
+	Window 							m_window;
+	ba::Resources::Warehouse 		m_resources;
 
-	SceneManager m_sceneManager;
+	SceneManager 					m_sceneManager;
 
 private:
 	uint16 m_fpsLimit = 60u;

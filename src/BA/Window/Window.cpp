@@ -129,6 +129,7 @@ void Window::close() {
 	 * 
 	 */
 	SDL_DestroyRenderer(globalRenderer);
+	globalRenderer = nullptr;
 	SDL_DestroyWindow(m_window);
 	m_open = false;
 	m_window = nullptr;
