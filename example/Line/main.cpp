@@ -3,11 +3,14 @@
 #include <BA/Engine.hpp>
 #include <BA/Scenes/BitAlchemySplash.hpp>
 
+using ba::Resources::PathFinder;
+namespace fs = std::filesystem;
+
 int main(int argc, char* argv[]) {
 	ba::Engine engine("Line Sample", {0, 0, 512, 512}, SDL_WINDOW_SHOWN);
 
 	fs::path prefPath(SDL_GetPrefPath("bit-alchemy", "assets"));
-	engine.getResourceManager().addToSearchPaths(prefPath);
+	PathFinder::addCommonPath(prefPath);
 
 	engine.init();
 

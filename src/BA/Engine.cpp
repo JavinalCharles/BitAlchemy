@@ -1,9 +1,8 @@
 #include <BA/Engine.hpp>
 
+namespace fs = std::filesystem;
 
 namespace ba {
-
-SDL_Renderer* globalRenderer = nullptr;
 
 Engine::Engine()
 {
@@ -24,7 +23,6 @@ Engine::Engine(const std::string& organization, const std::string& title, const 
 Engine::Engine(const std::string& orgName, const std::string& appName, const std::string& configFileName) {
 	__construct(orgName, appName);
 
-	m_resources.loadConfig(configFileName);
 }
 
 Engine::Engine(const std::string& title, const IntRect& dimension, ba::uint32 winFlags) :
@@ -34,28 +32,29 @@ Engine::Engine(const std::string& title, const IntRect& dimension, ba::uint32 wi
 }
 
 void Engine::__construct(const std::string& org, const std::string& app) {
-	m_resources.setConfig(ORG_NAME, org);
-	m_resources.setConfig(APP_NAME, app);
+	// m_resources.setConfig(ORG_NAME, org);
+	// m_resources.setConfig(APP_NAME, app);
 
 	char* prefPath = SDL_GetPrefPath(org.c_str(), app.c_str());
 	if (prefPath != nullptr) {
 		debug << "Adding " << prefPath << " to search paths." << std::endl;
-		m_resources.addToSearchPaths(fs::path(prefPath));
+		ba::Resources::PathFinder::addCommonPath(fs::path(prefPath));
 	}
 	else {
 		debug << "Prefered Path could not be determined." << std::endl;
 	}
-	char* basePath = SDL_GetBasePath();
-	if (basePath != nullptr) {
-		debug << "Adding " << basePath << " to search paths." << std::endl;
-		// m_resources.addToSearchPaths(fs::path(basePath));
-	}
-	else {
-		debug << "Base Path could not be determined." << std::endl;
-	}
+	// char* basePath = SDL_GetBasePath();
+	// if (basePath != nullptr) {
+	// 	debug << "Adding " << basePath << " to search paths." << std::endl;
+	// 	ba::Resources::PathFinder::
+	// 	// m_resources.addToSearchPaths(fs::path(basePath));
+	// }
+	// else {
+	// 	debug << "Base Path could not be determined." << std::endl;
+	// }
 
 	SDL_free(prefPath);
-	SDL_free(basePath);
+	// SDL_free(basePath);
 }
 
 void Engine::setFPSLimit(uint16 fps) {
@@ -66,7 +65,7 @@ Window& Engine::getWindow() {
 	return m_window;
 }
 
-ResourceManager& Engine::getResourceManager() {
+Warehouse& Engine::getWarehouse() {
 	return m_resources;
 }
 
@@ -194,7 +193,7 @@ void Engine::draw() {
 }
 
 void Engine::cleanUp() {
-	m_resources.freeAllResources();
+	// m_resources.freeAllResources();
 	TTF_Quit();
 	Mix_Quit();
 	IMG_Quit();

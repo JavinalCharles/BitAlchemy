@@ -2,14 +2,16 @@
 
 namespace ba {
 
+namespace fs = std::filesystem;
+
 TextScene::TextScene() :
 	Scene::Scene()
 {
 	m_CONTEXT.entities = &m_entityManager;
 }
 
-TextScene::TextScene(Window* window, ResourceManager* resourceManager, SceneManager* sceneManager) :
-	Scene::Scene(window, resourceManager, sceneManager)
+TextScene::TextScene(Window* window, Warehouse* warehouse, SceneManager* sceneManager) :
+	Scene::Scene(window, warehouse, sceneManager)
 {
 	m_CONTEXT.entities = &m_entityManager;
 }
@@ -28,7 +30,9 @@ void TextScene::handleEvents() {
 }
 
 void TextScene::onCreate() {
-
+	ba::Resources::FontManager& fonts = m_CONTEXT.warehouse->includeResourceManager<ba::Resources::FontManager>();
+	int count = fonts.addPath(fs::path("Fonts"));
+	std::cout << "Added Fonts path " << count << " times." << std::endl;
 }
 
 void TextScene::onDestroy() {

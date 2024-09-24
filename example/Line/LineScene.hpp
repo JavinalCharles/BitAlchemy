@@ -17,11 +17,13 @@
 
 namespace ba {
 
+using ba::Resources::Warehouse;
+
 class LineScene : public Scene {
 public:
 	LineScene();
 
-	LineScene(Window* window, ResourceManager* resourceManager, SceneManager* SceneManager);
+	LineScene(Window* window, Warehouse* warehouse, SceneManager* SceneManager);
 
 	virtual void onCreate() override;
 	virtual void onDestroy() override;

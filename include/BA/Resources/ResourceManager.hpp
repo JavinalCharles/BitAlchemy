@@ -45,6 +45,7 @@ namespace Resources {
 
 		virtual ~ResourceManager();
 
+		///@{
 		/**
 		 * @brief Creates an object of Res.
 		 * 
@@ -56,6 +57,8 @@ namespace Resources {
 		 */
 		template <typename... Args>
 		IDtype create(Args&&... args);
+		IDtype create();
+		///@}
 
 		///@{
 		/**
@@ -101,8 +104,13 @@ namespace Resources {
 	template <ManageableResource Res>
 	template <typename... Args>
 	IDtype ResourceManager<Res>::create(Args&&... args) {
-		Res resource(std::forward<Args>(args)...);
-		m_map.emplace(++m_count, std::move(resource));
+		m_map.try_emplace(++m_count, std::forward<Args>(args)...);
+		return m_count;
+	}
+
+	template <ManageableResource Res>
+	IDtype ResourceManager<Res>::create() {
+		m_map.try_emplace(++m_count);
 		return m_count;
 	}
 

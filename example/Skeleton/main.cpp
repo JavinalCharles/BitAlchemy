@@ -9,12 +9,16 @@
 #include <BA/Engine.hpp>
 
 using namespace ba;
+using namespace ba::Resources;
+
+namespace fs = std::filesystem;
 
 int main(int argc, char* argv[]) {
 	ba::Engine engine;
 
 	fs::path prefPath(SDL_GetPrefPath("bit-alchemy", "assets"));
-	engine.getResourceManager().addToSearchPaths(prefPath);
+	PathFinder::addCommonPath(prefPath);
+	// engine.getResourceManager().addToSearchPaths(prefPath);
 
 	engine.init();
 	engine.setFPSLimit(60u);
@@ -25,10 +29,7 @@ int main(int argc, char* argv[]) {
 	engine.addScene(splashScene);
 	IDtype skID = engine.addScene(skeletonScene);
 
-	splashScene->setSwitchTo(skID); // Scene will switch to Skeleton Scene after
-									// After splash is over.
-
-
+	splashScene->setSwitchTo(skID);
 
 	engine.run();
 

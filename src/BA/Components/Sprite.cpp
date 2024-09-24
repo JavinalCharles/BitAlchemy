@@ -4,6 +4,7 @@
 namespace ba {
 
 using ba::Resources::TextureManager;
+namespace fs = std::filesystem;
 
 Sprite::Sprite(ba::Entity* owner, IDtype drawLayer) :
 	Drawable(owner, drawLayer),
@@ -32,9 +33,16 @@ bool Sprite::hasTexture() const {
 	return m_textureID > 0;
 }
 
+
+
 IDtype Sprite::loadTextureFromFile(const std::string& fileName) {
 	TextureManager& textures = getOwner()->CONTEXT->warehouse->getManager<TextureManager>();
-	m_textureID = textures.create(fileName);
+	std::optional<fs::path> p = textures.findFile(fileName);
+	if (!p.has_value()) {
+		return 0;
+	}
+
+	m_textureID = textures.create(p.value());
 
 	SDL_Texture* textureObj = textures.at(m_textureID).get();
 

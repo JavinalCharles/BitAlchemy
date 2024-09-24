@@ -2,6 +2,8 @@
 
 namespace ba {
 
+using namespace ba::Resources;
+
 SkeletonScene::SkeletonScene() :
 	Scene::Scene(),
 	m_musicPlayer(nullptr)
@@ -11,9 +13,9 @@ SkeletonScene::SkeletonScene() :
 	m_CONTEXT.player = &m_musicPlayer;
 }
 
-SkeletonScene::SkeletonScene(Window* window, ResourceManager* resourceManager, SceneManager* sceneManager) :
-	Scene::Scene(window, resourceManager, sceneManager),
-	m_musicPlayer(resourceManager)
+SkeletonScene::SkeletonScene(Window* window, Warehouse* warehouse, SceneManager* sceneManager) :
+	Scene::Scene(window, warehouse, sceneManager),
+	m_musicPlayer(nullptr)
 {
 	m_CONTEXT.entities = &m_entityManager;
 	m_CONTEXT.inputs = &m_inputManager;
@@ -21,6 +23,20 @@ SkeletonScene::SkeletonScene(Window* window, ResourceManager* resourceManager, S
 }
 
 void SkeletonScene::onCreate() {
+	TextureManager& textures = m_CONTEXT.warehouse->includeResourceManager<TextureManager>();
+	textures.addPath(fs::path("Textures"));
+
+	FontManager& fonts = m_CONTEXT.warehouse->includeResourceManager<FontManager>();
+	fonts.addPath(fs::path("Fonts"));
+
+	SoundManager& sounds = m_CONTEXT.warehouse->includeResourceManager<SoundManager>();
+	sounds.addPath(fs::path("Sounds"));
+
+	MusicManager& musics = m_CONTEXT.warehouse->includeResourceManager<MusicManager>();
+	musics.addPath(fs::path("Musics"));
+
+	m_musicPlayer.setMusicManager(&musics);
+
 	m_mouseInput = m_CONTEXT.inputs->addInput<MouseInput>();
 	m_CONTEXT.inputs->addInput<KeyboardInput>();
 
@@ -33,6 +49,9 @@ void SkeletonScene::onCreate() {
 }
 
 void SkeletonScene::onActivate() {
+	// MusicManager& musics = m_CONTEXT.warehouse->getManager<MusicManager>();
+	// std::optional<fs::path> musicFile(musics.findFile(fs::path("Patreon Goal Reward Loops - Track 01.wav")));
+
 	m_musicPlayer.addMusic("Patreon Goal Reward Loops - Track 01.wav");
 	m_musicPlayer.setLooping(true);
 

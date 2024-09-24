@@ -4,6 +4,7 @@
 #include <iostream>
 
 using ba::Resources::FontManager;
+namespace fs = std::filesystem;
 
 namespace ba {
 
@@ -18,7 +19,14 @@ Text::~Text() {
 }
 
 IDtype Text::loadFontFromFile(const std::string& fileName, int fontSize) {
-	m_fontID = m_owner->CONTEXT->warehouse->getManager<FontManager>().create(fileName, fontSize);
+	FontManager& fonts = m_owner->CONTEXT->warehouse->getManager<FontManager>();
+	std::optional<fs::path> p = fonts.findFile(fileName);
+	if (!p.has_value()) {
+		return 0;
+	}
+
+	m_fontID = fonts.create(p.value(), fontSize);
+
 	m_updatedText = false;
 	return m_fontID;
 }
@@ -84,6 +92,9 @@ const SDL_Texture* Text::getTexture() const {
 }
 
 void Text::draw(Window& window) {
+	if (ba::globalRenderer == nullptr) {
+		std::cout << "Text::draw() reached while globalRenderer == nullptr" << std::endl;
+	}
 	if (!m_updatedText) {
 		updateText();
 	}
@@ -112,14 +123,18 @@ void Text::updateText() const {
 	}
 
 	TTF_Font* font = m_owner->CONTEXT->warehouse->getManager<FontManager>().at(m_fontID).get();
+	if (font == nullptr) {
+		std::cout << "Text::updateText(). font is nullptr" << std::endl;
+	}
 	SDL_Color color = m_textColor.toSDL_Color();
 	SDL_Surface* surface = TTF_RenderUTF8_Blended_Wrapped(font, m_text.c_str(), color, m_wrapLength);
 
 	if (surface == nullptr) {
+		std::cout << "Text::updateText*() is throwing an exception. Surface is nullptr." << std::endl;
 		throw std::runtime_error(TTF_GetError());
 	}
 
-	m_textTexture = SDL_CreateTextureFromSurface(m_owner->CONTEXT->window->getRenderer(), surface);
+	m_textTexture = SDL_CreateTextureFromSurface(globalRenderer, surface);
 	m_rect.w = static_cast<int>(surface->w);
 	m_rect.h = static_cast<int>(surface->h);
 

@@ -40,11 +40,12 @@ set(SOURCES
 	src/BA/Entities/Entity.cpp
 	src/BA/Entities/Transformable.cpp
 	src/BA/Exceptions/Inaccessible.cpp
-	# src/BA/Generator/TileMapGenerator.cpp
+	src/BA/Generator/TileMapGenerator.cpp
 	src/BA/Inputs/Input.cpp
 	src/BA/Inputs/InputManager.cpp
 	src/BA/Inputs/KeyboardInput.cpp
 	src/BA/Inputs/MouseInput.cpp
+	src/BA/Resources/PathFinder.cpp
 	src/BA/Resources/Warehouse.cpp
 	src/BA/Resources/Wrapper/Font.cpp
 	src/BA/Resources/Wrapper/Music.cpp
