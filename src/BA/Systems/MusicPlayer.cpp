@@ -2,16 +2,20 @@
 
 namespace ba {
 
+using ba::Resources::Music;
+using ba::Resources::MusicManager;
+namespace fs = std::filesystem;
+
 MusicPlayer::MusicPlayer() = default;
 
-MusicPlayer::MusicPlayer(ResourceManager* resources) :
-	m_resources(resources)
+MusicPlayer::MusicPlayer(MusicManager* mm) :
+	m_musicManager(mm)
 {
 
 }
 
 void MusicPlayer::update() {
-	if (m_resources == nullptr || !m_playing) {
+	if (m_musicManager == nullptr || !m_playing) {
 		return;
 	}
 
@@ -26,11 +30,18 @@ void MusicPlayer::update() {
 }
 
 IDtype MusicPlayer::addMusic(const std::string& fileName) {
-	if(m_resources == nullptr){
+	if(m_musicManager == nullptr){
 		return 0;
 	}
 
-	IDtype id = m_resources->loadMusic(fileName);
+	std::optional<fs::path> musicPath = m_musicManager->findFile(fileName);
+	if (!musicPath.has_value()) {
+		return 0;
+	}
+
+	IDtype id = m_musicManager->create(musicPath.value());
+
+	// IDtype id = m_resources->loadMusic(fileName);
 	m_musicList.push_back(id);
 	if (m_currentMusic == m_musicList.end()) {
 		m_currentMusic = m_musicList.begin();
@@ -40,11 +51,11 @@ IDtype MusicPlayer::addMusic(const std::string& fileName) {
 }
 
 void MusicPlayer::addMusic(IDtype musicID) {
-	if(m_resources == nullptr) {
+	if(m_musicManager == nullptr) {
 		return;
 	}
 
-	Mix_Music* music = m_resources->getMusic(musicID);
+	Mix_Music* music = m_musicManager->at(musicID).get();
 	if(music == NULL) {
 		return;
 	}
@@ -55,7 +66,7 @@ void MusicPlayer::addMusic(IDtype musicID) {
 }
 
 IDtype MusicPlayer::playAsNext(const std::string& fileName) {
-	if(m_resources == nullptr) {
+	if(m_musicManager == nullptr) {
 		return 0;
 	}
 	IDtype id;
@@ -63,7 +74,11 @@ IDtype MusicPlayer::playAsNext(const std::string& fileName) {
 		id = addMusic(fileName);
 	}
 	else {
-		id = m_resources->loadMusic(fileName);
+		std::optional<fs::path> musicPath = m_musicManager->findFile(fileName);
+		if (!musicPath.has_value()) {
+			return 0;
+		}
+		id = m_musicManager->create(musicPath.value());
 		auto nextIter = m_currentMusic;
 		++nextIter;
 		m_musicList.insert(nextIter, id);
@@ -72,14 +87,14 @@ IDtype MusicPlayer::playAsNext(const std::string& fileName) {
 }
 
 void MusicPlayer::playAsNext(IDtype musicID) {
-	if(m_resources == nullptr) {
+	if(m_musicManager == nullptr) {
 		return;
 	}
 	if(m_musicList.size() <= 1) {
 		addMusic(musicID);
 	}
 	else {
-		Mix_Music* music = m_resources->getMusic(musicID);
+		Mix_Music* music = m_musicManager->at(musicID).get();
 		if (music != NULL) {
 			auto nextIter = m_currentMusic;
 			++nextIter;
@@ -94,7 +109,7 @@ void MusicPlayer::play() {
 	}
 	m_playing = true;
 	if(Mix_PlayingMusic() == 0) {
-		Mix_PlayMusic(m_resources->getMusic(*m_currentMusic), 0);
+		Mix_PlayMusic(m_musicManager->at(*m_currentMusic).get(), 0);
 	}
 	else if (Mix_PausedMusic()) {
 		Mix_ResumeMusic();
@@ -108,7 +123,7 @@ void MusicPlayer::playNext() {
 	m_playing = true;
 	incrementIterator();
 	if(m_playing)
-		Mix_PlayMusic(m_resources->getMusic(*m_currentMusic), 0);
+		Mix_PlayMusic(m_musicManager->at(*m_currentMusic).get(), 0);
 }
 
 void MusicPlayer::playPrevious() {
@@ -118,7 +133,7 @@ void MusicPlayer::playPrevious() {
 	m_playing = true;
 	decrementIterator();
 	
-	Mix_PlayMusic(m_resources->getMusic(*m_currentMusic), 0);
+	Mix_PlayMusic(m_musicManager->at(*m_currentMusic).get(), 0);
 }
 
 void MusicPlayer::playFirst() {
@@ -127,7 +142,7 @@ void MusicPlayer::playFirst() {
 	}
 	m_currentMusic = m_musicList.begin();
 	m_playing = true;
-	Mix_PlayMusic(m_resources->getMusic(*m_currentMusic), 0);
+	Mix_PlayMusic(m_musicManager->at(*m_currentMusic).get(), 0);
 }
 
 void MusicPlayer::pause() {
@@ -155,8 +170,8 @@ void MusicPlayer::clearMusicList() {
 	m_musicList.clear();
 }
 
-void MusicPlayer::setResourceManager(ResourceManager* rm) {
-	m_resources = rm;
+void MusicPlayer::setMusicManager(MusicManager* mm) {
+	m_musicManager = mm;
 }
 
 void MusicPlayer::incrementIterator() {

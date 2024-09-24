@@ -50,7 +50,7 @@ public:
 	void setFPSLimit(uint16 fps);
 
 	Window& getWindow();
-	ResourceManager& getResourceManager();
+	Warehouse& getWarehouse();
 
 	void setWindowSize(int width, int height);
 	void setWindowSize(const Vector2i& windowArea);

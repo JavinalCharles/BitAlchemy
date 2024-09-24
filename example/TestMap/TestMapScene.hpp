@@ -9,10 +9,12 @@
 
 namespace ba {
 
+using ba::Resources::Warehouse;
+
 class TestMapScene : public Scene {
 public:
 	TestMapScene();
-	TestMapScene(Window* window, ResourceManager* ResourceManager, SceneManager* sceneManager);
+	TestMapScene(Window* window, Warehouse* ResourceManager, SceneManager* sceneManager);
 
 	virtual void onCreate();
 	virtual void onDestroy();

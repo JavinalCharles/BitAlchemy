@@ -2,6 +2,8 @@
 
 namespace ba {
 
+using namespace ba::Resources;
+
 const Vector2i LineScene::sk_CENTER(256, 256);
 
 LineScene::LineScene() :
@@ -11,14 +13,16 @@ LineScene::LineScene() :
 	m_CONTEXT.inputs = &m_inputManager;
 }
 
-LineScene::LineScene(Window* window, ResourceManager* resourceManager, SceneManager* sceneManager) :
-	Scene::Scene(window, resourceManager, sceneManager)
+LineScene::LineScene(Window* window, Warehouse* warehouse, SceneManager* sceneManager) :
+	Scene::Scene(window, warehouse, sceneManager)
 {
 	m_CONTEXT.entities = &m_entityManager;
 	m_CONTEXT.inputs = &m_inputManager;
 }
 
 void LineScene::onCreate() {
+	FontManager& fonts = m_CONTEXT.warehouse->includeResourceManager<FontManager>();
+	fonts.addPath(fs::path("Fonts"));
 	m_mouseInput = m_CONTEXT.inputs->addInput<MouseInput>();
 
 	m_entityManager.includeSystem<ba::MouseControlSystem>();

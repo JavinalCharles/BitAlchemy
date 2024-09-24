@@ -4,6 +4,8 @@
 using ba::Resources::TextureManager;
 using ba::Resources::SoundManager;
 
+namespace fs = std::filesystem;
+
 ba::IDtype SkeletonEntity::IDLE_TEXTURE = 0;
 ba::IDtype SkeletonEntity::WALK_TEXTURE = 0;
 ba::IDtype SkeletonEntity::WALK_SOUND = 0;
@@ -15,10 +17,22 @@ const ba::IDtype SkeletonEntity::idleLeftID =4;
 SkeletonEntity::SkeletonEntity(SharedContext* context) :
 	Entity(context)
 {
+	SoundManager& sounds = CONTEXT->warehouse->getManager<SoundManager>();
+	TextureManager& textures = CONTEXT->warehouse->getManager<TextureManager>();
+
+
 	if(!m_resourcesLoaded) {
-		IDLE_TEXTURE = CONTEXT->warehouse->getManager<TextureManager>().create("Skeleton Idle.png");
-		WALK_TEXTURE = CONTEXT->warehouse->getManager<TextureManager>().create("Skeleton_Walk.png");
-		WALK_SOUND = CONTEXT->warehouse->getManager<SoundManager>().create("Concrete 1.wav");
+		if (auto idleTP(textures.findFile(fs::path("Skeleton Idle.png"))); idleTP.has_value()) {
+			IDLE_TEXTURE = textures.create(idleTP.value());
+		}
+
+		if (auto walkTP(textures.findFile(fs::path("Skeleton_Walk.png"))) ;walkTP.has_value()) {
+			WALK_TEXTURE = textures.create(walkTP.value());
+		}
+
+		if (auto soundTP(sounds.findFile(fs::path("Concrete 1.wav"))); soundTP.has_value()) {
+			WALK_SOUND = sounds.create(soundTP.value());
+		}
 		m_resourcesLoaded = true;
 	}
 

@@ -27,6 +27,8 @@ namespace Resources {
 		/// @brief default constructor
 		PathFinder();
 
+		virtual ~PathFinder();
+
 		/// @{
 		/**
 		 * @brief Adds a path to the list of paths available only to

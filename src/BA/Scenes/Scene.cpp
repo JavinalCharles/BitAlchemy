@@ -3,11 +3,13 @@
 
 namespace ba {
 
+using ba::Resources::Warehouse;
+
 Scene::Scene() = default;
 
-Scene::Scene(Window* window, ResourceManager* resourceManager, SceneManager* sceneManager) {
+Scene::Scene(Window* window, Warehouse* warehouse, SceneManager* sceneManager) {
 	setWindow(window);
-	setReesourceManager(resourceManager);
+	setWarehouse(warehouse);
 	setSceneManager(sceneManager);
 }
 
@@ -83,8 +85,8 @@ void Scene::setWindow(Window* window) {
 	m_CONTEXT.window = window;
 }
 
-void Scene::setReesourceManager(ResourceManager* resourceManager) {
-	m_CONTEXT.resources = resourceManager;
+void Scene::setWarehouse(Warehouse* warehouse) {
+	m_CONTEXT.warehouse = warehouse;
 }
 
 void Scene::setSceneManager(SceneManager* sceneManager) {

@@ -7,6 +7,10 @@ std::vector<fs::path> ba::Resources::PathFinder::s_commonPaths{fs::current_path(
 
 PathFinder::PathFinder() = default;
 
+PathFinder::~PathFinder() {
+	m_paths.clear();
+}
+
 int PathFinder::addPath(const std::string& p) {
 	return addPath(fs::path(p));
 }

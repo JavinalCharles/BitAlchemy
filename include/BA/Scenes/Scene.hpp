@@ -44,7 +44,8 @@ public:
 	virtual void draw(Window& window) = 0;
 
 	virtual void setWindow(Window* window);
-	virtual void setReesourceManager(ResourceManager* rm);
+	// virtual void setReesourceManager(ResourceManager* rm);
+	virtual void setWarehouse(ba::Resources::Warehouse* warehouse);
 	virtual void setSceneManager(SceneManager* sm);
 
 	virtual void setSwitchTo(IDtype sceneID);

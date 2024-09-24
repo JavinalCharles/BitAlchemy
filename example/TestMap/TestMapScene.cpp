@@ -4,21 +4,28 @@ using std::filesystem::path;
 
 namespace ba {
 
+namespace fs = std::filesystem;
+namespace res = ba::Resources;
+
 TestMapScene::TestMapScene() :
 	Scene::Scene()
 {
 	m_CONTEXT.entities = &m_entityManager;
 }
 
-TestMapScene::TestMapScene(Window* window, ResourceManager* resourceManager, SceneManager* sceneManager) :
-	Scene::Scene(window, resourceManager, sceneManager),
+TestMapScene::TestMapScene(Window* window, Warehouse* warehouse, SceneManager* sceneManager) :
+	Scene::Scene(window, warehouse, sceneManager),
 	m_mapGenerator(&m_CONTEXT)
 {
 	m_CONTEXT.entities = &m_entityManager;
 }
 
 void TestMapScene::onCreate() {
+	res::TextureManager& textures = m_CONTEXT.warehouse->includeResourceManager<res::TextureManager>();
+	textures.addPath(fs::path("Textures"));
 
+	res::XMLManager& xmls = m_CONTEXT.warehouse->includeResourceManager<res::XMLManager>();
+	xmls.addPath(fs::path("XML"));
 }
 
 void TestMapScene::onDestroy() {

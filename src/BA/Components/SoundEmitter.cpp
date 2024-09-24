@@ -6,6 +6,9 @@ namespace ba {
 
 const IDtype SoundEmitter::CID  = ComponentID::SOUND_EMITTER;
 
+using ba::Resources::SoundManager;
+namespace fs = std::filesystem;
+
 SoundEmitter::SoundEmitter(Entity* owner) :
 	Component(owner)
 {

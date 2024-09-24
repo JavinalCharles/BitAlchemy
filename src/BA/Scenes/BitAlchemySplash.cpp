@@ -3,14 +3,16 @@
 
 namespace ba {
 
+using ba::Resources::Warehouse;
+
 BitAlchemySplash::BitAlchemySplash() :
 	Scene()
 {
 
 }
 
-BitAlchemySplash::BitAlchemySplash(Window* window, ResourceManager* resourceManager, SceneManager* sceneManager) :
-	Scene(window, resourceManager, sceneManager)
+BitAlchemySplash::BitAlchemySplash(Window* window, Warehouse* warehouse, SceneManager* sceneManager) :
+	Scene(window, warehouse, sceneManager)
 {
 
 }

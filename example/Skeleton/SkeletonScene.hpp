@@ -18,10 +18,12 @@
 
 namespace ba {
 
+using ba::Resources::Warehouse;
+
 class SkeletonScene : public Scene {
 public:
 	SkeletonScene();
-	SkeletonScene(Window* window, ResourceManager* resourceManager, SceneManager* sceneManager);
+	SkeletonScene(Window* window, Warehouse* warehouse, SceneManager* sceneManager);
 
 	virtual void onCreate() override;
 	virtual void onDestroy() override;

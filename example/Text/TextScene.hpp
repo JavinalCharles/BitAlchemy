@@ -12,11 +12,13 @@
 
 namespace ba {
 
+using ba::Resources::Warehouse;
+
 class TextScene : public Scene {
 public:
 	TextScene();
 
-	TextScene(Window* window, ResourceManager* resourceManager, SceneManager* sceneManager);
+	TextScene(Window* window, Warehouse* warehouse, SceneManager* sceneManager);
 
 	virtual void handleEvents() override;
 

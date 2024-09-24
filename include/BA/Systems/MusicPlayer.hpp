@@ -1,14 +1,14 @@
 #pragma once
 
 #include <list>
-#include <BA/ResourceManager.hpp>
+#include <BA/Resources/ResourceManager.hpp>
 
 namespace ba {
 
 class MusicPlayer {
 public:
 	MusicPlayer();
-	MusicPlayer(ResourceManager* resources);
+	MusicPlayer(ba::Resources::MusicManager* resources);
 
 	void update();
 
@@ -30,7 +30,7 @@ public:
 
 	void clearMusicList();
 
-	void setResourceManager(ResourceManager* rm);
+	void setMusicManager(ba::Resources::MusicManager* mm);
 private:
 	void incrementIterator();
 	void decrementIterator();
@@ -41,7 +41,7 @@ private:
 	bool							m_playing = false;
 	bool							m_looping = false;
 
-	ResourceManager*				m_resources = nullptr;
+	ba::Resources::MusicManager*	m_musicManager = nullptr;
 }; // class MusicPlayer
 
 } // namespace ba
