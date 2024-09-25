@@ -14,11 +14,21 @@ const IDtype BlueCharEntity::north = 4;
 
 ba::IDtype BlueCharEntity::CHAR_TEXTURE = 0;
 
+namespace fs = std::filesystem;
+
 BlueCharEntity::BlueCharEntity(SharedContext* context) :
 	Entity(context)
 {
+	TextureManager& textures = CONTEXT->warehouse->getManager<TextureManager>();
 	if (!m_resourcesLoaded) {
-		CHAR_TEXTURE = CONTEXT->warehouse->getManager<TextureManager>().create("oak_woods_v1.0/character/char_blue.png");
+		std::optional<fs::path> blueCharTexturePath = textures.findFile(fs::path("oak_woods_v1.0/character/char_blue.png"));
+		if (blueCharTexturePath.has_value()) {
+			CHAR_TEXTURE = textures.create(blueCharTexturePath.value());
+		}
+		else {
+			std::cout << "Could not load texture for the blue character." << std::endl;
+		}
+		// CHAR_TEXTURE = textures.create("oak_woods_v1.0/character/char_blue.png");
 		m_resourcesLoaded = true;
 	}
 

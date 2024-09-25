@@ -8,7 +8,7 @@ std::vector<fs::path> ba::Resources::PathFinder::s_commonPaths{fs::current_path(
 PathFinder::PathFinder() = default;
 
 PathFinder::~PathFinder() {
-	m_paths.clear();
+	clear();
 }
 
 int PathFinder::addPath(const std::string& p) {
@@ -30,13 +30,6 @@ int PathFinder::addPath(const fs::path& p) {
 			std::cerr << "PathFinder encounters a relative path that is not a subpath of current directory or a subpath of any common search paths:" << p << std::endl;
 		}
 		return found;
-	}
-
-	fs::file_status status = fs::status(p, ec);
-	if (ec.value() != 0) {
-		std::cerr << "PathFinder is unable to obtain path status for path: " << p.c_str() << std::endl;
-		std::cerr << "Error: " << ec.message() << std::endl;
-		return false;
 	}
 
 	try {
@@ -65,14 +58,7 @@ bool PathFinder::addCommonPath(const fs::path& p) {
 		return addCommonPath(absoluteP);
 	}
 
-	fs::file_status stat = fs::status(p, ec);
-	if (ec.value() != 0) {
-		std::cerr << "PathFinder is unable to obtain path status for path: " << p.c_str() << std::endl;
-		std::cerr << "Error: " << ec.message() << std::endl;
-		return false;
-	}
-
-	if (!fs::exists(stat) || !fs::is_directory(stat) ) {
+	if (!fs::exists(p, ec) || !fs::is_directory(p, ec) ) {
 		std::cerr << "PathFinder::addCommonPath(); Could not add path: \"" << p.c_str() << "\". Either path does not exists or is not a directory." << std::endl;
 		return false;
 	}
@@ -155,4 +141,8 @@ std::vector<fs::path> PathFinder::findAllFiles(const fs::path& filePath) const {
 	}
 
 	return found;
+}
+
+void PathFinder::clear() {
+	m_paths.clear();
 }

@@ -74,7 +74,7 @@ namespace Resources {
 		///@}
 
 		std::size_t erase(const IDtype& id);
-		void clear();
+		virtual void clear() override;
 
 		std::size_t size() const;
 		bool empty() const;
@@ -98,7 +98,7 @@ namespace Resources {
 
 	template <ManageableResource R>
 	ResourceManager<R>::~ResourceManager() {
-		m_map.clear();
+		clear();
 	}
 	 
 	template <ManageableResource Res>
@@ -132,7 +132,46 @@ namespace Resources {
 	template <ManageableResource R>
 	void ResourceManager<R>::clear() {
 		m_map.clear();
+		m_paths.clear();
 	}
+
+
+	template <>
+	inline void ResourceManager<Font>::clear() {
+		for (auto& [key, font] : m_map) {
+			font.reset();
+		}
+		m_map.clear();
+		m_paths.clear();
+	}
+
+	template <>
+	inline void ResourceManager<Music>::clear() {
+		for (auto& [key, music] : m_map) {
+			music.reset();
+		}
+		m_map.clear();
+		m_paths.clear();
+	}
+
+	template <>
+	inline void ResourceManager<Sound>::clear() {
+		for (auto& [key, sound] : m_map) {
+			sound.reset();
+		}
+		m_map.clear();
+		m_paths.clear();
+	}
+
+	template <>
+	inline void ResourceManager<Texture>::clear() {
+		for (auto& [key, texture] : m_map) {
+			texture.reset();
+		}
+		m_map.clear();
+		m_paths.clear();
+	}
+
 
 	template <ManageableResource R>
 	std::size_t ResourceManager<R>::size() const {

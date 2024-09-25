@@ -25,13 +25,22 @@ SkeletonEntity::SkeletonEntity(SharedContext* context) :
 		if (auto idleTP(textures.findFile(fs::path("Skeleton Idle.png"))); idleTP.has_value()) {
 			IDLE_TEXTURE = textures.create(idleTP.value());
 		}
+		else {
+			std::cout << "\"Skeleton Idle.png\" could not be found." << std::endl;
+		}
 
 		if (auto walkTP(textures.findFile(fs::path("Skeleton_Walk.png"))) ;walkTP.has_value()) {
 			WALK_TEXTURE = textures.create(walkTP.value());
 		}
+		else {
+			std::cout << "\"Skeleton Walk.png\" could not be found." << std::endl;
+		}
 
 		if (auto soundTP(sounds.findFile(fs::path("Concrete 1.wav"))); soundTP.has_value()) {
 			WALK_SOUND = sounds.create(soundTP.value());
+		}
+		else {
+			std::cout << "\"Concrete 1.wav\" could not be found." << std::endl;
 		}
 		m_resourcesLoaded = true;
 	}

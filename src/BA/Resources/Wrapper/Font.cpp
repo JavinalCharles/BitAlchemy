@@ -68,7 +68,6 @@ TTF_Font* Font::openFont(const std::string& file, int ptsize) {
 	if (m_font != nullptr) {
 		return m_font;
 	}
-	std::cout << "Creating font from file: " << file << ", of size," << ptsize << std::endl;
 	m_font = TTF_OpenFont(file.c_str(), ptsize);
 	if (m_font == nullptr) {
 		std::cout << "Font cannot be created. An error occured:" << std::endl;
@@ -123,7 +122,7 @@ void Font::reset() {
 		TTF_CloseFont(m_font);
 		delete m_refCount;
 	}
-	std::cout << "Font::reset(). remaining instance: " << *m_refCount << std::endl;
+	
 	m_font = nullptr;
 	m_refCount = nullptr;
 }
