@@ -5,7 +5,7 @@
 \DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
 \DoxyCodeLine{00002\ }
 \DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}BA/Components/Component.hpp"{}}}
-\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}BA/Window/View.hpp"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}BA/Window/Window.hpp"{}}}
 \DoxyCodeLine{00005\ }
 \DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }ba\ \{}
 \DoxyCodeLine{00007\ }
@@ -13,15 +13,18 @@
 \DoxyCodeLine{00009\ \textcolor{keyword}{public}:}
 \DoxyCodeLine{00010\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classba_1_1Camera}{Camera}}(\mbox{\hyperlink{classba_1_1Entity}{Entity}}*\ owner);}
 \DoxyCodeLine{00011\ }
-\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keywordtype}{void}\ setView(\textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1View}{View}}\&\ view);}
-\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1View}{View}}\&\ getView()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{void}\ setViewCenter(\textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}}\&\ center);}
-\DoxyCodeLine{00015\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{classba_1_1View}{ba::View}}\ m\_cameraView;}
-\DoxyCodeLine{00017\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ IDtype\ CID;}
-\DoxyCodeLine{00019\ \};\ \textcolor{comment}{//\ class\ Camera}}
-\DoxyCodeLine{00020\ }
-\DoxyCodeLine{00021\ \}\ \textcolor{comment}{//\ namespace}}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keywordtype}{void}\ useViewFromLayer(IDtype\ RENDER\_LAYER\ =\ DEFAULT\_RENDER\_LAYER);}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordtype}{void}\ setView(\textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1View}{View}}\&\ view);}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1View}{View}}\&\ getView()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordtype}{void}\ setViewCenter(\textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}}\&\ center);}
+\DoxyCodeLine{00016\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_isUsingCustomView\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00018\ \ \ \ \ ba::IDtype\ m\_layerID\ =\ DEFAULT\_RENDER\_LAYER;}
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{classba_1_1View}{ba::View}}\ m\_cameraView;}
+\DoxyCodeLine{00020\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ IDtype\ CID;}
+\DoxyCodeLine{00022\ \};\ \textcolor{comment}{//\ class\ Camera}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \}\ \textcolor{comment}{//\ namespace}}
 
 \end{DoxyCode}

@@ -22,7 +22,7 @@
 \DoxyCodeLine{00018\ \textcolor{keyword}{public}:}
 \DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{classba_1_1Scene}{Scene}}();}
 \DoxyCodeLine{00020\ }
-\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{classba_1_1Scene}{Scene}}(\mbox{\hyperlink{classba_1_1Window}{Window}}*\ window,\ \mbox{\hyperlink{classba_1_1ResourceManager}{ResourceManager}}*\ resourceManager,\ \mbox{\hyperlink{classba_1_1SceneManager}{SceneManager}}*\ sceneManager);}
+\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{classba_1_1Scene}{Scene}}(\mbox{\hyperlink{classba_1_1Window}{Window}}*\ window,\ \mbox{\hyperlink{classba_1_1Resources_1_1Warehouse}{ba::Resources::Warehouse}}*\ warehouse,\ \mbox{\hyperlink{classba_1_1SceneManager}{SceneManager}}*\ sceneManager);}
 \DoxyCodeLine{00022\ }
 \DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{void}\ create();}
 \DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{void}\ destroy();}
@@ -48,27 +48,28 @@
 \DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ draw(\mbox{\hyperlink{classba_1_1Window}{Window}}\&\ window)\ =\ 0;}
 \DoxyCodeLine{00045\ }
 \DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ setWindow(\mbox{\hyperlink{classba_1_1Window}{Window}}*\ window);}
-\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ setReesourceManager(\mbox{\hyperlink{classba_1_1ResourceManager}{ResourceManager}}*\ rm);}
-\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ setSceneManager(\mbox{\hyperlink{classba_1_1SceneManager}{SceneManager}}*\ sm);}
-\DoxyCodeLine{00049\ }
-\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ setSwitchTo(IDtype\ sceneID);}
-\DoxyCodeLine{00051\ \ \ \ \ IDtype\ getSWitchTo()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00052\ \textcolor{keyword}{protected}:}
-\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{structba_1_1SharedContext}{SharedContext}}\ m\_CONTEXT;}
-\DoxyCodeLine{00054\ }
-\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{classba_1_1SceneManager}{SceneManager}}*\ m\_sceneManager\ =\ \textcolor{keyword}{nullptr};}
-\DoxyCodeLine{00056\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00057\ \ \ \ \ IDtype\ \ \ \ \ \ m\_switchTo\{\};}
-\DoxyCodeLine{00058\ }
-\DoxyCodeLine{00059\ \ \ \ \ std::vector<std::function<void()>>\ m\_onCreateFunctions;}
-\DoxyCodeLine{00060\ \ \ \ \ std::vector<std::function<void()>>\ m\_onActivateFunctions;}
-\DoxyCodeLine{00061\ \};\ \textcolor{comment}{//\ class\ Scene}}
-\DoxyCodeLine{00062\ }
-\DoxyCodeLine{00066\ \textcolor{keyword}{template}\ <EntityType\ T>}
-\DoxyCodeLine{00067\ std::shared\_ptr<T>\ \mbox{\hyperlink{classba_1_1Scene_ad084160e442a5c69372f9b5c1670f0ff}{Scene::createCustomEntity}}()\ \{}
-\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordflow}{return}\ std::make\_shared<T>(\&m\_CONTEXT);}
-\DoxyCodeLine{00069\ \}}
-\DoxyCodeLine{00070\ }
-\DoxyCodeLine{00071\ \}\ \textcolor{comment}{//\ namespace\ ba}}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{comment}{//\ virtual\ void\ setReesourceManager(ResourceManager*\ rm);}}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ setWarehouse(\mbox{\hyperlink{classba_1_1Resources_1_1Warehouse}{ba::Resources::Warehouse}}*\ warehouse);}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ setSceneManager(\mbox{\hyperlink{classba_1_1SceneManager}{SceneManager}}*\ sm);}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ setSwitchTo(IDtype\ sceneID);}
+\DoxyCodeLine{00052\ \ \ \ \ IDtype\ getSWitchTo()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00053\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{structba_1_1SharedContext}{SharedContext}}\ m\_CONTEXT;}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{classba_1_1SceneManager}{SceneManager}}*\ m\_sceneManager\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00057\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00058\ \ \ \ \ IDtype\ \ \ \ \ \ m\_switchTo\{\};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ std::vector<std::function<void()>>\ m\_onCreateFunctions;}
+\DoxyCodeLine{00061\ \ \ \ \ std::vector<std::function<void()>>\ m\_onActivateFunctions;}
+\DoxyCodeLine{00062\ \};\ \textcolor{comment}{//\ class\ Scene}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00067\ \textcolor{keyword}{template}\ <EntityType\ T>}
+\DoxyCodeLine{00068\ std::shared\_ptr<T>\ \mbox{\hyperlink{classba_1_1Scene_ad084160e442a5c69372f9b5c1670f0ff}{Scene::createCustomEntity}}()\ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordflow}{return}\ std::make\_shared<T>(\&m\_CONTEXT);}
+\DoxyCodeLine{00070\ \}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \}\ \textcolor{comment}{//\ namespace\ ba}}
 
 \end{DoxyCode}

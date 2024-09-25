@@ -5,14 +5,14 @@
 \DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
 \DoxyCodeLine{00002\ }
 \DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <list>}}
-\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <BA/ResourceManager.hpp>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <BA/Resources/ResourceManager.hpp>}}
 \DoxyCodeLine{00005\ }
 \DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }ba\ \{}
 \DoxyCodeLine{00007\ }
 \DoxyCodeLine{00008\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classba_1_1MusicPlayer}{MusicPlayer}}\ \{}
 \DoxyCodeLine{00009\ \textcolor{keyword}{public}:}
 \DoxyCodeLine{00010\ \ \ \ \ \mbox{\hyperlink{classba_1_1MusicPlayer}{MusicPlayer}}();}
-\DoxyCodeLine{00011\ \ \ \ \ \mbox{\hyperlink{classba_1_1MusicPlayer}{MusicPlayer}}(\mbox{\hyperlink{classba_1_1ResourceManager}{ResourceManager}}*\ resources);}
+\DoxyCodeLine{00011\ \ \ \ \ \mbox{\hyperlink{classba_1_1MusicPlayer}{MusicPlayer}}(\mbox{\hyperlink{classba_1_1Resources_1_1ResourceManager}{ba::Resources::MusicManager}}*\ resources);}
 \DoxyCodeLine{00012\ }
 \DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordtype}{void}\ update();}
 \DoxyCodeLine{00014\ }
@@ -34,7 +34,7 @@
 \DoxyCodeLine{00030\ }
 \DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{void}\ clearMusicList();}
 \DoxyCodeLine{00032\ }
-\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{void}\ setResourceManager(\mbox{\hyperlink{classba_1_1ResourceManager}{ResourceManager}}*\ rm);}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{void}\ setMusicManager(\mbox{\hyperlink{classba_1_1Resources_1_1ResourceManager}{ba::Resources::MusicManager}}*\ mm);}
 \DoxyCodeLine{00034\ \textcolor{keyword}{private}:}
 \DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{void}\ incrementIterator();}
 \DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{void}\ decrementIterator();}
@@ -45,7 +45,7 @@
 \DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_playing\ =\ \textcolor{keyword}{false};}
 \DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_looping\ =\ \textcolor{keyword}{false};}
 \DoxyCodeLine{00043\ }
-\DoxyCodeLine{00044\ \ \ \ \ \mbox{\hyperlink{classba_1_1ResourceManager}{ResourceManager}}*\ \ \ \ \ \ \ \ \ \ \ \ \ m\_resources\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00044\ \ \ \ \ \mbox{\hyperlink{classba_1_1Resources_1_1ResourceManager}{ba::Resources::MusicManager}}*\ m\_musicManager\ =\ \textcolor{keyword}{nullptr};}
 \DoxyCodeLine{00045\ \};\ \textcolor{comment}{//\ class\ MusicPlayer}}
 \DoxyCodeLine{00046\ }
 \DoxyCodeLine{00047\ \}\ \textcolor{comment}{//\ namespace\ ba}}

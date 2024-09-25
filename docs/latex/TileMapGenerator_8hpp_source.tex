@@ -20,74 +20,73 @@
 \DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}BA/Components/Sprite.hpp"{}}}
 \DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}BA/Components/Colliders/BoxCollider.hpp"{}}}
 \DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ "{}BA/Entities/Entity.hpp"{}}}
-\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ "{}BA/ResourceManager.hpp"{}}}
-\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ "{}BA/Utilities/Vector2.hpp"{}}}
-\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}BA/Utilities/Rect.hpp"{}}}
-\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}BA/Types.hpp"{}}}
-\DoxyCodeLine{00023\ }
-\DoxyCodeLine{00024\ \textcolor{keyword}{namespace\ }ba\ \{}
-\DoxyCodeLine{00025\ }
-\DoxyCodeLine{00026\ \textcolor{keyword}{namespace\ }generator\ \{}
-\DoxyCodeLine{00027\ }
-\DoxyCodeLine{00028\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structba_1_1generator_1_1TileData}{TileData}}\ \{}
-\DoxyCodeLine{00029\ \ \ \ \ IDtype\ \ \ \ \ \ gid;}
-\DoxyCodeLine{00030\ \ \ \ \ IDtype\ \ \ \ \ \ textureID;}
-\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{classba_1_1Rect}{IntRect}}\ \ textureRect;}
-\DoxyCodeLine{00032\ \};\ \textcolor{comment}{//\ struct\ TileData}}
-\DoxyCodeLine{00033\ }
-\DoxyCodeLine{00034\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structba_1_1generator_1_1TileInfo}{TileInfo}}\ \{}
-\DoxyCodeLine{00035\ \ \ \ \ IDtype\ \ \ \ \ \ gid;}
-\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{classba_1_1Vector2}{Vector2i}}\ \ \ \ pos;}
-\DoxyCodeLine{00037\ \};\ \textcolor{comment}{//\ struct\ TileInfo}}
-\DoxyCodeLine{00038\ }
-\DoxyCodeLine{00039\ \textcolor{comment}{//\ using\ TileSet\ =\ std::unordered\_map<IDtype,\ TileData>;}}
-\DoxyCodeLine{00040\ }
-\DoxyCodeLine{00041\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classba_1_1generator_1_1TileMapGenerator}{TileMapGenerator}}\ \{}
-\DoxyCodeLine{00042\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{classba_1_1generator_1_1TileMapGenerator}{TileMapGenerator}}();}
-\DoxyCodeLine{00044\ \ \ \ \ \mbox{\hyperlink{classba_1_1generator_1_1TileMapGenerator}{TileMapGenerator}}(\mbox{\hyperlink{structba_1_1SharedContext}{SharedContext}}*\ context);}
-\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{classba_1_1generator_1_1TileMapGenerator}{TileMapGenerator}}(\mbox{\hyperlink{classba_1_1generator_1_1TileMapGenerator}{TileMapGenerator}}\&)\ =\ \textcolor{keyword}{delete};}
-\DoxyCodeLine{00046\ }
-\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{classba_1_1generator_1_1TileMapGenerator}{TileMapGenerator}}\&\ operator=(\mbox{\hyperlink{classba_1_1generator_1_1TileMapGenerator}{TileMapGenerator}}\&)\ =\ \textcolor{keyword}{delete};}
-\DoxyCodeLine{00048\ }
-\DoxyCodeLine{00049\ \textcolor{keyword}{public}:\ \textcolor{comment}{//\ METHODS}}
-\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{void}\ setContext(\mbox{\hyperlink{structba_1_1SharedContext}{SharedContext}}*\ res);}
-\DoxyCodeLine{00051\ }
-\DoxyCodeLine{00052\ \ \ \ \ std::vector<std::shared\_ptr<Entity>>\ generate(\textcolor{keyword}{const}\ std::string\&\ tmxFile,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}}\&\ textureScale\ =\ \{1.f,\ 1.f\},\ \mbox{\hyperlink{structba_1_1SharedContext}{SharedContext}}*\ context\ =\ \textcolor{keyword}{nullptr});}
-\DoxyCodeLine{00053\ }
-\DoxyCodeLine{00054\ \textcolor{keyword}{private}:\ \textcolor{comment}{//\ HELPERS}}
-\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{void}\ generateTilesets(\textcolor{keywordtype}{long}\ firstgid,\ \textcolor{keyword}{const}\ std::string\&\ source);}
-\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{tinyxml2::XMLDocument}}*\ getXML(\textcolor{keyword}{const}\ std::string\&\ source);}
-\DoxyCodeLine{00057\ \ \ \ \ IDtype\ loadXML(\textcolor{keyword}{const}\ std::string\&\ source);}
-\DoxyCodeLine{00058\ }
-\DoxyCodeLine{00059\ \ \ \ \ std::vector<TileInfo>\ getLayerInfo(\mbox{\hyperlink{classtinyxml2_1_1XMLElement}{tinyxml2::XMLElement}}*\ dataNode,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2i}}\&\ LAYER\_AREA)\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00060\ }
-\DoxyCodeLine{00061\ \ \ \ \ \textcolor{comment}{//\ void\ freeUsedTextures();\ TODO:}}
-\DoxyCodeLine{00062\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00063\ \ \ \ \ std::unordered\_map<IDtype,\ TileData>\ m\_tilesets;}
-\DoxyCodeLine{00064\ \ \ \ \ \textcolor{comment}{//\ Vector2f\ m\_scale\{0.f,\ 0.f\};}}
-\DoxyCodeLine{00065\ \ \ \ \ \textcolor{comment}{//\ const\ std::string\&\ tmxFile;}}
-\DoxyCodeLine{00066\ }
-\DoxyCodeLine{00067\ \ \ \ \ std::vector<std::shared\_ptr<Entity>>\ m\_createdTileMaps;}
-\DoxyCodeLine{00068\ }
-\DoxyCodeLine{00069\ \ \ \ \ std::set<IDtype>\ m\_textureIDs;}
-\DoxyCodeLine{00070\ \ \ \ \ std::set<IDtype>\ m\_xmlIDs;}
-\DoxyCodeLine{00071\ \ \ \ \ std::unordered\_map<std::string,\ IDtype>\ m\_sourceIdMap;}
-\DoxyCodeLine{00072\ \ \ \ \ std::unordered\_map<std::string,\ IDtype>\ m\_texSrcIdMap;}
-\DoxyCodeLine{00073\ \ \ \ \ \mbox{\hyperlink{structba_1_1SharedContext}{ba::SharedContext}}*\ mp\_context\ =\ \textcolor{keyword}{nullptr};}
-\DoxyCodeLine{00074\ \ \ \ \ \mbox{\hyperlink{classba_1_1ResourceManager}{ba::ResourceManager}}*\ mp\_resources\ =\ \textcolor{keyword}{nullptr};}
-\DoxyCodeLine{00075\ \};}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ "{}BA/Utilities/Vector2.hpp"{}}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ "{}BA/Utilities/Rect.hpp"{}}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}BA/Types.hpp"{}}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{namespace\ }ba\ \{}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{namespace\ }generator\ \{}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structba_1_1generator_1_1TileData}{TileData}}\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ IDtype\ \ \ \ \ \ gid;}
+\DoxyCodeLine{00029\ \ \ \ \ IDtype\ \ \ \ \ \ textureID;}
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{classba_1_1Rect}{IntRect}}\ \ textureRect;}
+\DoxyCodeLine{00031\ \};\ \textcolor{comment}{//\ struct\ TileData}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structba_1_1generator_1_1TileInfo}{TileInfo}}\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ IDtype\ \ \ \ \ \ gid;}
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{classba_1_1Vector2}{Vector2i}}\ \ \ \ pos;}
+\DoxyCodeLine{00036\ \};\ \textcolor{comment}{//\ struct\ TileInfo}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{comment}{//\ using\ TileSet\ =\ std::unordered\_map<IDtype,\ TileData>;}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classba_1_1generator_1_1TileMapGenerator}{TileMapGenerator}}\ \{}
+\DoxyCodeLine{00041\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{classba_1_1generator_1_1TileMapGenerator}{TileMapGenerator}}();}
+\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{classba_1_1generator_1_1TileMapGenerator}{TileMapGenerator}}(\mbox{\hyperlink{structba_1_1SharedContext}{SharedContext}}*\ context);}
+\DoxyCodeLine{00044\ \ \ \ \ \mbox{\hyperlink{classba_1_1generator_1_1TileMapGenerator}{TileMapGenerator}}(\mbox{\hyperlink{classba_1_1generator_1_1TileMapGenerator}{TileMapGenerator}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{classba_1_1generator_1_1TileMapGenerator}{TileMapGenerator}}\&\ operator=(\mbox{\hyperlink{classba_1_1generator_1_1TileMapGenerator}{TileMapGenerator}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{keyword}{public}:\ \textcolor{comment}{//\ METHODS}}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{void}\ setContext(\mbox{\hyperlink{structba_1_1SharedContext}{SharedContext}}*\ res);}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ std::vector<std::shared\_ptr<Entity>>\ generate(\textcolor{keyword}{const}\ std::string\&\ tmxFile,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2f}}\&\ textureScale\ =\ \{1.f,\ 1.f\},\ \mbox{\hyperlink{structba_1_1SharedContext}{SharedContext}}*\ context\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{keyword}{private}:\ \textcolor{comment}{//\ HELPERS}}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{void}\ generateTilesets(\textcolor{keywordtype}{long}\ firstgid,\ \textcolor{keyword}{const}\ std::string\&\ source);}
+\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{tinyxml2::XMLDocument}}\&\ getXML(\textcolor{keyword}{const}\ std::string\&\ source);}
+\DoxyCodeLine{00056\ \ \ \ \ IDtype\ loadXML(\textcolor{keyword}{const}\ std::string\&\ source);}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ std::vector<TileInfo>\ getLayerInfo(\mbox{\hyperlink{classtinyxml2_1_1XMLElement}{tinyxml2::XMLElement}}*\ dataNode,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classba_1_1Vector2}{Vector2i}}\&\ LAYER\_AREA)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{comment}{//\ void\ freeUsedTextures();\ TODO:}}
+\DoxyCodeLine{00061\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00062\ \ \ \ \ std::unordered\_map<IDtype,\ TileData>\ m\_tilesets;}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{comment}{//\ Vector2f\ m\_scale\{0.f,\ 0.f\};}}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{comment}{//\ const\ std::string\&\ tmxFile;}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ std::vector<std::shared\_ptr<Entity>>\ m\_createdTileMaps;}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ std::set<IDtype>\ m\_textureIDs;}
+\DoxyCodeLine{00069\ \ \ \ \ std::set<IDtype>\ m\_xmlIDs;}
+\DoxyCodeLine{00070\ \ \ \ \ std::unordered\_map<std::string,\ IDtype>\ m\_sourceIdMap;}
+\DoxyCodeLine{00071\ \ \ \ \ std::unordered\_map<std::string,\ IDtype>\ m\_texSrcIdMap;}
+\DoxyCodeLine{00072\ \ \ \ \ \mbox{\hyperlink{structba_1_1SharedContext}{ba::SharedContext}}*\ mp\_context\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{comment}{//\ ba::ResourceManager*\ mp\_resources\ =\ nullptr;}}
+\DoxyCodeLine{00074\ \};}
+\DoxyCodeLine{00075\ }
 \DoxyCodeLine{00076\ }
 \DoxyCodeLine{00077\ }
-\DoxyCodeLine{00078\ }
-\DoxyCodeLine{00079\ \textcolor{comment}{//\ std::vector<std::shared\_ptr<Entity>>\ parseMap(const\ std::string\&\ tmxFileName,\ const\ Vector2f\&\ SCALE,\ SharedContext*\ const\ context);}}
-\DoxyCodeLine{00080\ }
-\DoxyCodeLine{00081\ \textcolor{comment}{//\ std::vector<std::pair<int,\ Vector2f>>\ getObjects(const\ std::string\&\ tmxFileName,\ ResourceManager*\ const\ resources);}}
-\DoxyCodeLine{00082\ }
-\DoxyCodeLine{00083\ \textcolor{comment}{//\ TileSet\ generateTileSet(int\ firstgid,\ const\ std::string\&\ tsxFile,\ ResourceManager*\ const\ resources);}}
-\DoxyCodeLine{00084\ }
-\DoxyCodeLine{00085\ \}\ \textcolor{comment}{//\ namespace\ generator}}
-\DoxyCodeLine{00086\ }
-\DoxyCodeLine{00087\ \}\ \textcolor{comment}{//\ namespace\ ba}}
+\DoxyCodeLine{00078\ \textcolor{comment}{//\ std::vector<std::shared\_ptr<Entity>>\ parseMap(const\ std::string\&\ tmxFileName,\ const\ Vector2f\&\ SCALE,\ SharedContext*\ const\ context);}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \textcolor{comment}{//\ std::vector<std::pair<int,\ Vector2f>>\ getObjects(const\ std::string\&\ tmxFileName,\ ResourceManager*\ const\ resources);}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \textcolor{comment}{//\ TileSet\ generateTileSet(int\ firstgid,\ const\ std::string\&\ tsxFile,\ ResourceManager*\ const\ resources);}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \}\ \textcolor{comment}{//\ namespace\ generator}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \}\ \textcolor{comment}{//\ namespace\ ba}}
 
 \end{DoxyCode}
