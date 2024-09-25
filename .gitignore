@@ -12,6 +12,7 @@ build/
 mingw-build/
 build-mingw/
 html/
+latex/
 .zig-cache/
 zig-out/
 
