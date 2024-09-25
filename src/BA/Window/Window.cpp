@@ -89,7 +89,7 @@ void Window::useViewFromLayer(IDtype renderLayer) {
 void Window::setView(const View& view) {
 	m_currentView = view;
 	SDL_Rect rect = m_currentView.getViewport().toSDL_Rect();
-	int err = SDL_RenderSetViewport(globalRenderer, &rect);
+	SDL_RenderSetViewport(globalRenderer, &rect);
 }
 
 void Window::setLayerView(IDtype LAYER, const View& newView) {

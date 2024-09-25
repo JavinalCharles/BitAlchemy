@@ -146,9 +146,6 @@ private: // Attributes
 
 	SDL_Window* 	m_window = nullptr;
 
-	// View			m_defaultView{{0.f, 0.f, DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT}};
-	// View 			m_view{{0.f, 0.f, DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT}};
-
 	std::map<IDtype, View> m_views{{DEFAULT_RENDER_LAYER, View(m_dimension)}};
 	View m_currentView = m_views.at(DEFAULT_RENDER_LAYER);
 

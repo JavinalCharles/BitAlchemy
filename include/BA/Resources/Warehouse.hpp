@@ -33,13 +33,14 @@ namespace Resources {
 		template <ValidResourceManager RM>
 		RM& getManager();
 
+		void clear();
 	private:
 		std::unordered_map<std::type_index, std::unique_ptr<PathFinder>> m_managers;
 	}; // class Warehouse
 
 	template <ValidResourceManager RM>
 	RM& Warehouse::includeResourceManager() {
-		std::type_index index(typeid(typename RM::Resource));
+		std::type_index index(typeid(RM));
 
 		if (!m_managers.contains(index)) {
 			m_managers.emplace(index, std::make_unique<RM>());
@@ -50,7 +51,7 @@ namespace Resources {
 
 	template <ValidResourceManager RM>
 	RM& Warehouse::getManager() {
-		std::type_index index(typeid(typename RM::Resource));
+		std::type_index index(typeid(RM));
 
 		if (!m_managers.contains(index)) {
 			m_managers.emplace(index, std::make_unique<RM>());

@@ -55,9 +55,15 @@ IDtype Sprite::loadTextureFromFile(const std::string& fileName) {
 }
 
 void Sprite::setTexture(IDtype textureID) {
+	if (textureID == 0) {
+		std::cout << "Sprite texture being set to 0. Ignored" << std::endl;
+		return; 
+	}
 	SDL_Texture* textureObj = getOwner()->CONTEXT->warehouse->getManager<TextureManager>().at(textureID).get();
-	if(textureObj == nullptr)
-		throw std::invalid_argument("Invalid. Non-existent texture ID given,");
+	if(textureObj == nullptr) {
+		std::cout << "Sprite's new texture turned out to be nullptr. Ignored." << std::endl;
+	}
+
 	m_textureID = textureID;
 
 	//

@@ -119,6 +119,9 @@ namespace Resources {
 		std::vector<fs::path> findAllFiles(const std::string& filePath) const;
 		std::vector<fs::path> findAllFiles(const fs::path& filePath) const;
 		///@}
+
+		/// @brief clears up all the paths associated with this PathFinder.
+		virtual void clear();
 	protected:
 		/// @brief search paths associated with this PathFinder instance.
 		std::vector<fs::path>			m_paths;
