@@ -57,12 +57,13 @@ public:
 	 *
 	 * @param context sets the public attribute Entity::CONTEXT.
 	**/
-	Entity(const SharedContext* context);
+	explicit Entity(const SharedContext* context);
 
-	/**
-	 * awake()
-	 * Use to ensure that all components are present and all attributes are initialized.
-	*/
+	Entity(const Entity& entity) = delete;
+	Entity(Entity&& entity) = delete;
+
+	Entity& operator=(const Entity& rhs) = delete;
+	Entity& operator=(Entity&& rhs) = delete;
 
 	/**
 	 * @brief Use to ensure that all components and their attributes are

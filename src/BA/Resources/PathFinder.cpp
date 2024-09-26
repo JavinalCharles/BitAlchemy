@@ -17,29 +17,36 @@ int PathFinder::addPath(const std::string& p) {
 
 int PathFinder::addPath(const fs::path& p) {
 	std::error_code ec;
+	int found = 0;
 
-	if (p.is_relative()) {
-		int found = 0;
+	if (p.is_relative()) [[likely]] {
 		for (const fs::path& cp : s_commonPaths) {
 			fs::path canonP(cp / p);
-			if (fs::exists(canonP, ec)) {
-				found += addPath(canonP);
+			if (fs::exists(canonP, ec) && fs::is_directory(canonP, ec)) {
+				try {
+					m_paths.push_back(canonP);
+				}
+				catch (const std::exception& e) {
+					continue;
+				}
+				++found;
 			}
 		}
 		if (found == 0) {
 			std::cerr << "PathFinder encounters a relative path that is not a subpath of current directory or a subpath of any common search paths:" << p << std::endl;
 		}
 		return found;
+	} // else if p is an absolute path.
+	else if (fs::exists(p, ec) && fs::is_directory(p, ec)) {
+		++found;
+		try {
+			m_paths.push_back(p);
+		}
+		catch (const std::exception& e) {
+			--found;
+		}
 	}
-
-	try {
-		m_paths.push_back(p);
-	}
-	catch (const std::exception& e) {
-		std::cerr << "PathFinder encountered an unknown error while adding path to search path: " << p.c_str() << std::endl;
-		return false;
-	}
-	return true;
+	return found;
 }
 
 bool PathFinder::addCommonPath(const std::string& p) {
@@ -49,17 +56,26 @@ bool PathFinder::addCommonPath(const std::string& p) {
 bool PathFinder::addCommonPath(const fs::path& p) {
 	std::error_code ec;
 	if (p.is_relative()) {
-		fs::path absoluteP(fs::absolute(p, ec));
+		fs::path absoluteP(fs::canonical(p, ec));
 		if (ec.value() != 0) {
 			std::cerr << "Pathfinder encountered a relative path that cannot convert to absolute: " << p.c_str() << std::endl;
 			std::cerr << "Error: " << ec.message() << std::endl;
 			return false;
 		}
-		return addCommonPath(absoluteP);
+		try {
+			s_commonPaths.push_back(absoluteP);
+		}
+		catch (const std::exception& e) {
+			return false;
+		}
+		return true;
 	}
 
 	if (!fs::exists(p, ec) || !fs::is_directory(p, ec) ) {
-		std::cerr << "PathFinder::addCommonPath(); Could not add path: \"" << p.c_str() << "\". Either path does not exists or is not a directory." << std::endl;
+		std::cerr << "PathFinder error. Absolute paths must lead to an existing directory.\npath: " << p << std::endl;
+		if (ec.value() != 0) {
+			std::cerr << ec.message() << std::endl;
+		}
 		return false;
 	}
 
@@ -67,7 +83,8 @@ bool PathFinder::addCommonPath(const fs::path& p) {
 		s_commonPaths.push_back(p);
 	}
 	catch (const std::exception& e) {
-		std::cerr << "PathFinder encountered an unknown error while adding path to common search paths: " << p.c_str() << std::endl;
+		std::cerr << "PathFinder caught an exception." << std::endl;
+		std::cerr << e.what() << std::endl;
 		return false;
 	}
 
@@ -79,10 +96,11 @@ std::optional<fs::path> PathFinder::findFile(const std::string& filePath) const 
 }
 
 std::optional<fs::path> PathFinder::findFile(const fs::path& filePath) const {
-	std::error_code ec;
 	if (!filePath.has_filename()) {
 		return std::nullopt;
 	}
+
+	std::error_code ec;
 
 	if (filePath.is_absolute()) {
 		if (fs::exists(filePath, ec)) {
@@ -113,15 +131,22 @@ std::vector<fs::path> PathFinder::findAllFiles(const std::string& filePath) cons
 }
 
 std::vector<fs::path> PathFinder::findAllFiles(const fs::path& filePath) const {
-	std::error_code ec;
 	std::vector<fs::path> found;
 	if (!filePath.has_filename()) {
 		return found;
 	}
 
+	std::error_code ec;
+
 	if (filePath.is_absolute()) {
 		if (fs::exists(filePath, ec)) {
-			found.push_back(filePath);
+			try {
+				found.push_back(filePath);
+			}
+			catch (std::exception& e) {
+				std::cerr << "PathFinder caught an exception." << std::endl;
+				std::cerr << e.what() << std::endl;
+			}
 		}
 		return found;
 	}
@@ -129,14 +154,26 @@ std::vector<fs::path> PathFinder::findAllFiles(const fs::path& filePath) const {
 	for (const fs::path& path : m_paths) {
 		fs::path joined(path / filePath);
 		if (fs::exists(joined, ec)) {
-			found.push_back(joined);
+			try {
+				found.push_back(joined);
+			}
+			catch (const std::exception& e) {
+				std::cerr << "PathFinder caught an exception." << std::endl;
+				std::cerr << e.what() << std::endl;
+			}
 		}
 	}
 
 	for (const fs::path& path : s_commonPaths) {
 		fs::path joined(path / filePath);
 		if (fs::exists(joined, ec)) {
-			found.push_back(joined);
+			try {
+				found.push_back(joined);
+			}
+			catch (const std::exception& e) {
+				std::cerr << "PathFinder caught an exception." << std::endl;
+				std::cerr << e.what() << std::endl;
+			}
 		}
 	}
 

@@ -9,7 +9,7 @@ Entity::Entity(const ba::SharedContext* context) :
 	ID(ba::Entity::count++),
 	CONTEXT(context)
 {
-
+	// debug << "Entity " << ID << " created." << std::endl;
 }
 
 void Entity::awake() {

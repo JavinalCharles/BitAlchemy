@@ -137,9 +137,18 @@ void TileMapGenerator::generateTilesets(long firstgid, const std::string& source
 	const char* imgWAttr = imgNode->Attribute("width");
 	const char* imgHAttr = imgNode->Attribute("height");
 	if ((srcAttr && imgHAttr && imgWAttr) == false) {
+		debug << "Tileset file have some missing values." << std::endl;
 		throw INVALID_TSX(source);
 	}
-	const IDtype TEXTURE_ID = mp_context->warehouse->getManager<TextureManager>().create(std::string(srcAttr));
+	TextureManager& textures = mp_context->warehouse->getManager<TextureManager>();
+	std::optional<path> src = textures.findFile(path(srcAttr));
+
+	if (!src.has_value()) {
+		debug << "TileMapGenerator is unable to find tileset image src: " << srcAttr << std::endl;
+		throw INVALID_TSX(source);
+	}
+
+	const IDtype TEXTURE_ID = textures.create(src.value());
 	m_textureIDs.insert(TEXTURE_ID);
 
 	const int COLUMNS = std::atoi(columnAttr);
@@ -178,8 +187,14 @@ XMLDocument& TileMapGenerator::getXML(const std::string& xmlFile) {
 
 IDtype TileMapGenerator::loadXML(const std::string& xmlFile) {
 	XMLManager& xmlManager = mp_context->warehouse->getManager<XMLManager>();
+	std::optional<path> xmlpath = xmlManager.findFile(path(xmlFile));
+	if (!xmlpath.has_value()) {
+		debug << "Unable to load xml file: " << xmlFile.c_str() << std::endl;
+		throw INVALID_TMX(xmlFile);
+	}
+
 	const IDtype id = xmlManager.create();
-	xmlManager.at(id).LoadFile(xmlFile.c_str());
+	xmlManager.at(id).LoadFile(xmlpath.value().c_str());
 	m_sourceIdMap.insert_or_assign(xmlFile, id);
 	m_xmlIDs.insert(id);
 	return id;

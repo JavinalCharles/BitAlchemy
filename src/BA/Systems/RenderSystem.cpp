@@ -5,6 +5,20 @@
 
 namespace ba {
 
+RenderSystem::objectData::objectData(IDtype id, const std::weak_ptr<Drawable>& newPtr) :
+	ID(id),
+	ptr(newPtr)
+{
+
+}
+
+RenderSystem::staticObjectData::staticObjectData(IDtype id, int32 newOrder, const std::weak_ptr<Drawable>& newPtr) :
+	objectData(id, newPtr),
+	order(newOrder)
+{
+
+}
+
 RenderSystem::RenderSystem(EntityManager* entities) :
 	m_entities(entities)
 {
@@ -25,51 +39,93 @@ void RenderSystem::add(std::shared_ptr<Entity> entity) {
 	const bool IS_STATIC = entity->isStatic();
 	const IDtype DRAW_LAYER = drawable->getDrawLayer();
 	const IDtype ENTITY_ID = entity->ID;
-
-	if (!m_drawables.contains(DRAW_LAYER)) {
-		m_drawables.emplace(DRAW_LAYER,
-			std::make_pair(std::vector<IDtype>(), std::vector<IDtype>())
-		);
-		m_drawables.try_emplace(DRAW_LAYER);
-	}
+	const int32 ORDER = drawable->getSortOrder();
 
 	if (IS_STATIC) {
-		m_drawables.at(DRAW_LAYER).first.push_back(ENTITY_ID);
-		if (!m_staticEntitiesAdded) {
-			m_staticEntitiesAdded = true;
+		auto result = m_statics.try_emplace(DRAW_LAYER);
+
+		std::vector<staticObjectData>& v = result.first->second;
+		const std::size_t N = v.size();
+
+		if (N == 0 || ORDER <+ v[0].order) {
+			v.emplace(v.begin() ,ENTITY_ID, ORDER, std::weak_ptr<Drawable>(drawable));
+		}
+		else if (v[N-1].order <= ORDER ) {
+			v.emplace_back(ENTITY_ID, ORDER, std::weak_ptr<Drawable>(drawable));
+		}
+		else {
+			// Using binary search to find the first index
+			// where v[i].order >= ORDER.
+			std::size_t lo = 0u;
+			std::size_t hi = v.size() - 1;
+
+			while (lo < hi) {
+				std::size_t mi = lo + ((hi - lo) >> 1);
+				if (v[mi].order < ORDER) {
+					lo = mi + 1;
+				}
+				else {
+					hi = mi;
+				}
+			}
+			v.emplace(v.begin() + lo, ENTITY_ID, ORDER, std::weak_ptr<Drawable>(drawable));
 		}
 	}
 	else {
-		m_drawables.at(DRAW_LAYER).second.push_back((ENTITY_ID));
+		// Moveables are sorted every frame anyway.
+		auto result = m_moveables.try_emplace(DRAW_LAYER);
+		result.first->second.emplace_back(ENTITY_ID, std::weak_ptr<Drawable>(drawable));;
 	}
 }
 
 void RenderSystem::remove(IDtype entityID) {
 	auto entity = m_entities->at(entityID);
-	if (entity == nullptr) {
-		// Unlikely to happen.
-		// Entity somehow already deleted.
-		// Erase via brute-force approach.
-		for (auto& [LAYER_ID, P] : m_drawables) {
-			std::erase(P.first, entityID);
-			std::erase(P.second, entityID);
+	if (entity == nullptr || entity->getDrawable() == nullptr) {
+		for (auto& [LAYER_ID, v] : m_moveables) {
+			for (auto iter = v.begin(); iter != v.end(); ++iter) {
+				if (iter->ID == entityID) {
+					v.erase(iter);
+					return;
+				}
+			}
+		}
+		for (auto& [LAYER_ID, v] : m_statics) {
+			for(auto iter = v.begin(); iter != v.end(); ++iter) {
+				if (iter->ID == entityID) {
+					v.erase(iter);
+					return;
+				}
+			}
 		}
 		return;
 	}
-	auto drawable = entity->getDrawable();
-	if (drawable == nullptr) {
-		// Entity not deleted, but has no drwable component.
-		// Unlikely to be found here. Just return.
-		return;
-	}
+	std::shared_ptr<Drawable> drawable = entity->getDrawable();
 
+	const bool IS_STATIC = entity->isStatic();
 	const IDtype DRAW_LAYER = drawable->getDrawLayer();
-	if (entity->isStatic()) {
-		std::erase(m_drawables.at(DRAW_LAYER).first, entityID);
+
+	if (IS_STATIC && m_statics.contains(DRAW_LAYER)) {
+		std::vector<staticObjectData>& v = m_statics.at(DRAW_LAYER);
+		for (auto iter = v.begin(); iter != v.end(); ++iter) {
+			if (iter->ID == entityID) {
+				v.erase(iter);
+				return;
+			}
+		}
 	}
-	else {
-		std::erase(m_drawables.at(DRAW_LAYER).second, entityID);
+	else if (m_moveables.contains(DRAW_LAYER)) [[likely]] {
+		std::vector<objectData>& v = m_moveables.at(DRAW_LAYER);
+		for (auto iter = v.begin(); iter != v.end(); ++iter) {
+			if (iter->ID == entityID) {
+				v.erase(iter);
+				return;
+			}
+		}
 	}
+	// Reaching this point means that while the entity does
+	// exists, and does contain a drawable, that entity is
+	// most like not added to this RenderSystem, or that
+	// it was added but later on erased already.
 }
 
 void RenderSystem::update(float) {
@@ -77,58 +133,83 @@ void RenderSystem::update(float) {
 }
 
 void RenderSystem::draw(Window& window) {
-	// debug << "RenderSystem::draw()" << std::endl;
-	for(const auto& [DRAW_LAYER, P] : m_drawables) {
-		// debug << '\t' << DRAW_LAYER << '\n';
-		window.useViewFromLayer(DRAW_LAYER);
+	// Assuming the entities are sorted at this point.
+	auto kons = m_statics.begin();
+	auto vars = m_moveables.begin();
 
-		auto i = P.first.begin();
-		auto j = P.second.begin();
-		auto i_drawable = i != P.first.end() ? m_entities->at(*i)->getDrawable() : nullptr;
-		auto j_drawable = j != P.second.end() ? m_entities->at(*j)->getDrawable() : nullptr;
+	while (kons != m_statics.end() || vars != m_moveables.end()) {
+		if (kons->first == vars->first) { // same keys exists.
+			window.useViewFromLayer(kons->first);
+			const FloatRect VIEWSPACE = window.getCurrentView().getViewSpace();
 
-		while(i != P.first.end() && j != P.second.end()) {
-			if (i_drawable->getSortOrder() <= j_drawable->getSortOrder()) {
-				i_drawable->draw(window);
-				++i;
-				i_drawable = i != P.first.end() ? m_entities->at(*i)->getDrawable() : nullptr;
+			std::queue<std::shared_ptr<Drawable>> konsQueue;
+			std::queue<std::shared_ptr<Drawable>> varsQueue;
+
+			for (const staticObjectData& data : kons->second) {
+				if (!data.ptr.expired()) {
+					std::shared_ptr<Drawable> d = data.ptr.lock();
+					if (VIEWSPACE.intersects(d->getGlobalBounds())) {
+						konsQueue.push(d);
+					}
+				}
 			}
-			else {
-				j_drawable->draw(window);
-				++j;
-				j_drawable = j != P.second.end() ? m_entities->at(*j)->getDrawable() : nullptr;
+			for (const objectData& data : vars->second) {
+				if (!data.ptr.expired()) {
+					std::shared_ptr<Drawable> d = data.ptr.lock();
+					if (VIEWSPACE.intersects(d->getGlobalBounds())) {
+						varsQueue.push(d);
+					}
+				}
 			}
+			while (!konsQueue.empty() && !varsQueue.empty()) {
+				if (konsQueue.front()->getSortOrder() <= varsQueue.front()->getSortOrder()) {
+					konsQueue.front()->draw(window);
+					konsQueue.pop();
+				}
+				else {
+					varsQueue.front()->draw(window);
+					varsQueue.pop();
+				}
+			}
+			std::queue<std::shared_ptr<Drawable>>& remainingQ = konsQueue.empty() ? varsQueue : konsQueue;
+			while (!remainingQ.empty()) {
+				remainingQ.front()->draw(window);
+				remainingQ.pop();
+			}
+			kons++;
+			vars++;
 		}
-		while (i != P.first.end()) {
-			i_drawable->draw(window);
-			++i;
-			i_drawable = i != P.first.end() ? m_entities->at(*i)->getDrawable() : nullptr;
+		else if (kons->first < vars->first) { // statics turn
+			window.useViewFromLayer(kons->first);
+			const FloatRect VIEWSPACE = window.getCurrentView().getViewSpace();
+			for (const staticObjectData& data : kons->second) {
+				if (!data.ptr.expired()) {
+					std::shared_ptr<Drawable> d = data.ptr.lock();
+					if (VIEWSPACE.intersects(d->getGlobalBounds())) {
+						d->draw(window);
+					}
+				}
+			}
+			kons++;
 		}
-		while (j != P.second.end()) {
-			j_drawable->draw(window);
-				++j;
-				j_drawable = j != P.second.end() ? m_entities->at(*j)->getDrawable() : nullptr;
+		else {
+			window.useViewFromLayer(vars->first);
+			const FloatRect VIEWSPACE = window.getCurrentView().getViewSpace();
+			for (const objectData& data : vars->second) {
+				if (!data.ptr.expired()) {
+					std::shared_ptr<Drawable> d = data.ptr.lock();
+					if (VIEWSPACE.intersects(d->getGlobalBounds())) {
+						d->draw(window);
+					}
+				}
+			}
+			vars++;
 		}
 	}
 }
 
 void RenderSystem::sort() {
-	EntityManager* entities = m_entities;
-	auto layerSort = [entities](IDtype a, IDtype b) -> bool {
-		return entities->at(a)->getDrawable()->getSortOrder() < entities->at(b)->getDrawable()->getSortOrder();
-	};
-
-	for (auto& [LAYER, P] : m_drawables) {
-		if (m_staticEntitiesAdded && !std::is_sorted(P.first.begin(), P.second.end(), layerSort)) {
-			std::sort(P.first.begin(), P.first.end(), layerSort);
-		}
-
-		if (!std::is_sorted(P.second.begin(), P.second.end(), layerSort)) {
-			std::sort(P.second.begin(), P.second.end(), layerSort);
-		}
-	}
-	if (m_staticEntitiesAdded) 
-		m_staticEntitiesAdded = false;
+	
 }
 
 

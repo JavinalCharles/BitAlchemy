@@ -2,7 +2,7 @@
 
 #include <memory>
 #include <map>
-#include <set>
+#include <queue>
 #include <BA/Components/Drawable.hpp>
 #include <BA/Entities/Entity.hpp>
 #include <BA/Types.hpp>
@@ -17,6 +17,20 @@ using DrawLayer = IDtype;
 // const IDtype DEFAULT_RENDER_LAYER = 0;
 
 class RenderSystem {
+private:
+	struct objectData {
+		IDtype ID;
+		std::weak_ptr<Drawable> ptr;
+
+		objectData() = delete;
+		objectData(IDtype id, const std::weak_ptr<Drawable>& newPtr = std::weak_ptr<Drawable>());
+	};
+	struct staticObjectData : public objectData {
+		int32 order;
+
+		staticObjectData() = delete;
+		staticObjectData(IDtype id, int32 newOrder, const std::weak_ptr<Drawable>& newPtr = std::weak_ptr<Drawable>());
+	};
 public:
 	explicit RenderSystem(EntityManager* entities);
 
@@ -30,16 +44,14 @@ public:
 
 private:
 	void sort();
-
-	void sortStaticEntities();
 private:
-	bool m_staticEntitiesAdded = false;
-	std::map<IDtype, ba::View> m_viewMap;
+	// bool m_staticEntitiesAdded = false;
+	// std::map<IDtype, ba::View> m_viewMap;
 
-	// For each layer in m_drawables:
-	// .first = static entities
-	// .second = non-static entities
-	std::map<DrawLayer, std::pair<std::vector<IDtype>,std::vector<IDtype>>> m_drawables;
+	std::map<DrawLayer, std::vector<staticObjectData>> m_statics;
+	std::map<DrawLayer, std::vector<objectData>> m_moveables;
+
+	// std::queue<std::shared_ptr<Drawable>> m_renderingQ;
 
 	EntityManager* m_entities;
 }; // class RenderSystem
