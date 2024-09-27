@@ -80,10 +80,16 @@ void Window::setDimension(const IntRect& newDimension) {
 }
 
 void Window::useViewFromLayer(IDtype renderLayer) {
-	if (!m_views.contains(renderLayer)) {
-		renderLayer = DEFAULT_RENDER_LAYER;
+	if (renderLayer == DEFAULT_RENDER_LAYER) {
+		useDefaultView();
+
 	}
-	setView(m_views.at(renderLayer));
+	else if (m_views.contains(renderLayer)) {
+		// renderLayer = DEFAULT_RENDER_LAYER;
+		m_currentRenderLayer = renderLayer;
+		setView(m_views.at(renderLayer));
+	}
+	// setView(m_views.at(renderLayer));
 }
 
 void Window::setView(const View& view) {
@@ -319,10 +325,11 @@ const View& Window::getLayerView(IDtype LAYER) const {
 // 	SDL_RenderSetViewport(globalRenderer, &rect);
 // }
 
-// void Window::useDefaultView() {
-// 	m_view = m_defaultView;
-// 	SDL_RenderSetViewport(globalRenderer, nullptr);
-// }
+void Window::useDefaultView() {
+	m_currentView = m_views.at(DEFAULT_RENDER_LAYER);
+	SDL_RenderSetViewport(globalRenderer, nullptr);
+	m_currentRenderLayer = DEFAULT_RENDER_LAYER;
+}
 
 FloatRect Window::getViewSpace() const {
 	return m_currentView.getViewSpace();

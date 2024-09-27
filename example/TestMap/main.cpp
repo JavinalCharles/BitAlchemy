@@ -21,7 +21,7 @@ int main() {
 	// engine.getResourceManager().addToSearchPaths(prefPath);
 	const IntRect WINDOW_DIMENSION(0, 0, 768, 640);
 	engine.getWindow().setDimension(WINDOW_DIMENSION);
-	engine.getWindow().setView(ba::View(WINDOW_DIMENSION));
+	// engine.getWindow().setView(ba::View(WINDOW_DIMENSION));
 	
 	engine.init();
 

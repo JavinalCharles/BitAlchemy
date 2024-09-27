@@ -24,7 +24,7 @@ void RenderSystem::add(std::shared_ptr<Entity> entity) {
 
 	const bool IS_STATIC = entity->isStatic();
 	const IDtype DRAW_LAYER = drawable->getDrawLayer();
-	const IDtype ENTITY_ID = entity->ID;
+	// const IDtype ENTITY_ID = entity->ID;
 	const int32 ORDER = drawable->getSortOrder();
 
 	auto& containerPair = m_drawables.try_emplace(DRAW_LAYER).first->second; // Get the pair of vectors
@@ -93,7 +93,7 @@ void RenderSystem::draw(Window& window) {
 		}
 		else if (containers.second.empty()) { 
 			// first is not empty
-			debug << "Drawing first container." << std::endl;
+			// debug << "Drawing first container." << std::endl;
 			for (std::shared_ptr<Drawable>& drawable : containers.second) {
 				if (VIEWSPACE.intersects(drawable->getGlobalBounds())) {
 					drawable->draw(window);

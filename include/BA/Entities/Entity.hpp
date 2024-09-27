@@ -66,13 +66,6 @@ public:
 	Entity& operator=(Entity&& rhs) = delete;
 
 	/**
-	 * @brief A const pointer that allows access to the game's context.
-	 *
-	**/
-	const ba::SharedContext* CONTEXT;
-
-
-	/**
 	 * @brief Use to ensure that all components and their attributes are
 	 * properly initialized.
 	 *

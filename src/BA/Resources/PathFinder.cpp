@@ -23,6 +23,7 @@ int PathFinder::addPath(const fs::path& p) {
 		for (const fs::path& cp : s_commonPaths) {
 			fs::path canonP(cp / p);
 			if (fs::exists(canonP, ec) && fs::is_directory(canonP, ec)) {
+				std::cout << "PathFinder: New search path added: " << canonP.c_str() << std::endl;
 				try {
 					m_paths.push_back(canonP);
 				}
@@ -39,6 +40,7 @@ int PathFinder::addPath(const fs::path& p) {
 	} // else if p is an absolute path.
 	else if (fs::exists(p, ec) && fs::is_directory(p, ec)) {
 		++found;
+		std::cout << "PathFinder: new search path added: " << p.c_str() << std::endl;
 		try {
 			m_paths.push_back(p);
 		}
@@ -104,6 +106,7 @@ std::optional<fs::path> PathFinder::findFile(const fs::path& filePath) const {
 
 	if (filePath.is_absolute()) {
 		if (fs::exists(filePath, ec)) {
+			// std::cout << "Pathfinder: " << filePath.c_str() << " found." << std::endl;
 			return std::optional<fs::path>(filePath);
 		}
 		return std::nullopt;
@@ -112,6 +115,7 @@ std::optional<fs::path> PathFinder::findFile(const fs::path& filePath) const {
 	for (const fs::path& path : m_paths) {
 		fs::path p(path / filePath);
 		if (fs::exists(p, ec)) {
+			// std::cout << "PathFinder: " << p.c_str() << " found." << std::endl;
 			return std::optional<fs::path>(p);
 		}
 	}
@@ -119,6 +123,7 @@ std::optional<fs::path> PathFinder::findFile(const fs::path& filePath) const {
 	for (const fs::path& path : s_commonPaths) {
 		fs::path p(path / filePath);
 		if (fs::exists(p, ec)) {
+			// std::cout << "PathFinder: " << p.c_str() << " found." << std::endl;
 			return std::optional<fs::path>(p);
 		}
 	}

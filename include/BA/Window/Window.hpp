@@ -95,10 +95,15 @@ public:
 	////////////////////////////////////////////////////////////////////////
 public:
 	/**
-	 * Instructs the window to use the view mapped to the given renderLayer key. The window will be using this view as target for the draw**() methods, until after this method, or setView() is called again.
+	 * Instructs the window to use the view mapped to the given 
+	 * renderLayer key. The window will be using this view as target 
+	 * for the draw**() methods, until after this method, or setView() 
+	 * is called again.
 	 * @param renderLayer the ID of the view used.
 	 * 
-	 * @note If RenderLayer does not exists, the window will revert to using DEFAULT_RENDER_LAYER
+	 * @note If RenderLayer does not exists, then the input will be
+	 * ignored and viewport will not change. Make sure to set the
+	 * proper view per layer in setLayerView() method.
 	 */
 	void useViewFromLayer(IDtype renderLayer = DEFAULT_RENDER_LAYER);
 
@@ -138,6 +143,9 @@ public:
 	// void setView(const View& view, IDtype RenderLayer = DEFAULT_RENDER_LAYER);
 
 	// void useDefaultView();
+	void useDefaultView();
+private:
+
 
 private: // Attributes
 	std::string 	m_title = "BitAlchemy";
@@ -146,6 +154,7 @@ private: // Attributes
 
 	SDL_Window* 	m_window = nullptr;
 
+	IDtype 			m_currentRenderLayer = DEFAULT_RENDER_LAYER;
 	std::map<IDtype, View> m_views{{DEFAULT_RENDER_LAYER, View(m_dimension)}};
 	View m_currentView = m_views.at(DEFAULT_RENDER_LAYER);
 

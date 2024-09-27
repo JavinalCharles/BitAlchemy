@@ -141,14 +141,17 @@ void TileMapGenerator::generateTilesets(long firstgid, const std::string& source
 		throw INVALID_TSX(source);
 	}
 	TextureManager& textures = mp_context->warehouse->getManager<TextureManager>();
+		// debug << "TileMapGenerator querying PathFinder for: " << srcAttr << std::endl;
 	std::optional<path> src = textures.findFile(path(srcAttr));
 
 	if (!src.has_value()) {
-		debug << "TileMapGenerator is unable to find tileset image src: " << srcAttr << std::endl;
+		// debug << "TileMapGenerator is unable to find tileset image src: " << srcAttr << std::endl;
 		throw INVALID_TSX(source);
 	}
+	// debug << "PathFinder returns: " << src.value().c_str() << std::endl;;
 
-	const IDtype TEXTURE_ID = textures.create(src.value());
+	const IDtype TEXTURE_ID = textures.create(src.value().string());
+
 	m_textureIDs.insert(TEXTURE_ID);
 
 	const int COLUMNS = std::atoi(columnAttr);
@@ -176,7 +179,6 @@ void TileMapGenerator::generateTilesets(long firstgid, const std::string& source
 			col = 0;
 		}
 	}
-	
 }
 
 XMLDocument& TileMapGenerator::getXML(const std::string& xmlFile) {
@@ -219,6 +221,7 @@ std::vector<TileInfo> TileMapGenerator::getLayerInfo(XMLElement* dataNode, const
 				GID,
 				Vector2i{col, row}
 			});
+			// debug << "Tile Info created: GID " << tiles.back().gid << " {" << tiles.back().pos.x << ", " << tiles.back().pos.y << "}" << std::endl;
 		}
 		++col;
 		if (col >= LAYER_AREA.y) {

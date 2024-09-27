@@ -17,10 +17,17 @@ BitAlchemySplash::BitAlchemySplash(Window* window, Warehouse* warehouse, SceneMa
 
 }
 
+namespace fs = std::filesystem;
+
 void BitAlchemySplash::onCreate() {
 	ba::Resources::TextureManager& TM = m_CONTEXT.warehouse->getManager<ba::Resources::TextureManager>();
-	m_splashTexID = TM.create("Poweredby_BitAlchemy_Splash.png");
-	m_splashTexture = TM.at(m_splashTexID).get();
+	TM.addPath(std::filesystem::path("Textures"));
+
+	std::optional<fs::path> splashTexture = TM.findFile(fs::path("Poweredby_BitAlchemy_Splash.png"));
+	if (splashTexture.has_value()) {
+		m_splashTexID = TM.create(splashTexture.value().string());
+		m_splashTexture = TM.at(m_splashTexID).get();
+	}
 }
 
 void BitAlchemySplash::onDestroy() {
