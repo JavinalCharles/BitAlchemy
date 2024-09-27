@@ -18,15 +18,6 @@ void Sprite::draw(Window& window) {
 		SDL_Texture* texture = getOwner()->CONTEXT->warehouse->getManager<ba::Resources::TextureManager>().at(m_textureID).get();
 		window.draw(texture, m_textureRect, this->getGlobalBounds(), m_owner->getRotation());
 	}
-
-	// window.drawRect(this->getGlobalBounds(), Color::Yellow);
-
-	// auto collider = getOwner()->getCollider();
-	// if (collider != nullptr) {
-	// 	window.drawRect(collider->getGlobalBounds(), Color::Blue);
-	// }
-
-	// window.drawPoint(getOwner()->getPosition(), Color::Green);
 }
 
 bool Sprite::hasTexture() const {

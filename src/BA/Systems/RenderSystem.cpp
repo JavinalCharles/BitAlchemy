@@ -5,20 +5,6 @@
 
 namespace ba {
 
-RenderSystem::objectData::objectData(IDtype id, const std::weak_ptr<Drawable>& newPtr) :
-	ID(id),
-	ptr(newPtr)
-{
-
-}
-
-RenderSystem::staticObjectData::staticObjectData(IDtype id, int32 newOrder, const std::weak_ptr<Drawable>& newPtr) :
-	objectData(id, newPtr),
-	order(newOrder)
-{
-
-}
-
 RenderSystem::RenderSystem(EntityManager* entities) :
 	m_entities(entities)
 {
@@ -41,169 +27,100 @@ void RenderSystem::add(std::shared_ptr<Entity> entity) {
 	const IDtype ENTITY_ID = entity->ID;
 	const int32 ORDER = drawable->getSortOrder();
 
+	auto& containerPair = m_drawables.try_emplace(DRAW_LAYER).first->second; // Get the pair of vectors
+
 	if (IS_STATIC) {
-		auto result = m_statics.try_emplace(DRAW_LAYER);
+		std::vector<std::shared_ptr<Drawable>>& array = containerPair.first;
+		const std::size_t N = containerPair.first.size();
 
-		std::vector<staticObjectData>& v = result.first->second;
-		const std::size_t N = v.size();
-
-		if (N == 0 || ORDER <+ v[0].order) {
-			v.emplace(v.begin() ,ENTITY_ID, ORDER, std::weak_ptr<Drawable>(drawable));
+		if (N == 0 || ORDER <= array.front()->getSortOrder()) {
+			array.insert(array.begin(), drawable);
 		}
-		else if (v[N-1].order <= ORDER ) {
-			v.emplace_back(ENTITY_ID, ORDER, std::weak_ptr<Drawable>(drawable));
+		else if (array.back()->getSortOrder() <= ORDER) {
+			array.push_back(drawable);
 		}
 		else {
-			// Using binary search to find the first index
-			// where v[i].order >= ORDER.
-			std::size_t lo = 0u;
-			std::size_t hi = v.size() - 1;
+			std::size_t left = 0;
+			std::size_t right = N - 1;
 
-			while (lo < hi) {
-				std::size_t mi = lo + ((hi - lo) >> 1);
-				if (v[mi].order < ORDER) {
-					lo = mi + 1;
+			while (left < right) {
+				std::size_t mid = left + ((right - left) >> 1);
+
+				if (array[left]->getSortOrder() < ORDER) {
+					left = mid + 1;
 				}
 				else {
-					hi = mi;
+					right = mid;
 				}
 			}
-			v.emplace(v.begin() + lo, ENTITY_ID, ORDER, std::weak_ptr<Drawable>(drawable));
+
+			array.insert(array.begin() + left, drawable);
 		}
 	}
-	else {
-		// Moveables are sorted every frame anyway.
-		auto result = m_moveables.try_emplace(DRAW_LAYER);
-		result.first->second.emplace_back(ENTITY_ID, std::weak_ptr<Drawable>(drawable));;
+	else { // NOT IS_STATIC
+		containerPair.second.push_back(drawable);
 	}
 }
 
 void RenderSystem::remove(IDtype entityID) {
 	auto entity = m_entities->at(entityID);
-	if (entity == nullptr || entity->getDrawable() == nullptr) {
-		for (auto& [LAYER_ID, v] : m_moveables) {
-			for (auto iter = v.begin(); iter != v.end(); ++iter) {
-				if (iter->ID == entityID) {
-					v.erase(iter);
-					return;
-				}
-			}
-		}
-		for (auto& [LAYER_ID, v] : m_statics) {
-			for(auto iter = v.begin(); iter != v.end(); ++iter) {
-				if (iter->ID == entityID) {
-					v.erase(iter);
-					return;
-				}
-			}
-		}
-		return;
-	}
-	std::shared_ptr<Drawable> drawable = entity->getDrawable();
 
-	const bool IS_STATIC = entity->isStatic();
-	const IDtype DRAW_LAYER = drawable->getDrawLayer();
-
-	if (IS_STATIC && m_statics.contains(DRAW_LAYER)) {
-		std::vector<staticObjectData>& v = m_statics.at(DRAW_LAYER);
-		for (auto iter = v.begin(); iter != v.end(); ++iter) {
-			if (iter->ID == entityID) {
-				v.erase(iter);
-				return;
-			}
-		}
-	}
-	else if (m_moveables.contains(DRAW_LAYER)) [[likely]] {
-		std::vector<objectData>& v = m_moveables.at(DRAW_LAYER);
-		for (auto iter = v.begin(); iter != v.end(); ++iter) {
-			if (iter->ID == entityID) {
-				v.erase(iter);
-				return;
-			}
-		}
-	}
-	// Reaching this point means that while the entity does
-	// exists, and does contain a drawable, that entity is
-	// most like not added to this RenderSystem, or that
-	// it was added but later on erased already.
 }
 
 void RenderSystem::update(float) {
 	sort();
 }
 
+using tuple = std::tuple<const std::vector<std::shared_ptr<Drawable>>&, std::size_t&, const std::size_t&>;
+
 void RenderSystem::draw(Window& window) {
 	// Assuming the entities are sorted at this point.
-	auto kons = m_statics.begin();
-	auto vars = m_moveables.begin();
+	for (auto& [DRAW_LAYER, containers] : m_drawables) {
+		window.useViewFromLayer(DRAW_LAYER);
+		const FloatRect VIEWSPACE = window.getCurrentView().getViewSpace();
 
-	while (kons != m_statics.end() || vars != m_moveables.end()) {
-		if (kons->first == vars->first) { // same keys exists.
-			window.useViewFromLayer(kons->first);
-			const FloatRect VIEWSPACE = window.getCurrentView().getViewSpace();
-
-			std::queue<std::shared_ptr<Drawable>> konsQueue;
-			std::queue<std::shared_ptr<Drawable>> varsQueue;
-
-			for (const staticObjectData& data : kons->second) {
-				if (!data.ptr.expired()) {
-					std::shared_ptr<Drawable> d = data.ptr.lock();
-					if (VIEWSPACE.intersects(d->getGlobalBounds())) {
-						konsQueue.push(d);
-					}
+		if (containers.first.empty()) {
+			if (containers.second.empty()) {
+				// both containers are empty, proceed to next layer.
+				continue;
+			}
+			// Second container is not empty, first is
+			for (std::shared_ptr<Drawable>& drawable : containers.second) {
+				if (VIEWSPACE.intersects(drawable->getGlobalBounds())) {
+					drawable->draw(window);
 				}
 			}
-			for (const objectData& data : vars->second) {
-				if (!data.ptr.expired()) {
-					std::shared_ptr<Drawable> d = data.ptr.lock();
-					if (VIEWSPACE.intersects(d->getGlobalBounds())) {
-						varsQueue.push(d);
-					}
-				}
-			}
-			while (!konsQueue.empty() && !varsQueue.empty()) {
-				if (konsQueue.front()->getSortOrder() <= varsQueue.front()->getSortOrder()) {
-					konsQueue.front()->draw(window);
-					konsQueue.pop();
-				}
-				else {
-					varsQueue.front()->draw(window);
-					varsQueue.pop();
-				}
-			}
-			std::queue<std::shared_ptr<Drawable>>& remainingQ = konsQueue.empty() ? varsQueue : konsQueue;
-			while (!remainingQ.empty()) {
-				remainingQ.front()->draw(window);
-				remainingQ.pop();
-			}
-			kons++;
-			vars++;
 		}
-		else if (kons->first < vars->first) { // statics turn
-			window.useViewFromLayer(kons->first);
-			const FloatRect VIEWSPACE = window.getCurrentView().getViewSpace();
-			for (const staticObjectData& data : kons->second) {
-				if (!data.ptr.expired()) {
-					std::shared_ptr<Drawable> d = data.ptr.lock();
-					if (VIEWSPACE.intersects(d->getGlobalBounds())) {
-						d->draw(window);
-					}
+		else if (containers.second.empty()) { 
+			// first is not empty
+			debug << "Drawing first container." << std::endl;
+			for (std::shared_ptr<Drawable>& drawable : containers.second) {
+				if (VIEWSPACE.intersects(drawable->getGlobalBounds())) {
+					drawable->draw(window);
 				}
 			}
-			kons++;
 		}
 		else {
-			window.useViewFromLayer(vars->first);
-			const FloatRect VIEWSPACE = window.getCurrentView().getViewSpace();
-			for (const objectData& data : vars->second) {
-				if (!data.ptr.expired()) {
-					std::shared_ptr<Drawable> d = data.ptr.lock();
-					if (VIEWSPACE.intersects(d->getGlobalBounds())) {
-						d->draw(window);
-					}
+			const std::vector<std::shared_ptr<Drawable>>& KONS = containers.first;
+			const std::vector<std::shared_ptr<Drawable>>& VARS = containers.second;
+
+			const std::size_t N = KONS.size();
+			const std::size_t O = VARS.size();
+
+			std::size_t i = 0;
+			std::size_t j = 0;
+			while (i < N && j < O) {
+				if (KONS.at(i)->getSortOrder() <= VARS.at(j)->getSortOrder()) {
+					KONS.at(i++)->draw(window);
+				}
+				else {
+					VARS.at(j++)->draw(window);
 				}
 			}
-			vars++;
+			auto [REM, k, SIZE] = (i < N) ? tuple(KONS, i, N) : tuple(VARS, j, O);
+			for (; k < SIZE; ++k) {
+				REM.at(k)->draw(window);
+			}
 		}
 	}
 }
