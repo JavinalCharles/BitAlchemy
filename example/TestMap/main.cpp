@@ -19,7 +19,7 @@ int main() {
 	PathFinder::addCommonPath(prefPath);
 
 	// engine.getResourceManager().addToSearchPaths(prefPath);
-	const IntRect WINDOW_DIMENSION(0, 0, 768, 640);
+	const IntRect WINDOW_DIMENSION(0, 0, 972, 754);
 	engine.getWindow().setDimension(WINDOW_DIMENSION);
 	// engine.getWindow().setView(ba::View(WINDOW_DIMENSION));
 	

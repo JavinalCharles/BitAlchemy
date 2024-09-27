@@ -40,11 +40,11 @@ void TestMapScene::onActivate() {
 	std::string fileName = "classroom.tmx";
 
 	ba::debug << "Generating Map Entities." << std::endl;
-	std::vector<std::shared_ptr<Entity>> entities = m_mapGenerator.generate(fileName, SCALE);
-	ba::debug << "Generated total " << entities.size() << " entities." << std::endl;
+	m_entities = m_mapGenerator.generate(fileName, SCALE);
+	ba::debug << "Generated total " << m_entities.size() << " entities." << std::endl;
 
-	ba::debug << "Adding new entities to the game." << std::endl;
-	m_CONTEXT.entities->add(entities);
+	// ba::debug << "Adding new entities to the game." << std::endl;
+	m_CONTEXT.entities->add(m_entities);
 }
 
 void TestMapScene::update(float deltaTime) {
@@ -57,6 +57,12 @@ void TestMapScene::postUpdate(float deltaTime) {
 
 void TestMapScene::draw(Window& window) {
 	m_CONTEXT.entities->draw(window);
+	// for (auto& entity : m_entities) {
+	// 	auto drawable = entity->getDrawable();
+	// 	if (drawable != nullptr) {
+	// 		drawable->draw(window);
+	// 	}
+	// }
 }
 
 } // namespace ba

@@ -27,6 +27,7 @@ public:
 private:
 	generator::TileMapGenerator m_mapGenerator; 
 
+	std::vector<std::shared_ptr<Entity>> m_entities;
 	EntityManager m_entityManager;
 }; // class TestMapScene
 

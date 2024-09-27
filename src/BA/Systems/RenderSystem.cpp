@@ -56,9 +56,11 @@ void RenderSystem::add(std::shared_ptr<Entity> entity) {
 
 			array.insert(array.begin() + left, drawable);
 		}
+		// std::cout << "Added 1 static entity." << std::endl;
 	}
 	else { // NOT IS_STATIC
 		containerPair.second.push_back(drawable);
+		// std::cout << "Added one moveable entity." << std::endl;
 	}
 }
 
@@ -77,27 +79,18 @@ void RenderSystem::draw(Window& window) {
 	// Assuming the entities are sorted at this point.
 	for (auto& [DRAW_LAYER, containers] : m_drawables) {
 		window.useViewFromLayer(DRAW_LAYER);
-		const FloatRect VIEWSPACE = window.getCurrentView().getViewSpace();
 
 		if (containers.first.empty()) {
 			if (containers.second.empty()) {
-				// both containers are empty, proceed to next layer.
 				continue;
 			}
-			// Second container is not empty, first is
 			for (std::shared_ptr<Drawable>& drawable : containers.second) {
-				if (VIEWSPACE.intersects(drawable->getGlobalBounds())) {
-					drawable->draw(window);
-				}
+				drawable->draw(window);
 			}
 		}
 		else if (containers.second.empty()) { 
-			// first is not empty
-			// debug << "Drawing first container." << std::endl;
-			for (std::shared_ptr<Drawable>& drawable : containers.second) {
-				if (VIEWSPACE.intersects(drawable->getGlobalBounds())) {
-					drawable->draw(window);
-				}
+			for (std::shared_ptr<Drawable>& drawable : containers.first) {
+				drawable->draw(window);
 			}
 		}
 		else {

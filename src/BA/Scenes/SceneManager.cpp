@@ -27,7 +27,7 @@ void SceneManager::postUpdate(float deltaTime) {
 
 void SceneManager::draw(Window& window) {
 	if (m_currentSceneID != 0) {
-		std::cout << "\rRendering scene ID: " << m_currentSceneID << std::flush;
+		// std::cout << "\rRendering scene ID: " << m_currentSceneID << std::flush;
 		m_scenes.at(m_currentSceneID)->draw(window);
 	}
 }

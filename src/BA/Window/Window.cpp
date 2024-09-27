@@ -1,7 +1,7 @@
 #include "BA/Window/Window.hpp"
-#ifdef DEBUG_MODE_ON
+// #ifdef DEBUG_MODE_ON
 #include <iostream>
-#endif
+// #endif
 
 namespace ba {
 
@@ -196,7 +196,11 @@ void Window::draw(SDL_Texture* texture, const ba::IntRect& textureRect, const Fl
 	SDL_Rect screenCoordsRect = m_currentView.mapToView(destRect).toSDL_Rect();
 	SDL_Rect textureSDLRect = textureRect.toSDL_Rect();
 
-	SDL_RenderCopyEx(globalRenderer, texture, &textureSDLRect, &screenCoordsRect, angle.asDegrees(), NULL, flip);
+	int err = SDL_RenderCopyEx(globalRenderer, texture, &textureSDLRect, &screenCoordsRect, angle.asDegrees(), NULL, flip);
+
+	if (err) {
+		std::cout << SDL_GetError() << std::endl;
+	}
 }
 
 void Window::drawPoint(const Vector2f& point, const Color& pc) {

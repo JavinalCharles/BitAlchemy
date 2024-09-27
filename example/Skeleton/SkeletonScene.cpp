@@ -60,6 +60,7 @@ void SkeletonScene::onActivate() {
 
 	std::shared_ptr<Entity> fpsEntity = std::make_shared<Entity>(&m_CONTEXT);
 	fpsEntity->setPosition({5.f, 5.f});
+	fpsEntity->setStatic(true);
 
 	m_FPSText = fpsEntity->addComponent<Text>();
 	m_FPSText->loadFontFromFile("UbuntuMono-Bold.ttf", 16);
