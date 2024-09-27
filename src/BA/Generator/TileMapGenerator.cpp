@@ -187,6 +187,7 @@ XMLDocument& TileMapGenerator::getXML(const std::string& xmlFile) {
 
 IDtype TileMapGenerator::loadXML(const std::string& xmlFile) {
 	XMLManager& xmlManager = mp_context->warehouse->getManager<XMLManager>();
+
 	std::optional<path> xmlpath = xmlManager.findFile(path(xmlFile));
 	if (!xmlpath.has_value()) {
 		debug << "Unable to load xml file: " << xmlFile.c_str() << std::endl;
@@ -195,6 +196,7 @@ IDtype TileMapGenerator::loadXML(const std::string& xmlFile) {
 
 	const IDtype id = xmlManager.create();
 	xmlManager.at(id).LoadFile(xmlpath.value().c_str());
+
 	m_sourceIdMap.insert_or_assign(xmlFile, id);
 	m_xmlIDs.insert(id);
 	return id;

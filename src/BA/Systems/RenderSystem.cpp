@@ -63,7 +63,7 @@ void RenderSystem::add(std::shared_ptr<Entity> entity) {
 }
 
 void RenderSystem::remove(IDtype entityID) {
-	auto entity = m_entities->at(entityID);
+	// auto entity = m_entities->at(entityID);
 
 }
 
@@ -126,7 +126,7 @@ void RenderSystem::draw(Window& window) {
 }
 
 void RenderSystem::sort() {
-	
+
 }
 
 

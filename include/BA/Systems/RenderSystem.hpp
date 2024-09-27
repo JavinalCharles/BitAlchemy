@@ -30,6 +30,7 @@ public:
 
 private:
 	void sort();
+
 private:
 	std::map<DrawLayer, std::pair<std::vector<std::shared_ptr<Drawable>>, std::vector<std::shared_ptr<Drawable>>>> m_drawables;
 
