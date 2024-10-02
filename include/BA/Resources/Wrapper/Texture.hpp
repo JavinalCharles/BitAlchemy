@@ -4,7 +4,9 @@
 #include <string>
 
 #include <BA/Globals.hpp>
+#include <BA/Utilities/Color.hpp>
 #include <BA/Utilities/Vector2.hpp>
+#include <BA/Types.hpp>
 
 #include <SDL2/SDL_render.h>
 #include <SDL2/SDL_image.h>
@@ -43,6 +45,7 @@ namespace Resources {
          */
         Texture();
         Texture(const std::string& file);
+        Texture(const std::string& file, const Color& treatAsTransparent);
         Texture(int width, int height);
         Texture(const Vector2i& dimesnsion);
         Texture(const Texture& other);
@@ -78,6 +81,7 @@ namespace Resources {
          * Use the clear() method instead.
          */
         SDL_Texture* create(const std::string& file);
+        SDL_Texture* create(const std::string& file, const Color& treatAsTransparent);
         SDL_Texture* create(int width, int height);
         SDL_Texture* create(const Vector2i& dimension);
         ///@}
