@@ -117,7 +117,7 @@ std::pair<std::type_index, std::shared_ptr<S>> SceneManager::createScene(Window*
 
 	if (!m_scenes.contains(index)) {
 		m_scenes.insert_or_assign(index, std::make_shared<S>(window, warehouse, this));
-		// m_scenes.at(index)->create();
+		m_scenes.at(index)->create();
 	}
 
 	return std::make_pair(index, std::dynamic_pointer_cast<S>(m_scenes.at(index)));
