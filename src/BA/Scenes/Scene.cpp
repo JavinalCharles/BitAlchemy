@@ -92,12 +92,4 @@ void Scene::setWarehouse(Warehouse* warehouse) {
 void Scene::setSceneManager(SceneManager* sceneManager) {
 	m_sceneManager = sceneManager;
 }
-
-void Scene::setSwitchTo(IDtype sceneID) {
-	m_switchTo = sceneID;
-}
-
-IDtype Scene::getSWitchTo() const {
-	return m_switchTo;
-}
 } // namespace ba

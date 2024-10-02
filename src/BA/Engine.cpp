@@ -101,6 +101,10 @@ uint16 Engine::getFPSLimit() const {
 	return m_fpsLimit;
 }
 
+SceneManager& Engine::getSceneManager() {
+	return m_sceneManager;
+}
+
 void Engine::init() {
 
 	if(SDL_Init(SDL_INIT_EVERYTHING) < 0) {
@@ -135,10 +139,6 @@ void Engine::onInit() {
 
 void Engine::onInit(const std::function<void()>& initFunc) {
 	m_initFunctions.push_back(initFunc);
-}
-
-IDtype Engine::addScene(std::shared_ptr<Scene> scene) {
-	return m_sceneManager.add(scene);
 }
 
 void Engine::run() {

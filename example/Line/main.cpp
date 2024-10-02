@@ -16,8 +16,9 @@ int main(int argc, char* argv[]) {
 
 	engine.setFPSLimit(30);
 
-	std::shared_ptr<ba::LineScene> lineScne = engine.createScene<ba::LineScene>();
-	engine.addScene(lineScne);
+	auto lineScene = engine.createScene<ba::LineScene>();
+	// engine.addScene(lineScne);
+	engine.getSceneManager().switchToScene(lineScene.first);
 
 	engine.run();
 

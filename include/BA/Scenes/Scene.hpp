@@ -48,15 +48,11 @@ public:
 	virtual void setWarehouse(ba::Resources::Warehouse* warehouse);
 	virtual void setSceneManager(SceneManager* sm);
 
-	virtual void setSwitchTo(IDtype sceneID);
-	IDtype getSWitchTo() const;
 protected:
 	SharedContext m_CONTEXT;
 
 	SceneManager* m_sceneManager = nullptr;
 private:
-	IDtype		m_switchTo{};
-
 	std::vector<std::function<void()>> m_onCreateFunctions;
 	std::vector<std::function<void()>> m_onActivateFunctions;
 }; // class Scene

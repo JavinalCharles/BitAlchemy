@@ -23,13 +23,15 @@ public:
 
 	virtual void draw(Window& window);
 
+	void setSwitchToScene(std::type_index index);
+
 private:
 	IDtype			m_splashTexID		= 0;
 	SDL_Texture*	m_splashTexture 	= nullptr;
 	float			m_timeElapsed 		= 0.0f;
 	const float		mk_displayTime 		= 3.75f;
 
-
+	std::type_index m_switchToIndex = typeid(int);
 
 }; // class BitAlchemySplash
 

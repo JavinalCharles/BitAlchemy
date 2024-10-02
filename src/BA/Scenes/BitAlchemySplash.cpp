@@ -37,14 +37,17 @@ void BitAlchemySplash::onDestroy() {
 void BitAlchemySplash::update(float deltaTime) {
 	m_timeElapsed += deltaTime;
 	if (m_timeElapsed >= mk_displayTime) {
-		IDtype thisID = m_sceneManager->getCurrentSceneID();
-		m_sceneManager->switchTo(this->getSWitchTo());
-		m_sceneManager->remove(thisID);
+		m_sceneManager->switchToScene(m_switchToIndex);
+		m_sceneManager->removeScene(std::type_index(typeid(BitAlchemySplash)));
 	}
 }
 
 void BitAlchemySplash::draw(Window& window) {
 	SDL_RenderCopy(window.getRenderer(), m_splashTexture, NULL, NULL);
+}
+
+void BitAlchemySplash::setSwitchToScene(std::type_index index) {
+	m_switchToIndex = index;
 }
 
 

@@ -25,12 +25,11 @@ int main() {
 	
 	engine.init();
 
-	std::shared_ptr<BitAlchemySplash> splashScene = engine.createScene<BitAlchemySplash>();
-	std::shared_ptr<TestMapScene> mapScene = engine.createScene<TestMapScene>();
-	engine.addScene(splashScene);
-	IDtype mapSceneID = engine.addScene(mapScene);
+	auto splashScene = engine.createScene<BitAlchemySplash>();
+	auto mapScene = engine.createScene<TestMapScene>();
 
-	splashScene->setSwitchTo(mapSceneID);
+	splashScene.second->setSwitchToScene(mapScene.first);
+	engine.getSceneManager().switchToScene(splashScene.first);
 
 	engine.run();
 

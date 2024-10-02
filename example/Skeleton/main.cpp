@@ -23,10 +23,11 @@ int main(int argc, char* argv[]) {
 	engine.init();
 	engine.setFPSLimit(60u);
 
-	// std::shared_ptr<BitAlchemySplash> splashScene = engine.createScene<BitAlchemySplash>();
-	std::shared_ptr<SkeletonScene> skeletonScene = engine.createScene<SkeletonScene>();
+	auto splashScene = engine.createScene<BitAlchemySplash>();
+	auto skeletonScene = engine.createScene<SkeletonScene>();
 
-	engine.addScene(skeletonScene);
+	splashScene.second->setSwitchToScene(skeletonScene.first);
+	engine.getSceneManager().switchToScene(splashScene.first);
 
 	engine.run();
 

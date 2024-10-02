@@ -17,8 +17,8 @@ int main(int argc, char* argv[]) {
 	engine.init();
 	engine.setFPSLimit(23);
 
-	std::shared_ptr<ba::TextScene> textScene = engine.createScene<ba::TextScene>();
-	engine.addScene(textScene);
+	auto textScene = engine.createScene<ba::TextScene>();
+	engine.getSceneManager().switchToScene(textScene.first);
 
 	engine.run();
 

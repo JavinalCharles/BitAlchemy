@@ -25,9 +25,6 @@
 
 namespace ba {
 
-template <typename S>
-concept SceneType = std::is_base_of<Scene, S>::value;
-
 class Engine {
 public:
 	Engine();
@@ -64,16 +61,15 @@ public:
 	virtual void onInit();
 	virtual void onInit(const std::function<void()>& initFunc);
 
-	template <SceneType T>
-	std::shared_ptr<T> createScene();
-
-	IDtype addScene(std::shared_ptr<Scene> scene);
+	template <SceneType S>
+	std::pair<std::type_index, std::shared_ptr<S>> createScene();;
 
 	///////////////////////////////////////////////////////////////////////////
 	// ENGINE DATA EXTRACTION
 	///////////////////////////////////////////////////////////////////////////
 	uint16 getFPSLimit() const;
 
+	SceneManager& getSceneManager();
 	///////////////////////////////////////////////////////////////////////////
 	// GAME LOOP METHODS
 	///////////////////////////////////////////////////////////////////////////
@@ -106,13 +102,12 @@ private:
 	std::vector<std::function<void()>> m_initFunctions;
 }; // class Engine
 
-
 /**
  * METHOD IMPLEMENTATIONS
 **/
-template <SceneType T>
-std::shared_ptr<T> Engine::createScene() {
-	return std::make_shared<T>(&m_window, &m_resources, &m_sceneManager);
+template <SceneType S>
+std::pair<std::type_index, std::shared_ptr<S>> Engine::createScene() {
+	return m_sceneManager.createScene<S>(&m_window, &m_resources);
 }
 
 
