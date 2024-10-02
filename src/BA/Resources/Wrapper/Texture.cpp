@@ -89,23 +89,23 @@ SDL_Texture* Texture::create(const std::string& file, const Color& color) {
 		return m_texture;
 	}
 
-	SDL_Surface* surface = SDL_LoadBMP(file.c_str());
+	SDL_Surface* surface = IMG_Load(file.c_str());
 	if (surface == nullptr) {
-		std::cerr << "Surface could not be taken from file: " << file << std::endl;
-		std::cerr << SDL_GetError() << std::endl;
+		std::cout << "Surface could not be taken from file: " << file << std::endl;
+		std::cout << SDL_GetError() << std::endl;
 		return m_texture;
 	}
 
-	ba::uint32 colorkey = SDL_MapRGB(surface->format, color.r, color.g, color.b);
+	Uint32 colorkey = SDL_MapRGB(surface->format, color.r, color.g, color.b);
 	SDL_SetColorKey(surface, SDL_TRUE, colorkey);
 
 	m_texture = SDL_CreateTextureFromSurface(globalRenderer, surface);
 	if (m_texture != nullptr) {
-		m_refCount = new int (1);
+		m_refCount = new int(1);
 	}
 	else {
-		std::cerr << "Unable to create texture from surface." << std::endl;
-		std::cerr << SDL_GetError() << std::endl;
+		std::cout << "Unable to create texture from surface." << std::endl;
+		std::cout << SDL_GetError() << std::endl;
 	}
 	SDL_FreeSurface(surface);
 	return m_texture;
