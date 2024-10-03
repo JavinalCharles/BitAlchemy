@@ -1,5 +1,6 @@
 #pragma once
 
+#include <array>
 #include <BA/Utilities/Rect.hpp>
 #include <BA/Utilities/Vector2.hpp>
 
@@ -109,32 +110,30 @@ constexpr Vector2f Transform::transformPoint(const Vector2f& point) const {
 	);
 }
 
-constexpr FloatRect Transform::transformRect(const FloatRect& rectangle) const {
-	const Vector2f points[] =
-		{
-			transformPoint({rectangle.l, rectangle.t}),
-			transformPoint({rectangle.l, rectangle.t + rectangle.h}),
-			transformPoint({rectangle.l + rectangle.w, rectangle.t}),
-			transformPoint({rectangle.l + rectangle.w, rectangle.t + rectangle.h})
-		};
-	float left 		= points[0].x;
-	float top 		= points[0].y;
-	float right		= points[0].x;
-	float bottom 	= points[0].y;
+constexpr FloatRect Transform::transformRect(const FloatRect& rect) const {
+	Vector2f pos = rect.getPosition();
+	const std::array points = {
+			transformPoint(pos),
+			transformPoint(pos + Vector2f(0.f, rect.h)),
+			transformPoint(pos + Vector2f(rect.w, 0.f)),
+			transformPoint(pos + rect.getArea())
+	};
+	Vector2f pmin = points[0];
+    Vector2f pmax = points[0];
 
-	for (int i = 1; i < 4; ++i) {
-		if (points[i].x < left)
-			left = points[i].x;
-		else if (points[i].x > right)
-			right = points[i].x;
+	for (const Vector2f& p : points) {
+		if (p.x < pmin.x) 
+			pmin.x = p.x;
+		else if (p.x > pmax.x) 
+			pmax.x = p.x;
 
-		if (points[i].y < top)
-			top = points[i].y;
-		else if (points[i].y > bottom)
-			bottom = points[i].y;
+		if (p.y < pmin.y)
+			pmin.y = p.y;
+		else if (p.y > pmax.y)
+			pmax.y = p.y;
 	}
 
-	return FloatRect({left, top}, {right - left, bottom - top});
+	return FloatRect(pmin, pmax - pmin);
 }
 
 constexpr Transform& Transform::combine(const Transform& transform) {

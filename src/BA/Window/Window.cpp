@@ -203,6 +203,20 @@ void Window::draw(SDL_Texture* texture, const ba::IntRect& textureRect, const Fl
 	}
 }
 
+void Window::draw(SDL_Texture* texture, const IntRect& textureRect, const FloatRect& destRect, const Vector2f& origin, const Angle& angle) {
+	SDL_RendererFlip flip = getFlip(textureRect);
+
+	SDL_Rect screenCoordsRect = m_currentView.mapToView(destRect).toSDL_Rect();
+	SDL_Rect textureSDLRect = textureRect.toSDL_Rect();
+	SDL_Point center = origin.toSDL_Point();
+
+	int err = SDL_RenderCopyEx(globalRenderer, texture, &textureSDLRect, &screenCoordsRect, angle.asDegrees(), &center, flip);
+
+	if (err) {
+		std::cout << SDL_GetError() << std::endl;
+	}
+}
+
 void Window::drawPoint(const Vector2f& point, const Color& pc) {
 	Color cb; // Color buffer
 	Vector2f sc = m_currentView.mapToView(point);

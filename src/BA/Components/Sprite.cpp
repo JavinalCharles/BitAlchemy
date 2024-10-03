@@ -14,10 +14,11 @@ Sprite::Sprite(ba::Entity* owner, IDtype drawLayer) :
 }
 
 void Sprite::draw(Window& window) {
-	if (m_textureID != 0) {
-		SDL_Texture* texture = getOwner()->CONTEXT->warehouse->getManager<ba::Resources::TextureManager>().at(m_textureID).get();
-		window.draw(texture, m_textureRect, this->getGlobalBounds(), m_owner->getRotation());
+	if (m_textureID == 0) {
+		return;
 	}
+	SDL_Texture* texture = getOwner()->CONTEXT->warehouse->getManager<ba::Resources::TextureManager>().at(m_textureID).get();
+	window.draw(texture, m_textureRect, this->getGlobalBounds(), m_owner->getRotation());
 }
 
 bool Sprite::hasTexture() const {

@@ -122,6 +122,7 @@ public:
 	///////////////////////////////////////////////////////////////////////////
 	void draw(SDL_Texture* texture, const FloatRect& destRect);
 	void draw(SDL_Texture* texture, const IntRect& textureRect, const FloatRect& destRect, const Angle& angle = Angle::Zero);
+	void draw(SDL_Texture* texture, const IntRect& textureRect, const FloatRect& destRect, const Vector2f& origin, const Angle& angle = Angle::Zero);
 	void drawPoint(const Vector2f& point, const Color& pointColor = Color::White);
 	void drawLine(const IntLine& line, const Color& lineColor = Color::White);
 	void drawRect(const IntRect& rect, const Color& rectColor = Color::White);
