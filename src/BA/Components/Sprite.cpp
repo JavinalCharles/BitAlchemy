@@ -18,7 +18,32 @@ void Sprite::draw(Window& window) {
 		return;
 	}
 	SDL_Texture* texture = getOwner()->CONTEXT->warehouse->getManager<ba::Resources::TextureManager>().at(m_textureID).get();
-	window.draw(texture, m_textureRect, this->getGlobalBounds(), m_owner->getRotation());
+	if (texture == nullptr) {
+		return;
+	}
+	FloatRect bounds = this->getGlobalBounds();
+	if (m_owner->isStatic()) {
+		window.draw(texture, m_textureRect, bounds);
+	}
+	else {
+		Vector2f size = m_textureRect.getArea();
+		Vector2f scale =  m_owner->getScale();
+		size.x *= scale.x;
+		size.y *= scale.y;
+		double maxSize = sqrt(size.x * size.x + size.y * size.y);
+
+		Vector2f globalCenter(bounds.l + (bounds.w / 2.f), bounds.t + (bounds.h / 2.f));
+
+		FloatRect maxRect;
+		maxRect.w = maxSize;
+		maxRect.h = maxSize;
+		maxRect.l = globalCenter.x - (maxSize / 2);
+		maxRect.t = globalCenter.y - (maxSize / 2);
+
+		window.draw(texture, m_textureRect, maxRect, m_owner->getRotation().wrapUnsigned());
+	}
+
+	// window.draw(texture, m_textureRect, bounds, m_owner->getRotation());
 }
 
 bool Sprite::hasTexture() const {
@@ -93,6 +118,7 @@ FloatRect Sprite::getLocalBounds() const {
 
 FloatRect Sprite::getGlobalBounds() const {
 	return getOwner()->getTransform().transformRect(getLocalBounds());
+	// return m_owner->getTransform().translate()
 }
 
 } // namespace ba

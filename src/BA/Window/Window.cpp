@@ -193,10 +193,10 @@ void Window::draw(SDL_Texture* texture, const FloatRect& destRect) {
 void Window::draw(SDL_Texture* texture, const ba::IntRect& textureRect, const FloatRect& destRect, const Angle& angle) {
 	SDL_RendererFlip flip = getFlip(textureRect);
 
-	SDL_Rect screenCoordsRect = m_currentView.mapToView(destRect).toSDL_Rect();
+	SDL_FRect screenCoordsRect = m_currentView.mapToView(destRect).toSDL_FRect();
 	SDL_Rect textureSDLRect = textureRect.toSDL_Rect();
 
-	int err = SDL_RenderCopyEx(globalRenderer, texture, &textureSDLRect, &screenCoordsRect, angle.asDegrees(), NULL, flip);
+	int err = SDL_RenderCopyExF(globalRenderer, texture, &textureSDLRect, &screenCoordsRect, angle.asDegrees(), NULL, flip);
 
 	if (err) {
 		std::cout << SDL_GetError() << std::endl;

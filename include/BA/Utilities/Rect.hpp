@@ -34,6 +34,8 @@ public: // METHODS & CONSTRUCTORS
 	constexpr Rect<T>& operator=(const Rect<U>& rhs);
 
 	constexpr SDL_Rect toSDL_Rect() const;
+
+	constexpr SDL_FRect toSDL_FRect() const;
 }; // class Rect
 
 // COMMON TYPEDEFS
@@ -174,6 +176,16 @@ constexpr SDL_Rect Rect<T>::toSDL_Rect() const {
 		static_cast<int>((t <= (t+h)) ? t : t+h),
 		static_cast<int>((w >= 0) ? w : -w),
 		static_cast<int>((h >= 0) ? h : -h)
+	};
+}
+
+template <typename T>
+constexpr SDL_FRect Rect<T>::toSDL_FRect() const {
+	return SDL_FRect{
+		static_cast<float>((l <= (l+w)) ? l : l+w),
+		static_cast<float>((t <= (t+h)) ? t : t+h),
+		static_cast<float>((w >= 0) ? w : -w),
+		static_cast<float>((h >= 0) ? h : -h)
 	};
 }
 

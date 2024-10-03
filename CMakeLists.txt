@@ -69,6 +69,7 @@ set(SOURCES
 	src/BA/Systems/TimerSystem.cpp
 	src/BA/Systems/VelocityWithCollisionSystem.cpp
 	src/BA/Tools/DebugHelper.cpp
+	src/BA/Utilities/Angle.cpp
 	src/BA/Utilities/Transform.cpp
 	src/BA/Window/Window.cpp
 	src/BA/Window/View.cpp

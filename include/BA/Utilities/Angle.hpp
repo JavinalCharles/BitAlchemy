@@ -212,6 +212,4 @@ constexpr Angle& operator%=(Angle& left, Angle right)
 }
 
 
-
-
 } // namespace ba
