@@ -46,7 +46,7 @@ void RenderSystem::add(std::shared_ptr<Entity> entity) {
 			while (left < right) {
 				std::size_t mid = left + ((right - left) >> 1);
 
-				if (array[left]->getSortOrder() < ORDER) {
+				if (array[mid]->getSortOrder() < ORDER) {
 					left = mid + 1;
 				}
 				else {
@@ -119,7 +119,28 @@ void RenderSystem::draw(Window& window) {
 }
 
 void RenderSystem::sort() {
+	for (auto& v : m_drawables) {
+		sort(v.second.second);;
+	}
+}
 
+void RenderSystem::sort(std::vector<std::shared_ptr<Drawable>>& drawables) {
+	const std::size_t N = drawables.size();
+	if (N < 2) {
+		return;
+	}
+	auto compare = [](std::shared_ptr<Drawable>& left, std::shared_ptr<Drawable>& right) -> bool {
+		return left->getSortOrder() < right->getSortOrder();
+	};
+
+	auto begin = drawables.begin();
+	auto end = drawables.end();
+
+	if (std::is_sorted(begin, end, compare)) {
+		return;
+	}
+
+	std::sort(begin, end, compare);
 }
 
 
