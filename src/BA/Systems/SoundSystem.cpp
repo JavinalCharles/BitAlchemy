@@ -13,7 +13,11 @@ SoundSystem::SoundSystem(EntityManager* entities) :
 
 void SoundSystem::postUpdate(float) {
 	for(IDtype ID : m_entityIDs) {
-		std::queue<IDtype>& soundQueue = m_entities->at(ID)->getComponent<SoundEmitter>()->getSounds();
+		auto e = getEntity(ID);
+		if (e == nullptr) {
+			continue;
+		}
+		std::queue<IDtype>& soundQueue = e->getComponent<SoundEmitter>()->getSounds();
 
 		while(!soundQueue.empty()) {
 			Mix_Chunk* sound = m_entities->at(ID)->CONTEXT->warehouse->getManager<SoundManager>().at(soundQueue.front()).get();

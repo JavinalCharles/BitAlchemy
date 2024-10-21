@@ -88,7 +88,11 @@ std::vector<std::shared_ptr<Collider>> CollisionSystem::searchNonStatic(const Fl
 
 void CollisionSystem::detectCollisions() {
 	for(IDtype ID : m_entityIDs) {
-		auto i_collider = m_entities->at(ID)->getCollider();
+		std::shared_ptr<Entity> entity = getEntity(ID);
+		if (entity == nullptr) {
+			continue;
+		}
+		auto i_collider = entity->getCollider();
 		unsigned i_layer = i_collider->getLayer();
 
 		// Check for collision with static objects;

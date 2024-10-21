@@ -13,6 +13,9 @@ MouseControlSystem::MouseControlSystem(EntityManager* entities) :
 void MouseControlSystem::update(float) {
 	for (IDtype ID : m_entityIDs) {
 		auto e = this->getEntity(ID);
+		if (e == nullptr) {
+			continue;
+		}
 
 		auto mis = e->getComponent<MouseControl>();
 		for (auto& [btn, actions] : mis->getBindingsOnMouseButtonPressed()) {

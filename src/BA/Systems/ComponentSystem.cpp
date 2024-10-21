@@ -31,7 +31,12 @@ void ComponentSystem::remove(IDtype entityID) {
 }
 
 std::shared_ptr<Entity> ComponentSystem::getEntity(IDtype id) const {
-	return m_entities->at(id);
+	try {
+		return m_entities->at(id);
+	}
+	catch (const std::out_of_range&) {
+		return nullptr;
+	}
 }
 
 const std::set<IDtype>& ComponentSystem::getIDs() const {

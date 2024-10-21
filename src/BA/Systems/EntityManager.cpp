@@ -81,20 +81,10 @@ void EntityManager::processRemovals() {
 }
 
 std::shared_ptr<ba::Entity>& EntityManager::operator[](IDtype entityID) {
-	if (!m_entities.contains(entityID)) {
-		debug << "EntityManager cannot find an entity " << entityID << ". Trying to emplace a temporary one to prevent exception." << std::endl;
-		m_entities.try_emplace(entityID);
-	}
-
 	return m_entities.at(entityID);
 }
 
 std::shared_ptr<ba::Entity>& EntityManager::at(IDtype entityID) {
-	if (!m_entities.contains(entityID)) {
-		debug << "EntityManager cannot find an entity " << entityID << ". Trying to emplace a temporary one to prevent exception." << std::endl;
-		m_entities.try_emplace(entityID);
-	}
-
 	return m_entities.at(entityID);
 }
 

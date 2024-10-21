@@ -13,7 +13,10 @@ KeyboardControlSystem::KeyboardControlSystem(EntityManager* entities) :
 
 void KeyboardControlSystem::update(float) {
 	for(IDtype ID : m_entityIDs) {
-		auto& e = m_entities->at(ID);
+		auto e = getEntity(ID);
+		if (e == nullptr) {
+			continue;
+		}
 
 		auto kcs = e->getComponent<KeyboardControl>();
 		auto& keyPressedBindings = kcs->getBindingsOnKeyPressed();

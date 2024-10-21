@@ -13,7 +13,11 @@ TimerSystem::TimerSystem(EntityManager* entityManager) :
 
 void TimerSystem::update(float deltaTime) {
 	for(auto& ID: this->getIDs()) {
-		auto t = this->getEntity(ID)->getComponent<Timer>();
+		auto e = getEntity(ID);
+		if (e == nullptr) {
+			continue;
+		}
+		auto t = e->getComponent<Timer>();
 		auto& m = t->getTimedActions();
 
 		auto i = m.begin();

@@ -13,7 +13,10 @@ MovementSystem::MovementSystem(EntityManager* entityManager) :
 
 void MovementSystem::update(float deltaTime) {
 	for(IDtype ID : m_entityIDs) {
-		auto e = m_entities->at(ID);
+		auto e = getEntity(ID);
+		if (e == nullptr) {
+			continue;
+		}
 		auto v = e->getComponent<Velocity>();
 
 		Vector2f displacement = v->get() * deltaTime;

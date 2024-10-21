@@ -65,8 +65,32 @@ void RenderSystem::add(std::shared_ptr<Entity> entity) {
 }
 
 void RenderSystem::remove(IDtype entityID) {
-	// auto entity = m_entities->at(entityID);
+	std::shared_ptr<Entity> entity;
+	try {
+		entity = m_entities->at(entityID);
+	}
+	catch (const std::out_of_range& e) {
+		return;
+	}
+	
 
+	std::shared_ptr<Drawable> drawable = entity->getDrawable();
+	if (drawable == nullptr) {
+		// Nothing to do here.
+		return;
+	}
+
+	const bool IS_STATIC = entity->isStatic();
+	const DrawLayer LAYER = drawable->getDrawLayer();
+	if (m_drawables.contains(LAYER)) {
+		std::vector<std::shared_ptr<Drawable>>& vec = IS_STATIC ? m_drawables.at(LAYER).first : m_drawables.at(LAYER).second;
+
+		auto iter = std::find(vec.begin(), vec.end(), drawable);
+
+		if (iter != vec.end()) {
+			vec.erase(iter);
+		}
+	}
 }
 
 void RenderSystem::update(float) {
@@ -129,18 +153,14 @@ void RenderSystem::sort(std::vector<std::shared_ptr<Drawable>>& drawables) {
 	if (N < 2) {
 		return;
 	}
-	auto compare = [](std::shared_ptr<Drawable>& left, std::shared_ptr<Drawable>& right) -> bool {
-		return left->getSortOrder() < right->getSortOrder();
+	auto compare = [](const std::shared_ptr<Drawable>& A, const std::shared_ptr<Drawable>& B) -> bool {
+		return A->getSortOrder() < B->getSortOrder();
 	};
 
 	auto begin = drawables.begin();
 	auto end = drawables.end();
 
-	if (std::is_sorted(begin, end, compare)) {
-		return;
-	}
-
-	std::sort(begin, end, compare);
+	std::sort(std::is_sorted_until(begin, end, compare), end, compare);
 }
 
 

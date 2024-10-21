@@ -158,11 +158,17 @@ void VelocityWithCollisionSystem::useContinuousCollisionDetection(std::shared_pt
 void VelocityWithCollisionSystem::update(float deltaTime) {
 	for (const IDtype& ID : m_nonCollidingEntityIDs) {
 		auto e = getEntity(ID);
+		if (e == nullptr) {
+			continue;
+		}
 		e->move(e->getComponent<Velocity>()->get() * deltaTime);
 	}
 
 	for (const IDtype& ID : getIDs()) {
 		auto e = getEntity(ID);
+		if (e == nullptr) {
+			continue;
+		}
 		auto velocity = e->getComponent<Velocity>();
 		auto i_collider = e->getCollider();
 		const unsigned i_LAYER = i_collider->getLayer();
