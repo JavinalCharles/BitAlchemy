@@ -153,14 +153,42 @@ void RenderSystem::sort(std::vector<std::shared_ptr<Drawable>>& drawables) {
 	if (N < 2) {
 		return;
 	}
-	auto compare = [](const std::shared_ptr<Drawable>& A, const std::shared_ptr<Drawable>& B) -> bool {
+	constexpr auto compare = [](const std::shared_ptr<Drawable>& A, const std::shared_ptr<Drawable>& B) -> bool {
 		return A->getSortOrder() < B->getSortOrder();
 	};
 
 	auto begin = drawables.begin();
 	auto end = drawables.end();
 
-	std::sort(std::is_sorted_until(begin, end, compare), end, compare);
+	auto unsorted_start = std::is_sorted_until(begin, end, compare);
+
+	if (unsorted_start == end) {
+		// vector is properly sorted. No need to do anything.
+		return;
+	}
+	// else
+	// unsorted_start's proper order is most definitely going to be
+	// found at some index left of it [begin, unsorted_start), which
+	// is the sorted part of the vector.
+	// Use binary search to find the proper place for the object w/in
+	// unsorted_start, then start sorting from there.
+	auto left = begin;
+	auto right = unsorted_start - 1;
+
+	// a const value to reduce number of pointer dereferences.
+	const ba::int32 ORDER = (*unsorted_start)->getSortOrder();
+	while (left < right) {
+		auto mid = left + (right - left) / 2;
+
+		if ((*mid)->getSortOrder() < ORDER) {
+			left = mid + 1;
+		}
+		else {
+			right = mid;
+		}
+	}
+
+	std::sort(left, end, compare);
 }
 
 
