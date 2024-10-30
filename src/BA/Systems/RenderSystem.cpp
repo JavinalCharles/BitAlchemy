@@ -94,7 +94,7 @@ void RenderSystem::remove(IDtype entityID) {
 }
 
 void RenderSystem::update(float) {
-	sort();
+
 }
 
 using tuple = std::tuple<const std::vector<std::shared_ptr<Drawable>>&, std::size_t&, const std::size_t&>;
@@ -108,6 +108,8 @@ void RenderSystem::draw(Window& window) {
 			if (containers.second.empty()) {
 				continue;
 			}
+			// Since .second is not empty, sort it first before drawing.
+			sort(containers.second);
 			for (std::shared_ptr<Drawable>& drawable : containers.second) {
 				drawable->draw(window);
 			}
@@ -118,6 +120,8 @@ void RenderSystem::draw(Window& window) {
 			}
 		}
 		else {
+			// Since .second is not empty, sort it first before drawing.
+			sort(containers.second);
 			const std::vector<std::shared_ptr<Drawable>>& KONS = containers.first;
 			const std::vector<std::shared_ptr<Drawable>>& VARS = containers.second;
 
@@ -142,54 +146,19 @@ void RenderSystem::draw(Window& window) {
 	}
 }
 
-void RenderSystem::sort() {
-	for (auto& v : m_drawables) {
-		sort(v.second.second);;
-	}
+inline bool drawablesInProperOrder(const std::shared_ptr<Drawable>& a, const std::shared_ptr<Drawable>& b) {
+	return a->getSortOrder() < b->getSortOrder();
 }
 
 void RenderSystem::sort(std::vector<std::shared_ptr<Drawable>>& drawables) {
-	const std::size_t N = drawables.size();
-	if (N < 2) {
-		return;
-	}
-	constexpr auto compare = [](const std::shared_ptr<Drawable>& A, const std::shared_ptr<Drawable>& B) -> bool {
-		return A->getSortOrder() < B->getSortOrder();
-	};
+	if (!drawables.empty()) {
+		auto begin = drawables.begin();
+		auto end = drawables.end();
 
-	auto begin = drawables.begin();
-	auto end = drawables.end();
-
-	auto unsorted_start = std::is_sorted_until(begin, end, compare);
-
-	if (unsorted_start == end) {
-		// vector is properly sorted. No need to do anything.
-		return;
-	}
-	// else
-	// unsorted_start's proper order is most definitely going to be
-	// found at some index left of it [begin, unsorted_start), which
-	// is the sorted part of the vector.
-	// Use binary search to find the proper place for the object w/in
-	// unsorted_start, then start sorting from there.
-	auto left = begin;
-	auto right = unsorted_start - 1;
-
-	// a const value to reduce number of pointer dereferences.
-	const ba::int32 ORDER = (*unsorted_start)->getSortOrder();
-	while (left < right) {
-		auto mid = left + (right - left) / 2;
-
-		if ((*mid)->getSortOrder() < ORDER) {
-			left = mid + 1;
-		}
-		else {
-			right = mid;
+		if (!std::is_sorted(begin, end, drawablesInProperOrder)) {
+			std::sort(begin, end, drawablesInProperOrder);
 		}
 	}
-
-	std::sort(left, end, compare);
 }
-
 
 } // namespace ba

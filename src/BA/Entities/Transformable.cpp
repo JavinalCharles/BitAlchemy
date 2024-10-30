@@ -34,20 +34,8 @@ void Transformable::setOrigin(const Vector2f& origin) {
 	m_inverseTransformNeedUpdate = true;
 }
 
-const Vector2f& Transformable::getPosition() const {
-	return m_position;
-}
-
 Angle Transformable::getRotation() const {
 	return m_rotation;
-}
-
-const Vector2f& Transformable::getScale() const {
-	return m_scale;
-}
-
-const Vector2f& Transformable::getOrigin() const {
-	return m_origin;
 }
 
 void Transformable::move(const Vector2f& offset) {

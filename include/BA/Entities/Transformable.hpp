@@ -18,10 +18,10 @@ public:
 	void setScale(const Vector2f& factors);
 	void setOrigin(const Vector2f& origin);
 	
-	const Vector2f& getPosition() const;
+	constexpr const Vector2f& getPosition() const;
 	Angle getRotation() const;
-	const Vector2f& getScale() const;
-	const Vector2f& getOrigin() const;
+	constexpr const Vector2f& getScale() const;
+	constexpr const Vector2f& getOrigin() const;
 
 	void move(const Vector2f& offset);
 	void rotate(Angle angle);
@@ -41,5 +41,17 @@ private:
 	mutable bool 		m_inverseTransformNeedUpdate{true};
 
 }; // class Transformable
+
+constexpr const Vector2f& Transformable::getPosition() const {
+	return m_position;
+}
+
+constexpr const Vector2f& Transformable::getScale() const {
+	return m_scale;
+}
+
+constexpr const Vector2f& Transformable::getOrigin() const {
+	return m_origin;
+}
 
 } // namespace ba

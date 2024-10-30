@@ -29,8 +29,7 @@ public:
 	void draw(Window& window);
 
 private:
-	void sort();
-	void sort(std::vector<std::shared_ptr<Drawable>>& array);
+	void sort(std::vector<std::shared_ptr<Drawable>>& drawablesArray);
 
 private:
 	std::map<DrawLayer, std::pair<std::vector<std::shared_ptr<Drawable>>, std::vector<std::shared_ptr<Drawable>>>> m_drawables;
